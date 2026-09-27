@@ -1,5 +1,7 @@
 # ⚽ Calcio Toscana Scraper & Calendari Tool
 
+> 🌐 **Dashboard Web Online:** **[https://cicciocanestro.github.io/calcio-toscana-scraper/](https://cicciocanestro.github.io/calcio-toscana-scraper/)**
+
 Un tool completo e automatizzato di web scraping per estrarre, consultare ed esportare i **calendari aggiornati**, i **risultati** e le **classifiche** dei campionati dilettantistici toscani:
 
 1. **Promozione Toscana - Girone C**
@@ -185,10 +187,14 @@ Ci sono due modi gratuiti e semplicissimi per pubblicare questa dashboard online
 ---
 
 ### 🥈 Opzione 2: GitHub Actions (100% Gratis, Zero Server in standby)
-Nel repository è già configurato il file `.github/workflows/update.yml`:
+
+La dashboard è già online e attiva su:
+👉 **[https://cicciocanestro.github.io/calcio-toscana-scraper/](https://cicciocanestro.github.io/calcio-toscana-scraper/)**
+
+Nel repository è configurato il file `.github/workflows/update.yml`:
 - Esegue in automatico lo scraping ogni **domenica sera alle 23:00** (dopo le partite) e ogni **lunedì mattina**.
 - Aggiorna i dati e fa commit automatico sul repository.
-- Puoi attivare **GitHub Pages** (Settings > Pages > Deploy from branch > cartella `public` o `root`) per avere il sito online su una CDN ad altissima velocità che non va mai in standby!
+- Il sito è ospitato sulla CDN globale di GitHub Pages, carica all'istante e non va mai in standby!
 
 ---
 

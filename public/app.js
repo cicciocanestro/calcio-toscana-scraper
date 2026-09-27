@@ -151,8 +151,12 @@ async function loadLeague(leagueId, forceRefresh = false) {
         }
       } catch (e) {
         // Fallback per hosting statico (GitHub Pages / Vercel statico)
-        const staticResp = await fetch(`data/cache/${leagueId}.json`);
-        if (!staticResp.ok) throw new Error('Dati non trovati in cache statica');
+        // Prova sia ../data/cache/ (se siamo in /public/) sia data/cache/ (se siamo alla root)
+        let staticResp = await fetch(`../data/cache/${leagueId}.json`).catch(() => null);
+        if (!staticResp || !staticResp.ok) {
+          staticResp = await fetch(`data/cache/${leagueId}.json`).catch(() => null);
+        }
+        if (!staticResp || !staticResp.ok) throw new Error('Dati non trovati in cache statica');
         res = await staticResp.json();
       }
     }
@@ -458,9 +462,23 @@ function generateClientTeamIcs(team, teamMatches) {
 }
 
 function updateExportLinks() {
-  elBtnExportIcs.href = `/api/leagues/${currentLeague}/export/ics`;
-  elBtnExportCsv.href = `/api/leagues/${currentLeague}/export/csv`;
-  elBtnExportJson.href = `/api/leagues/${currentLeague}/export/json`;
+  // Se le API server non sono attive, imposta i link statici ai file scaricabili
+  fetch('/api/leagues')
+    .then(r => {
+      if (r.ok) {
+        elBtnExportIcs.href = `/api/leagues/${currentLeague}/export/ics`;
+        elBtnExportCsv.href = `/api/leagues/${currentLeague}/export/csv`;
+        elBtnExportJson.href = `/api/leagues/${currentLeague}/export/json`;
+      } else {
+        throw new Error();
+      }
+    })
+    .catch(() => {
+      // Static fallback
+      elBtnExportIcs.href = `../data/exports/${currentLeague}.ics`;
+      elBtnExportCsv.href = `../data/exports/${currentLeague}.csv`;
+      elBtnExportJson.href = `../data/exports/${currentLeague}.json`;
+    });
 }
 
 function showLoading(show, text = 'Caricamento...') {
