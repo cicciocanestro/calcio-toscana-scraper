@@ -34,12 +34,16 @@ const elTeamMatchesContainer = document.getElementById('team-matches-container')
 const elBtnExportIcs = document.getElementById('btn-export-ics');
 const elBtnExportCsv = document.getElementById('btn-export-csv');
 const elBtnExportJson = document.getElementById('btn-export-json');
+const elRefreshWrapper = document.getElementById('refresh-wrapper');
+const elRefreshTooltip = document.getElementById('refresh-tooltip');
+
+let isStaticEnvironment = false;
 
 // Rilevamento ambiente (GitHub Pages vs Server Node locale/cloud)
 function detectEnvironment() {
   const isGitHubPages = window.location.hostname.endsWith('github.io') || window.location.hostname.includes('github.io');
   if (isGitHubPages) {
-    disableRefreshButton('Su GitHub Pages i calendari e le classifiche vengono aggiornati in automatico ogni fine settimana con GitHub Actions.');
+    setupStaticMode('Su GitHub Pages i calendari e le classifiche vengono aggiornati in automatico ogni fine settimana con GitHub Actions.');
     return;
   }
 
@@ -47,21 +51,23 @@ function detectEnvironment() {
   fetch('/api/leagues')
     .then(r => {
       if (!r.ok) {
-        disableRefreshButton('Server Node.js non attivo. Visualizzazione dati in modalità statica.');
+        setupStaticMode('Server Node.js non attivo. Visualizzazione dati in modalità statica.');
       }
     })
     .catch(() => {
-      disableRefreshButton('Server Node.js non attivo. Visualizzazione dati in modalità statica.');
+      setupStaticMode('Server Node.js non attivo. Visualizzazione dati in modalità statica.');
     });
 }
 
-function disableRefreshButton(tooltipText) {
+function setupStaticMode(tooltipText) {
+  isStaticEnvironment = true;
   if (!elBtnRefresh) return;
-  elBtnRefresh.disabled = true;
   elBtnRefresh.classList.remove('btn-primary');
   elBtnRefresh.classList.add('btn-disabled');
-  elBtnRefresh.title = tooltipText;
   elBtnRefresh.innerHTML = '<span class="btn-icon">🤖</span> Auto-Aggiornato (Actions)';
+  if (elRefreshWrapper) {
+    elRefreshWrapper.classList.add('is-static');
+  }
 }
 
 // Inizializzazione
@@ -73,6 +79,13 @@ document.addEventListener('DOMContentLoaded', () => {
 function setupEventListeners() {
   // Rileva se siamo su GitHub Pages o senza server Node
   detectEnvironment();
+
+  // Chiudi tooltip se clicchi fuori
+  document.addEventListener('click', (e) => {
+    if (elRefreshWrapper && !elRefreshWrapper.contains(e.target)) {
+      elRefreshWrapper.classList.remove('show-tooltip');
+    }
+  });
 
   // Cambio Campionato
   elLeaguesTabs.addEventListener('click', (e) => {
@@ -88,11 +101,18 @@ function setupEventListeners() {
     loadLeague(currentLeague);
   });
 
-  // Aggiorna dal Web
+  // Aggiorna dal Web / Click su Auto-Aggiornato
   elBtnRefresh.addEventListener('click', (e) => {
-    if (elBtnRefresh.disabled) {
-      e.preventDefault();
-      alert('ℹ️ Su GitHub Pages i dati vengono aggiornati automaticamente ogni fine settimana tramite GitHub Actions!\n\nPer eseguire lo scraping manuale istantaneo è necessario avviare il server Node.js in locale ("npm start") o su Render.com.');
+    e.preventDefault();
+    if (isStaticEnvironment) {
+      if (elRefreshWrapper) {
+        elRefreshWrapper.classList.toggle('show-tooltip');
+      }
+      alert(
+        '🤖 AGGIORNAMENTO AUTOMATICO ATTIVO\n\n' +
+        'Su GitHub Pages il backend Node.js non è attivo in background: i calendari, i risultati e le classifiche vengono aggiornati automaticamente ogni fine settimana (domenica sera e lunedì mattina) tramite GitHub Actions.\n\n' +
+        '👉 Per eseguire lo scraping live immediato è possibile avviare il tool in locale sul proprio computer (con "npm start") oppure ospitarlo gratuitamente su Render.com col Dockerfile già presente nel progetto.'
+      );
       return;
     }
     loadLeague(currentLeague, true);

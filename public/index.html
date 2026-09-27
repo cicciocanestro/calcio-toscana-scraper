@@ -21,9 +21,15 @@
         </div>
       </div>
       <div class="header-actions">
-        <button id="btn-refresh" class="btn btn-primary" title="Riscarica i dati dal web">
-          <span class="btn-icon">🔄</span> Aggiorna dal Web
-        </button>
+        <div class="refresh-btn-wrapper" id="refresh-wrapper">
+          <button id="btn-refresh" class="btn btn-primary" type="button">
+            <span class="btn-icon">🔄</span> <span id="btn-refresh-text">Aggiorna dal Web</span>
+          </button>
+          <div id="refresh-tooltip" class="custom-tooltip">
+            <strong>🤖 Aggiornamento Automatico</strong><br>
+            Su GitHub Pages i calendari e le classifiche si aggiornano in automatico ogni fine settimana tramite GitHub Actions.
+          </div>
+        </div>
       </div>
     </div>
   </header>
