@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calcio Toscana - Calendari e Classifiche</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="container header-container">
+      <div class="logo-group">
+        <span class="logo-icon">⚽</span>
+        <div>
+          <h1>Calcio Toscana Scraper</h1>
+          <p class="subtitle">Calendari, Risultati e Classifiche Aggiornate in Tempo Reale</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="btn-refresh" class="btn btn-primary" title="Riscarica i dati dal web">
+          <span class="btn-icon">🔄</span> Aggiorna dal Web
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main-content">
+    <!-- Selezione Campionato -->
+    <section class="leagues-selector">
+      <div class="nav-tabs" id="leagues-tabs">
+        <button class="tab-btn active" data-league="promozione-c">
+          <span class="league-tag">Promozione</span>
+          <span class="league-title">Girone C (Toscana)</span>
+        </button>
+        <button class="tab-btn" data-league="seconda-i">
+          <span class="league-tag">Seconda Cat.</span>
+          <span class="league-title">Girone I (Toscana)</span>
+        </button>
+        <button class="tab-btn" data-league="terza-arezzo">
+          <span class="league-tag">Terza Cat.</span>
+          <span class="league-title">Arezzo (Girone Unico)</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Info Bar / Metadata -->
+    <section class="league-info-bar" id="league-info">
+      <div class="info-item">
+        <span class="info-label">Campionato</span>
+        <strong class="info-value" id="info-name">Caricamento...</strong>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Turno Corrente</span>
+        <strong class="info-value badge-pill" id="info-current-day">-</strong>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Giornate Totali</span>
+        <strong class="info-value" id="info-total-days">-</strong>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Ultimo Aggiornamento</span>
+        <span class="info-value info-date" id="info-last-updated">-</span>
+      </div>
+    </section>
+
+    <!-- Sub Navigation (Calendario, Classifica, Squadra, Esporta) -->
+    <section class="view-navigation">
+      <div class="sub-nav">
+        <button class="sub-nav-btn active" data-view="calendar">📅 Calendario</button>
+        <button class="sub-nav-btn" data-view="standings">🏆 Classifica</button>
+        <button class="sub-nav-btn" data-view="team">🔍 Per Squadra</button>
+        <button class="sub-nav-btn" data-view="export">📥 Esportazioni</button>
+      </div>
+    </section>
+
+    <!-- Loading Spinner & Error Banner -->
+    <div id="loading-spinner" class="loading-container hidden">
+      <div class="spinner"></div>
+      <p id="loading-text">Caricamento dati dal web in corso, attendere...</p>
+    </div>
+
+    <div id="error-banner" class="alert alert-error hidden">
+      <span class="alert-icon">⚠️</span>
+      <span id="error-message"></span>
+    </div>
+
+    <!-- SEZIONE CALENDARIO -->
+    <section id="view-calendar" class="view-panel">
+      <div class="calendar-controls">
+        <div class="day-switcher">
+          <button id="btn-prev-day" class="btn btn-outline" title="Giornata precedente">◀ Prec</button>
+          <div class="select-wrapper">
+            <select id="select-day" class="form-select">
+              <!-- Popolato via JS -->
+            </select>
+          </div>
+          <button id="btn-next-day" class="btn btn-outline" title="Giornata successiva">Succ ▶</button>
+        </div>
+        <div class="filter-actions">
+          <button id="btn-all-days" class="btn btn-outline">Mostra Tutte le Giornate</button>
+        </div>
+      </div>
+
+      <div id="calendar-container" class="calendar-matches-grid">
+        <!-- Partite popolate dinamicamente -->
+      </div>
+    </section>
+
+    <!-- SEZIONE CLASSIFICA -->
+    <section id="view-standings" class="view-panel hidden">
+      <div class="table-responsive">
+        <table class="standings-table">
+          <thead>
+            <tr>
+              <th class="col-pos">#</th>
+              <th class="col-team">Squadra</th>
+              <th class="col-pt">PT</th>
+              <th>G</th>
+              <th>V</th>
+              <th>N</th>
+              <th>P</th>
+              <th>GF</th>
+              <th>GS</th>
+              <th class="col-dr">DR</th>
+            </tr>
+          </thead>
+          <tbody id="standings-tbody">
+            <!-- Popolato via JS -->
+          </tbody>
+        </table>
+      </div>
+      <div class="standings-legend">
+        <span class="legend-item"><span class="legend-color color-promotion"></span> Promozione diretta</span>
+        <span class="legend-item"><span class="legend-color color-playoff"></span> Playoff</span>
+        <span class="legend-item"><span class="legend-color color-playout"></span> Playout</span>
+        <span class="legend-item"><span class="legend-color color-retrocession"></span> Retrocessione</span>
+      </div>
+    </section>
+
+    <!-- SEZIONE PER SQUADRA -->
+    <section id="view-team" class="view-panel hidden">
+      <div class="team-filter-bar">
+        <label for="select-team"><strong>Scegli la Squadra:</strong></label>
+        <select id="select-team" class="form-select">
+          <option value="">-- Seleziona una squadra --</option>
+        </select>
+        <a id="btn-team-ics" href="#" class="btn btn-success hidden" download>
+          🗓 Scarica Calendario .ICS per questa squadra
+        </a>
+      </div>
+
+      <div id="team-matches-container" class="calendar-matches-grid">
+        <p class="empty-state">Seleziona una squadra dal menu sopra per visualizzare tutte le sue partite e i marcatori.</p>
+      </div>
+    </section>
+
+    <!-- SEZIONE ESPORTAZIONI -->
+    <section id="view-export" class="view-panel hidden">
+      <div class="export-cards">
+        <div class="export-card">
+          <div class="export-icon">🗓</div>
+          <h3>iCalendar (.ics)</h3>
+          <p>Sincronizza tutte le partite direttamente sul tuo smartphone, Google Calendar, Apple Calendar o Outlook.</p>
+          <a id="btn-export-ics" class="btn btn-primary" href="#" download>Scarica Calendario .ICS</a>
+        </div>
+        <div class="export-card">
+          <div class="export-icon">📊</div>
+          <h3>Foglio CSV (.csv)</h3>
+          <p>Tabella completa con tutte le giornate, orari, risultati e marcatori. Perfetta per Excel e Fogli Google.</p>
+          <a id="btn-export-csv" class="btn btn-primary" href="#" download>Scarica File CSV</a>
+        </div>
+        <div class="export-card">
+          <div class="export-icon">💻</div>
+          <h3>Dati JSON (.json)</h3>
+          <p>Tutti i dati strutturati (classifica, marcatori, giornate, partite e dettagli) in formato JSON standard.</p>
+          <a id="btn-export-json" class="btn btn-primary" href="#" download>Scarica File JSON</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="container footer-container">
+      <p>Calcio Toscana Web Scraper Tool • Sviluppato per Promozione C, Seconda Categoria I e Terza Categoria Arezzo</p>
+      <p class="source-note">Fonte dati ufficiali e aggiornamenti: Tuttocampo.it</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

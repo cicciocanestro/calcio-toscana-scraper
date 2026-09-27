@@ -1,0 +1,30 @@
+{
+  "name": "scraping",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node bin/cli.js serve",
+    "serve": "node bin/cli.js serve",
+    "scrape": "node bin/cli.js scrape all",
+    "standings": "node bin/cli.js standings",
+    "calendar": "node bin/cli.js calendar",
+    "next": "node bin/cli.js next",
+    "results": "node bin/cli.js results",
+    "export": "node bin/cli.js export all"
+  },
+  "bin": {
+    "calcio-toscana": "./bin/cli.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "chalk": "^6.0.1",
+    "cli-table3": "^0.6.5",
+    "commander": "^15.0.0",
+    "express": "^5.2.1",
+    "puppeteer-core": "^25.12.0"
+  }
+}

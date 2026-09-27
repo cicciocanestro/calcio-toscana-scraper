@@ -1,0 +1,45 @@
+name: Aggiornamento Automatico Calendari
+
+on:
+  schedule:
+    # Ogni domenica sera alle 21:00 UTC (dopo le partite del weekend)
+    - cron: '0 21 * * 0'
+    # Ogni lunedì mattina alle 08:00 UTC
+    - cron: '0 8 * * 1'
+  workflow_dispatch: # Permette di avviare l'aggiornamento a mano da GitHub
+
+permissions:
+  contents: write
+
+jobs:
+  scrape-and-update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del codice
+        uses: actions/checkout@v4
+
+      - name: Configurazione Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Installazione dipendenze
+        run: npm ci
+
+      - name: Esecuzione Scraping Campionati
+        run: |
+          node bin/cli.js scrape all --refresh
+
+      - name: Commit e Push dei dati aggiornati
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/cache/ data/exports/
+          if git diff --staged --quiet; then
+            echo "Nessun aggiornamento trovato, i dati sono già aggiornati."
+          else
+            git commit -m "chore(data): aggiornamento automatico calendari e classifiche [skip ci]"
+            git push
+          fi
