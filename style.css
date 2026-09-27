@@ -121,6 +121,18 @@ body {
   border-color: #cbd5e1;
 }
 
+.btn-disabled {
+  background-color: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  cursor: help;
+}
+
+.btn-disabled:hover {
+  background-color: rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+}
+
 /* Tabs Campionati */
 .leagues-selector {
   margin-top: 1.5rem;

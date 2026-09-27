@@ -35,6 +35,35 @@ const elBtnExportIcs = document.getElementById('btn-export-ics');
 const elBtnExportCsv = document.getElementById('btn-export-csv');
 const elBtnExportJson = document.getElementById('btn-export-json');
 
+// Rilevamento ambiente (GitHub Pages vs Server Node locale/cloud)
+function detectEnvironment() {
+  const isGitHubPages = window.location.hostname.endsWith('github.io') || window.location.hostname.includes('github.io');
+  if (isGitHubPages) {
+    disableRefreshButton('Su GitHub Pages i calendari e le classifiche vengono aggiornati in automatico ogni fine settimana con GitHub Actions.');
+    return;
+  }
+
+  // Se siamo altrove (localhost o Render), verifichiamo se l'API risponde
+  fetch('/api/leagues')
+    .then(r => {
+      if (!r.ok) {
+        disableRefreshButton('Server Node.js non attivo. Visualizzazione dati in modalità statica.');
+      }
+    })
+    .catch(() => {
+      disableRefreshButton('Server Node.js non attivo. Visualizzazione dati in modalità statica.');
+    });
+}
+
+function disableRefreshButton(tooltipText) {
+  if (!elBtnRefresh) return;
+  elBtnRefresh.disabled = true;
+  elBtnRefresh.classList.remove('btn-primary');
+  elBtnRefresh.classList.add('btn-disabled');
+  elBtnRefresh.title = tooltipText;
+  elBtnRefresh.innerHTML = '<span class="btn-icon">🤖</span> Auto-Aggiornato (Actions)';
+}
+
 // Inizializzazione
 document.addEventListener('DOMContentLoaded', () => {
   setupEventListeners();
@@ -42,6 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function setupEventListeners() {
+  // Rileva se siamo su GitHub Pages o senza server Node
+  detectEnvironment();
+
   // Cambio Campionato
   elLeaguesTabs.addEventListener('click', (e) => {
     const btn = e.target.closest('.tab-btn');
@@ -57,7 +89,12 @@ function setupEventListeners() {
   });
 
   // Aggiorna dal Web
-  elBtnRefresh.addEventListener('click', () => {
+  elBtnRefresh.addEventListener('click', (e) => {
+    if (elBtnRefresh.disabled) {
+      e.preventDefault();
+      alert('ℹ️ Su GitHub Pages i dati vengono aggiornati automaticamente ogni fine settimana tramite GitHub Actions!\n\nPer eseguire lo scraping manuale istantaneo è necessario avviare il server Node.js in locale ("npm start") o su Render.com.');
+      return;
+    }
     loadLeague(currentLeague, true);
   });
 
