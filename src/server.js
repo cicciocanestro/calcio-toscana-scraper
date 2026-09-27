@@ -10,6 +10,7 @@ function createServer() {
   const scraper = new CalendarScraper();
 
   app.use(express.json());
+  app.use(express.static(path.join(__dirname, '..')));
   app.use(express.static(path.join(__dirname, '..', 'public')));
 
   // Lista campionati supportati e stato cache
