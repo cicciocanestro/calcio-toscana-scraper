@@ -110,6 +110,31 @@ function setupEventListeners() {
     const team = e.target.value;
     renderTeamMatches(team);
   });
+
+  // Download Esportazioni (CSV, ICS, JSON)
+  elBtnExportCsv.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!leagueData) return;
+    const csv = generateClientCsv(leagueData);
+    const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8' });
+    triggerBlobDownload(blob, `${currentLeague}.csv`);
+  });
+
+  elBtnExportIcs.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!leagueData) return;
+    const ics = generateClientFullIcs(leagueData);
+    const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+    triggerBlobDownload(blob, `${currentLeague}.ics`);
+  });
+
+  elBtnExportJson.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!leagueData) return;
+    const jsonStr = JSON.stringify(leagueData, null, 2);
+    const blob = new Blob([jsonStr], { type: 'application/json;charset=utf-8' });
+    triggerBlobDownload(blob, `${currentLeague}.json`);
+  });
 }
 
 function switchView(view) {
@@ -474,24 +499,145 @@ function generateClientTeamIcs(team, teamMatches) {
   return lines.join('\r\n');
 }
 
-function updateExportLinks() {
-  // Se le API server non sono attive, imposta i link statici ai file scaricabili
-  fetch('/api/leagues')
-    .then(r => {
-      if (r.ok) {
-        elBtnExportIcs.href = `/api/leagues/${currentLeague}/export/ics`;
-        elBtnExportCsv.href = `/api/leagues/${currentLeague}/export/csv`;
-        elBtnExportJson.href = `/api/leagues/${currentLeague}/export/json`;
+function triggerBlobDownload(blob, filename) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function generateClientCsv(data) {
+  const headers = [
+    'Campionato',
+    'Categoria',
+    'Girone',
+    'Giornata_Num',
+    'Giornata_Titolo',
+    'Data',
+    'Ora',
+    'Casa',
+    'Ospiti',
+    'Gol_Casa',
+    'Gol_Ospiti',
+    'Stato',
+    'Marcatori_Casa',
+    'Marcatori_Ospiti',
+    'Link'
+  ];
+
+  const escapeField = (val) => {
+    if (val === null || val === undefined) return '""';
+    return `"${String(val).replace(/"/g, '""')}"`;
+  };
+
+  const rows = [headers.join(';')];
+
+  for (const day of data.matchDays || []) {
+    for (const m of day.matches || []) {
+      const row = [
+        escapeField(data.name),
+        escapeField(data.category),
+        escapeField(data.girone),
+        day.dayNumber,
+        escapeField(day.dayTitle),
+        escapeField(m.date),
+        escapeField(m.time),
+        escapeField(m.homeTeam),
+        escapeField(m.awayTeam),
+        m.homeScore !== null ? m.homeScore : '',
+        m.awayScore !== null ? m.awayScore : '',
+        escapeField(m.status),
+        escapeField((m.homeScorers || []).join(', ')),
+        escapeField((m.awayScorers || []).join(', ')),
+        escapeField(m.matchLink || '')
+      ];
+      rows.push(row.join(';'));
+    }
+  }
+
+  return rows.join('\r\n');
+}
+
+function generateClientFullIcs(data) {
+  const now = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+  const lines = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Scraper Calcio Dilettanti Toscana//IT',
+    'CALSCALE:GREGORIAN',
+    'METHOD:PUBLISH',
+    `X-WR-CALNAME:${data.name} - Calendario`,
+    'X-WR-TIMEZONE:Europe/Rome'
+  ];
+
+  for (const day of data.matchDays || []) {
+    for (const m of day.matches || []) {
+      let dtStart = '', dtEnd = '';
+      if (m.dateTime && m.dateTime.includes('T')) {
+        const [dPart, tPart] = m.dateTime.split('T');
+        const [y, mo, d] = dPart.split('-').map(Number);
+        const [hh, mm] = tPart.split(':').map(Number);
+        const st = new Date(y, mo - 1, d, hh || 15, mm || 30);
+        const en = new Date(st.getTime() + 105 * 60 * 1000);
+        const pad = (n) => String(n).padStart(2, '0');
+        const fmt = (dt) => `${dt.getFullYear()}${pad(dt.getMonth() + 1)}${pad(dt.getDate())}T${pad(dt.getHours())}${pad(dt.getMinutes())}00`;
+        dtStart = `DTSTART;TZID=Europe/Rome:${fmt(st)}`;
+        dtEnd = `DTEND;TZID=Europe/Rome:${fmt(en)}`;
+      } else if (m.date) {
+        const cl = m.date.replace(/[-]/g, '');
+        dtStart = `DTSTART;VALUE=DATE:${cl}`;
+        dtEnd = `DTEND;VALUE=DATE:${cl}`;
       } else {
-        throw new Error();
+        continue;
       }
-    })
-    .catch(() => {
-      // Static fallback
-      elBtnExportIcs.href = `../data/exports/${currentLeague}.ics`;
-      elBtnExportCsv.href = `../data/exports/${currentLeague}.csv`;
-      elBtnExportJson.href = `../data/exports/${currentLeague}.json`;
-    });
+
+      const safeHome = m.homeTeam.replace(/[^a-zA-Z0-9]/g, '');
+      const safeAway = m.awayTeam.replace(/[^a-zA-Z0-9]/g, '');
+      const uid = `match-${data.id}-${day.dayNumber}-${safeHome}-${safeAway}@calciotoscana.local`;
+
+      let summary = `${m.homeTeam} vs ${m.awayTeam}`;
+      if (m.isPlayed) summary += ` (${m.homeScore}-${m.awayScore})`;
+
+      let desc = `${day.dayTitle} - ${data.name}\\n`;
+      if (m.isPlayed) {
+        desc += `Risultato finale: ${m.homeTeam} ${m.homeScore} - ${m.awayScore} ${m.awayTeam}\\n`;
+        if (m.homeScorers && m.homeScorers.length > 0) {
+          desc += `Marcatori ${m.homeTeam}: ${m.homeScorers.join(', ')}\\n`;
+        }
+        if (m.awayScorers && m.awayScorers.length > 0) {
+          desc += `Marcatori ${m.awayTeam}: ${m.awayScorers.join(', ')}\\n`;
+        }
+      } else {
+        desc += `Partita in programma alle ${m.time || '15:30'}\\n`;
+      }
+
+      lines.push('BEGIN:VEVENT');
+      lines.push(`UID:${uid}`);
+      lines.push(`DTSTAMP:${now}`);
+      lines.push(dtStart);
+      lines.push(dtEnd);
+      lines.push(`SUMMARY:${summary}`);
+      lines.push(`DESCRIPTION:${desc}`);
+      lines.push(`LOCATION:Campo sportivo ${m.homeTeam}`);
+      if (m.matchLink) lines.push(`URL:${m.matchLink}`);
+      lines.push('STATUS:CONFIRMED');
+      lines.push('END:VEVENT');
+    }
+  }
+
+  lines.push('END:VCALENDAR');
+  return lines.join('\r\n');
+}
+
+function updateExportLinks() {
+  // Configura i link diretti per click destro "salva con nome"
+  elBtnExportIcs.href = `data/exports/${currentLeague}.ics`;
+  elBtnExportCsv.href = `data/exports/${currentLeague}.csv`;
+  elBtnExportJson.href = `data/exports/${currentLeague}.json`;
 }
 
 function showLoading(show, text = 'Caricamento...') {
