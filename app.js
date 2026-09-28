@@ -385,7 +385,7 @@ function createMatchCard(m, day) {
       </div>
       <div class="team-row away ${isAwayWinner ? 'winner' : ''}">
         <span class="team-name">${escapeHtml(m.awayTeam)}</span>
-        <span class="team-score ${m.isPlayed ? 'played' : ''}">${m.awayScore : '-'}</span>
+        <span class="team-score ${m.isPlayed ? 'played' : ''}">${m.isPlayed ? m.awayScore : '-'}</span>
       </div>
     </div>
     ${scorersHtml}
