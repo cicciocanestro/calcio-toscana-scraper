@@ -10,7 +10,7 @@
   "roundID": "TO.P.C",
   "currentMatchDay": 3,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-09-28T06:40:42.680Z",
+  "lastUpdated": "2026-09-28T17:04:35.379Z",
   "standings": [
     {
       "position": 1,
@@ -548,7 +548,7 @@
           "time": "15:30",
           "dateTime": "2026-09-27T15:30:00",
           "homeScorers": [
-            "L. D'Antonio"
+            "L. D'Antonio (19' pt)"
           ],
           "awayScorers": [],
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/3.1/acquaviva-settignanese"
@@ -632,7 +632,7 @@
           "time": "15:30",
           "dateTime": "2026-09-27T15:30:00",
           "homeScorers": [
-            "Bettazzi (50' st)"
+            "M. Bettazzi (50' st)"
           ],
           "awayScorers": [
             "D. Bucaletti (23' pt)",
@@ -654,7 +654,7 @@
             "M. Merola Raimondo (Rig.) (20' st)"
           ],
           "awayScorers": [
-            "K. Alomar (5' pt)",
+            "K. Alomar (4' pt)",
             "R. Bennati (2' st)"
           ],
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/3.8/ideal-club-incisa-alberoro-1977"
