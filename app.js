@@ -355,10 +355,8 @@ function createMatchCard(m, day) {
   else if (m.status === 'POSTPONED') statusBadge = '<span class="badge-status badge-postponed">Rinviata</span>';
   else statusBadge = '<span class="badge-status badge-scheduled">In programma</span>';
 
-  let scoreHtml = '<span class="score-box">- vs -</span>';
-  if (m.isPlayed) {
-    scoreHtml = `<span class="score-box played">${m.homeScore} - ${m.awayScore}</span>`;
-  }
+  const isHomeWinner = m.isPlayed && m.homeScore > m.awayScore;
+  const isAwayWinner = m.isPlayed && m.awayScore > m.homeScore;
 
   let scorersHtml = '';
   const scorersList = [];
@@ -380,13 +378,14 @@ function createMatchCard(m, day) {
       <span class="match-time">📅 ${escapeHtml(dateStr)} • ⏰ ${escapeHtml(timeStr)}</span>
       ${statusBadge}
     </div>
-    <div class="match-teams-score">
-      <div class="team-box home">
+    <div class="match-teams-list">
+      <div class="team-row home ${isHomeWinner ? 'winner' : ''}">
         <span class="team-name">${escapeHtml(m.homeTeam)}</span>
+        <span class="team-score ${m.isPlayed ? 'played' : ''}">${m.isPlayed ? m.homeScore : '-'}</span>
       </div>
-      ${scoreHtml}
-      <div class="team-box away">
+      <div class="team-row away ${isAwayWinner ? 'winner' : ''}">
         <span class="team-name">${escapeHtml(m.awayTeam)}</span>
+        <span class="team-score ${m.isPlayed ? 'played' : ''}">${m.awayScore : '-'}</span>
       </div>
     </div>
     ${scorersHtml}
