@@ -22,7 +22,7 @@ jobs:
       - name: Configurazione Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
 
       - name: Installazione dipendenze
@@ -30,7 +30,7 @@ jobs:
 
       - name: Esecuzione Scraping Campionati
         run: |
-          node bin/cli.js scrape all --refresh
+          node bin/cli.js scrape all --refresh || echo "Avviso: scraping completato con errori o blocco temporaneo. Vengono conservati i dati della cache precedente."
 
       - name: Commit e Push dei dati aggiornati
         run: |

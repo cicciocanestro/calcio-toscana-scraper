@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer-core');
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 const { findChrome, LEAGUES, CACHE_DIR, EXPORT_DIR, CACHE_TTL_MS } = require('./config');
 const { parseMatchdayHtml, parseStandingsHtml } = require('./parser');
 const { exportToJson, exportToCsv, exportToIcs } = require('./exporters');
@@ -52,6 +53,11 @@ class CalendarScraper {
 
     let browser = null;
     try {
+      const isLinux = os.platform() === 'linux';
+      const userAgent = isLinux
+        ? 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36'
+        : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36';
+
       browser = await puppeteer.launch({
         executablePath: this.chromePath,
         headless: this.headless,
@@ -60,31 +66,62 @@ class CalendarScraper {
           '--disable-setuid-sandbox',
           '--disable-dev-shm-usage',
           '--disable-accelerated-2d-canvas',
-          '--disable-gpu'
+          '--disable-gpu',
+          '--disable-blink-features=AutomationControlled',
+          '--window-size=1920,1080',
+          '--lang=it-IT,it'
         ]
       });
 
       const page = await browser.newPage();
-      await page.setUserAgent(
-        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36'
-      );
+      await page.setUserAgent(userAgent);
+      await page.setViewport({ width: 1920, height: 1080 });
+
+      // Rimuove impronte di automazione per superare challenge AWS WAF
+      await page.evaluateOnNewDocument(() => {
+        Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+        window.chrome = { runtime: {} };
+        Object.defineProperty(navigator, 'languages', { get: () => ['it-IT', 'it', 'en-US', 'en'] });
+        Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3, 4, 5] });
+      });
 
       this.onProgress(`Connessione a ${leagueConfig.url}...`);
       try {
         await page.goto(leagueConfig.url, {
-          waitUntil: 'domcontentloaded',
-          timeout: 45000
+          waitUntil: 'networkidle2',
+          timeout: 30000
         });
       } catch (err) {
-        // Se c'è un reload per WAF challenge, ignoriamo l'errore momentaneo di navigazione
+        // Se c'è un reload immediato causato da WAF o timeout networkidle, prosegui
       }
 
-      // Attende che la pagina superi l'eventuale challenge WAF e carichi le variabili di sessione
+      // Controlla se la pagina è in challenge WAF
+      const inWafChallenge = await page.evaluate(() => {
+        return typeof AwsWafIntegration !== 'undefined' || 
+               document.querySelector('#challenge-container') !== null;
+      }).catch(() => false);
+
+      if (inWafChallenge) {
+        this.onProgress('Risoluzione automatica challenge AWS WAF in corso...');
+        // Attendi che il challenge.js ricarichi la pagina
+        await page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 25000 }).catch(() => {});
+      }
+
+      // Attende che la pagina carichi le variabili di sessione e metadati
       this.onProgress('Attesa caricamento sessione e token...');
-      await page.waitForFunction(
-        () => typeof tckk !== 'undefined' && typeof roundID !== 'undefined' && typeof matchesNumber !== 'undefined',
-        { timeout: 35000 }
-      );
+      try {
+        await page.waitForFunction(
+          () => typeof tckk !== 'undefined' && typeof roundID !== 'undefined' && typeof matchesNumber !== 'undefined',
+          { timeout: 35000 }
+        );
+      } catch (waitErr) {
+        const diag = await page.evaluate(() => ({
+          title: document.title,
+          url: window.location.href,
+          bodySnippet: document.body ? document.body.innerText.substring(0, 200).replace(/\s+/g, ' ') : ''
+        })).catch(() => ({}));
+        throw new Error(`Impossibile ottenere i dati da ${leagueConfig.url} (Stato: "${diag.title || 'N/A'}" - ${diag.bodySnippet || ''}).`);
+      }
 
       // Estrae metadati campionato
       const meta = await page.evaluate(() => {
