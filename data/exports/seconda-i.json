@@ -10,7 +10,7 @@
   "roundID": "TO.2.I",
   "currentMatchDay": 2,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-09-27T17:42:13.871Z",
+  "lastUpdated": "2026-09-28T06:40:48.304Z",
   "standings": [
     {
       "position": 1,
@@ -452,6 +452,7 @@
           "time": "15:30",
           "dateTime": "2026-09-27T15:30:00",
           "homeScorers": [
+            "C. Hysenlari (3' pt)",
             "A. Scielzo (Rig.) (30' pt)"
           ],
           "awayScorers": [
@@ -503,13 +504,13 @@
           "time": "15:30",
           "dateTime": "2026-09-27T15:30:00",
           "homeScorers": [
-            "A. Nucci",
-            "M. Acquisti",
-            "A. Nucci"
+            "A. Nucci (20' pt)",
+            "M. Acquisti (23' st)",
+            "A. Nucci (28' st)"
           ],
           "awayScorers": [
-            "A. La Ferla",
-            "L. Sarracino"
+            "A. La Ferla (9' pt)",
+            "L. Sarracino (41' st)"
           ],
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/2.8/pieve-al-toppo-rassina"
         }
