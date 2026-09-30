@@ -10,7 +10,7 @@
   "roundID": "TO.3.A.AR",
   "currentMatchDay": 2,
   "totalMatchDays": 34,
-  "lastUpdated": "2026-09-28T17:04:45.596Z",
+  "lastUpdated": "2026-09-30T08:10:38.185Z",
   "standings": [
     {
       "position": 1,
@@ -270,6 +270,8 @@
             "E. Moci (30' st)",
             "L. Furcillo (43' st)"
           ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/1.6/san-leolino-atletico-valdambra"
         },
         {
@@ -287,6 +289,8 @@
             "R. Castellucci",
             "N. Bartaletti"
           ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/1.1/colonna-indicatore-sangiustinese"
         },
         {
@@ -304,6 +308,8 @@
             "F. Mazzeschi",
             "N. Mazzeschi"
           ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/1.2/faellese-badia-a-roti-calcio"
         },
         {
@@ -326,6 +332,8 @@
             "F. Brogi",
             "AUTOGOL"
           ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/1.4/pietraia-badia-agnano"
         },
         {
@@ -347,6 +355,8 @@
             "N. Cuciniello",
             "C. Stirbei"
           ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/1.5/san-marco-la-sella-montecchio"
         },
         {
@@ -367,6 +377,8 @@
             "N. Terzi",
             "V. Carriola"
           ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/1.7/tregozzano-monterchiese"
         },
         {
@@ -385,6 +397,8 @@
             "S. Scarpellini",
             "A. Nenciarini"
           ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/1.9/virtus-arezzo-pian-di-sc"
         },
         {
@@ -403,6 +417,8 @@
           "awayScorers": [
             "M. Laterza (22' pt)"
           ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/1.3/lorese-calcio-terontola"
         },
         {
@@ -423,6 +439,8 @@
             "L. Amato (Rig.) (37' pt)",
             "S. Camilletti (6' st)"
           ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/1.8/tuscar-monsigliolo"
         }
       ]
@@ -449,6 +467,8 @@
             "L. Gallai (30' pt)",
             "E. Malaj (36' st)"
           ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/2.8/sangiustinese-san-leolino"
         },
         {
@@ -467,6 +487,8 @@
             "F. Cecconi"
           ],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/2.3/badia-agnano-virtus-arezzo"
         },
         {
@@ -488,6 +510,8 @@
             "S. Pica",
             "S. Pica"
           ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/2.2/badia-a-roti-calcio-pietraia"
         },
         {
@@ -502,6 +526,8 @@
           "dateTime": "2026-09-27T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/2.1/atletico-valdambra-faellese"
         },
         {
@@ -522,6 +548,8 @@
             "E. Fibbi",
             "F. Raspanti"
           ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/2.4/monsigliolo-lorese-calcio"
         },
         {
@@ -541,6 +569,8 @@
           "awayScorers": [
             "F. Cordovani"
           ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/2.5/montecchio-colonna-indicatore"
         },
         {
@@ -559,6 +589,8 @@
             "L. Pancioni"
           ],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/2.6/monterchiese-san-marco-la-sella"
         },
         {
@@ -577,6 +609,8 @@
           "awayScorers": [
             "M. Falah (32' st)"
           ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/2.7/pian-di-sc-tuscar"
         },
         {
@@ -593,6 +627,8 @@
           "awayScorers": [
             "K. Maloku"
           ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/2.9/terontola-tregozzano"
         }
       ]
@@ -614,6 +650,8 @@
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/3.1/badia-agnano-pian-di-sc"
         },
         {
@@ -628,6 +666,8 @@
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/3.2/colonna-indicatore-atletico-valdambra"
         },
         {
@@ -642,6 +682,8 @@
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/3.3/faellese-pietraia"
         },
         {
@@ -656,6 +698,8 @@
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/3.4/lorese-calcio-monterchiese"
         },
         {
@@ -670,6 +714,8 @@
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/3.6/san-leolino-badia-a-roti-calcio"
         },
         {
@@ -684,6 +730,8 @@
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/3.5/san-marco-la-sella-sangiustinese"
         },
         {
@@ -698,6 +746,8 @@
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/3.7/tregozzano-montecchio"
         },
         {
@@ -712,6 +762,8 @@
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/3.8/tuscar-terontola"
         },
         {
@@ -726,6 +778,8 @@
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/3.9/virtus-arezzo-monsigliolo"
         }
       ]
@@ -747,6 +801,8 @@
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/4.1/atletico-valdambra-tregozzano"
         },
         {
@@ -761,6 +817,8 @@
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/4.2/badia-a-roti-calcio-san-marco-la-sella"
         },
         {
@@ -775,6 +833,8 @@
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/4.3/faellese-san-leolino"
         },
         {
@@ -789,6 +849,8 @@
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/4.4/monsigliolo-badia-agnano"
         },
         {
@@ -803,6 +865,8 @@
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/4.5/montecchio-tuscar"
         },
         {
@@ -817,6 +881,8 @@
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/4.6/monterchiese-virtus-arezzo"
         },
         {
@@ -831,6 +897,8 @@
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/4.7/pietraia-colonna-indicatore"
         },
         {
@@ -845,6 +913,8 @@
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/4.8/sangiustinese-lorese-calcio"
         },
         {
@@ -859,6 +929,8 @@
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/4.9/terontola-pian-di-sc"
         }
       ]
@@ -880,6 +952,8 @@
           "dateTime": "2026-10-18T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/5.1/badia-agnano-faellese"
         },
         {
@@ -894,6 +968,8 @@
           "dateTime": "2026-10-18T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/5.2/colonna-indicatore-badia-a-roti-calcio"
         },
         {
@@ -908,6 +984,8 @@
           "dateTime": "2026-10-18T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/5.3/lorese-calcio-montecchio"
         },
         {
@@ -922,6 +1000,8 @@
           "dateTime": "2026-10-18T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/5.4/pian-di-sc-monsigliolo"
         },
         {
@@ -936,6 +1016,8 @@
           "dateTime": "2026-10-18T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/5.6/san-leolino-pietraia"
         },
         {
@@ -950,6 +1032,8 @@
           "dateTime": "2026-10-18T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/5.5/san-marco-la-sella-atletico-valdambra"
         },
         {
@@ -964,6 +1048,8 @@
           "dateTime": "2026-10-18T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/5.7/tregozzano-sangiustinese"
         },
         {
@@ -978,6 +1064,8 @@
           "dateTime": "2026-10-18T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/5.8/tuscar-monterchiese"
         },
         {
@@ -992,6 +1080,8 @@
           "dateTime": "2026-10-18T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/5.9/virtus-arezzo-terontola"
         }
       ]
@@ -1013,6 +1103,8 @@
           "dateTime": "2026-10-25T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/6.1/atletico-valdambra-tuscar"
         },
         {
@@ -1027,6 +1119,8 @@
           "dateTime": "2026-10-25T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/6.2/badia-a-roti-calcio-lorese-calcio"
         },
         {
@@ -1041,6 +1135,8 @@
           "dateTime": "2026-10-25T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/6.3/faellese-san-marco-la-sella"
         },
         {
@@ -1055,6 +1151,8 @@
           "dateTime": "2026-10-25T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/6.4/montecchio-pian-di-sc"
         },
         {
@@ -1069,6 +1167,8 @@
           "dateTime": "2026-10-25T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/6.5/monterchiese-monsigliolo"
         },
         {
@@ -1083,6 +1183,8 @@
           "dateTime": "2026-10-25T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/6.6/pietraia-tregozzano"
         },
         {
@@ -1097,6 +1199,8 @@
           "dateTime": "2026-10-25T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/6.7/san-leolino-colonna-indicatore"
         },
         {
@@ -1111,6 +1215,8 @@
           "dateTime": "2026-10-25T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/6.8/sangiustinese-virtus-arezzo"
         },
         {
@@ -1125,6 +1231,8 @@
           "dateTime": "2026-10-25T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/6.9/terontola-badia-agnano"
         }
       ]
@@ -1146,6 +1254,8 @@
           "dateTime": "2026-11-01T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/7.1/badia-agnano-san-leolino"
         },
         {
@@ -1160,6 +1270,8 @@
           "dateTime": "2026-11-01T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/7.2/colonna-indicatore-faellese"
         },
         {
@@ -1174,6 +1286,8 @@
           "dateTime": "2026-11-01T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/7.3/lorese-calcio-atletico-valdambra"
         },
         {
@@ -1188,6 +1302,8 @@
           "dateTime": "2026-11-01T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/7.4/monsigliolo-terontola"
         },
         {
@@ -1202,6 +1318,8 @@
           "dateTime": "2026-11-01T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/7.5/pian-di-sc-monterchiese"
         },
         {
@@ -1216,6 +1334,8 @@
           "dateTime": "2026-11-01T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/7.6/san-marco-la-sella-pietraia"
         },
         {
@@ -1230,6 +1350,8 @@
           "dateTime": "2026-11-01T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/7.7/tregozzano-badia-a-roti-calcio"
         },
         {
@@ -1244,6 +1366,8 @@
           "dateTime": "2026-11-01T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/7.8/tuscar-sangiustinese"
         },
         {
@@ -1258,6 +1382,8 @@
           "dateTime": "2026-11-01T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/7.9/virtus-arezzo-montecchio"
         }
       ]
@@ -1279,6 +1405,8 @@
           "dateTime": "2026-11-08T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/8.1/atletico-valdambra-pian-di-sc"
         },
         {
@@ -1293,6 +1421,8 @@
           "dateTime": "2026-11-08T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/8.2/badia-a-roti-calcio-virtus-arezzo"
         },
         {
@@ -1307,6 +1437,8 @@
           "dateTime": "2026-11-08T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/8.3/colonna-indicatore-san-marco-la-sella"
         },
         {
@@ -1321,6 +1453,8 @@
           "dateTime": "2026-11-08T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/8.4/faellese-lorese-calcio"
         },
         {
@@ -1335,6 +1469,8 @@
           "dateTime": "2026-11-08T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/8.5/montecchio-terontola"
         },
         {
@@ -1349,6 +1485,8 @@
           "dateTime": "2026-11-08T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/8.6/monterchiese-badia-agnano"
         },
         {
@@ -1363,6 +1501,8 @@
           "dateTime": "2026-11-08T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/8.7/pietraia-tuscar"
         },
         {
@@ -1377,6 +1517,8 @@
           "dateTime": "2026-11-08T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/8.8/san-leolino-tregozzano"
         },
         {
@@ -1391,6 +1533,8 @@
           "dateTime": "2026-11-08T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/8.9/sangiustinese-monsigliolo"
         }
       ]
@@ -1412,6 +1556,8 @@
           "dateTime": "2026-11-15T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/9.1/badia-agnano-colonna-indicatore"
         },
         {
@@ -1426,6 +1572,8 @@
           "dateTime": "2026-11-15T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/9.2/lorese-calcio-pietraia"
         },
         {
@@ -1440,6 +1588,8 @@
           "dateTime": "2026-11-15T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/9.3/monsigliolo-montecchio"
         },
         {
@@ -1454,6 +1604,8 @@
           "dateTime": "2026-11-15T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/9.4/pian-di-sc-sangiustinese"
         },
         {
@@ -1468,6 +1620,8 @@
           "dateTime": "2026-11-15T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/9.5/san-marco-la-sella-san-leolino"
         },
         {
@@ -1482,6 +1636,8 @@
           "dateTime": "2026-11-15T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/9.6/terontola-monterchiese"
         },
         {
@@ -1496,6 +1652,8 @@
           "dateTime": "2026-11-15T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/9.7/tregozzano-faellese"
         },
         {
@@ -1510,6 +1668,8 @@
           "dateTime": "2026-11-15T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/9.8/tuscar-badia-a-roti-calcio"
         },
         {
@@ -1524,6 +1684,8 @@
           "dateTime": "2026-11-15T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/9.9/virtus-arezzo-atletico-valdambra"
         }
       ]
@@ -1545,6 +1707,8 @@
           "dateTime": "2026-11-22T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/10.1/atletico-valdambra-terontola"
         },
         {
@@ -1559,6 +1723,8 @@
           "dateTime": "2026-11-22T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/10.2/badia-a-roti-calcio-monsigliolo"
         },
         {
@@ -1573,6 +1739,8 @@
           "dateTime": "2026-11-22T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/10.3/colonna-indicatore-lorese-calcio"
         },
         {
@@ -1587,6 +1755,8 @@
           "dateTime": "2026-11-22T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/10.4/faellese-virtus-arezzo"
         },
         {
@@ -1601,6 +1771,8 @@
           "dateTime": "2026-11-22T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/10.5/montecchio-badia-agnano"
         },
         {
@@ -1615,6 +1787,8 @@
           "dateTime": "2026-11-22T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/10.6/pietraia-pian-di-sc"
         },
         {
@@ -1629,6 +1803,8 @@
           "dateTime": "2026-11-22T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/10.8/san-leolino-tuscar"
         },
         {
@@ -1643,6 +1819,8 @@
           "dateTime": "2026-11-22T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/10.7/san-marco-la-sella-tregozzano"
         },
         {
@@ -1657,6 +1835,8 @@
           "dateTime": "2026-11-22T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/10.9/sangiustinese-monterchiese"
         }
       ]
@@ -1678,6 +1858,8 @@
           "dateTime": "2026-11-29T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/11.1/badia-agnano-san-marco-la-sella"
         },
         {
@@ -1692,6 +1874,8 @@
           "dateTime": "2026-11-29T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/11.2/lorese-calcio-san-leolino"
         },
         {
@@ -1706,6 +1890,8 @@
           "dateTime": "2026-11-29T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/11.3/monsigliolo-atletico-valdambra"
         },
         {
@@ -1720,6 +1906,8 @@
           "dateTime": "2026-11-29T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/11.4/monterchiese-montecchio"
         },
         {
@@ -1734,6 +1922,8 @@
           "dateTime": "2026-11-29T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/11.5/pian-di-sc-badia-a-roti-calcio"
         },
         {
@@ -1748,6 +1938,8 @@
           "dateTime": "2026-11-29T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/11.6/terontola-sangiustinese"
         },
         {
@@ -1762,6 +1954,8 @@
           "dateTime": "2026-11-29T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/11.7/tregozzano-colonna-indicatore"
         },
         {
@@ -1776,6 +1970,8 @@
           "dateTime": "2026-11-29T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/11.8/tuscar-faellese"
         },
         {
@@ -1790,6 +1986,8 @@
           "dateTime": "2026-11-29T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/11.9/virtus-arezzo-pietraia"
         }
       ]
@@ -1811,6 +2009,8 @@
           "dateTime": "2026-12-06T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/12.1/atletico-valdambra-montecchio"
         },
         {
@@ -1825,6 +2025,8 @@
           "dateTime": "2026-12-06T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/12.2/badia-a-roti-calcio-monterchiese"
         },
         {
@@ -1839,6 +2041,8 @@
           "dateTime": "2026-12-06T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/12.3/colonna-indicatore-virtus-arezzo"
         },
         {
@@ -1853,6 +2057,8 @@
           "dateTime": "2026-12-06T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/12.4/faellese-monsigliolo"
         },
         {
@@ -1867,6 +2073,8 @@
           "dateTime": "2026-12-06T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/12.5/pietraia-terontola"
         },
         {
@@ -1881,6 +2089,8 @@
           "dateTime": "2026-12-06T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/12.7/san-leolino-pian-di-sc"
         },
         {
@@ -1895,6 +2105,8 @@
           "dateTime": "2026-12-06T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/12.6/san-marco-la-sella-tuscar"
         },
         {
@@ -1909,6 +2121,8 @@
           "dateTime": "2026-12-06T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/12.8/sangiustinese-badia-agnano"
         },
         {
@@ -1923,6 +2137,8 @@
           "dateTime": "2026-12-06T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/12.9/tregozzano-lorese-calcio"
         }
       ]
@@ -1944,6 +2160,8 @@
           "dateTime": "2026-12-13T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/13.1/badia-agnano-tregozzano"
         },
         {
@@ -1958,6 +2176,8 @@
           "dateTime": "2026-12-13T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/13.2/lorese-calcio-san-marco-la-sella"
         },
         {
@@ -1972,6 +2192,8 @@
           "dateTime": "2026-12-13T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/13.3/monsigliolo-pietraia"
         },
         {
@@ -1986,6 +2208,8 @@
           "dateTime": "2026-12-13T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/13.4/montecchio-sangiustinese"
         },
         {
@@ -2000,6 +2224,8 @@
           "dateTime": "2026-12-13T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/13.5/monterchiese-atletico-valdambra"
         },
         {
@@ -2014,6 +2240,8 @@
           "dateTime": "2026-12-13T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/13.6/pian-di-sc-faellese"
         },
         {
@@ -2028,6 +2256,8 @@
           "dateTime": "2026-12-13T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/13.7/terontola-badia-a-roti-calcio"
         },
         {
@@ -2042,6 +2272,8 @@
           "dateTime": "2026-12-13T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/13.8/tuscar-colonna-indicatore"
         },
         {
@@ -2056,6 +2288,8 @@
           "dateTime": "2026-12-13T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/13.9/virtus-arezzo-san-leolino"
         }
       ]
@@ -2077,6 +2311,8 @@
           "dateTime": "2026-12-20T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/14.1/atletico-valdambra-badia-agnano"
         },
         {
@@ -2091,6 +2327,8 @@
           "dateTime": "2026-12-20T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/14.2/badia-a-roti-calcio-sangiustinese"
         },
         {
@@ -2105,6 +2343,8 @@
           "dateTime": "2026-12-20T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/14.3/colonna-indicatore-monsigliolo"
         },
         {
@@ -2119,6 +2359,8 @@
           "dateTime": "2026-12-20T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/14.4/faellese-monterchiese"
         },
         {
@@ -2133,6 +2375,8 @@
           "dateTime": "2026-12-20T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/14.5/lorese-calcio-tuscar"
         },
         {
@@ -2147,6 +2391,8 @@
           "dateTime": "2026-12-20T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/14.6/pietraia-montecchio"
         },
         {
@@ -2161,6 +2407,8 @@
           "dateTime": "2026-12-20T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/14.8/san-leolino-terontola"
         },
         {
@@ -2175,6 +2423,8 @@
           "dateTime": "2026-12-20T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/14.7/san-marco-la-sella-pian-di-sc"
         },
         {
@@ -2189,6 +2439,8 @@
           "dateTime": "2026-12-20T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/14.9/tregozzano-virtus-arezzo"
         }
       ]
@@ -2210,6 +2462,8 @@
           "dateTime": "2027-01-03T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/15.1/badia-agnano-lorese-calcio"
         },
         {
@@ -2224,6 +2478,8 @@
           "dateTime": "2027-01-03T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/15.2/monsigliolo-san-leolino"
         },
         {
@@ -2238,6 +2494,8 @@
           "dateTime": "2027-01-03T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/15.3/montecchio-badia-a-roti-calcio"
         },
         {
@@ -2252,6 +2510,8 @@
           "dateTime": "2027-01-03T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/15.4/monterchiese-pietraia"
         },
         {
@@ -2266,6 +2526,8 @@
           "dateTime": "2027-01-03T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/15.5/pian-di-sc-colonna-indicatore"
         },
         {
@@ -2280,6 +2542,8 @@
           "dateTime": "2027-01-03T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/15.6/sangiustinese-atletico-valdambra"
         },
         {
@@ -2294,6 +2558,8 @@
           "dateTime": "2027-01-03T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/15.7/terontola-faellese"
         },
         {
@@ -2308,6 +2574,8 @@
           "dateTime": "2027-01-03T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/15.8/tuscar-tregozzano"
         },
         {
@@ -2322,6 +2590,8 @@
           "dateTime": "2027-01-03T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/15.9/virtus-arezzo-san-marco-la-sella"
         }
       ]
@@ -2343,6 +2613,8 @@
           "dateTime": "2027-01-10T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/16.1/badia-a-roti-calcio-badia-agnano"
         },
         {
@@ -2357,6 +2629,8 @@
           "dateTime": "2027-01-10T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/16.2/colonna-indicatore-monterchiese"
         },
         {
@@ -2371,6 +2645,8 @@
           "dateTime": "2027-01-10T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/16.3/faellese-sangiustinese"
         },
         {
@@ -2385,6 +2661,8 @@
           "dateTime": "2027-01-10T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/16.4/lorese-calcio-pian-di-sc"
         },
         {
@@ -2399,6 +2677,8 @@
           "dateTime": "2027-01-10T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/16.5/pietraia-atletico-valdambra"
         },
         {
@@ -2413,6 +2693,8 @@
           "dateTime": "2027-01-10T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/16.7/san-leolino-montecchio"
         },
         {
@@ -2427,6 +2709,8 @@
           "dateTime": "2027-01-10T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/16.6/san-marco-la-sella-terontola"
         },
         {
@@ -2441,6 +2725,8 @@
           "dateTime": "2027-01-10T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/16.8/tregozzano-monsigliolo"
         },
         {
@@ -2455,6 +2741,8 @@
           "dateTime": "2027-01-10T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/16.9/tuscar-virtus-arezzo"
         }
       ]
@@ -2476,6 +2764,8 @@
           "dateTime": "2027-01-17T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/17.1/atletico-valdambra-badia-a-roti-calcio"
         },
         {
@@ -2490,6 +2780,8 @@
           "dateTime": "2027-01-17T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/17.2/badia-agnano-tuscar"
         },
         {
@@ -2504,6 +2796,8 @@
           "dateTime": "2027-01-17T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/17.3/monsigliolo-san-marco-la-sella"
         },
         {
@@ -2518,6 +2812,8 @@
           "dateTime": "2027-01-17T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/17.4/montecchio-faellese"
         },
         {
@@ -2532,6 +2828,8 @@
           "dateTime": "2027-01-17T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/17.5/monterchiese-san-leolino"
         },
         {
@@ -2546,6 +2844,8 @@
           "dateTime": "2027-01-17T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/17.6/pian-di-sc-tregozzano"
         },
         {
@@ -2560,6 +2860,8 @@
           "dateTime": "2027-01-17T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/17.7/sangiustinese-pietraia"
         },
         {
@@ -2574,6 +2876,8 @@
           "dateTime": "2027-01-17T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/17.8/terontola-colonna-indicatore"
         },
         {
@@ -2588,6 +2892,8 @@
           "dateTime": "2027-01-17T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/17.9/virtus-arezzo-lorese-calcio"
         }
       ]
@@ -2609,6 +2915,8 @@
           "dateTime": "2027-01-24T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/18.6/atletico-valdambra-san-leolino"
         },
         {
@@ -2623,6 +2931,8 @@
           "dateTime": "2027-01-24T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/18.2/badia-a-roti-calcio-faellese"
         },
         {
@@ -2637,6 +2947,8 @@
           "dateTime": "2027-01-24T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/18.4/badia-agnano-pietraia"
         },
         {
@@ -2651,6 +2963,8 @@
           "dateTime": "2027-01-24T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/18.8/monsigliolo-tuscar"
         },
         {
@@ -2665,6 +2979,8 @@
           "dateTime": "2027-01-24T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/18.5/montecchio-san-marco-la-sella"
         },
         {
@@ -2679,6 +2995,8 @@
           "dateTime": "2027-01-24T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/18.7/monterchiese-tregozzano"
         },
         {
@@ -2693,6 +3011,8 @@
           "dateTime": "2027-01-24T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/18.9/pian-di-sc-virtus-arezzo"
         },
         {
@@ -2707,6 +3027,8 @@
           "dateTime": "2027-01-24T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/18.1/sangiustinese-colonna-indicatore"
         },
         {
@@ -2721,6 +3043,8 @@
           "dateTime": "2027-01-24T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/18.3/terontola-lorese-calcio"
         }
       ]
@@ -2742,6 +3066,8 @@
           "dateTime": "2027-01-31T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/19.5/colonna-indicatore-montecchio"
         },
         {
@@ -2756,6 +3082,8 @@
           "dateTime": "2027-01-31T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/19.1/faellese-atletico-valdambra"
         },
         {
@@ -2770,6 +3098,8 @@
           "dateTime": "2027-01-31T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/19.4/lorese-calcio-monsigliolo"
         },
         {
@@ -2784,6 +3114,8 @@
           "dateTime": "2027-01-31T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/19.2/pietraia-badia-a-roti-calcio"
         },
         {
@@ -2798,6 +3130,8 @@
           "dateTime": "2027-01-31T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/19.8/san-leolino-sangiustinese"
         },
         {
@@ -2812,6 +3146,8 @@
           "dateTime": "2027-01-31T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/19.6/san-marco-la-sella-monterchiese"
         },
         {
@@ -2826,6 +3162,8 @@
           "dateTime": "2027-01-31T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/19.9/tregozzano-terontola"
         },
         {
@@ -2840,6 +3178,8 @@
           "dateTime": "2027-01-31T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/19.7/tuscar-pian-di-sc"
         },
         {
@@ -2854,6 +3194,8 @@
           "dateTime": "2027-01-31T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/19.3/virtus-arezzo-badia-agnano"
         }
       ]
@@ -2875,6 +3217,8 @@
           "dateTime": "2027-02-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/20.2/atletico-valdambra-colonna-indicatore"
         },
         {
@@ -2889,6 +3233,8 @@
           "dateTime": "2027-02-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/20.6/badia-a-roti-calcio-san-leolino"
         },
         {
@@ -2903,6 +3249,8 @@
           "dateTime": "2027-02-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/20.9/monsigliolo-virtus-arezzo"
         },
         {
@@ -2917,6 +3265,8 @@
           "dateTime": "2027-02-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/20.7/montecchio-tregozzano"
         },
         {
@@ -2931,6 +3281,8 @@
           "dateTime": "2027-02-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/20.4/monterchiese-lorese-calcio"
         },
         {
@@ -2945,6 +3297,8 @@
           "dateTime": "2027-02-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/20.1/pian-di-sc-badia-agnano"
         },
         {
@@ -2959,6 +3313,8 @@
           "dateTime": "2027-02-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/20.3/pietraia-faellese"
         },
         {
@@ -2973,6 +3329,8 @@
           "dateTime": "2027-02-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/20.5/sangiustinese-san-marco-la-sella"
         },
         {
@@ -2987,6 +3345,8 @@
           "dateTime": "2027-02-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/20.8/terontola-tuscar"
         }
       ]
@@ -3008,6 +3368,8 @@
           "dateTime": "2027-02-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/21.4/badia-agnano-monsigliolo"
         },
         {
@@ -3022,6 +3384,8 @@
           "dateTime": "2027-02-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/21.7/colonna-indicatore-pietraia"
         },
         {
@@ -3036,6 +3400,8 @@
           "dateTime": "2027-02-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/21.8/lorese-calcio-sangiustinese"
         },
         {
@@ -3050,6 +3416,8 @@
           "dateTime": "2027-02-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/21.9/pian-di-sc-terontola"
         },
         {
@@ -3064,6 +3432,8 @@
           "dateTime": "2027-02-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/21.3/san-leolino-faellese"
         },
         {
@@ -3078,6 +3448,8 @@
           "dateTime": "2027-02-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/21.2/san-marco-la-sella-badia-a-roti-calcio"
         },
         {
@@ -3092,6 +3464,8 @@
           "dateTime": "2027-02-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/21.1/tregozzano-atletico-valdambra"
         },
         {
@@ -3106,6 +3480,8 @@
           "dateTime": "2027-02-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/21.5/tuscar-montecchio"
         },
         {
@@ -3120,6 +3496,8 @@
           "dateTime": "2027-02-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/21.6/virtus-arezzo-monterchiese"
         }
       ]
@@ -3141,6 +3519,8 @@
           "dateTime": "2027-02-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/22.5/atletico-valdambra-san-marco-la-sella"
         },
         {
@@ -3155,6 +3535,8 @@
           "dateTime": "2027-02-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/22.2/badia-a-roti-calcio-colonna-indicatore"
         },
         {
@@ -3169,6 +3551,8 @@
           "dateTime": "2027-02-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/22.1/faellese-badia-agnano"
         },
         {
@@ -3183,6 +3567,8 @@
           "dateTime": "2027-02-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/22.4/monsigliolo-pian-di-sc"
         },
         {
@@ -3197,6 +3583,8 @@
           "dateTime": "2027-02-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/22.3/montecchio-lorese-calcio"
         },
         {
@@ -3211,6 +3599,8 @@
           "dateTime": "2027-02-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/22.8/monterchiese-tuscar"
         },
         {
@@ -3225,6 +3615,8 @@
           "dateTime": "2027-02-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/22.6/pietraia-san-leolino"
         },
         {
@@ -3239,6 +3631,8 @@
           "dateTime": "2027-02-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/22.7/sangiustinese-tregozzano"
         },
         {
@@ -3253,6 +3647,8 @@
           "dateTime": "2027-02-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/22.9/terontola-virtus-arezzo"
         }
       ]
@@ -3274,6 +3670,8 @@
           "dateTime": "2027-02-28T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/23.9/badia-agnano-terontola"
         },
         {
@@ -3288,6 +3686,8 @@
           "dateTime": "2027-02-28T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/23.7/colonna-indicatore-san-leolino"
         },
         {
@@ -3302,6 +3702,8 @@
           "dateTime": "2027-02-28T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/23.2/lorese-calcio-badia-a-roti-calcio"
         },
         {
@@ -3316,6 +3718,8 @@
           "dateTime": "2027-02-28T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/23.5/monsigliolo-monterchiese"
         },
         {
@@ -3330,6 +3734,8 @@
           "dateTime": "2027-02-28T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/23.4/pian-di-sc-montecchio"
         },
         {
@@ -3344,6 +3750,8 @@
           "dateTime": "2027-02-28T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/23.3/san-marco-la-sella-faellese"
         },
         {
@@ -3358,6 +3766,8 @@
           "dateTime": "2027-02-28T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/23.6/tregozzano-pietraia"
         },
         {
@@ -3372,6 +3782,8 @@
           "dateTime": "2027-02-28T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/23.1/tuscar-atletico-valdambra"
         },
         {
@@ -3386,6 +3798,8 @@
           "dateTime": "2027-02-28T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/23.8/virtus-arezzo-sangiustinese"
         }
       ]
@@ -3407,6 +3821,8 @@
           "dateTime": "2027-03-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/24.3/atletico-valdambra-lorese-calcio"
         },
         {
@@ -3421,6 +3837,8 @@
           "dateTime": "2027-03-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/24.7/badia-a-roti-calcio-tregozzano"
         },
         {
@@ -3435,6 +3853,8 @@
           "dateTime": "2027-03-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/24.2/faellese-colonna-indicatore"
         },
         {
@@ -3449,6 +3869,8 @@
           "dateTime": "2027-03-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/24.9/montecchio-virtus-arezzo"
         },
         {
@@ -3463,6 +3885,8 @@
           "dateTime": "2027-03-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/24.5/monterchiese-pian-di-sc"
         },
         {
@@ -3477,6 +3901,8 @@
           "dateTime": "2027-03-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/24.6/pietraia-san-marco-la-sella"
         },
         {
@@ -3491,6 +3917,8 @@
           "dateTime": "2027-03-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/24.1/san-leolino-badia-agnano"
         },
         {
@@ -3505,6 +3933,8 @@
           "dateTime": "2027-03-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/24.8/sangiustinese-tuscar"
         },
         {
@@ -3519,6 +3949,8 @@
           "dateTime": "2027-03-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/24.4/terontola-monsigliolo"
         }
       ]
@@ -3540,6 +3972,8 @@
           "dateTime": "2027-03-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/25.6/badia-agnano-monterchiese"
         },
         {
@@ -3554,6 +3988,8 @@
           "dateTime": "2027-03-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/25.4/lorese-calcio-faellese"
         },
         {
@@ -3568,6 +4004,8 @@
           "dateTime": "2027-03-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/25.9/monsigliolo-sangiustinese"
         },
         {
@@ -3582,6 +4020,8 @@
           "dateTime": "2027-03-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/25.1/pian-di-sc-atletico-valdambra"
         },
         {
@@ -3596,6 +4036,8 @@
           "dateTime": "2027-03-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/25.3/san-marco-la-sella-colonna-indicatore"
         },
         {
@@ -3610,6 +4052,8 @@
           "dateTime": "2027-03-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/25.5/terontola-montecchio"
         },
         {
@@ -3624,6 +4068,8 @@
           "dateTime": "2027-03-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/25.8/tregozzano-san-leolino"
         },
         {
@@ -3638,6 +4084,8 @@
           "dateTime": "2027-03-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/25.7/tuscar-pietraia"
         },
         {
@@ -3652,6 +4100,8 @@
           "dateTime": "2027-03-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/25.2/virtus-arezzo-badia-a-roti-calcio"
         }
       ]
@@ -3673,6 +4123,8 @@
           "dateTime": "2027-03-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/26.9/atletico-valdambra-virtus-arezzo"
         },
         {
@@ -3687,6 +4139,8 @@
           "dateTime": "2027-03-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/26.8/badia-a-roti-calcio-tuscar"
         },
         {
@@ -3701,6 +4155,8 @@
           "dateTime": "2027-03-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/26.1/colonna-indicatore-badia-agnano"
         },
         {
@@ -3715,6 +4171,8 @@
           "dateTime": "2027-03-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/26.7/faellese-tregozzano"
         },
         {
@@ -3729,6 +4187,8 @@
           "dateTime": "2027-03-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/26.3/montecchio-monsigliolo"
         },
         {
@@ -3743,6 +4203,8 @@
           "dateTime": "2027-03-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/26.6/monterchiese-terontola"
         },
         {
@@ -3757,6 +4219,8 @@
           "dateTime": "2027-03-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/26.2/pietraia-lorese-calcio"
         },
         {
@@ -3771,6 +4235,8 @@
           "dateTime": "2027-03-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/26.5/san-leolino-san-marco-la-sella"
         },
         {
@@ -3785,6 +4251,8 @@
           "dateTime": "2027-03-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/26.4/sangiustinese-pian-di-sc"
         }
       ]
@@ -3806,6 +4274,8 @@
           "dateTime": "2027-04-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/27.5/badia-agnano-montecchio"
         },
         {
@@ -3820,6 +4290,8 @@
           "dateTime": "2027-04-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/27.3/lorese-calcio-colonna-indicatore"
         },
         {
@@ -3834,6 +4306,8 @@
           "dateTime": "2027-04-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/27.2/monsigliolo-badia-a-roti-calcio"
         },
         {
@@ -3848,6 +4322,8 @@
           "dateTime": "2027-04-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/27.9/monterchiese-sangiustinese"
         },
         {
@@ -3862,6 +4338,8 @@
           "dateTime": "2027-04-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/27.6/pian-di-sc-pietraia"
         },
         {
@@ -3876,6 +4354,8 @@
           "dateTime": "2027-04-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/27.1/terontola-atletico-valdambra"
         },
         {
@@ -3890,6 +4370,8 @@
           "dateTime": "2027-04-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/27.7/tregozzano-san-marco-la-sella"
         },
         {
@@ -3904,6 +4386,8 @@
           "dateTime": "2027-04-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/27.8/tuscar-san-leolino"
         },
         {
@@ -3918,6 +4402,8 @@
           "dateTime": "2027-04-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/27.4/virtus-arezzo-faellese"
         }
       ]
@@ -3939,6 +4425,8 @@
           "dateTime": "2027-04-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/28.3/atletico-valdambra-monsigliolo"
         },
         {
@@ -3953,6 +4441,8 @@
           "dateTime": "2027-04-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/28.5/badia-a-roti-calcio-pian-di-sc"
         },
         {
@@ -3967,6 +4457,8 @@
           "dateTime": "2027-04-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/28.7/colonna-indicatore-tregozzano"
         },
         {
@@ -3981,6 +4473,8 @@
           "dateTime": "2027-04-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/28.8/faellese-tuscar"
         },
         {
@@ -3995,6 +4489,8 @@
           "dateTime": "2027-04-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/28.4/montecchio-monterchiese"
         },
         {
@@ -4009,6 +4505,8 @@
           "dateTime": "2027-04-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/28.9/pietraia-virtus-arezzo"
         },
         {
@@ -4023,6 +4521,8 @@
           "dateTime": "2027-04-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/28.2/san-leolino-lorese-calcio"
         },
         {
@@ -4037,6 +4537,8 @@
           "dateTime": "2027-04-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/28.1/san-marco-la-sella-badia-agnano"
         },
         {
@@ -4051,6 +4553,8 @@
           "dateTime": "2027-04-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/28.6/sangiustinese-terontola"
         }
       ]
@@ -4072,6 +4576,8 @@
           "dateTime": "2027-04-18T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/29.8/badia-agnano-sangiustinese"
         },
         {
@@ -4086,6 +4592,8 @@
           "dateTime": "2027-04-18T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/29.9/lorese-calcio-tregozzano"
         },
         {
@@ -4100,6 +4608,8 @@
           "dateTime": "2027-04-18T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/29.4/monsigliolo-faellese"
         },
         {
@@ -4114,6 +4624,8 @@
           "dateTime": "2027-04-18T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/29.1/montecchio-atletico-valdambra"
         },
         {
@@ -4128,6 +4640,8 @@
           "dateTime": "2027-04-18T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/29.2/monterchiese-badia-a-roti-calcio"
         },
         {
@@ -4142,6 +4656,8 @@
           "dateTime": "2027-04-18T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/29.7/pian-di-sc-san-leolino"
         },
         {
@@ -4156,6 +4672,8 @@
           "dateTime": "2027-04-18T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/29.5/terontola-pietraia"
         },
         {
@@ -4170,6 +4688,8 @@
           "dateTime": "2027-04-18T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/29.6/tuscar-san-marco-la-sella"
         },
         {
@@ -4184,6 +4704,8 @@
           "dateTime": "2027-04-18T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/29.3/virtus-arezzo-colonna-indicatore"
         }
       ]
@@ -4205,6 +4727,8 @@
           "dateTime": "2027-04-25T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/30.5/atletico-valdambra-monterchiese"
         },
         {
@@ -4219,6 +4743,8 @@
           "dateTime": "2027-04-25T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/30.7/badia-a-roti-calcio-terontola"
         },
         {
@@ -4233,6 +4759,8 @@
           "dateTime": "2027-04-25T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/30.8/colonna-indicatore-tuscar"
         },
         {
@@ -4247,6 +4775,8 @@
           "dateTime": "2027-04-25T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/30.6/faellese-pian-di-sc"
         },
         {
@@ -4261,6 +4791,8 @@
           "dateTime": "2027-04-25T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/30.3/pietraia-monsigliolo"
         },
         {
@@ -4275,6 +4807,8 @@
           "dateTime": "2027-04-25T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/30.9/san-leolino-virtus-arezzo"
         },
         {
@@ -4289,6 +4823,8 @@
           "dateTime": "2027-04-25T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/30.2/san-marco-la-sella-lorese-calcio"
         },
         {
@@ -4303,6 +4839,8 @@
           "dateTime": "2027-04-25T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/30.4/sangiustinese-montecchio"
         },
         {
@@ -4317,6 +4855,8 @@
           "dateTime": "2027-04-25T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/30.1/tregozzano-badia-agnano"
         }
       ]
@@ -4338,6 +4878,8 @@
           "dateTime": "2027-05-02T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/31.1/badia-agnano-atletico-valdambra"
         },
         {
@@ -4352,6 +4894,8 @@
           "dateTime": "2027-05-02T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/31.3/monsigliolo-colonna-indicatore"
         },
         {
@@ -4366,6 +4910,8 @@
           "dateTime": "2027-05-02T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/31.6/montecchio-pietraia"
         },
         {
@@ -4380,6 +4926,8 @@
           "dateTime": "2027-05-02T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/31.4/monterchiese-faellese"
         },
         {
@@ -4394,6 +4942,8 @@
           "dateTime": "2027-05-02T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/31.7/pian-di-sc-san-marco-la-sella"
         },
         {
@@ -4408,6 +4958,8 @@
           "dateTime": "2027-05-02T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/31.2/sangiustinese-badia-a-roti-calcio"
         },
         {
@@ -4422,6 +4974,8 @@
           "dateTime": "2027-05-02T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/31.8/terontola-san-leolino"
         },
         {
@@ -4436,6 +4990,8 @@
           "dateTime": "2027-05-02T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/31.5/tuscar-lorese-calcio"
         },
         {
@@ -4450,6 +5006,8 @@
           "dateTime": "2027-05-02T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/31.9/virtus-arezzo-tregozzano"
         }
       ]
@@ -4471,6 +5029,8 @@
           "dateTime": "2027-05-09T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/32.6/atletico-valdambra-sangiustinese"
         },
         {
@@ -4485,6 +5045,8 @@
           "dateTime": "2027-05-09T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/32.3/badia-a-roti-calcio-montecchio"
         },
         {
@@ -4499,6 +5061,8 @@
           "dateTime": "2027-05-09T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/32.5/colonna-indicatore-pian-di-sc"
         },
         {
@@ -4513,6 +5077,8 @@
           "dateTime": "2027-05-09T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/32.7/faellese-terontola"
         },
         {
@@ -4527,6 +5093,8 @@
           "dateTime": "2027-05-09T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/32.1/lorese-calcio-badia-agnano"
         },
         {
@@ -4541,6 +5109,8 @@
           "dateTime": "2027-05-09T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/32.4/pietraia-monterchiese"
         },
         {
@@ -4555,6 +5125,8 @@
           "dateTime": "2027-05-09T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/32.2/san-leolino-monsigliolo"
         },
         {
@@ -4569,6 +5141,8 @@
           "dateTime": "2027-05-09T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/32.9/san-marco-la-sella-virtus-arezzo"
         },
         {
@@ -4583,6 +5157,8 @@
           "dateTime": "2027-05-09T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/32.8/tregozzano-tuscar"
         }
       ]
@@ -4604,6 +5180,8 @@
           "dateTime": "2027-05-16T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/33.5/atletico-valdambra-pietraia"
         },
         {
@@ -4618,6 +5196,8 @@
           "dateTime": "2027-05-16T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/33.1/badia-agnano-badia-a-roti-calcio"
         },
         {
@@ -4632,6 +5212,8 @@
           "dateTime": "2027-05-16T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/33.8/monsigliolo-tregozzano"
         },
         {
@@ -4646,6 +5228,8 @@
           "dateTime": "2027-05-16T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/33.7/montecchio-san-leolino"
         },
         {
@@ -4660,6 +5244,8 @@
           "dateTime": "2027-05-16T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/33.2/monterchiese-colonna-indicatore"
         },
         {
@@ -4674,6 +5260,8 @@
           "dateTime": "2027-05-16T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/33.4/pian-di-sc-lorese-calcio"
         },
         {
@@ -4688,6 +5276,8 @@
           "dateTime": "2027-05-16T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/33.3/sangiustinese-faellese"
         },
         {
@@ -4702,6 +5292,8 @@
           "dateTime": "2027-05-16T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/33.6/terontola-san-marco-la-sella"
         },
         {
@@ -4716,6 +5308,8 @@
           "dateTime": "2027-05-16T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/33.9/virtus-arezzo-tuscar"
         }
       ]
@@ -4737,6 +5331,8 @@
           "dateTime": "2027-05-23T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/34.1/badia-a-roti-calcio-atletico-valdambra"
         },
         {
@@ -4751,6 +5347,8 @@
           "dateTime": "2027-05-23T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/34.8/colonna-indicatore-terontola"
         },
         {
@@ -4765,6 +5363,8 @@
           "dateTime": "2027-05-23T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932713.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/34.4/faellese-montecchio"
         },
         {
@@ -4779,6 +5379,8 @@
           "dateTime": "2027-05-23T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1290373.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/34.9/lorese-calcio-virtus-arezzo"
         },
         {
@@ -4793,6 +5395,8 @@
           "dateTime": "2027-05-23T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/34.7/pietraia-sangiustinese"
         },
         {
@@ -4807,6 +5411,8 @@
           "dateTime": "2027-05-23T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1187036.png?v=5",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/34.5/san-leolino-monterchiese"
         },
         {
@@ -4821,6 +5427,8 @@
           "dateTime": "2027-05-23T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/34.3/san-marco-la-sella-monsigliolo"
         },
         {
@@ -4835,6 +5443,8 @@
           "dateTime": "2027-05-23T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/34.6/tregozzano-pian-di-sc"
         },
         {
@@ -4849,6 +5459,8 @@
           "dateTime": "2027-05-23T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/34.2/tuscar-badia-agnano"
         }
       ]

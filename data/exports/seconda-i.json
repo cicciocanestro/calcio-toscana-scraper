@@ -10,7 +10,7 @@
   "roundID": "TO.2.I",
   "currentMatchDay": 2,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-09-28T17:04:40.100Z",
+  "lastUpdated": "2026-09-30T08:10:34.130Z",
   "standings": [
     {
       "position": 1,
@@ -241,6 +241,8 @@
           "awayScorers": [
             "M. Mannelli (25' st)"
           ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/1.6/pratovecchio-marino-mercato-subbiano"
         },
         {
@@ -260,6 +262,8 @@
           "awayScorers": [
             "P. Chiatti"
           ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/1.1/fortis-arezzo-arno-castiglioni-laterina"
         },
         {
@@ -276,6 +280,8 @@
             "F. Viti"
           ],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/1.2/fratta-santa-caterina-fratticciola"
         },
         {
@@ -293,6 +299,8 @@
             "A. Papini (44' pt)",
             "P. Dumbrava (18' st)"
           ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/1.3/guazzino-arezzo-fa"
         },
         {
@@ -309,6 +317,8 @@
             "T. Cantore"
           ],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/1.5/poppi-calcio-pestello"
         },
         {
@@ -328,6 +338,8 @@
           "awayScorers": [
             "A. Natale (Rig.)"
           ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/1.7/rassina-fulgor-castelfranco"
         },
         {
@@ -345,6 +357,8 @@
             "A. Renzi (29' st)"
           ],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/1.8/vaggio-piandisc-1932-bucine"
         },
         {
@@ -363,6 +377,8 @@
           "awayScorers": [
             "A. Nucci (25' pt)"
           ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/1.4/valdichiana-calcio-pieve-al-toppo"
         }
       ]
@@ -384,6 +400,8 @@
           "dateTime": "2026-09-26T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/2.7/marino-mercato-subbiano-poppi"
         },
         {
@@ -403,6 +421,8 @@
           "awayScorers": [
             "F. Viti (8' pt)"
           ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/2.1/arezzo-fa-fratta-santa-caterina"
         },
         {
@@ -423,6 +443,8 @@
             "L. Pacelli",
             "F. Nanni (Rig.)"
           ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/2.2/arno-castiglioni-laterina-valdichiana-calcio"
         },
         {
@@ -439,6 +461,8 @@
             "S. Innocenti"
           ],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/2.3/bucine-guazzino"
         },
         {
@@ -461,6 +485,8 @@
             "M. Verdun (5' st)",
             "M. Verdun (31' st)"
           ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/2.4/calcio-pestello-vaggio-piandisc-1932"
         },
         {
@@ -477,6 +503,8 @@
           "awayScorers": [
             "Y. Gozzi"
           ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/2.5/fratticciola-fortis-arezzo"
         },
         {
@@ -491,6 +519,8 @@
           "dateTime": "2026-09-27T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/2.6/fulgor-castelfranco-pratovecchio"
         },
         {
@@ -512,6 +542,8 @@
             "A. La Ferla (9' pt)",
             "L. Sarracino (41' st)"
           ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/2.8/pieve-al-toppo-rassina"
         }
       ]
@@ -533,6 +565,8 @@
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/3.1/fortis-arezzo-pieve-al-toppo"
         },
         {
@@ -547,6 +581,8 @@
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/3.2/fratticciola-arno-castiglioni-laterina"
         },
         {
@@ -561,6 +597,8 @@
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/3.3/guazzino-fratta-santa-caterina"
         },
         {
@@ -575,6 +613,8 @@
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/3.5/poppi-bucine"
         },
         {
@@ -589,6 +629,8 @@
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/3.6/pratovecchio-calcio-pestello"
         },
         {
@@ -603,6 +645,8 @@
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/3.7/rassina-marino-mercato-subbiano"
         },
         {
@@ -617,6 +661,8 @@
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/3.8/vaggio-piandisc-1932-arezzo-fa"
         },
         {
@@ -631,6 +677,8 @@
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/3.4/valdichiana-calcio-fulgor-castelfranco"
         }
       ]
@@ -652,6 +700,8 @@
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/4.1/arezzo-fa-pratovecchio"
         },
         {
@@ -666,6 +716,8 @@
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/4.2/bucine-rassina"
         },
         {
@@ -680,6 +732,8 @@
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/4.3/calcio-pestello-valdichiana-calcio"
         },
         {
@@ -694,6 +748,8 @@
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/4.4/fratta-santa-caterina-poppi"
         },
         {
@@ -708,6 +764,8 @@
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/4.5/fulgor-castelfranco-arno-castiglioni-laterina"
         },
         {
@@ -722,6 +780,8 @@
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/4.6/guazzino-vaggio-piandisc-1932"
         },
         {
@@ -736,6 +796,8 @@
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/4.7/marino-mercato-subbiano-fortis-arezzo"
         },
         {
@@ -750,6 +812,8 @@
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/4.8/pieve-al-toppo-fratticciola"
         }
       ]
@@ -771,6 +835,8 @@
           "dateTime": "2026-10-18T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/5.1/arno-castiglioni-laterina-pieve-al-toppo"
         },
         {
@@ -785,6 +851,8 @@
           "dateTime": "2026-10-18T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/5.2/fortis-arezzo-fulgor-castelfranco"
         },
         {
@@ -799,6 +867,8 @@
           "dateTime": "2026-10-18T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/5.3/fratticciola-guazzino"
         },
         {
@@ -813,6 +883,8 @@
           "dateTime": "2026-10-18T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/5.5/poppi-arezzo-fa"
         },
         {
@@ -827,6 +899,8 @@
           "dateTime": "2026-10-18T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/5.6/pratovecchio-bucine"
         },
         {
@@ -841,6 +915,8 @@
           "dateTime": "2026-10-18T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/5.7/rassina-calcio-pestello"
         },
         {
@@ -855,6 +931,8 @@
           "dateTime": "2026-10-18T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/5.8/vaggio-piandisc-1932-fratta-santa-caterina"
         },
         {
@@ -869,6 +947,8 @@
           "dateTime": "2026-10-18T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/5.4/valdichiana-calcio-marino-mercato-subbiano"
         }
       ]
@@ -890,6 +970,8 @@
           "dateTime": "2026-10-25T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/6.1/arezzo-fa-valdichiana-calcio"
         },
         {
@@ -904,6 +986,8 @@
           "dateTime": "2026-10-25T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/6.2/bucine-fortis-arezzo"
         },
         {
@@ -918,6 +1002,8 @@
           "dateTime": "2026-10-25T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/6.3/calcio-pestello-arno-castiglioni-laterina"
         },
         {
@@ -932,6 +1018,8 @@
           "dateTime": "2026-10-25T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/6.4/fratta-santa-caterina-rassina"
         },
         {
@@ -946,6 +1034,8 @@
           "dateTime": "2026-10-25T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/6.5/fulgor-castelfranco-fratticciola"
         },
         {
@@ -960,6 +1050,8 @@
           "dateTime": "2026-10-25T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/6.6/guazzino-pratovecchio"
         },
         {
@@ -974,6 +1066,8 @@
           "dateTime": "2026-10-25T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/6.7/marino-mercato-subbiano-pieve-al-toppo"
         },
         {
@@ -988,6 +1082,8 @@
           "dateTime": "2026-10-25T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/6.8/vaggio-piandisc-1932-poppi"
         }
       ]
@@ -1009,6 +1105,8 @@
           "dateTime": "2026-11-01T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/7.1/arno-castiglioni-laterina-marino-mercato-subbiano"
         },
         {
@@ -1023,6 +1121,8 @@
           "dateTime": "2026-11-01T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/7.2/fortis-arezzo-calcio-pestello"
         },
         {
@@ -1037,6 +1137,8 @@
           "dateTime": "2026-11-01T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/7.3/fratticciola-vaggio-piandisc-1932"
         },
         {
@@ -1051,6 +1153,8 @@
           "dateTime": "2026-11-01T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/7.5/pieve-al-toppo-fulgor-castelfranco"
         },
         {
@@ -1065,6 +1169,8 @@
           "dateTime": "2026-11-01T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/7.6/poppi-guazzino"
         },
         {
@@ -1079,6 +1185,8 @@
           "dateTime": "2026-11-01T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/7.7/pratovecchio-fratta-santa-caterina"
         },
         {
@@ -1093,6 +1201,8 @@
           "dateTime": "2026-11-01T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/7.8/rassina-arezzo-fa"
         },
         {
@@ -1107,6 +1217,8 @@
           "dateTime": "2026-11-01T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/7.4/valdichiana-calcio-bucine"
         }
       ]
@@ -1128,6 +1240,8 @@
           "dateTime": "2026-11-08T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/8.1/arezzo-fa-arno-castiglioni-laterina"
         },
         {
@@ -1142,6 +1256,8 @@
           "dateTime": "2026-11-08T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/8.2/bucine-pieve-al-toppo"
         },
         {
@@ -1156,6 +1272,8 @@
           "dateTime": "2026-11-08T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/8.3/calcio-pestello-fulgor-castelfranco"
         },
         {
@@ -1170,6 +1288,8 @@
           "dateTime": "2026-11-08T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/8.4/fratta-santa-caterina-fortis-arezzo"
         },
         {
@@ -1184,6 +1304,8 @@
           "dateTime": "2026-11-08T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/8.5/guazzino-valdichiana-calcio"
         },
         {
@@ -1198,6 +1320,8 @@
           "dateTime": "2026-11-08T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/8.6/marino-mercato-subbiano-fratticciola"
         },
         {
@@ -1212,6 +1336,8 @@
           "dateTime": "2026-11-08T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/8.7/poppi-pratovecchio"
         },
         {
@@ -1226,6 +1352,8 @@
           "dateTime": "2026-11-08T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/8.8/vaggio-piandisc-1932-rassina"
         }
       ]
@@ -1247,6 +1375,8 @@
           "dateTime": "2026-11-15T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/9.1/arno-castiglioni-laterina-bucine"
         },
         {
@@ -1261,6 +1391,8 @@
           "dateTime": "2026-11-15T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/9.2/fortis-arezzo-arezzo-fa"
         },
         {
@@ -1275,6 +1407,8 @@
           "dateTime": "2026-11-15T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/9.3/fratticciola-poppi"
         },
         {
@@ -1289,6 +1423,8 @@
           "dateTime": "2026-11-15T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/9.4/fulgor-castelfranco-marino-mercato-subbiano"
         },
         {
@@ -1303,6 +1439,8 @@
           "dateTime": "2026-11-15T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/9.6/pieve-al-toppo-calcio-pestello"
         },
         {
@@ -1317,6 +1455,8 @@
           "dateTime": "2026-11-15T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/9.7/pratovecchio-vaggio-piandisc-1932"
         },
         {
@@ -1331,6 +1471,8 @@
           "dateTime": "2026-11-15T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/9.8/rassina-guazzino"
         },
         {
@@ -1345,6 +1487,8 @@
           "dateTime": "2026-11-15T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/9.5/valdichiana-calcio-fratta-santa-caterina"
         }
       ]
@@ -1366,6 +1510,8 @@
           "dateTime": "2026-11-22T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/10.1/arezzo-fa-fulgor-castelfranco"
         },
         {
@@ -1380,6 +1526,8 @@
           "dateTime": "2026-11-22T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/10.2/bucine-marino-mercato-subbiano"
         },
         {
@@ -1394,6 +1542,8 @@
           "dateTime": "2026-11-22T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/10.3/calcio-pestello-fratticciola"
         },
         {
@@ -1408,6 +1558,8 @@
           "dateTime": "2026-11-22T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/10.4/fratta-santa-caterina-pieve-al-toppo"
         },
         {
@@ -1422,6 +1574,8 @@
           "dateTime": "2026-11-22T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/10.5/guazzino-arno-castiglioni-laterina"
         },
         {
@@ -1436,6 +1590,8 @@
           "dateTime": "2026-11-22T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/10.6/poppi-valdichiana-calcio"
         },
         {
@@ -1450,6 +1606,8 @@
           "dateTime": "2026-11-22T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/10.7/pratovecchio-rassina"
         },
         {
@@ -1464,6 +1622,8 @@
           "dateTime": "2026-11-22T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/10.8/vaggio-piandisc-1932-fortis-arezzo"
         }
       ]
@@ -1485,6 +1645,8 @@
           "dateTime": "2026-11-29T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/11.1/arno-castiglioni-laterina-fratta-santa-caterina"
         },
         {
@@ -1499,6 +1661,8 @@
           "dateTime": "2026-11-29T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/11.2/fortis-arezzo-guazzino"
         },
         {
@@ -1513,6 +1677,8 @@
           "dateTime": "2026-11-29T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/11.3/fratticciola-pratovecchio"
         },
         {
@@ -1527,6 +1693,8 @@
           "dateTime": "2026-11-29T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/11.4/fulgor-castelfranco-bucine"
         },
         {
@@ -1541,6 +1709,8 @@
           "dateTime": "2026-11-29T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/11.6/marino-mercato-subbiano-calcio-pestello"
         },
         {
@@ -1555,6 +1725,8 @@
           "dateTime": "2026-11-29T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/11.7/pieve-al-toppo-arezzo-fa"
         },
         {
@@ -1569,6 +1741,8 @@
           "dateTime": "2026-11-29T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/11.8/rassina-poppi"
         },
         {
@@ -1583,6 +1757,8 @@
           "dateTime": "2026-11-29T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/11.5/valdichiana-calcio-vaggio-piandisc-1932"
         }
       ]
@@ -1604,6 +1780,8 @@
           "dateTime": "2026-12-06T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/12.1/arezzo-fa-calcio-pestello"
         },
         {
@@ -1618,6 +1796,8 @@
           "dateTime": "2026-12-06T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/12.2/bucine-fratticciola"
         },
         {
@@ -1632,6 +1812,8 @@
           "dateTime": "2026-12-06T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/12.3/fratta-santa-caterina-marino-mercato-subbiano"
         },
         {
@@ -1646,6 +1828,8 @@
           "dateTime": "2026-12-06T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/12.4/guazzino-fulgor-castelfranco"
         },
         {
@@ -1660,6 +1844,8 @@
           "dateTime": "2026-12-06T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/12.5/poppi-arno-castiglioni-laterina"
         },
         {
@@ -1674,6 +1860,8 @@
           "dateTime": "2026-12-06T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/12.6/pratovecchio-fortis-arezzo"
         },
         {
@@ -1688,6 +1876,8 @@
           "dateTime": "2026-12-06T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/12.7/rassina-valdichiana-calcio"
         },
         {
@@ -1702,6 +1892,8 @@
           "dateTime": "2026-12-06T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/12.8/vaggio-piandisc-1932-pieve-al-toppo"
         }
       ]
@@ -1723,6 +1915,8 @@
           "dateTime": "2026-12-13T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/13.1/arno-castiglioni-laterina-vaggio-piandisc-1932"
         },
         {
@@ -1737,6 +1931,8 @@
           "dateTime": "2026-12-13T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/13.2/calcio-pestello-bucine"
         },
         {
@@ -1751,6 +1947,8 @@
           "dateTime": "2026-12-13T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/13.3/fortis-arezzo-poppi"
         },
         {
@@ -1765,6 +1963,8 @@
           "dateTime": "2026-12-13T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/13.4/fratticciola-rassina"
         },
         {
@@ -1779,6 +1979,8 @@
           "dateTime": "2026-12-13T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/13.5/fulgor-castelfranco-fratta-santa-caterina"
         },
         {
@@ -1793,6 +1995,8 @@
           "dateTime": "2026-12-13T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/13.7/marino-mercato-subbiano-arezzo-fa"
         },
         {
@@ -1807,6 +2011,8 @@
           "dateTime": "2026-12-13T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/13.8/pieve-al-toppo-guazzino"
         },
         {
@@ -1821,6 +2027,8 @@
           "dateTime": "2026-12-13T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/13.6/valdichiana-calcio-pratovecchio"
         }
       ]
@@ -1842,6 +2050,8 @@
           "dateTime": "2026-12-20T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/14.1/arezzo-fa-fratticciola"
         },
         {
@@ -1856,6 +2066,8 @@
           "dateTime": "2026-12-20T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/14.2/fratta-santa-caterina-bucine"
         },
         {
@@ -1870,6 +2082,8 @@
           "dateTime": "2026-12-20T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/14.3/guazzino-calcio-pestello"
         },
         {
@@ -1884,6 +2098,8 @@
           "dateTime": "2026-12-20T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/14.5/poppi-fulgor-castelfranco"
         },
         {
@@ -1898,6 +2114,8 @@
           "dateTime": "2026-12-20T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/14.6/pratovecchio-pieve-al-toppo"
         },
         {
@@ -1912,6 +2130,8 @@
           "dateTime": "2026-12-20T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/14.7/rassina-arno-castiglioni-laterina"
         },
         {
@@ -1926,6 +2146,8 @@
           "dateTime": "2026-12-20T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/14.8/vaggio-piandisc-1932-marino-mercato-subbiano"
         },
         {
@@ -1940,6 +2162,8 @@
           "dateTime": "2026-12-20T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/14.4/valdichiana-calcio-fortis-arezzo"
         }
       ]
@@ -1961,6 +2185,8 @@
           "dateTime": "2027-01-03T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/15.1/arno-castiglioni-laterina-pratovecchio"
         },
         {
@@ -1975,6 +2201,8 @@
           "dateTime": "2027-01-03T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/15.2/bucine-arezzo-fa"
         },
         {
@@ -1989,6 +2217,8 @@
           "dateTime": "2027-01-03T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/15.3/calcio-pestello-fratta-santa-caterina"
         },
         {
@@ -2003,6 +2233,8 @@
           "dateTime": "2027-01-03T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/15.4/fortis-arezzo-rassina"
         },
         {
@@ -2017,6 +2249,8 @@
           "dateTime": "2027-01-03T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/15.5/fratticciola-valdichiana-calcio"
         },
         {
@@ -2031,6 +2265,8 @@
           "dateTime": "2027-01-03T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/15.6/fulgor-castelfranco-vaggio-piandisc-1932"
         },
         {
@@ -2045,6 +2281,8 @@
           "dateTime": "2027-01-03T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/15.7/marino-mercato-subbiano-guazzino"
         },
         {
@@ -2059,6 +2297,8 @@
           "dateTime": "2027-01-03T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/15.8/pieve-al-toppo-poppi"
         }
       ]
@@ -2080,6 +2320,8 @@
           "dateTime": "2027-01-10T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/16.3/arezzo-fa-guazzino"
         },
         {
@@ -2094,6 +2336,8 @@
           "dateTime": "2027-01-10T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/16.1/arno-castiglioni-laterina-fortis-arezzo"
         },
         {
@@ -2108,6 +2352,8 @@
           "dateTime": "2027-01-10T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/16.8/bucine-vaggio-piandisc-1932"
         },
         {
@@ -2122,6 +2368,8 @@
           "dateTime": "2027-01-10T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/16.5/calcio-pestello-poppi"
         },
         {
@@ -2136,6 +2384,8 @@
           "dateTime": "2027-01-10T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/16.2/fratticciola-fratta-santa-caterina"
         },
         {
@@ -2150,6 +2400,8 @@
           "dateTime": "2027-01-10T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/16.7/fulgor-castelfranco-rassina"
         },
         {
@@ -2164,6 +2416,8 @@
           "dateTime": "2027-01-10T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/16.6/marino-mercato-subbiano-pratovecchio"
         },
         {
@@ -2178,6 +2432,8 @@
           "dateTime": "2027-01-10T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/16.4/pieve-al-toppo-valdichiana-calcio"
         }
       ]
@@ -2199,6 +2455,8 @@
           "dateTime": "2027-01-17T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/17.5/fortis-arezzo-fratticciola"
         },
         {
@@ -2213,6 +2471,8 @@
           "dateTime": "2027-01-17T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/17.1/fratta-santa-caterina-arezzo-fa"
         },
         {
@@ -2227,6 +2487,8 @@
           "dateTime": "2027-01-17T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/17.3/guazzino-bucine"
         },
         {
@@ -2241,6 +2503,8 @@
           "dateTime": "2027-01-17T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/17.7/poppi-marino-mercato-subbiano"
         },
         {
@@ -2255,6 +2519,8 @@
           "dateTime": "2027-01-17T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/17.6/pratovecchio-fulgor-castelfranco"
         },
         {
@@ -2269,6 +2535,8 @@
           "dateTime": "2027-01-17T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/17.8/rassina-pieve-al-toppo"
         },
         {
@@ -2283,6 +2551,8 @@
           "dateTime": "2027-01-17T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/17.4/vaggio-piandisc-1932-calcio-pestello"
         },
         {
@@ -2297,6 +2567,8 @@
           "dateTime": "2027-01-17T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/17.2/valdichiana-calcio-arno-castiglioni-laterina"
         }
       ]
@@ -2318,6 +2590,8 @@
           "dateTime": "2027-01-24T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/18.8/arezzo-fa-vaggio-piandisc-1932"
         },
         {
@@ -2332,6 +2606,8 @@
           "dateTime": "2027-01-24T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/18.2/arno-castiglioni-laterina-fratticciola"
         },
         {
@@ -2346,6 +2622,8 @@
           "dateTime": "2027-01-24T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/18.5/bucine-poppi"
         },
         {
@@ -2360,6 +2638,8 @@
           "dateTime": "2027-01-24T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/18.6/calcio-pestello-pratovecchio"
         },
         {
@@ -2374,6 +2654,8 @@
           "dateTime": "2027-01-24T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/18.3/fratta-santa-caterina-guazzino"
         },
         {
@@ -2388,6 +2670,8 @@
           "dateTime": "2027-01-24T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/18.4/fulgor-castelfranco-valdichiana-calcio"
         },
         {
@@ -2402,6 +2686,8 @@
           "dateTime": "2027-01-24T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/18.7/marino-mercato-subbiano-rassina"
         },
         {
@@ -2416,6 +2702,8 @@
           "dateTime": "2027-01-24T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/18.1/pieve-al-toppo-fortis-arezzo"
         }
       ]
@@ -2437,6 +2725,8 @@
           "dateTime": "2027-01-31T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/19.5/arno-castiglioni-laterina-fulgor-castelfranco"
         },
         {
@@ -2451,6 +2741,8 @@
           "dateTime": "2027-01-31T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/19.7/fortis-arezzo-marino-mercato-subbiano"
         },
         {
@@ -2465,6 +2757,8 @@
           "dateTime": "2027-01-31T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/19.8/fratticciola-pieve-al-toppo"
         },
         {
@@ -2479,6 +2773,8 @@
           "dateTime": "2027-01-31T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/19.4/poppi-fratta-santa-caterina"
         },
         {
@@ -2493,6 +2789,8 @@
           "dateTime": "2027-01-31T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/19.1/pratovecchio-arezzo-fa"
         },
         {
@@ -2507,6 +2805,8 @@
           "dateTime": "2027-01-31T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/19.2/rassina-bucine"
         },
         {
@@ -2521,6 +2821,8 @@
           "dateTime": "2027-01-31T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/19.6/vaggio-piandisc-1932-guazzino"
         },
         {
@@ -2535,6 +2837,8 @@
           "dateTime": "2027-01-31T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/19.3/valdichiana-calcio-calcio-pestello"
         }
       ]
@@ -2556,6 +2860,8 @@
           "dateTime": "2027-02-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/20.5/arezzo-fa-poppi"
         },
         {
@@ -2570,6 +2876,8 @@
           "dateTime": "2027-02-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/20.6/bucine-pratovecchio"
         },
         {
@@ -2584,6 +2892,8 @@
           "dateTime": "2027-02-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/20.7/calcio-pestello-rassina"
         },
         {
@@ -2598,6 +2908,8 @@
           "dateTime": "2027-02-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/20.8/fratta-santa-caterina-vaggio-piandisc-1932"
         },
         {
@@ -2612,6 +2924,8 @@
           "dateTime": "2027-02-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/20.2/fulgor-castelfranco-fortis-arezzo"
         },
         {
@@ -2626,6 +2940,8 @@
           "dateTime": "2027-02-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/20.3/guazzino-fratticciola"
         },
         {
@@ -2640,6 +2956,8 @@
           "dateTime": "2027-02-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/20.4/marino-mercato-subbiano-valdichiana-calcio"
         },
         {
@@ -2654,6 +2972,8 @@
           "dateTime": "2027-02-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/20.1/pieve-al-toppo-arno-castiglioni-laterina"
         }
       ]
@@ -2675,6 +2995,8 @@
           "dateTime": "2027-02-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/21.3/arno-castiglioni-laterina-calcio-pestello"
         },
         {
@@ -2689,6 +3011,8 @@
           "dateTime": "2027-02-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/21.2/fortis-arezzo-bucine"
         },
         {
@@ -2703,6 +3027,8 @@
           "dateTime": "2027-02-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/21.5/fratticciola-fulgor-castelfranco"
         },
         {
@@ -2717,6 +3043,8 @@
           "dateTime": "2027-02-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/21.7/pieve-al-toppo-marino-mercato-subbiano"
         },
         {
@@ -2731,6 +3059,8 @@
           "dateTime": "2027-02-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/21.8/poppi-vaggio-piandisc-1932"
         },
         {
@@ -2745,6 +3075,8 @@
           "dateTime": "2027-02-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/21.6/pratovecchio-guazzino"
         },
         {
@@ -2759,6 +3091,8 @@
           "dateTime": "2027-02-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/21.4/rassina-fratta-santa-caterina"
         },
         {
@@ -2773,6 +3107,8 @@
           "dateTime": "2027-02-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/21.1/valdichiana-calcio-arezzo-fa"
         }
       ]
@@ -2794,6 +3130,8 @@
           "dateTime": "2027-02-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/22.8/arezzo-fa-rassina"
         },
         {
@@ -2808,6 +3146,8 @@
           "dateTime": "2027-02-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/22.4/bucine-valdichiana-calcio"
         },
         {
@@ -2822,6 +3162,8 @@
           "dateTime": "2027-02-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/22.2/calcio-pestello-fortis-arezzo"
         },
         {
@@ -2836,6 +3178,8 @@
           "dateTime": "2027-02-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/22.7/fratta-santa-caterina-pratovecchio"
         },
         {
@@ -2850,6 +3194,8 @@
           "dateTime": "2027-02-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/22.5/fulgor-castelfranco-pieve-al-toppo"
         },
         {
@@ -2864,6 +3210,8 @@
           "dateTime": "2027-02-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/22.6/guazzino-poppi"
         },
         {
@@ -2878,6 +3226,8 @@
           "dateTime": "2027-02-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/22.1/marino-mercato-subbiano-arno-castiglioni-laterina"
         },
         {
@@ -2892,6 +3242,8 @@
           "dateTime": "2027-02-21T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/22.3/vaggio-piandisc-1932-fratticciola"
         }
       ]
@@ -2913,6 +3265,8 @@
           "dateTime": "2027-02-28T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/23.1/arno-castiglioni-laterina-arezzo-fa"
         },
         {
@@ -2927,6 +3281,8 @@
           "dateTime": "2027-02-28T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/23.4/fortis-arezzo-fratta-santa-caterina"
         },
         {
@@ -2941,6 +3297,8 @@
           "dateTime": "2027-02-28T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/23.6/fratticciola-marino-mercato-subbiano"
         },
         {
@@ -2955,6 +3313,8 @@
           "dateTime": "2027-02-28T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/23.3/fulgor-castelfranco-calcio-pestello"
         },
         {
@@ -2969,6 +3329,8 @@
           "dateTime": "2027-02-28T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/23.2/pieve-al-toppo-bucine"
         },
         {
@@ -2983,6 +3345,8 @@
           "dateTime": "2027-02-28T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/23.7/pratovecchio-poppi"
         },
         {
@@ -2997,6 +3361,8 @@
           "dateTime": "2027-02-28T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/23.8/rassina-vaggio-piandisc-1932"
         },
         {
@@ -3011,6 +3377,8 @@
           "dateTime": "2027-02-28T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/23.5/valdichiana-calcio-guazzino"
         }
       ]
@@ -3032,6 +3400,8 @@
           "dateTime": "2027-03-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/24.2/arezzo-fa-fortis-arezzo"
         },
         {
@@ -3046,6 +3416,8 @@
           "dateTime": "2027-03-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/24.1/bucine-arno-castiglioni-laterina"
         },
         {
@@ -3060,6 +3432,8 @@
           "dateTime": "2027-03-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/24.6/calcio-pestello-pieve-al-toppo"
         },
         {
@@ -3074,6 +3448,8 @@
           "dateTime": "2027-03-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/24.5/fratta-santa-caterina-valdichiana-calcio"
         },
         {
@@ -3088,6 +3464,8 @@
           "dateTime": "2027-03-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/24.8/guazzino-rassina"
         },
         {
@@ -3102,6 +3480,8 @@
           "dateTime": "2027-03-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/24.4/marino-mercato-subbiano-fulgor-castelfranco"
         },
         {
@@ -3116,6 +3496,8 @@
           "dateTime": "2027-03-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/24.3/poppi-fratticciola"
         },
         {
@@ -3130,6 +3512,8 @@
           "dateTime": "2027-03-07T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/24.7/vaggio-piandisc-1932-pratovecchio"
         }
       ]
@@ -3151,6 +3535,8 @@
           "dateTime": "2027-03-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/25.5/arno-castiglioni-laterina-guazzino"
         },
         {
@@ -3165,6 +3551,8 @@
           "dateTime": "2027-03-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/25.8/fortis-arezzo-vaggio-piandisc-1932"
         },
         {
@@ -3179,6 +3567,8 @@
           "dateTime": "2027-03-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/25.3/fratticciola-calcio-pestello"
         },
         {
@@ -3193,6 +3583,8 @@
           "dateTime": "2027-03-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/25.1/fulgor-castelfranco-arezzo-fa"
         },
         {
@@ -3207,6 +3599,8 @@
           "dateTime": "2027-03-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/25.2/marino-mercato-subbiano-bucine"
         },
         {
@@ -3221,6 +3615,8 @@
           "dateTime": "2027-03-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/25.4/pieve-al-toppo-fratta-santa-caterina"
         },
         {
@@ -3235,6 +3631,8 @@
           "dateTime": "2027-03-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/25.7/rassina-pratovecchio"
         },
         {
@@ -3249,6 +3647,8 @@
           "dateTime": "2027-03-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/25.6/valdichiana-calcio-poppi"
         }
       ]
@@ -3270,6 +3670,8 @@
           "dateTime": "2027-04-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/26.7/arezzo-fa-pieve-al-toppo"
         },
         {
@@ -3284,6 +3686,8 @@
           "dateTime": "2027-04-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/26.4/bucine-fulgor-castelfranco"
         },
         {
@@ -3298,6 +3702,8 @@
           "dateTime": "2027-04-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/26.6/calcio-pestello-marino-mercato-subbiano"
         },
         {
@@ -3312,6 +3718,8 @@
           "dateTime": "2027-04-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/26.1/fratta-santa-caterina-arno-castiglioni-laterina"
         },
         {
@@ -3326,6 +3734,8 @@
           "dateTime": "2027-04-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/26.2/guazzino-fortis-arezzo"
         },
         {
@@ -3340,6 +3750,8 @@
           "dateTime": "2027-04-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/26.8/poppi-rassina"
         },
         {
@@ -3354,6 +3766,8 @@
           "dateTime": "2027-04-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/26.3/pratovecchio-fratticciola"
         },
         {
@@ -3368,6 +3782,8 @@
           "dateTime": "2027-04-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/26.5/vaggio-piandisc-1932-valdichiana-calcio"
         }
       ]
@@ -3389,6 +3805,8 @@
           "dateTime": "2027-04-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/27.5/arno-castiglioni-laterina-poppi"
         },
         {
@@ -3403,6 +3821,8 @@
           "dateTime": "2027-04-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/27.1/calcio-pestello-arezzo-fa"
         },
         {
@@ -3417,6 +3837,8 @@
           "dateTime": "2027-04-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/27.6/fortis-arezzo-pratovecchio"
         },
         {
@@ -3431,6 +3853,8 @@
           "dateTime": "2027-04-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/27.2/fratticciola-bucine"
         },
         {
@@ -3445,6 +3869,8 @@
           "dateTime": "2027-04-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/27.4/fulgor-castelfranco-guazzino"
         },
         {
@@ -3459,6 +3885,8 @@
           "dateTime": "2027-04-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/27.3/marino-mercato-subbiano-fratta-santa-caterina"
         },
         {
@@ -3473,6 +3901,8 @@
           "dateTime": "2027-04-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/27.8/pieve-al-toppo-vaggio-piandisc-1932"
         },
         {
@@ -3487,6 +3917,8 @@
           "dateTime": "2027-04-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/27.7/valdichiana-calcio-rassina"
         }
       ]
@@ -3508,6 +3940,8 @@
           "dateTime": "2027-04-18T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/28.7/arezzo-fa-marino-mercato-subbiano"
         },
         {
@@ -3522,6 +3956,8 @@
           "dateTime": "2027-04-18T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/28.2/bucine-calcio-pestello"
         },
         {
@@ -3536,6 +3972,8 @@
           "dateTime": "2027-04-18T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/28.5/fratta-santa-caterina-fulgor-castelfranco"
         },
         {
@@ -3550,6 +3988,8 @@
           "dateTime": "2027-04-18T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/28.8/guazzino-pieve-al-toppo"
         },
         {
@@ -3564,6 +4004,8 @@
           "dateTime": "2027-04-18T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/28.3/poppi-fortis-arezzo"
         },
         {
@@ -3578,6 +4020,8 @@
           "dateTime": "2027-04-18T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/28.6/pratovecchio-valdichiana-calcio"
         },
         {
@@ -3592,6 +4036,8 @@
           "dateTime": "2027-04-18T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/28.4/rassina-fratticciola"
         },
         {
@@ -3606,6 +4052,8 @@
           "dateTime": "2027-04-18T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/28.1/vaggio-piandisc-1932-arno-castiglioni-laterina"
         }
       ]
@@ -3627,6 +4075,8 @@
           "dateTime": "2027-04-25T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/29.7/arno-castiglioni-laterina-rassina"
         },
         {
@@ -3641,6 +4091,8 @@
           "dateTime": "2027-04-25T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/29.2/bucine-fratta-santa-caterina"
         },
         {
@@ -3655,6 +4107,8 @@
           "dateTime": "2027-04-25T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/29.3/calcio-pestello-guazzino"
         },
         {
@@ -3669,6 +4123,8 @@
           "dateTime": "2027-04-25T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/29.4/fortis-arezzo-valdichiana-calcio"
         },
         {
@@ -3683,6 +4139,8 @@
           "dateTime": "2027-04-25T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/29.1/fratticciola-arezzo-fa"
         },
         {
@@ -3697,6 +4155,8 @@
           "dateTime": "2027-04-25T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/29.5/fulgor-castelfranco-poppi"
         },
         {
@@ -3711,6 +4171,8 @@
           "dateTime": "2027-04-25T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/29.8/marino-mercato-subbiano-vaggio-piandisc-1932"
         },
         {
@@ -3725,6 +4187,8 @@
           "dateTime": "2027-04-25T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/29.6/pieve-al-toppo-pratovecchio"
         }
       ]
@@ -3746,6 +4210,8 @@
           "dateTime": "2027-05-02T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/30.2/arezzo-fa-bucine"
         },
         {
@@ -3760,6 +4226,8 @@
           "dateTime": "2027-05-02T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/78206.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/30.3/fratta-santa-caterina-calcio-pestello"
         },
         {
@@ -3774,6 +4242,8 @@
           "dateTime": "2027-05-02T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/30.7/guazzino-marino-mercato-subbiano"
         },
         {
@@ -3788,6 +4258,8 @@
           "dateTime": "2027-05-02T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/30.8/poppi-pieve-al-toppo"
         },
         {
@@ -3802,6 +4274,8 @@
           "dateTime": "2027-05-02T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/30.1/pratovecchio-arno-castiglioni-laterina"
         },
         {
@@ -3816,6 +4290,8 @@
           "dateTime": "2027-05-02T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/30.4/rassina-fortis-arezzo"
         },
         {
@@ -3830,6 +4306,8 @@
           "dateTime": "2027-05-02T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/37250.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/30.6/vaggio-piandisc-1932-fulgor-castelfranco"
         },
         {
@@ -3844,6 +4322,8 @@
           "dateTime": "2027-05-02T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/30.5/valdichiana-calcio-fratticciola"
         }
       ]
