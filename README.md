@@ -209,13 +209,16 @@ Lo scraping sceglie automaticamente lo stadio più veloce che funziona, e tutti 
 | Stadio | Come | Quando si usa | Tempo per campionato |
 |---|---|---|---|
 | 1. **HTTP** | `fetch` + cookie `PHPSESSID` + token letti dall'HTML | IP non sospetti (residenziale, e in genere anche l'istanza Render) | **~0,7-1,0 s** |
-| 2. **Ibrido** | Il browser risolve la challenge WAF, poi i 31 payload arrivano via HTTP riusando i cookie (`aws-waf-token`) | Quando lo stadio 1 riceve una challenge (`202`/`403`/`x-amzn-waf-action`) | ~2-5 s + bootstrap |
+| 2. **Ibrido** | Il browser risolve la challenge WAF **una volta sola per run**, poi i 31 payload di ogni campionato arrivano via HTTP riusando i cookie (`aws-waf-token`) | Quando lo stadio 1 riceve una challenge (`202`/`403`/`x-amzn-waf-action`) | ~2 s per campionato + **un** bootstrap (~60 s su Render free) |
 | 3. **Browser** | Puppeteer naviga e scarica tutto dentro la pagina | Se anche il bootstrap non basta | ~3,4 s (Mac), ~45-85 s (Render free) |
 
 Se anche l'ultimo stadio fallisce, si conserva la cache precedente: **il sito non si rompe mai**.
 
 Misurato in produzione (Render): lo stadio 1 riceve una challenge `HTTP 202` dal WAF, quindi entra in gioco lo
 stadio 2. Da IP residenziale lo stadio 1 funziona da solo (240 partite identiche alla cache in ~0,6 s).
+
+Sull'istanza free il costo dominante è **avviare Chrome** (0,1 CPU), non scaricare i dati: per questo il
+bootstrap è condiviso e viene fatto al massimo una volta per run, mentre i 3 campionati si scaricano via HTTP.
 
 `GET /api/diagnostics` mostra quale stadio è stato usato l'ultima volta (`http`, `http-after-bootstrap`,
 `browser-fallback`), con durata ed eventuale errore.

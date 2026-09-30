@@ -35,6 +35,10 @@ class CalendarScraper {
 
     // Esito dell'ultimo scraping per campionato (diagnostica /api/diagnostics)
     this.lastScrapes = new Map();
+
+    // Sessione WAF riusata fra i campionati (i token aws-waf-token durano pochi minuti)
+    this.wafSession = null;
+    this.wafSessionTtlMs = options.wafSessionTtlMs || 4 * 60 * 1000;
   }
 
   /**
@@ -215,10 +219,11 @@ class CalendarScraper {
       this.onProgress(`⚠ HTTP puro non riuscito per ${leagueConfig.name} (${err.message}).`);
     }
 
-    // 2) La challenge WAF richiede il browser: lo usiamo solo per ottenere
-    //    cookie e token, poi i dati vengono scaricati via HTTP.
+    // 2) La challenge WAF richiede il browser: lo usiamo solo per ottenere i
+    //    cookie di clearance (bootstrap condiviso fra tutti i campionati),
+    //    poi i dati vengono scaricati via HTTP.
     try {
-      const session = await this.browserBootstrap(leagueConfig);
+      const session = await this.ensureWafSession(leagueConfig);
       const data = await this.scrapeLeagueWithHttp(leagueConfig, { ...options, session });
       this.recordScrape(leagueConfig.id, 'http-after-bootstrap', Date.now() - startedAt, httpError.message);
       this.onProgress(`✔ Dati di ${leagueConfig.name} scaricati via HTTP dopo il bootstrap del browser.`);
@@ -273,6 +278,33 @@ class CalendarScraper {
         '--lang=it-IT,it'
       ]
     });
+  }
+
+  /**
+   * Sessione WAF condivisa: il bootstrap con il browser costa decine di secondi
+   * su un'istanza piccola, quindi viene fatto una volta sola e riusato per tutti
+   * i campionati finché i cookie (token `aws-waf-token`) sono validi.
+   */
+  async ensureWafSession(leagueConfig) {
+    const now = Date.now();
+    const ttl = this.wafSessionTtlMs;
+
+    if (this.wafSession && now - this.wafSession.at < ttl) {
+      this.onProgress('Riuso la sessione del browser ottenuta poco fa (nessun nuovo avvio di Chrome).');
+      return this.wafSession;
+    }
+
+    const bootstrapped = await this.browserBootstrap(leagueConfig);
+
+    // Vengono riusati cookie e User-Agent: i token di sessione (tckk/roundID)
+    // sono specifici del campionato e vengono riletti via HTTP per ogni lega.
+    this.wafSession = {
+      cookies: bootstrapped.cookies,
+      userAgent: bootstrapped.userAgent,
+      at: Date.now()
+    };
+
+    return this.wafSession;
   }
 
   /**

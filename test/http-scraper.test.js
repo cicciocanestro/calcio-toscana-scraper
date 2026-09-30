@@ -323,3 +323,21 @@ test('con una sessione dal browser si salta la richiesta di bootstrap', async ()
   // I token della sessione finiscono nelle URL delle richieste AJAX
   assert.ok(fetchImpl.calls.every(c => c.url.includes('tckk=SESSIONE123')));
 });
+
+test('una sessione con soli cookie WAF evita il browser ma rilegge i token via HTTP', async () => {
+  const fetchImpl = fakeFetch(standardRoutes());
+  const scraper = new HttpScraper({ fetch: fetchImpl, onProgress: () => {} });
+
+  // Come il bootstrap condiviso: cookie validi, token di un altro campionato
+  const data = await scraper.scrapeLeague(LEAGUE, {
+    session: { cookies: 'aws-waf-token=xyz; PHPSESSID=abc', userAgent: 'UA-dal-browser' }
+  });
+
+  // Pagina + classifica + 2 giornate
+  assert.equal(fetchImpl.calls.length, 4);
+  assert.equal(fetchImpl.calls[0].url, LEAGUE.url, 'la pagina viene richiesta con i cookie');
+  assert.match(fetchImpl.calls[0].headers.cookie, /aws-waf-token=xyz/);
+  assert.equal(fetchImpl.calls[0].headers['user-agent'], 'UA-dal-browser');
+  assert.equal(data.totalMatchDays, 2);
+  assert.equal(data.matchDays.length, 2);
+});

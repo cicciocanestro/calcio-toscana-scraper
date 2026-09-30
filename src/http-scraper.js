@@ -217,9 +217,11 @@ class HttpScraper {
    * @param {object} leagueConfig
    * @param {object} options
    * @param {object} [options.previousData] dati dell'ultimo run (controlli di regressione)
-   * @param {object} [options.session] sessione già pronta ottenuta da un browser
-   *        (`{ tckk, roundID, totalDays, currentDay, cookies, userAgent }`):
-   *        in quel caso si salta del tutto la richiesta di bootstrap.
+   * @param {object} [options.session] sessione ottenuta da un browser
+   *        (`{ tckk, roundID, totalDays, currentDay, cookies, userAgent }`).
+   *        Se contiene i token si salta del tutto la richiesta di bootstrap;
+   *        se contiene solo i cookie (tipicamente il token WAF) la pagina viene
+   *        comunque richiesta, ma non serve più il browser.
    * @returns {object} dati nel formato usato dal resto del progetto
    */
   async scrapeLeague(leagueConfig, options = {}) {
@@ -231,10 +233,13 @@ class HttpScraper {
 
     let tokens;
 
-    if (session && session.tckk && session.roundID) {
-      // Sessione fornita dal browser: riusiamo cookie (incluso il token WAF) e metadati
+    // Cookie (e User-Agent) dalla sessione del browser, se disponibili
+    if (session) {
       if (session.cookies) this.cookies = session.cookies;
       if (session.userAgent) this.userAgent = session.userAgent;
+    }
+
+    if (session && session.tckk && session.roundID) {
       tokens = {
         tckk: session.tckk,
         roundID: session.roundID,
@@ -243,7 +248,7 @@ class HttpScraper {
       };
       this.onProgress(`Uso la sessione ottenuta dal browser (${this.cookies ? 'cookie inclusi' : 'senza cookie'}).`);
     } else {
-      this.onProgress(`Connessione HTTP a ${pageUrl}...`);
+      this.onProgress(`Connessione HTTP a ${pageUrl}${this.cookies ? ' (con cookie WAF)' : ''}...`);
       const pageHtml = await this.request(pageUrl);
 
       tokens = extractSessionTokens(pageHtml);

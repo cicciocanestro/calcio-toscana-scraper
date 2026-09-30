@@ -215,3 +215,48 @@ test('userDataDir può essere forzato da opzione o variabile d\'ambiente', () =>
     else process.env.CHROME_USER_DATA_DIR = previous;
   }
 });
+
+test('il bootstrap WAF viene condiviso fra i campionati dello stesso run', async () => {
+  const { scraper, calls } = instrumentedScraper('auto', (leagueConfig, options) => {
+    if (!options.session) throw wafError();
+    return { ...sampleLeagueData(), id: leagueConfig.id };
+  });
+
+  await scraper.scrapeAll({ forceRefresh: true });
+
+  assert.equal(calls.bootstrap, 1, 'un solo avvio di Chrome per tutti e tre i campionati');
+  assert.equal(calls.browser, 0);
+  assert.equal(calls.http.length, 6, 'due tentativi HTTP per campionato');
+  // Tutte le chiamate con sessione ricevono i cookie del bootstrap
+  const withSession = calls.http.filter(c => c.session);
+  assert.equal(withSession.length, 3);
+  for (const call of withSession) assert.equal(call.session.cookies, SESSION.cookies);
+
+  const paths = Object.values(scraper.getDiagnostics().lastScrapes).map(i => i.path);
+  assert.deepEqual(paths, ['http-after-bootstrap', 'http-after-bootstrap', 'http-after-bootstrap']);
+});
+
+test('la sessione WAF scade e viene rifatta una volta trascorso il TTL', async () => {
+  const { scraper, calls } = instrumentedScraper('auto', (leagueConfig, options) => {
+    if (!options.session) throw wafError();
+    return { ...sampleLeagueData() };
+  });
+  scraper.wafSessionTtlMs = 0;
+
+  await scraper.produceLeagueData(LEAGUES['promozione-c']);
+  await scraper.produceLeagueData(LEAGUES['promozione-c']);
+
+  assert.equal(calls.bootstrap, 2, 'con TTL scaduto serve un nuovo bootstrap');
+});
+
+test('la sessione WAF valida non viene rifatta', async () => {
+  const { scraper, calls } = instrumentedScraper('auto', (leagueConfig, options) => {
+    if (!options.session) throw wafError();
+    return { ...sampleLeagueData() };
+  });
+
+  await scraper.produceLeagueData(LEAGUES['promozione-c']);
+  await scraper.produceLeagueData(LEAGUES['promozione-c']);
+
+  assert.equal(calls.bootstrap, 1);
+});
