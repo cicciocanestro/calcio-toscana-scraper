@@ -154,24 +154,40 @@ GitHub Actions (cron domenica/lunedì)
    └─> node bin/fetch-from-render.js        # chiede i dati a Render (IP non bloccato)
          └─> Render: GET /api/leagues/:id?refresh=true   # scraping reale dal sito
    └─> node bin/cli.js export all           # rigenera CSV/ICS/JSON dalla cache fresca
+   └─> node bin/data-changed.js             # salta il commit se non è cambiato nulla di sportivo
    └─> commit + push                        # GitHub Pages si ripubblica da solo
 ```
 
 Se l'istanza remota non risponde, il workflow ripiega sullo scraping locale dal runner (che normalmente viene
 bloccato) e in ultima istanza **conserva i dati in cache** emettendo un warning, senza mai rompere il sito.
+Se i dati sportivi sono identici a quelli già pubblicati, **non viene creato nessun commit**: i campi volatili
+(`lastUpdated`, `DTSTAMP` degli ICS) vengono scartati per non sporcare la cronologia ogni settimana.
 
-### Configurazione (facoltativa)
-L'URL è già predefinito (`https://calcio-toscana-scraper.onrender.com`). Per cambiarli:
+### Sicurezza degli aggiornamenti forzati
+Senza configurazione, chiunque conosca l'URL dell'istanza può farle avviare uno scraping. Per blindarlo basta
+impostare **lo stesso valore** in due posti:
 
 | Dove | Nome | Tipo | A cosa serve |
 |---|---|---|---|
-| GitHub → Settings → Variables | `RENDER_URL` | Variable | URL dell'istanza che deve fare scraping |
-| GitHub → Settings → Secrets | `REFRESH_TOKEN` | Secret | Solo se impostato anche su Render (protegge gli aggiornamenti forzati) |
-| Render → Environment | `REFRESH_TOKEN` | Env var | Attiva la richiesta del token sugli aggiornamenti forzati |
+| Render → Environment | `REFRESH_TOKEN` | Env var | Il server richiede l'header `x-refresh-token` sugli aggiornamenti forzati |
+| GitHub → Settings → Secrets and variables → Actions | `REFRESH_TOKEN` | Secret | Il workflow invia l'header nelle richieste a Render |
+
+Se la variabile **non** è impostata su Render, il token inviato da GitHub viene semplicemente ignorato (utile in locale).
+Se invece la imposti su Render con un valore diverso da quello del secret, gli aggiornamenti verranno rifiutati
+(`401`) e il workflow conserverà i dati precedenti emettendo un warning.
+
+### Altre configurazioni (facoltative)
+
+| Dove | Nome | Tipo | A cosa serve |
+|---|---|---|---|
+| GitHub → Settings → Variables | `RENDER_URL` | Variable | Cambia l'URL dell'istanza (default: `https://calcio-toscana-scraper.onrender.com`) |
 
 ```bash
 # Aggiornamento manuale dall'istanza remota verso la cache locale
 node bin/fetch-from-render.js --url https://calcio-toscana-scraper.onrender.com --out data/cache
+
+# Verifica se i dati sportivi sono cambiati rispetto all'ultimo commit
+node bin/data-changed.js   # exit 0 = cambiati, 1 = invariati
 ```
 
 > **Nota Render (piano free)**: il filesystem è effimero e l'istanza va in sleep dopo 15 minuti di inattività.
@@ -186,7 +202,9 @@ node bin/fetch-from-render.js --url https://calcio-toscana-scraper.onrender.com 
 scraping/
 ├── bin/
 │   ├── cli.js            # Interfaccia a riga di comando (CLI)
-│   └── build-pages.js    # Rigenera gli asset di root per GitHub Pages da public/
+│   ├── build-pages.js    # Rigenera gli asset di root per GitHub Pages da public/
+│   ├── fetch-from-render.js  # Scarica i dati dall'istanza sempre accesa (con retry)
+│   └── data-changed.js   # Rileva se i dati sportivi sono cambiati (evita commit inutili)
 ├── src/
 │   ├── config.js         # Configurazione campionati, URL e rilevamento Chrome
 │   ├── scraper.js        # Motore Puppeteer per estrazione dati e gestione WAF
@@ -200,7 +218,9 @@ scraping/
 ├── test/                 # Test automatici (node:test)
 │   ├── parser.test.js
 │   ├── exporters.test.js
-│   └── server.test.js
+│   ├── server.test.js
+│   ├── fetch-render.test.js
+│   └── data-changed.test.js
 ├── index.html            # ┐
 ├── app.js                # ├ copie generate da public/ per GitHub Pages
 ├── style.css             # ┘ (npm run build:pages, committate dalla CI)
