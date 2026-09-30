@@ -64,9 +64,15 @@ jobs:
           RENDER_URL: ${{ vars.RENDER_URL || 'https://calcio-toscana-scraper.onrender.com' }}
           REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
         run: |
-          if node bin/fetch-from-render.js; then
+          rc=0
+          node bin/fetch-from-render.js || rc=$?
+
+          if [ "$rc" = "0" ]; then
             echo "aggiornato=true" >> "$GITHUB_OUTPUT"
-            echo "Dati aggiornati dall'istanza remota."
+            echo "Tutti i campionati aggiornati dall'istanza remota."
+          elif [ "$rc" = "1" ]; then
+            echo "aggiornato=true" >> "$GITHUB_OUTPUT"
+            echo "::warning::Aggiornamento remoto parziale: alcune leghe non sono state aggiornate (vedi log). Gli export vengono comunque rigenerati con i dati più recenti disponibili."
           elif node bin/cli.js scrape all --refresh; then
             echo "aggiornato=true" >> "$GITHUB_OUTPUT"
             echo "Dati aggiornati direttamente dal runner."

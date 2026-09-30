@@ -8,15 +8,33 @@
  * quindi i dati vanno riportati nel repository per essere duraturi.
  *
  *   node bin/fetch-from-render.js [--url https://...] [--out data/cache] [--token XXX]
+ *                                [--retries 3] [--retry-delay 15000]
  *
  * Variabili d'ambiente: RENDER_URL, REFRESH_TOKEN
- * Exit code: 0 se TUTTE le leghe sono state aggiornate, 1 altrimenti.
+ *
+ * Exit code: 0 tutte le leghe aggiornate, 1 aggiornamento parziale, 2 nessuna.
  */
 const fs = require('fs');
 const path = require('path');
 const { LEAGUES, CACHE_DIR } = require('../src/config');
 
 const DEFAULT_TIMEOUT_MS = 180000;
+const DEFAULT_RETRIES = 3;
+const DEFAULT_RETRY_DELAY_MS = 15000;
+
+// Status che indicano un problema temporaneo dell'istanza (es. 502 durante il
+// cold start del piano free): vale la pena ritentare.
+const RETRYABLE_STATUS = new Set([408, 425, 429, 500, 502, 503, 504]);
+
+class FetchError extends Error {
+  constructor(message, retryable) {
+    super(message);
+    this.name = 'FetchError';
+    this.retryable = !!retryable;
+  }
+}
+
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 /**
  * Verifica che la risposta del server sia un aggiornamento reale e completo.
@@ -50,12 +68,20 @@ function validateLeaguePayload(payload, options = {}) {
 }
 
 function parseArgs(argv) {
-  const args = { url: process.env.RENDER_URL || '', out: CACHE_DIR, token: process.env.REFRESH_TOKEN || '' };
+  const args = {
+    url: process.env.RENDER_URL || '',
+    out: CACHE_DIR,
+    token: process.env.REFRESH_TOKEN || '',
+    retries: DEFAULT_RETRIES,
+    retryDelayMs: DEFAULT_RETRY_DELAY_MS
+  };
   for (let i = 2; i < argv.length; i++) {
     const next = argv[i + 1];
     if (argv[i] === '--url' && next) args.url = argv[++i];
     else if (argv[i] === '--out' && next) args.out = argv[++i];
     else if (argv[i] === '--token' && next) args.token = argv[++i];
+    else if (argv[i] === '--retries' && next) args.retries = Math.max(1, parseInt(argv[++i], 10) || DEFAULT_RETRIES);
+    else if (argv[i] === '--retry-delay' && next) args.retryDelayMs = Math.max(0, parseInt(argv[++i], 10) || 0);
   }
   return args;
 }
@@ -65,20 +91,53 @@ async function fetchLeague(baseUrl, leagueId, token, timeoutMs) {
   const headers = { Accept: 'application/json' };
   if (token) headers['x-refresh-token'] = token;
 
-  const resp = await fetch(url, { headers, signal: AbortSignal.timeout(timeoutMs) });
+  let resp;
+  try {
+    resp = await fetch(url, { headers, signal: AbortSignal.timeout(timeoutMs) });
+  } catch (err) {
+    // Timeout o errore di rete: l'istanza potrebbe essere in fase di avvio
+    throw new FetchError(`richiesta non riuscita (${err.message})`, true);
+  }
+
   const text = await resp.text();
+  const retryable = RETRYABLE_STATUS.has(resp.status);
 
   let payload;
   try {
     payload = JSON.parse(text);
   } catch (err) {
-    throw new Error(`risposta non JSON (HTTP ${resp.status}): ${text.slice(0, 120)}`);
+    // Es. 502 Bad Gateway di Render durante il cold start: risposta HTML
+    throw new FetchError(`risposta non JSON (HTTP ${resp.status})`, retryable);
   }
 
   if (!resp.ok) {
-    throw new Error(payload.error || `HTTP ${resp.status}`);
+    throw new FetchError(payload.error || `HTTP ${resp.status}`, retryable);
   }
+
   return payload;
+}
+
+/**
+ * Ritenta le richieste temporaneamente fallite (cold start dell'istanza free).
+ */
+async function fetchLeagueWithRetry(baseUrl, leagueId, token, options) {
+  const attempts = options.retries;
+  let lastError;
+
+  for (let attempt = 1; attempt <= attempts; attempt++) {
+    try {
+      return await fetchLeague(baseUrl, leagueId, token, options.timeoutMs);
+    } catch (err) {
+      lastError = err;
+      if (!err.retryable || attempt === attempts) break;
+
+      console.warn(`↻ ${leagueId}: ${err.message}. Nuovo tentativo tra ${Math.round(options.retryDelayMs / 1000)}s ` +
+        `(${attempt}/${attempts - 1})...`);
+      await sleep(options.retryDelayMs);
+    }
+  }
+
+  throw lastError;
 }
 
 async function main() {
@@ -95,9 +154,10 @@ async function main() {
 
   console.log(`ℹ Aggiornamento dati da ${args.url} (scraping eseguito dall'istanza remota)...`);
 
+  const leagueIds = Object.keys(LEAGUES);
   let failures = 0;
 
-  for (const leagueId of Object.keys(LEAGUES)) {
+  for (const leagueId of leagueIds) {
     const dest = path.join(outDir, `${leagueId}.json`);
     let previousUpdated = null;
     try {
@@ -109,7 +169,11 @@ async function main() {
     }
 
     try {
-      const payload = await fetchLeague(args.url, leagueId, args.token, DEFAULT_TIMEOUT_MS);
+      const payload = await fetchLeagueWithRetry(args.url, leagueId, args.token, {
+        retries: args.retries,
+        retryDelayMs: args.retryDelayMs,
+        timeoutMs: DEFAULT_TIMEOUT_MS
+      });
       const problem = validateLeaguePayload(payload, { expectedId: leagueId, minLastUpdated: previousUpdated });
 
       if (problem) {
@@ -128,12 +192,22 @@ async function main() {
     }
   }
 
-  if (failures > 0) {
-    console.error(`\n✖ Aggiornamento remoto incompleto: ${failures}/${Object.keys(LEAGUES).length} leghe non aggiornate.`);
-    process.exitCode = 1;
-  } else {
+  const updated = leagueIds.length - failures;
+
+  if (failures === 0) {
     console.log('\n✔ Tutti i campionati sono stati aggiornati tramite l\'istanza remota.');
+    return;
   }
+
+  if (updated === 0) {
+    console.error(`\n✖ Nessun campionato aggiornato dall'istanza remota (${failures}/${leagueIds.length} falliti).`);
+    process.exitCode = 2;
+    return;
+  }
+
+  console.error(`\n⚠ Aggiornamento remoto parziale: ${updated}/${leagueIds.length} campionati aggiornati, ` +
+    `${failures} non aggiornati (cache precedente conservata).`);
+  process.exitCode = 1;
 }
 
 if (require.main === module) {
