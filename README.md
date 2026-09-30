@@ -138,6 +138,45 @@ Apri nel tuo browser: **[http://localhost:3000](http://localhost:3000)**
   invece di restituire un errore.
 - Gli endpoint statici espongono **solo** `public/` (dashboard) e `/data` (cache ed export): sorgenti, configurazione e
   dipendenze non sono scaricabili.
+- Se sulla macchina/istanza è impostata la variabile `REFRESH_TOKEN`, gli aggiornamenti forzati richiedono
+  l'header `x-refresh-token` (vedi sotto). Senza la variabile tutto resta aperto come prima, comodo in locale.
+
+---
+
+## 🔄 Aggiornamenti automatici senza tenere il PC acceso
+
+Il WAF di Tuttocampo **blocca gli IP dei runner GitHub Actions** (`403 Forbidden`), quindi lo scraping non può
+partire da GitHub. L'istanza **Render** invece non è bloccata: la pipeline usa Render per scaricare i dati e
+GitHub Actions solo per committarli, così il sito su GitHub Pages resta sempre aggiornato senza alcun computer accesso.
+
+```
+GitHub Actions (cron domenica/lunedì)
+   └─> node bin/fetch-from-render.js        # chiede i dati a Render (IP non bloccato)
+         └─> Render: GET /api/leagues/:id?refresh=true   # scraping reale dal sito
+   └─> node bin/cli.js export all           # rigenera CSV/ICS/JSON dalla cache fresca
+   └─> commit + push                        # GitHub Pages si ripubblica da solo
+```
+
+Se l'istanza remota non risponde, il workflow ripiega sullo scraping locale dal runner (che normalmente viene
+bloccato) e in ultima istanza **conserva i dati in cache** emettendo un warning, senza mai rompere il sito.
+
+### Configurazione (facoltativa)
+L'URL è già predefinito (`https://calcio-toscana-scraper.onrender.com`). Per cambiarli:
+
+| Dove | Nome | Tipo | A cosa serve |
+|---|---|---|---|
+| GitHub → Settings → Variables | `RENDER_URL` | Variable | URL dell'istanza che deve fare scraping |
+| GitHub → Settings → Secrets | `REFRESH_TOKEN` | Secret | Solo se impostato anche su Render (protegge gli aggiornamenti forzati) |
+| Render → Environment | `REFRESH_TOKEN` | Env var | Attiva la richiesta del token sugli aggiornamenti forzati |
+
+```bash
+# Aggiornamento manuale dall'istanza remota verso la cache locale
+node bin/fetch-from-render.js --url https://calcio-toscana-scraper.onrender.com --out data/cache
+```
+
+> **Nota Render (piano free)**: il filesystem è effimero e l'istanza va in sleep dopo 15 minuti di inattività.
+> Non è un problema: i dati vengono riportati nel repository (che è la fonte durevole) e la prima visita
+> successiva riattiva l'istanza in ~30-40 secondi.
 
 ---
 

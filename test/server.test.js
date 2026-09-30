@@ -3,11 +3,27 @@ const assert = require('node:assert/strict');
 
 const { createServer } = require('../src/server');
 const { CalendarScraper } = require('../src/scraper');
+const { sampleLeagueData } = require('./fixtures');
+
+// Scraper finto: permette di testare le rotte (token, revalidation) senza
+// browser né rete.
+function fakeScraper(options = {}) {
+  const calls = [];
+  return {
+    calls,
+    getCacheStatus: () => options.status || { exists: true, isStale: true, ageMs: 99999999, lastUpdated: '2026-01-01T00:00:00.000Z' },
+    getCachedLeague: () => sampleLeagueData(),
+    scrapeLeague: async (id, opts = {}) => {
+      calls.push({ id, opts });
+      return { ...sampleLeagueData(), id, isStale: !opts.forceRefresh };
+    }
+  };
+}
 
 // autoRevalidate: false -> i test non avviano mai scraping/browser in background
-function withServer(run) {
+function withServer(run, options = {}) {
   return async () => {
-    const app = createServer({ autoRevalidate: false });
+    const app = createServer({ autoRevalidate: false, ...options });
     const server = app.listen(0);
     await new Promise(resolve => server.once('listening', resolve));
     const base = `http://127.0.0.1:${server.address().port}`;
@@ -137,3 +153,101 @@ test('getCacheStatus riporta correttamente cache assente e presente', () => {
   assert.equal(typeof status.isStale, 'boolean');
   assert.ok(status.lastUpdated);
 });
+
+test('con REFRESH_TOKEN attivo l\'aggiornamento forzato richiede il token', async () => {
+  const previous = process.env.REFRESH_TOKEN;
+  process.env.REFRESH_TOKEN = 'segreto-di-test';
+
+  const scraper = fakeScraper();
+  const app = createServer({ autoRevalidate: false, scraper });
+  const server = app.listen(0);
+  await new Promise(resolve => server.once('listening', resolve));
+  const base = `http://127.0.0.1:${server.address().port}`;
+
+  try {
+    // Scraping forzato senza token -> rifiutato
+    assert.equal((await fetch(`${base}/api/leagues/promozione-c?refresh=true`)).status, 401);
+    assert.equal((await fetch(`${base}/api/leagues/promozione-c/refresh`, { method: 'POST' })).status, 401);
+
+    // Token sbagliato -> rifiutato
+    assert.equal(
+      (await fetch(`${base}/api/leagues/promozione-c?refresh=true`, { headers: { 'x-refresh-token': 'nope' } })).status,
+      401
+    );
+
+    // Nessuno scraping forzato deve essere partito
+    assert.equal(scraper.calls.filter(c => c.opts.forceRefresh).length, 0);
+
+    // Lettura normale dalla cache: sempre permessa
+    assert.equal((await fetch(`${base}/api/leagues/promozione-c`)).status, 200);
+
+    // Con il token corretto lo scraping forzato viene eseguito
+    const ok = await fetch(`${base}/api/leagues/promozione-c?refresh=true`, { headers: { 'x-refresh-token': 'segreto-di-test' } });
+    assert.equal(ok.status, 200);
+    const forced = scraper.calls.filter(c => c.opts.forceRefresh);
+    assert.equal(forced.length, 1);
+    assert.equal(forced[0].id, 'promozione-c');
+  } finally {
+    await new Promise(resolve => server.close(resolve));
+    if (previous === undefined) delete process.env.REFRESH_TOKEN;
+    else process.env.REFRESH_TOKEN = previous;
+  }
+});
+
+test('con cache scaduta la risposta è immediata e parte l\'aggiornamento in background', async () => {
+  const scraper = fakeScraper();
+  const app = createServer({ scraper }); // autoRevalidate attivo (default)
+  const server = app.listen(0);
+  await new Promise(resolve => server.once('listening', resolve));
+
+  try {
+    const base = `http://127.0.0.1:${server.address().port}`;
+    const res = await fetch(`${base}/api/leagues/promozione-c`);
+    assert.equal(res.status, 200);
+    assert.equal((await res.json()).isStale, true, 'la prima risposta usa la cache scaduta');
+
+    // Lascia partire la promise di revalidation in background
+    await new Promise(resolve => setImmediate(resolve));
+    await new Promise(resolve => setTimeout(resolve, 20));
+
+    const forced = scraper.calls.filter(c => c.opts.forceRefresh);
+    assert.equal(forced.length, 1, 'deve partire un aggiornamento in background');
+    assert.equal(forced[0].id, 'promozione-c');
+  } finally {
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
+test('le richieste di revalidation dello stesso campionato non si duplicano', async () => {
+  let resolveScrape;
+  const started = new Promise(resolve => { resolveScrape = resolve; });
+  const scraper = fakeScraper();
+  const originalScrape = scraper.scrapeLeague;
+  scraper.scrapeLeague = async (id, opts) => {
+    resolveScrape();
+    await new Promise(resolve => setTimeout(resolve, 30));
+    return originalScrape(id, opts);
+  };
+
+  const app = createServer({ scraper });
+  const server = app.listen(0);
+  await new Promise(resolve => server.once('listening', resolve));
+
+  try {
+    const base = `http://127.0.0.1:${server.address().port}`;
+    await Promise.all([
+      fetch(`${base}/api/leagues/promozione-c`),
+      fetch(`${base}/api/leagues/promozione-c`),
+      fetch(`${base}/api/leagues/promozione-c`)
+    ]);
+
+    await started;
+    await new Promise(resolve => setTimeout(resolve, 60));
+
+    const forced = scraper.calls.filter(c => c.opts.forceRefresh);
+    assert.equal(forced.length, 1, 'un solo scraping per campionato anche con più richieste');
+  } finally {
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+

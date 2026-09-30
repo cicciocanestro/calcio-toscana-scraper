@@ -40,6 +40,23 @@ function createServer(options = {}) {
 
   app.use(express.json());
 
+  // Aggiornamento forzato protetto da token condiviso (opzionale).
+  // Se REFRESH_TOKEN non è impostato il comportamento resta quello di prima,
+  // così lo sviluppo locale e i deploy esistenti continuano a funzionare.
+  const refreshToken = process.env.REFRESH_TOKEN || '';
+
+  function requireRefreshToken(req, res, next) {
+    if (!refreshToken) return next();
+    if (req.get('x-refresh-token') === refreshToken) return next();
+    return res.status(401).json({ error: 'Token di aggiornamento mancante o non valido.' });
+  }
+
+  // Il token serve solo quando la richiesta chiede esplicitamente uno scraping live
+  function guardForcedRefresh(req, res, next) {
+    if (req.query.refresh === 'true') return requireRefreshToken(req, res, next);
+    return next();
+  }
+
   // Solo la dashboard può essere servita staticamente: NON l'intera root del
   // progetto (src/, bin/, package.json, node_modules non devono essere esposti).
   app.use(express.static(PUBLIC_DIR));
@@ -77,7 +94,7 @@ function createServer(options = {}) {
   // Dati completi di un campionato.
   // Default: risposta immediata dalla cache (anche scaduta) + aggiornamento in
   // background. Con ?refresh=true si attende lo scraping dal sito sorgente.
-  app.get('/api/leagues/:id', async (req, res) => {
+  app.get('/api/leagues/:id', guardForcedRefresh, async (req, res) => {
     const id = req.params.id;
     if (!LEAGUES[id]) {
       return res.status(404).json({ error: `Campionato '${id}' non trovato` });
@@ -108,7 +125,7 @@ function createServer(options = {}) {
   });
 
   // Forza refresh/scraping di un campionato
-  app.post('/api/leagues/:id/refresh', async (req, res) => {
+  app.post('/api/leagues/:id/refresh', requireRefreshToken, async (req, res) => {
     const id = req.params.id;
     if (!LEAGUES[id]) {
       return res.status(404).json({ error: `Campionato '${id}' non trovato` });

@@ -13,6 +13,7 @@ on:
 
 permissions:
   contents: write
+  pages: write
 
 jobs:
   # Test automatici: parser, exporter e API del server + coerenza degli asset
@@ -57,25 +58,58 @@ jobs:
       - name: Installazione dipendenze
         run: npm ci
 
-      - name: Esecuzione Scraping Campionati
+      - name: Aggiornamento dati (istanza sempre accesa, IP non bloccato dal WAF)
+        id: aggiorna
+        env:
+          RENDER_URL: ${{ vars.RENDER_URL || 'https://calcio-toscana-scraper.onrender.com' }}
+          REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
         run: |
-          if node bin/cli.js scrape all --refresh; then
-            echo "Scraping completato: dati aggiornati dal sito ufficiale."
+          if node bin/fetch-from-render.js; then
+            echo "aggiornato=true" >> "$GITHUB_OUTPUT"
+            echo "Dati aggiornati dall'istanza remota."
+          elif node bin/cli.js scrape all --refresh; then
+            echo "aggiornato=true" >> "$GITHUB_OUTPUT"
+            echo "Dati aggiornati direttamente dal runner."
           else
-            echo "::warning::Scraping non riuscito. Causa tipica: blocco anti-bot/WAF di Tuttocampo sugli IP datacenter dei runner GitHub Actions. I dati in cache sono stati conservati e il sito continua a funzionare con quelli."
+            echo "aggiornato=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::Aggiornamento non riuscito: istanza remota irraggiungibile e scraping dal runner bloccato dal WAF di Tuttocampo. I dati in cache sono stati conservati."
           fi
+
+      - name: Rigenerazione export (CSV, ICS, JSON)
+        if: steps.aggiorna.outputs.aggiornato == 'true'
+        run: node bin/cli.js export all
 
       - name: Rigenerazione asset dashboard per GitHub Pages
         run: npm run build:pages
 
       - name: Commit e Push dei dati aggiornati
+        id: commit
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add data/cache/ data/exports/ index.html app.js style.css
           if git diff --staged --quiet; then
             echo "Nessun aggiornamento trovato, i dati sono già aggiornati."
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
           else
-            git commit -m "chore(data): aggiornamento automatico calendari e classifiche [skip ci]"
+            git commit -m "chore(data): aggiornamento automatico calendari e classifiche"
             git push
+            echo "pushed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # I push fatti con GITHUB_TOKEN non innescano altri workflow, quindi la
+      # build di Pages va richiesta esplicitamente per pubblicare i dati nuovi.
+      - name: Pubblicazione su GitHub Pages
+        if: steps.commit.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          code=$(curl -sS -o /dev/null -w '%{http_code}' -X POST \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages/builds")
+          if [ "$code" = "201" ] || [ "$code" = "204" ]; then
+            echo "Build di GitHub Pages richiesta (HTTP $code)."
+          else
+            echo "::warning::Richiesta di build Pages non riuscita (HTTP $code): il sito si aggiornerà al prossimo push."
           fi
