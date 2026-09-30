@@ -5,3 +5,9 @@ node_modules/
 
 # profilo Chrome temporaneo (utile quando la cartella temporanea di sistema non è scrivibile)
 .chrome-tmp/
+
+# export per squadra generati a runtime (es. promozione-c_centro_storico_lebowski.ics):
+# sono artefatti utente, non fanno parte dei dati pubblicati
+data/exports/*_*.ics
+data/exports/*_*.csv
+data/exports/*_*.json
