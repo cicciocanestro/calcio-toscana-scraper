@@ -279,10 +279,13 @@ function renderHeaderInfo() {
 
   if (leagueData.lastUpdated) {
     const d = new Date(leagueData.lastUpdated);
-    elInfoLastUpdated.innerText = d.toLocaleString('it-IT', {
+    const formatted = d.toLocaleString('it-IT', {
       day: '2-digit', month: '2-digit', year: 'numeric',
       hour: '2-digit', minute: '2-digit'
     });
+    // I dati possono arrivare dalla cache locale mentre l'aggiornamento
+    // dal sito ufficiale è ancora in corso (o non è disponibile).
+    elInfoLastUpdated.innerText = leagueData.isStale ? `${formatted} · cache locale` : formatted;
   } else {
     elInfoLastUpdated.innerText = '-';
   }

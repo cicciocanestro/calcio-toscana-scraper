@@ -3,37 +3,88 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 const { findChrome, LEAGUES, CACHE_DIR, EXPORT_DIR, CACHE_TTL_MS } = require('./config');
-const { parseMatchdayHtml, parseStandingsHtml } = require('./parser');
 const { exportToJson, exportToCsv, exportToIcs } = require('./exporters');
+
+// Sorgente del parser HTML: viene iniettato nella pagina come window.CalcioParser.
+// In questo modo esiste UNA sola implementazione del parsing (src/parser.js),
+// usata sia nel browser dallo scraper sia nei test Node.
+const PARSER_SOURCE = fs.readFileSync(require.resolve('./parser'), 'utf-8');
 
 class CalendarScraper {
   constructor(options = {}) {
-    this.chromePath = options.chromePath || findChrome();
+    // Nota: il browser NON viene cercato qui. findChrome() è lazy e viene
+    // invocato solo al momento dello scraping, così il server web e la CLI
+    // possono funzionare (servendo cache ed export) anche senza Chrome.
+    this.chromePath = options.chromePath || null;
     this.headless = options.headless !== undefined ? options.headless : true;
     this.onProgress = options.onProgress || (() => {});
   }
 
   /**
-   * Restituisce i dati salvati in cache se validi, altrimenti null
+   * Percorso del browser da usare per lo scraping (risolto pigramente).
+   */
+  resolveChromePath() {
+    if (!this.chromePath) {
+      this.chromePath = findChrome();
+    }
+    return this.chromePath;
+  }
+
+  /**
+   * Dati in cache, oppure null.
+   * @param {number|null} maxAgeMs - età massima accettata. Passare null per accettare
+   *                                 anche dati scaduti (fallback / modalità cache-first).
    */
   getCachedLeague(leagueId, maxAgeMs = CACHE_TTL_MS) {
     const league = LEAGUES[leagueId];
     if (!league || !fs.existsSync(league.cacheFile)) return null;
 
     try {
-      const stats = fs.statSync(league.cacheFile);
-      const age = Date.now() - stats.mtimeMs;
-      if (age > maxAgeMs) return null;
+      if (maxAgeMs !== null && maxAgeMs !== undefined) {
+        const stats = fs.statSync(league.cacheFile);
+        if (Date.now() - stats.mtimeMs > maxAgeMs) return null;
+      }
 
-      const raw = fs.readFileSync(league.cacheFile, 'utf-8');
-      return JSON.parse(raw);
+      return JSON.parse(fs.readFileSync(league.cacheFile, 'utf-8'));
     } catch (err) {
       return null;
     }
   }
 
   /**
-   * Scrape completo di un campionato (calendario + classifica)
+   * Stato della cache locale di un campionato (senza leggere il file).
+   * @returns {{exists:boolean, isStale:boolean, ageMs:number|null, lastUpdated:string|null}}
+   */
+  getCacheStatus(leagueId, maxAgeMs = CACHE_TTL_MS) {
+    const league = LEAGUES[leagueId];
+    const empty = { exists: false, isStale: false, ageMs: null, lastUpdated: null };
+    if (!league || !fs.existsSync(league.cacheFile)) return empty;
+
+    try {
+      const stats = fs.statSync(league.cacheFile);
+      const ageMs = Date.now() - stats.mtimeMs;
+      return {
+        exists: true,
+        isStale: ageMs > maxAgeMs,
+        ageMs,
+        lastUpdated: stats.mtime.toISOString()
+      };
+    } catch (err) {
+      return empty;
+    }
+  }
+
+  /**
+   * Scrape completo di un campionato (calendario + classifica).
+   *
+   * @param {string} leagueId
+   * @param {object} options
+   * @param {boolean} options.forceRefresh - ignora la cache e riscarica dal web
+   * @param {boolean} options.cacheFirst   - usa la cache anche se scaduta, senza scraping
+   *
+   * Comportamento di fallback: se lo scraping live fallisce (WAF, rete, timeout)
+   * e in cache esiste una copia scaduta, viene restituita quella (marcata con
+   * isStale: true) invece di propagare l'errore.
    */
   async scrapeLeague(leagueId, options = {}) {
     const leagueConfig = LEAGUES[leagueId];
@@ -47,9 +98,39 @@ class CalendarScraper {
         this.onProgress(`Dati per ${leagueConfig.name} caricati dalla cache locale.`);
         return cached;
       }
+
+      if (options.cacheFirst) {
+        const stale = this.getCachedLeague(leagueId, null);
+        if (stale) {
+          this.onProgress(`Cache scaduta per ${leagueConfig.name}: uso i dati locali in attesa dell'aggiornamento.`);
+          return { ...stale, isStale: true };
+        }
+      }
     }
 
+    try {
+      return await this.scrapeLeagueLive(leagueConfig, options);
+    } catch (err) {
+      const stale = this.getCachedLeague(leagueId, null);
+      if (stale) {
+        const ageHours = Math.round(this.getCacheStatus(leagueId).ageMs / 3600000);
+        this.onProgress(
+          `⚠ Aggiornamento di ${leagueConfig.name} non riuscito (${err.message}). ` +
+          `Uso i dati in cache di ~${ageHours}h fa.`
+        );
+        return { ...stale, isStale: true };
+      }
+      throw err;
+    }
+  }
+
+  /**
+   * Scraping effettivo dal sito sorgente (nessuna gestione cache).
+   */
+  async scrapeLeagueLive(leagueConfig, options = {}) {
     this.onProgress(`Avvio scraper per ${leagueConfig.name}...`);
+
+    const chromePath = this.resolveChromePath();
 
     let browser = null;
     try {
@@ -59,7 +140,7 @@ class CalendarScraper {
         : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36';
 
       browser = await puppeteer.launch({
-        executablePath: this.chromePath,
+        executablePath: chromePath,
         headless: this.headless,
         args: [
           '--no-sandbox',
@@ -76,6 +157,11 @@ class CalendarScraper {
       const page = await browser.newPage();
       await page.setUserAgent(userAgent);
       await page.setViewport({ width: 1920, height: 1080 });
+
+      // Iniezione del parser (src/parser.js) PRIMA di qualsiasi script di pagina.
+      // evaluateOnNewDocument passa da CDP, quindi non è soggetto alla CSP del sito,
+      // e sopravvive ai reload causati dalla challenge WAF.
+      await page.evaluateOnNewDocument(PARSER_SOURCE);
 
       // Rimuove impronte di automazione per superare challenge AWS WAF
       await page.evaluateOnNewDocument(() => {
@@ -97,7 +183,7 @@ class CalendarScraper {
 
       // Controlla se la pagina è in challenge WAF
       const inWafChallenge = await page.evaluate(() => {
-        return typeof AwsWafIntegration !== 'undefined' || 
+        return typeof AwsWafIntegration !== 'undefined' ||
                document.querySelector('#challenge-container') !== null;
       }).catch(() => false);
 
@@ -137,61 +223,13 @@ class CalendarScraper {
 
       this.onProgress(`Trovate ${meta.totalDays} giornate (giornata attuale: ${meta.currentDay}). Recupero classifica...`);
 
-      // 1. Recupero Classifica
+      // 1. Recupero Classifica (parsing demandato a window.CalcioParser)
       const standings = await page.evaluate(async (tckk, roundID) => {
         try {
           const url = `/Web/Views/Rankings/RankingView.php?tckk=${tckk}&category_id=${roundID}&is_ranking_tab=true&total=true&v=1`;
           const resp = await fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } });
           const html = await resp.text();
-          
-          const doc = new DOMParser().parseFromString(html, 'text/html');
-          const rows = Array.from(doc.querySelectorAll('table.table_ranking tbody tr, table.table_ranking tr.normal, table.table_ranking tr.playoff, table.table_ranking tr.playoff2, table.table_ranking tr.playout, table.table_ranking tr.playout2, table.table_ranking tr.promotion, table.table_ranking tr.retrocession'));
-          
-          const results = [];
-          for (const row of rows) {
-            if (row.classList.contains('team_stats_row')) continue;
-            const teamEl = row.querySelector('td.team .team-name, td.team a, td.team');
-            const teamName = teamEl ? teamEl.innerText.trim() : '';
-            if (!teamName) continue;
-
-            const pointsEl = row.querySelector('td.points, td.pt');
-            const points = pointsEl ? parseInt(pointsEl.innerText.trim(), 10) : 0;
-
-            const cells = Array.from(row.querySelectorAll('td'));
-            const pointsIndex = cells.findIndex(c => c.classList.contains('points') || c === pointsEl);
-            
-            let played = 0, won = 0, drawn = 0, lost = 0, goalsFor = 0, goalsAgainst = 0, goalDiff = 0;
-            if (pointsIndex !== -1 && cells.length >= pointsIndex + 8) {
-              played = parseInt(cells[pointsIndex + 1]?.innerText.trim() || '0', 10);
-              won = parseInt(cells[pointsIndex + 2]?.innerText.trim() || '0', 10);
-              drawn = parseInt(cells[pointsIndex + 3]?.innerText.trim() || '0', 10);
-              lost = parseInt(cells[pointsIndex + 4]?.innerText.trim() || '0', 10);
-              goalsFor = parseInt(cells[pointsIndex + 5]?.innerText.trim() || '0', 10);
-              goalsAgainst = parseInt(cells[pointsIndex + 6]?.innerText.trim() || '0', 10);
-              goalDiff = parseInt(cells[pointsIndex + 7]?.innerText.trim() || '0', 10);
-            }
-
-            let zone = 'normal';
-            if (row.classList.contains('promotion')) zone = 'promotion';
-            else if (row.classList.contains('playoff') || row.classList.contains('playoff2')) zone = 'playoff';
-            else if (row.classList.contains('playout') || row.classList.contains('playout2')) zone = 'playout';
-            else if (row.classList.contains('retrocession')) zone = 'retrocession';
-
-            results.push({
-              position: results.length + 1,
-              team: teamName,
-              points,
-              played,
-              won,
-              drawn,
-              lost,
-              goalsFor,
-              goalsAgainst,
-              goalDiff,
-              zone
-            });
-          }
-          return results;
+          return window.CalcioParser.parseStandingsHtml(html);
         } catch (e) {
           return [];
         }
@@ -201,50 +239,8 @@ class CalendarScraper {
       this.onProgress(`Recupero di tutte le ${meta.totalDays} giornate del calendario...`);
 
       const daysToFetch = Array.from({ length: meta.totalDays }, (_, i) => i + 1);
-      
+
       const matchDays = await page.evaluate(async (days, tckk, roundID) => {
-        const IT_MONTHS = {
-          gen: '01', gennaio: '01',
-          feb: '02', febbraio: '02',
-          mar: '03', marzo: '03',
-          apr: '04', aprile: '04',
-          mag: '05', maggio: '05',
-          giu: '06', giugno: '06',
-          lug: '07', luglio: '07',
-          ago: '08', agosto: '08',
-          set: '09', settembre: '09',
-          ott: '10', ottobre: '10',
-          nov: '11', novembre: '11',
-          dic: '12', dicembre: '12'
-        };
-
-        function parseDayDate(dStr) {
-          if (!dStr) return { defaultDate: null, defaultYear: new Date().getFullYear().toString() };
-          const firstPart = dStr.split('-')[0].trim();
-          const digits = firstPart.split(/[/|.-]/).map(s => s.trim());
-          let defaultDate = null;
-          let defaultYear = new Date().getFullYear().toString();
-          if (digits.length >= 3) {
-            defaultYear = digits[2];
-            defaultDate = `${defaultYear}-${digits[1].padStart(2, '0')}-${digits[0].padStart(2, '0')}`;
-          }
-          return { defaultDate, defaultYear };
-        }
-
-        function parseHeader(text, defYear) {
-          if (!text) return null;
-          const clean = text.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
-          const tokens = clean.split(' ');
-          let day = null, month = null, year = defYear;
-          for (const t of tokens) {
-            if (!day && /^\d{1,2}$/.test(t)) day = t.padStart(2, '0');
-            else if (IT_MONTHS[t]) month = IT_MONTHS[t];
-            else if (/^\d{4}$/.test(t)) year = t;
-          }
-          if (day && month) return `${year}-${month}-${day}`;
-          return null;
-        }
-
         const results = [];
         const chunkSize = 6;
 
@@ -254,103 +250,7 @@ class CalendarScraper {
             const url = `/Web/Views/Results/ResultsView.php?tckk=${tckk}&category_id=${roundID}&match_day_id=${d}&v=1`;
             const resp = await fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } });
             const html = await resp.text();
-            const doc = new DOMParser().parseFromString(html, 'text/html');
-
-            const dayTitle = doc.querySelector('#match_day')?.innerText?.trim() || `Giornata ${d}`;
-            const dayDate = doc.querySelector('#match_date')?.innerText?.trim() || '';
-            const { defaultDate, defaultYear } = parseDayDate(dayDate);
-
-            const rows = Array.from(doc.querySelectorAll('table.table-results tr, #table_results_content tr'));
-            let currentDate = defaultDate;
-            const matches = [];
-
-            for (const row of rows) {
-              if (row.classList.contains('date')) {
-                const parsed = parseHeader(row.innerText.trim(), defaultYear);
-                if (parsed) currentDate = parsed;
-                continue;
-              }
-
-              if (row.classList.contains('match')) {
-                const timeEl = row.querySelector('.match-time .hour, .match-time, .time');
-                const time = timeEl ? timeEl.innerText.trim() : '';
-
-                const homeEl = row.querySelector('td.team.home');
-                const awayEl = row.querySelector('td.team.away');
-
-                const homeName = homeEl?.querySelector('.team-name')?.innerText?.trim() || 
-                                 homeEl?.querySelector('a:not(.goal)')?.innerText?.trim() || '';
-                const awayName = awayEl?.querySelector('.team-name')?.innerText?.trim() || 
-                                 awayEl?.querySelector('a:not(.goal)')?.innerText?.trim() || '';
-
-                const homeGoalRaw = homeEl?.querySelector('.goal')?.innerText?.trim();
-                const awayGoalRaw = awayEl?.querySelector('.goal')?.innerText?.trim();
-
-                const isLive = row.classList.contains('live');
-                const isPostponed = row.innerText.toLowerCase().includes('rinviata') || 
-                                    row.innerText.toLowerCase().includes('sospesa');
-
-                let homeScore = null;
-                let awayScore = null;
-                let isPlayed = false;
-
-                if (homeGoalRaw !== undefined && homeGoalRaw !== null && homeGoalRaw !== '-' && homeGoalRaw !== '' &&
-                    awayGoalRaw !== undefined && awayGoalRaw !== null && awayGoalRaw !== '-' && awayGoalRaw !== '') {
-                  const h = parseInt(homeGoalRaw, 10);
-                  const a = parseInt(awayGoalRaw, 10);
-                  if (!isNaN(h) && !isNaN(a)) {
-                    homeScore = h;
-                    awayScore = a;
-                    isPlayed = true;
-                  }
-                }
-
-                let status = 'SCHEDULED';
-                if (isLive) status = 'LIVE';
-                else if (isPostponed) status = 'POSTPONED';
-                else if (isPlayed) status = 'FINISHED';
-
-                const homeScorers = Array.from(homeEl?.querySelectorAll('ul.scorers li') || [])
-                  .map(el => el.innerText.trim())
-                  .filter(s => s && !s.includes('Elimina'));
-
-                const awayScorers = Array.from(awayEl?.querySelectorAll('ul.scorers li') || [])
-                  .map(el => el.innerText.trim())
-                  .filter(s => s && !s.includes('Elimina'));
-
-                const matchLink = row.getAttribute('data-link') || 
-                                  row.querySelector('a.btn.info')?.getAttribute('href') || '';
-
-                let dateTime = null;
-                if (currentDate && time && time.includes(':')) {
-                  dateTime = `${currentDate}T${time}:00`;
-                } else if (currentDate) {
-                  dateTime = `${currentDate}T15:00:00`;
-                }
-
-                matches.push({
-                  homeTeam: homeName,
-                  awayTeam: awayName,
-                  homeScore,
-                  awayScore,
-                  isPlayed,
-                  status,
-                  date: currentDate || '',
-                  time: time || '',
-                  dateTime: dateTime || '',
-                  homeScorers,
-                  awayScorers,
-                  matchLink
-                });
-              }
-            }
-
-            return {
-              dayNumber: d,
-              dayTitle,
-              dayDate,
-              matches
-            };
+            return window.CalcioParser.parseMatchdayHtml(html, d);
           });
 
           const chunkRes = await Promise.all(chunkPromises);
@@ -410,4 +310,4 @@ class CalendarScraper {
   }
 }
 
-module.exports = { CalendarScraper };
+module.exports = { CalendarScraper, PARSER_SOURCE };

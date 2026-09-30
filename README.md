@@ -32,8 +32,9 @@ La fonte dati principale è [Tuttocampo.it](https://www.tuttocampo.it), con gest
 ## 🚀 Avvio Rapido
 
 ### 1. Requisiti
-- **Node.js** (v18 o superiore raccomandato)
+- **Node.js** (v20 o superiore; il progetto e la CI usano Node 22)
 - Un browser basato su Chromium installato nel sistema (Google Chrome, Brave, Chromium o Edge). Viene rilevato automaticamente.
+  Puoi forzare un percorso specifico con la variabile d'ambiente `CHROME_PATH`. La ricerca del browser è **lazy**: la dashboard web e gli export funzionano anche senza Chrome installato (serve solo per lo scraping live).
 
 ### 2. Installazione
 I moduli principali sono già configurati nella cartella del progetto:
@@ -129,6 +130,15 @@ Apri nel tuo browser: **[http://localhost:3000](http://localhost:3000)**
 - **Pulsante "Aggiorna dal Web"**: riscarica i dati live e aggiorna la vista senza ricaricare la pagina.
 - **Download con un click** di CSV, JSON e file di calendario per il tuo telefono.
 
+### Come si comporta il backend (cache e aggiornamenti)
+- `GET /api/leagues/:id` risponde **subito** con i dati in cache (anche se più vecchi delle 2 ore di TTL, marcati `isStale: true`)
+  e, se la cache è scaduta, avvia in background l'aggiornamento dal sito ufficiale. La dashboard non resta mai bloccata per 30-60 secondi.
+- `POST /api/leagues/:id/refresh` (pulsante "Aggiorna dal Web") oppure `GET /api/leagues/:id?refresh=true` forzano lo scraping live e attendono il risultato.
+- Se lo scraping live fallisce (WAF, rete, timeout) ma esiste una copia in cache, viene servita quella marcata `isStale: true`
+  invece di restituire un errore.
+- Gli endpoint statici espongono **solo** `public/` (dashboard) e `/data` (cache ed export): sorgenti, configurazione e
+  dipendenze non sono scaricabili.
+
 ---
 
 ## 📁 Struttura del Progetto
@@ -136,23 +146,53 @@ Apri nel tuo browser: **[http://localhost:3000](http://localhost:3000)**
 ```
 scraping/
 ├── bin/
-│   └── cli.js            # Interfaccia a riga di comando (CLI)
+│   ├── cli.js            # Interfaccia a riga di comando (CLI)
+│   └── build-pages.js    # Rigenera gli asset di root per GitHub Pages da public/
 ├── src/
 │   ├── config.js         # Configurazione campionati, URL e rilevamento Chrome
 │   ├── scraper.js        # Motore Puppeteer per estrazione dati e gestione WAF
-│   ├── parser.js         # Parsing HTML di giornate, date e classifiche
+│   ├── parser.js         # Parsing HTML di giornate e classifiche (unica fonte di verità)
 │   ├── exporters.js      # Generatori di esportazione JSON, CSV e ICS (RFC 5545)
 │   └── server.js         # Server Express per API e Web Dashboard
-├── public/
+├── public/               # ⚠️ Sorgente della dashboard: modificare SOLO questi file
 │   ├── index.html        # Pagina principale della Web Dashboard
 │   ├── app.js            # Logica frontend (fetch API, filtri, rendering)
 │   └── style.css         # Stile moderno e responsive
+├── test/                 # Test automatici (node:test)
+│   ├── parser.test.js
+│   ├── exporters.test.js
+│   └── server.test.js
+├── index.html            # ┐
+├── app.js                # ├ copie generate da public/ per GitHub Pages
+├── style.css             # ┘ (npm run build:pages, committate dalla CI)
 ├── data/
 │   ├── cache/            # Dati JSON cachati localmente
 │   └── exports/          # File esportati (.csv, .ics, .json)
 ├── package.json
 └── README.md
 ```
+
+> **Nota sulla duplicazione degli asset**: GitHub Pages pubblica la root del branch, mentre il server Node serve `public/`.
+> Per non mantenere due copie a mano, `public/` è l'unica fonte di verità: `index.html`, `app.js` e `style.css` nella root
+> sono generati con `npm run build:pages` (la CI li rigenera e verifica ad ogni push con `npm run check:pages`).
+
+---
+
+## 🧪 Test e verifiche automatiche
+
+```bash
+# Suite di test (parser HTML, exporter CSV/ICS/JSON, API Express e cache)
+npm test
+
+# Verifica che gli asset di root siano allineati a public/
+npm run check:pages
+
+# Entrambe le cose
+npm run verify
+```
+
+I test girano con il test runner integrato di Node (`node:test`) e con `linkedom` come DOM di test: non richiedono
+né browser né rete. Il workflow GitHub Actions esegue `check:pages` + `npm test` ad ogni push e pull request.
 
 ---
 
@@ -192,8 +232,9 @@ La dashboard è già online e attiva su:
 👉 **[https://cicciocanestro.github.io/calcio-toscana-scraper/](https://cicciocanestro.github.io/calcio-toscana-scraper/)**
 
 Nel repository è configurato il file `.github/workflows/update.yml`:
-- Esegue in automatico lo scraping ogni **domenica sera alle 23:00** (dopo le partite) e ogni **lunedì mattina**.
-- Aggiorna i dati e fa commit automatico sul repository.
+- Esegue in automatico lo scraping ogni **domenica sera alle 21:00 UTC** (dopo le partite) e ogni **lunedì mattina alle 08:00 UTC**.
+- Rigenera gli asset della dashboard da `public/` (`npm run build:pages`), aggiorna i dati e fa commit automatico sul repository.
+- Ad ogni **push e pull request** esegue invece il job di verifica: `npm run check:pages` (asset di root allineati a `public/`) e `npm test`.
 - Il sito è ospitato sulla CDN globale di GitHub Pages, carica all'istante e non va mai in standby!
 
 ---

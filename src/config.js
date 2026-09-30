@@ -60,6 +60,7 @@ const ROOT_DIR = path.resolve(__dirname, '..');
 const DATA_DIR = path.join(ROOT_DIR, 'data');
 const CACHE_DIR = path.join(DATA_DIR, 'cache');
 const EXPORT_DIR = path.join(DATA_DIR, 'exports');
+const PUBLIC_DIR = path.join(ROOT_DIR, 'public');
 
 // Assicura che le directory esistano
 for (const dir of [DATA_DIR, CACHE_DIR, EXPORT_DIR]) {
@@ -111,6 +112,7 @@ module.exports = {
   DATA_DIR,
   CACHE_DIR,
   EXPORT_DIR,
+  PUBLIC_DIR,
   LEAGUES,
   CACHE_TTL_MS: 2 * 60 * 60 * 1000 // 2 ore di cache per default
 };

@@ -2,6 +2,18 @@ const fs = require('fs');
 const path = require('path');
 
 /**
+ * Slug usato nei nomi file quando si filtra per squadra
+ * (es. "Centro Storico Lebowski" -> "centro_storico_lebowski").
+ */
+function exportSlug(value) {
+  return String(value || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, '_')
+    .replace(/_{2,}/g, '_')
+    .replace(/^_|_$/g, '');
+}
+
+/**
  * Esporta i dati completi in formato JSON
  */
 function exportToJson(leagueData, outputPath) {
@@ -216,6 +228,7 @@ function exportToIcs(leagueData, outputPath, options = {}) {
 }
 
 module.exports = {
+  exportSlug,
   exportToJson,
   exportToCsv,
   exportToIcs

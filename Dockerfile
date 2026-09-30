@@ -1,4 +1,4 @@
-FROM node:20-slim
+FROM node:22-slim
 
 # Installa Chromium e dipendenze di sistema necessarie per Puppeteer
 RUN apt-get update && apt-get install -y \
@@ -31,9 +31,9 @@ ENV PORT=3000
 
 WORKDIR /app
 
-# Copia i file di dipendenze
+# Copia i file di dipendenze (stessa versione Node usata in CI: 22)
 COPY package*.json ./
-RUN npm install --omit=dev
+RUN npm ci --omit=dev
 
 # Copia il codice sorgente e i dati iniziali
 COPY . .

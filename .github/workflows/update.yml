@@ -7,12 +7,41 @@ on:
     # Ogni lunedì mattina alle 08:00 UTC
     - cron: '0 8 * * 1'
   workflow_dispatch: # Permette di avviare l'aggiornamento a mano da GitHub
+  push:
+    branches: [main]
+  pull_request:
 
 permissions:
   contents: write
 
 jobs:
+  # Test automatici: parser, exporter e API del server + coerenza degli asset
+  # di root pubblicati su GitHub Pages (che sono generati da public/).
+  verifica:
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del codice
+        uses: actions/checkout@v4
+
+      - name: Configurazione Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Installazione dipendenze
+        run: npm ci
+
+      - name: Verifica asset di root allineati a public/
+        run: npm run check:pages
+
+      - name: Test
+        run: npm test
+
   scrape-and-update:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
 
     steps:
@@ -32,11 +61,14 @@ jobs:
         run: |
           node bin/cli.js scrape all --refresh || echo "Avviso: scraping completato con errori o blocco temporaneo. Vengono conservati i dati della cache precedente."
 
+      - name: Rigenerazione asset dashboard per GitHub Pages
+        run: npm run build:pages
+
       - name: Commit e Push dei dati aggiornati
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/cache/ data/exports/
+          git add data/cache/ data/exports/ index.html app.js style.css
           if git diff --staged --quiet; then
             echo "Nessun aggiornamento trovato, i dati sono già aggiornati."
           else

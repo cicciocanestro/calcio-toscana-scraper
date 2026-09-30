@@ -7,7 +7,7 @@ const chalk = chalkModule.default || chalkModule;
 const path = require('path');
 const { LEAGUES, EXPORT_DIR } = require('../src/config');
 const { CalendarScraper } = require('../src/scraper');
-const { exportToJson, exportToCsv, exportToIcs } = require('../src/exporters');
+const { exportToJson, exportToCsv, exportToIcs, exportSlug } = require('../src/exporters');
 const { startServer } = require('../src/server');
 
 const program = new Command();
@@ -322,7 +322,7 @@ program
 
       for (const key of keys) {
         const data = await getOrScrape(key, !!options.refresh);
-        const teamSlug = options.team ? `_${options.team.toLowerCase().replace(/[^a-z0-9]/g, '_')}` : '';
+        const teamSlug = options.team ? `_${exportSlug(options.team)}` : '';
         const baseName = `${key}${teamSlug}`;
 
         console.log(chalk.bold.green(`\n📤 Esportazione per ${data.name}...`));
