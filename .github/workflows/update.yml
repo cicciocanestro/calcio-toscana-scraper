@@ -59,7 +59,11 @@ jobs:
 
       - name: Esecuzione Scraping Campionati
         run: |
-          node bin/cli.js scrape all --refresh || echo "Avviso: scraping completato con errori o blocco temporaneo. Vengono conservati i dati della cache precedente."
+          if node bin/cli.js scrape all --refresh; then
+            echo "Scraping completato: dati aggiornati dal sito ufficiale."
+          else
+            echo "::warning::Scraping non riuscito. Causa tipica: blocco anti-bot/WAF di Tuttocampo sugli IP datacenter dei runner GitHub Actions. I dati in cache sono stati conservati e il sito continua a funzionare con quelli."
+          fi
 
       - name: Rigenerazione asset dashboard per GitHub Pages
         run: npm run build:pages

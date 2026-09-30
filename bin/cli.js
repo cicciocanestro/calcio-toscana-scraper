@@ -50,15 +50,40 @@ program
 
       if (league === 'all') {
         console.log(chalk.bold.green('\n⚽ Avvio scraping di tutti i campionati configurati...\n'));
-        for (const key of Object.keys(LEAGUES)) {
-          await scraper.scrapeLeague(key, { forceRefresh: !!options.refresh });
+
+        const keys = Object.keys(LEAGUES);
+        const fromCache = [];
+
+        for (const key of keys) {
+          const data = await scraper.scrapeLeague(key, { forceRefresh: !!options.refresh });
+          if (data.isStale) fromCache.push(LEAGUES[key].name);
         }
-        console.log(chalk.bold.green('\n✔ Tutti i campionati sono stati aggiornati con successo!\n'));
+
+        if (fromCache.length === 0) {
+          console.log(chalk.bold.green(`\n✔ Tutti i campionati (${keys.length}) sono stati aggiornati dal sito ufficiale.\n`));
+        } else {
+          const refreshed = keys.length - fromCache.length;
+          console.warn(chalk.yellow(
+            `\n⚠ Aggiornamento dal sito ufficiale riuscito per ${refreshed}/${keys.length} campionati.`
+          ));
+          console.warn(chalk.yellow(`  Dati non aggiornati (usata la cache locale): ${fromCache.join(', ')}`));
+          console.warn(chalk.gray('  Causa tipica: blocco anti-bot/WAF sugli IP datacenter (es. runner GitHub Actions).\n'));
+
+          // Exit code non-zero solo se NESSUN campionato è stato aggiornato,
+          // così la CI può segnalare il problema senza perdere i dati in cache.
+          if (refreshed === 0) process.exitCode = 1;
+        }
       } else {
         const key = getLeagueKey(league);
         console.log(chalk.bold.green(`\n⚽ Aggiornamento dati per: ${LEAGUES[key].name}\n`));
-        await scraper.scrapeLeague(key, { forceRefresh: !!options.refresh });
-        console.log(chalk.bold.green(`\n✔ Aggiornamento completato con successo!\n`));
+        const data = await scraper.scrapeLeague(key, { forceRefresh: !!options.refresh });
+
+        if (data.isStale) {
+          console.warn(chalk.yellow('\n⚠ Aggiornamento dal sito ufficiale non riuscito: sono stati usati i dati in cache.\n'));
+          process.exitCode = 1;
+        } else {
+          console.log(chalk.bold.green('\n✔ Aggiornamento completato con successo!\n'));
+        }
       }
     } catch (err) {
       console.error(chalk.red('\nErrore durante lo scraping:'), err.message);
