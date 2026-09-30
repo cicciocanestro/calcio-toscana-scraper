@@ -151,3 +151,28 @@ test('userDataDir può essere forzato da opzione o variabile d\'ambiente', () =>
     else process.env.CHROME_USER_DATA_DIR = previous;
   }
 });
+
+test('la diagnostica registra quale percorso ha prodotto i dati', async () => {
+  const viaHttp = instrumentedScraper('http', () => ({ ...sampleLeagueData() }));
+  await viaHttp.scraper.produceLeagueData(LEAGUES['promozione-c']);
+  let last = viaHttp.scraper.getDiagnostics().lastScrapes['promozione-c'];
+  assert.equal(last.path, 'http');
+  assert.ok(Number.isFinite(last.durationMs));
+  assert.equal(last.error, null);
+
+  const fallback = instrumentedScraper('auto', () => {
+    throw new HttpScrapeError('WAF: HTTP 403', { waf: true });
+  });
+  await fallback.scraper.produceLeagueData(LEAGUES['promozione-c']);
+  last = fallback.scraper.getDiagnostics().lastScrapes['promozione-c'];
+  assert.equal(last.path, 'browser-fallback');
+  assert.match(last.error, /WAF/);
+
+  const forced = instrumentedScraper('browser', () => ({}));
+  await forced.scraper.produceLeagueData(LEAGUES['promozione-c']);
+  assert.equal(forced.scraper.getDiagnostics().lastScrapes['promozione-c'].path, 'browser');
+
+  const diagnostics = forced.scraper.getDiagnostics();
+  assert.equal(diagnostics.mode, 'browser');
+  assert.equal(diagnostics.node, process.version);
+});

@@ -65,6 +65,17 @@ function createServer(options = {}) {
   // dashboard statica su GitHub Pages tramite gli stessi percorsi relativi.
   app.use('/data', express.static(DATA_DIR));
 
+  // Diagnostica: commit in esecuzione, modalità di scraping e percorso usato
+  // l'ultima volta per ogni campionato (nessun dato sensibile).
+  app.get('/api/diagnostics', (req, res) => {
+    const diagnostics = typeof scraper.getDiagnostics === 'function' ? scraper.getDiagnostics() : {};
+    res.json({
+      service: 'calcio-toscana-scraper',
+      ...diagnostics,
+      cache: Object.keys(LEAGUES).map(key => ({ id: key, ...scraper.getCacheStatus(key) }))
+    });
+  });
+
   // Lista campionati supportati e stato cache
   app.get('/api/leagues', (req, res) => {
     const list = Object.keys(LEAGUES).map(key => {

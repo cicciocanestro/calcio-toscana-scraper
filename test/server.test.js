@@ -251,3 +251,14 @@ test('le richieste di revalidation dello stesso campionato non si duplicano', as
   }
 });
 
+
+test('GET /api/diagnostics riporta modalità, commit e stato cache', withServer(async (base) => {
+  const res = await fetch(`${base}/api/diagnostics`);
+  assert.equal(res.status, 200);
+
+  const body = await res.json();
+  assert.equal(body.service, 'calcio-toscana-scraper');
+  assert.equal(body.mode, 'auto');
+  assert.ok(Array.isArray(body.cache) && body.cache.length === 3);
+  assert.ok(body.cache.every(c => typeof c.exists === 'boolean'));
+}));

@@ -32,6 +32,32 @@ class CalendarScraper {
     // Opzioni per lo scraper HTTP (e scraper iniettabile nei test)
     this.httpOptions = options.httpOptions || {};
     this.httpScraper = options.httpScraper || null;
+
+    // Esito dell'ultimo scraping per campionato (diagnostica /api/diagnostics)
+    this.lastScrapes = new Map();
+  }
+
+  /**
+   * Registra quale percorso ha prodotto i dati di un campionato.
+   * @param {string} path - 'http', 'browser' oppure 'browser-fallback'
+   */
+  recordScrape(leagueId, path, durationMs, error = null) {
+    this.lastScrapes.set(leagueId, {
+      path,
+      durationMs,
+      error,
+      at: new Date().toISOString()
+    });
+  }
+
+  /** Informazioni per /api/diagnostics: modalità attiva ed esito degli ultimi scrape. */
+  getDiagnostics() {
+    return {
+      mode: this.mode,
+      commit: process.env.RENDER_GIT_COMMIT || process.env.GIT_COMMIT || null,
+      node: process.version,
+      lastScrapes: Object.fromEntries(this.lastScrapes)
+    };
   }
 
   /**
@@ -162,19 +188,27 @@ class CalendarScraper {
    * (utile anche per confronti/parità tra i due percorsi).
    */
   async produceLeagueData(leagueConfig, options = {}) {
+    const startedAt = Date.now();
+
     if (this.mode === 'browser') {
-      return this.scrapeLeagueWithBrowser(leagueConfig, options);
+      const data = await this.scrapeLeagueWithBrowser(leagueConfig, options);
+      this.recordScrape(leagueConfig.id, 'browser', Date.now() - startedAt);
+      return data;
     }
 
     try {
-      return await this.scrapeLeagueWithHttp(leagueConfig, options);
+      const data = await this.scrapeLeagueWithHttp(leagueConfig, options);
+      this.recordScrape(leagueConfig.id, 'http', Date.now() - startedAt);
+      return data;
     } catch (err) {
       if (this.mode === 'http') throw err;
 
       this.onProgress(
         `⚠ Scraping HTTP non riuscito per ${leagueConfig.name} (${err.message}): passo al browser...`
       );
-      return this.scrapeLeagueWithBrowser(leagueConfig, options);
+      const data = await this.scrapeLeagueWithBrowser(leagueConfig, options);
+      this.recordScrape(leagueConfig.id, 'browser-fallback', Date.now() - startedAt, err.message);
+      return data;
     }
   }
 

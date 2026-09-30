@@ -140,6 +140,9 @@ Apri nel tuo browser: **[http://localhost:3000](http://localhost:3000)**
   dipendenze non sono scaricabili.
 - Se sulla macchina/istanza è impostata la variabile `REFRESH_TOKEN`, gli aggiornamenti forzati richiedono
   l'header `x-refresh-token` (vedi sotto). Senza la variabile tutto resta aperto come prima, comodo in locale.
+- `GET /api/diagnostics` mostra il commit in esecuzione, la modalità di scraping attiva e **quale percorso**
+  (HTTP o browser) ha prodotto i dati l'ultima volta per ogni campionato: utile per capire cosa succede
+  sull'istanza remota senza leggere i log.
 
 ---
 
