@@ -186,6 +186,12 @@ class CalendarScraper {
   /**
    * Produce i dati dal sito sorgente senza scrivere nulla su disco
    * (utile anche per confronti/parità tra i due percorsi).
+   *
+   * In modalità `auto` prova in ordine:
+   *  1. HTTP puro (nessun browser);
+   *  2. bootstrap con il browser per superare la challenge WAF, poi HTTP
+   *     riusando i cookie ottenuti (il browser serve solo per la challenge);
+   *  3. browser completo, come comportamento storico.
    */
   async produceLeagueData(leagueConfig, options = {}) {
     const startedAt = Date.now();
@@ -196,30 +202,138 @@ class CalendarScraper {
       return data;
     }
 
+    let httpError = null;
+
     try {
       const data = await this.scrapeLeagueWithHttp(leagueConfig, options);
       this.recordScrape(leagueConfig.id, 'http', Date.now() - startedAt);
       return data;
     } catch (err) {
+      httpError = err;
       if (this.mode === 'http') throw err;
 
-      this.onProgress(
-        `⚠ Scraping HTTP non riuscito per ${leagueConfig.name} (${err.message}): passo al browser...`
-      );
-      const data = await this.scrapeLeagueWithBrowser(leagueConfig, options);
-      this.recordScrape(leagueConfig.id, 'browser-fallback', Date.now() - startedAt, err.message);
-      return data;
+      this.onProgress(`⚠ HTTP puro non riuscito per ${leagueConfig.name} (${err.message}).`);
     }
+
+    // 2) La challenge WAF richiede il browser: lo usiamo solo per ottenere
+    //    cookie e token, poi i dati vengono scaricati via HTTP.
+    try {
+      const session = await this.browserBootstrap(leagueConfig);
+      const data = await this.scrapeLeagueWithHttp(leagueConfig, { ...options, session });
+      this.recordScrape(leagueConfig.id, 'http-after-bootstrap', Date.now() - startedAt, httpError.message);
+      this.onProgress(`✔ Dati di ${leagueConfig.name} scaricati via HTTP dopo il bootstrap del browser.`);
+      return data;
+    } catch (err) {
+      this.onProgress(
+        `⚠ Bootstrap + HTTP non riuscito per ${leagueConfig.name} (${err.message}): uso il browser completo...`
+      );
+    }
+
+    // 3) Ultima risorsa: browser completo
+    const data = await this.scrapeLeagueWithBrowser(leagueConfig, options);
+    this.recordScrape(leagueConfig.id, 'browser-fallback', Date.now() - startedAt, httpError.message);
+    return data;
   }
 
   /**
    * Percorso veloce: richieste HTTP pure (~0,6 s per campionato, nessun browser).
+   * Con `options.session` riusa cookie e token ottenuti dal bootstrap del browser.
    */
   async scrapeLeagueWithHttp(leagueConfig, options = {}) {
     const httpScraper = this.httpScraper
       || new HttpScraper({ onProgress: this.onProgress, ...this.httpOptions });
 
-    return httpScraper.scrapeLeague(leagueConfig, { previousData: options.previousData });
+    return httpScraper.scrapeLeague(leagueConfig, {
+      previousData: options.previousData,
+      session: options.session || null
+    });
+  }
+
+  /** User-Agent usato dal browser, coerente con la piattaforma. */
+  resolveUserAgent() {
+    return os.platform() === 'linux'
+      ? 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36'
+      : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36';
+  }
+
+  /** Avvia Chrome con le opzioni anti-automazione usate dallo scraper. */
+  async launchBrowser() {
+    return puppeteer.launch({
+      executablePath: this.resolveChromePath(),
+      headless: this.headless,
+      userDataDir: this.userDataDir,
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-accelerated-2d-canvas',
+        '--disable-gpu',
+        '--disable-blink-features=AutomationControlled',
+        '--window-size=1920,1080',
+        '--lang=it-IT,it'
+      ]
+    });
+  }
+
+  /**
+   * Naviga la pagina con il browser solo per superare la challenge del WAF e
+   * restituisce cookie + token di sessione, da riusare con le richieste HTTP.
+   *
+   * @returns {Promise<{tckk:string, roundID:string, totalDays:number, currentDay:number, cookies:string, userAgent:string}>}
+   */
+  async browserBootstrap(leagueConfig) {
+    this.onProgress(`Bootstrap con il browser per superare la challenge WAF di ${leagueConfig.name}...`);
+
+    const browser = await this.launchBrowser();
+    try {
+      const page = await browser.newPage();
+      const userAgent = this.resolveUserAgent();
+      await page.setUserAgent(userAgent);
+      await page.setViewport({ width: 1920, height: 1080 });
+
+      // Stesse contromisure del percorso browser completo
+      await page.evaluateOnNewDocument(() => {
+        Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+        window.chrome = { runtime: {} };
+        Object.defineProperty(navigator, 'languages', { get: () => ['it-IT', 'it', 'en-US', 'en'] });
+        Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3, 4, 5] });
+      });
+
+      try {
+        await page.goto(leagueConfig.url, { waitUntil: 'domcontentloaded', timeout: 30000 });
+      } catch (err) {
+        // Un reload immediato causato dalla challenge non è un errore
+      }
+
+      const inChallenge = await page.evaluate(() => {
+        return typeof AwsWafIntegration !== 'undefined' ||
+               document.querySelector('#challenge-container') !== null;
+      }).catch(() => false);
+
+      if (inChallenge) {
+        this.onProgress('Risoluzione della challenge AWS WAF in corso...');
+        await page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 25000 }).catch(() => {});
+      }
+
+      await page.waitForFunction(
+        () => typeof tckk !== 'undefined' && typeof roundID !== 'undefined' && typeof matchesNumber !== 'undefined',
+        { timeout: 40000 }
+      );
+
+      const meta = await page.evaluate(() => ({
+        tckk,
+        roundID,
+        totalDays: parseInt(matchesNumber, 10),
+        currentDay: parseInt(currentMatchDay, 10)
+      }));
+
+      const cookies = await page.cookies();
+      const cookieHeader = cookies.map(c => `${c.name}=${c.value}`).join('; ');
+
+      return { ...meta, cookies: cookieHeader, userAgent };
+    } finally {
+      await browser.close().catch(() => {});
+    }
   }
 
   /**
@@ -229,30 +343,11 @@ class CalendarScraper {
   async scrapeLeagueWithBrowser(leagueConfig, options = {}) {
     this.onProgress(`Avvio scraper (browser) per ${leagueConfig.name}...`);
 
-    const chromePath = this.resolveChromePath();
-
     let browser = null;
     try {
-      const isLinux = os.platform() === 'linux';
-      const userAgent = isLinux
-        ? 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36'
-        : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36';
+      const userAgent = this.resolveUserAgent();
 
-      browser = await puppeteer.launch({
-        executablePath: chromePath,
-        headless: this.headless,
-        userDataDir: this.userDataDir,
-        args: [
-          '--no-sandbox',
-          '--disable-setuid-sandbox',
-          '--disable-dev-shm-usage',
-          '--disable-accelerated-2d-canvas',
-          '--disable-gpu',
-          '--disable-blink-features=AutomationControlled',
-          '--window-size=1920,1080',
-          '--lang=it-IT,it'
-        ]
-      });
+      browser = await this.launchBrowser();
 
       const page = await browser.newPage();
       await page.setUserAgent(userAgent);

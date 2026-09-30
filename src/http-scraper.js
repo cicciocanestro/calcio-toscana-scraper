@@ -213,21 +213,45 @@ class HttpScraper {
 
   /**
    * Scarica un campionato completo via HTTP.
+   *
+   * @param {object} leagueConfig
+   * @param {object} options
+   * @param {object} [options.previousData] dati dell'ultimo run (controlli di regressione)
+   * @param {object} [options.session] sessione già pronta ottenuta da un browser
+   *        (`{ tckk, roundID, totalDays, currentDay, cookies, userAgent }`):
+   *        in quel caso si salta del tutto la richiesta di bootstrap.
    * @returns {object} dati nel formato usato dal resto del progetto
    */
   async scrapeLeague(leagueConfig, options = {}) {
     const previousData = options.previousData || null;
+    const session = options.session || null;
     const pageUrl = leagueConfig.url;
     const origin = new URL(pageUrl).origin;
     const pagePath = new URL(pageUrl).pathname;
 
-    this.onProgress(`Connessione HTTP a ${pageUrl}...`);
-    const pageHtml = await this.request(pageUrl);
+    let tokens;
 
-    const tokens = extractSessionTokens(pageHtml);
-    if (!tokens) {
-      throw new HttpScrapeError('token di sessione non trovati nella pagina (possibile challenge WAF)', { waf: true });
+    if (session && session.tckk && session.roundID) {
+      // Sessione fornita dal browser: riusiamo cookie (incluso il token WAF) e metadati
+      if (session.cookies) this.cookies = session.cookies;
+      if (session.userAgent) this.userAgent = session.userAgent;
+      tokens = {
+        tckk: session.tckk,
+        roundID: session.roundID,
+        totalDays: parseInt(session.totalDays, 10),
+        currentDay: parseInt(session.currentDay, 10)
+      };
+      this.onProgress(`Uso la sessione ottenuta dal browser (${this.cookies ? 'cookie inclusi' : 'senza cookie'}).`);
+    } else {
+      this.onProgress(`Connessione HTTP a ${pageUrl}...`);
+      const pageHtml = await this.request(pageUrl);
+
+      tokens = extractSessionTokens(pageHtml);
+      if (!tokens) {
+        throw new HttpScrapeError('token di sessione non trovati nella pagina (possibile challenge WAF)', { waf: true });
+      }
     }
+
     tokens.pagePath = pagePath;
 
     if (!Number.isFinite(tokens.totalDays) || tokens.totalDays <= 0) {

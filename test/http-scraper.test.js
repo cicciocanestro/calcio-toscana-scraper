@@ -290,3 +290,36 @@ test('la concorrenza è rispettata e ogni giornata viene richiesta una volta sol
   assert.ok(maxInFlight <= 3, `concorrenza rispettata (massimo ${maxInFlight} richieste in volo)`);
   assert.ok(maxInFlight > 1, 'le richieste devono procedere in parallelo');
 });
+
+test('con una sessione dal browser si salta la richiesta di bootstrap', async () => {
+  const base = standardRoutes();
+  const fetchImpl = fakeFetch(base);
+  const scraper = new HttpScraper({ fetch: fetchImpl, onProgress: () => {} });
+
+  const session = {
+    tckk: 'SESSIONE123',
+    roundID: 'TO.P.C',
+    totalDays: 2,
+    currentDay: 1,
+    cookies: 'PHPSESSID=abc; aws-waf-token=xyz',
+    userAgent: 'UA-dal-browser'
+  };
+
+  const data = await scraper.scrapeLeague(LEAGUE, { session });
+
+  // Nessuna richiesta alla pagina: solo classifica + 2 giornate
+  assert.equal(fetchImpl.calls.length, 3);
+  assert.ok(!fetchImpl.calls.some(c => c.url === LEAGUE.url), 'la pagina non deve essere richiesta');
+  assert.equal(data.totalMatchDays, 2);
+  assert.equal(data.matchDays.length, 2);
+  assert.equal(data.standings.length, 4);
+
+  // Cookie e User-Agent del browser vengono riusati
+  for (const call of fetchImpl.calls) {
+    assert.match(call.headers.cookie, /aws-waf-token=xyz/);
+    assert.equal(call.headers['user-agent'], 'UA-dal-browser');
+  }
+
+  // I token della sessione finiscono nelle URL delle richieste AJAX
+  assert.ok(fetchImpl.calls.every(c => c.url.includes('tckk=SESSIONE123')));
+});

@@ -201,27 +201,33 @@ node bin/data-changed.js   # exit 0 = cambiati, 1 = invariati
 
 ---
 
-## ⚡ Due percorsi di scraping: HTTP (veloce) e browser (riserva)
+## ⚡ Tre stadi di scraping: HTTP, ibrido e browser
 
-Lo scraping ha due implementazioni che producono **gli stessi dati**:
+Lo scraping sceglie automaticamente lo stadio più veloce che funziona, e tutti producono **gli stessi dati**
+(verificato dal vivo con `npm run parity`):
 
-| | HTTP (`src/http-scraper.js`) | Browser (`src/scraper.js`) |
-|---|---|---|
-| Come | `fetch` + cookie `PHPSESSID` + token letti dall'HTML | Puppeteer + Chrome, parser iniettato nella pagina |
-| Tempo per campionato | **~0,7-1,0 s** (misurato) | ~3,4 s su un Mac veloce, **~45-85 s** su Render free |
-| Memoria | ~40 MB | ~300-400 MB |
-| Serve Chrome | no | sì |
+| Stadio | Come | Quando si usa | Tempo per campionato |
+|---|---|---|---|
+| 1. **HTTP** | `fetch` + cookie `PHPSESSID` + token letti dall'HTML | IP non sospetti (residenziale, e in genere anche l'istanza Render) | **~0,7-1,0 s** |
+| 2. **Ibrido** | Il browser risolve la challenge WAF, poi i 31 payload arrivano via HTTP riusando i cookie (`aws-waf-token`) | Quando lo stadio 1 riceve una challenge (`202`/`403`/`x-amzn-waf-action`) | ~2-5 s + bootstrap |
+| 3. **Browser** | Puppeteer naviga e scarica tutto dentro la pagina | Se anche il bootstrap non basta | ~3,4 s (Mac), ~45-85 s (Render free) |
 
-Il percorso HTTP è quello predefinito (`SCRAPER_MODE=auto`). Il browser resta come **riserva automatica**: se il WAF
-di Tuttocampo risponde con una challenge (`403`, `x-amzn-waf-action`, pagina "Human Verification", risposte
-troncate) lo scraper se ne accorge e rilancia con Puppeteer, esattamente come faceva prima. Se anche il browser
-fallisce, si conserva la cache precedente: il sito non si rompe mai.
+Se anche l'ultimo stadio fallisce, si conserva la cache precedente: **il sito non si rompe mai**.
+
+Misurato in produzione (Render): lo stadio 1 riceve una challenge `HTTP 202` dal WAF, quindi entra in gioco lo
+stadio 2. Da IP residenziale lo stadio 1 funziona da solo (240 partite identiche alla cache in ~0,6 s).
+
+`GET /api/diagnostics` mostra quale stadio è stato usato l'ultima volta (`http`, `http-after-bootstrap`,
+`browser-fallback`), con durata ed eventuale errore.
 
 ```bash
-# Confronto dal vivo fra i due percorsi (non scrive nulla nel repository)
-npm run parity                      # tutti i campionati, entrambi i percorsi
+# Confronto dal vivo fra i percorsi (non scrive nulla nel repository)
+npm run parity                                    # HTTP e browser completo
 node bin/parity-check.js --http-only --vs-cache   # veloce: solo HTTP contro la cache
 ```
+
+> **Modalità forzata**: `SCRAPER_MODE=http` (solo stadio 1), `SCRAPER_MODE=browser` (solo stadio 3),
+> `SCRAPER_MODE=auto` (default, tutti gli stadi in cascata).
 
 > **Attenzione al rate limiting**: il WAF ha regole basate sulla frequenza. Eseguire molti scrape completi in
 > sequenza ravvicinata (come durante i test) può far comparire una verifica "Human Verification" che richiede
