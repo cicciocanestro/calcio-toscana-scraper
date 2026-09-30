@@ -4,11 +4,14 @@ const path = require('path');
 const os = require('os');
 const { findChrome, LEAGUES, CACHE_DIR, EXPORT_DIR, CACHE_TTL_MS } = require('./config');
 const { exportToJson, exportToCsv, exportToIcs } = require('./exporters');
+const { HttpScraper } = require('./http-scraper');
 
 // Sorgente del parser HTML: viene iniettato nella pagina come window.CalcioParser.
 // In questo modo esiste UNA sola implementazione del parsing (src/parser.js),
 // usata sia nel browser dallo scraper sia nei test Node.
 const PARSER_SOURCE = fs.readFileSync(require.resolve('./parser'), 'utf-8');
+
+const VALID_MODES = ['auto', 'http', 'browser'];
 
 class CalendarScraper {
   constructor(options = {}) {
@@ -18,6 +21,17 @@ class CalendarScraper {
     this.chromePath = options.chromePath || null;
     this.headless = options.headless !== undefined ? options.headless : true;
     this.onProgress = options.onProgress || (() => {});
+
+    // auto (default): prova HTTP e ripiega su Puppeteer se il WAF si mette di mezzo
+    const mode = options.mode || process.env.SCRAPER_MODE || 'auto';
+    this.mode = VALID_MODES.includes(mode) ? mode : 'auto';
+
+    // Utile in ambienti dove la cartella temporanea di sistema non è scrivibile
+    this.userDataDir = options.userDataDir || process.env.CHROME_USER_DATA_DIR || undefined;
+
+    // Opzioni per lo scraper HTTP (e scraper iniettabile nei test)
+    this.httpOptions = options.httpOptions || {};
+    this.httpScraper = options.httpScraper || null;
   }
 
   /**
@@ -109,7 +123,8 @@ class CalendarScraper {
     }
 
     try {
-      return await this.scrapeLeagueLive(leagueConfig, options);
+      const previousData = this.getCachedLeague(leagueId, null);
+      return await this.scrapeLeagueLive(leagueConfig, { ...options, previousData });
     } catch (err) {
       const stale = this.getCachedLeague(leagueId, null);
       if (stale) {
@@ -125,10 +140,60 @@ class CalendarScraper {
   }
 
   /**
-   * Scraping effettivo dal sito sorgente (nessuna gestione cache).
+   * Scraping dal sito sorgente (nessuna gestione cache).
+   *
+   * Modalità (`SCRAPER_MODE` o opzione `mode`):
+   *  - `auto` (default): prima HTTP, con fallback su Puppeteer se il WAF
+   *    risponde con una challenge;
+   *  - `http`: solo richieste HTTP (nessun browser);
+   *  - `browser`: solo Puppeteer (comportamento storico).
    */
   async scrapeLeagueLive(leagueConfig, options = {}) {
-    this.onProgress(`Avvio scraper per ${leagueConfig.name}...`);
+    const leagueData = await this.produceLeagueData(leagueConfig, options);
+
+    this.persistLeagueData(leagueConfig, leagueData);
+    this.onProgress(`Completato scraping di ${leagueConfig.name}. Salvato in cache ed export.`);
+
+    return leagueData;
+  }
+
+  /**
+   * Produce i dati dal sito sorgente senza scrivere nulla su disco
+   * (utile anche per confronti/parità tra i due percorsi).
+   */
+  async produceLeagueData(leagueConfig, options = {}) {
+    if (this.mode === 'browser') {
+      return this.scrapeLeagueWithBrowser(leagueConfig, options);
+    }
+
+    try {
+      return await this.scrapeLeagueWithHttp(leagueConfig, options);
+    } catch (err) {
+      if (this.mode === 'http') throw err;
+
+      this.onProgress(
+        `⚠ Scraping HTTP non riuscito per ${leagueConfig.name} (${err.message}): passo al browser...`
+      );
+      return this.scrapeLeagueWithBrowser(leagueConfig, options);
+    }
+  }
+
+  /**
+   * Percorso veloce: richieste HTTP pure (~0,6 s per campionato, nessun browser).
+   */
+  async scrapeLeagueWithHttp(leagueConfig, options = {}) {
+    const httpScraper = this.httpScraper
+      || new HttpScraper({ onProgress: this.onProgress, ...this.httpOptions });
+
+    return httpScraper.scrapeLeague(leagueConfig, { previousData: options.previousData });
+  }
+
+  /**
+   * Percorso di riserva: Puppeteer, necessario quando il WAF richiede una
+   * challenge JavaScript.
+   */
+  async scrapeLeagueWithBrowser(leagueConfig, options = {}) {
+    this.onProgress(`Avvio scraper (browser) per ${leagueConfig.name}...`);
 
     const chromePath = this.resolveChromePath();
 
@@ -142,6 +207,7 @@ class CalendarScraper {
       browser = await puppeteer.launch({
         executablePath: chromePath,
         headless: this.headless,
+        userDataDir: this.userDataDir,
         args: [
           '--no-sandbox',
           '--disable-setuid-sandbox',
@@ -279,23 +345,24 @@ class CalendarScraper {
         matchDays
       };
 
-      // Salva in cache
-      exportToJson(leagueData, leagueConfig.cacheFile);
-
-      // Genera anche esportazioni standard di default
-      const baseExportName = leagueConfig.id;
-      exportToCsv(leagueData, path.join(EXPORT_DIR, `${baseExportName}.csv`));
-      exportToIcs(leagueData, path.join(EXPORT_DIR, `${baseExportName}.ics`));
-      exportToJson(leagueData, path.join(EXPORT_DIR, `${baseExportName}.json`));
-
-      this.onProgress(`Completato scraping di ${leagueConfig.name}. Salvato in cache ed export.`);
-
       return leagueData;
     } finally {
       if (browser) {
         await browser.close().catch(() => {});
       }
     }
+  }
+
+  /**
+   * Salva i dati in cache e rigenera gli export standard (CSV, ICS, JSON).
+   * Condiviso dai percorsi HTTP e browser.
+   */
+  persistLeagueData(leagueConfig, leagueData) {
+    exportToJson(leagueData, leagueConfig.cacheFile);
+    exportToCsv(leagueData, path.join(EXPORT_DIR, `${leagueConfig.id}.csv`));
+    exportToIcs(leagueData, path.join(EXPORT_DIR, `${leagueConfig.id}.ics`));
+    exportToJson(leagueData, path.join(EXPORT_DIR, `${leagueConfig.id}.json`));
+    return leagueData;
   }
 
   /**
@@ -310,4 +377,4 @@ class CalendarScraper {
   }
 }
 
-module.exports = { CalendarScraper, PARSER_SOURCE };
+module.exports = { CalendarScraper, PARSER_SOURCE, VALID_MODES };

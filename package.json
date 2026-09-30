@@ -15,7 +15,8 @@
     "build:pages": "node bin/build-pages.js",
     "check:pages": "node bin/build-pages.js --check",
     "test": "node --test",
-    "verify": "npm run check:pages && npm test"
+    "verify": "npm run check:pages && npm test",
+    "parity": "node bin/parity-check.js"
   },
   "bin": {
     "calcio-toscana": "./bin/cli.js"
@@ -32,9 +33,7 @@
     "cli-table3": "^0.6.5",
     "commander": "^15.0.0",
     "express": "^5.2.1",
+    "linkedom": "^0.18.13",
     "puppeteer-core": "^25.12.0"
-  },
-  "devDependencies": {
-    "linkedom": "^0.18.13"
   }
 }

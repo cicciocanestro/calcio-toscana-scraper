@@ -181,6 +181,8 @@ Se invece la imposti su Render con un valore diverso da quello del secret, gli a
 | Dove | Nome | Tipo | A cosa serve |
 |---|---|---|---|
 | GitHub → Settings → Variables | `RENDER_URL` | Variable | Cambia l'URL dell'istanza (default: `https://calcio-toscana-scraper.onrender.com`) |
+| Render (o locale) | `SCRAPER_MODE` | Env var | `auto` (default), `http` o `browser`: forza un percorso di scraping |
+| Render (o locale) | `CHROME_USER_DATA_DIR` | Env var | Profilo Chrome in una cartella scrivibile (utile in sandbox/container) |
 
 ```bash
 # Aggiornamento manuale dall'istanza remota verso la cache locale
@@ -196,6 +198,34 @@ node bin/data-changed.js   # exit 0 = cambiati, 1 = invariati
 
 ---
 
+## ⚡ Due percorsi di scraping: HTTP (veloce) e browser (riserva)
+
+Lo scraping ha due implementazioni che producono **gli stessi dati**:
+
+| | HTTP (`src/http-scraper.js`) | Browser (`src/scraper.js`) |
+|---|---|---|
+| Come | `fetch` + cookie `PHPSESSID` + token letti dall'HTML | Puppeteer + Chrome, parser iniettato nella pagina |
+| Tempo per campionato | **~0,7-1,0 s** (misurato) | ~3,4 s su un Mac veloce, **~45-85 s** su Render free |
+| Memoria | ~40 MB | ~300-400 MB |
+| Serve Chrome | no | sì |
+
+Il percorso HTTP è quello predefinito (`SCRAPER_MODE=auto`). Il browser resta come **riserva automatica**: se il WAF
+di Tuttocampo risponde con una challenge (`403`, `x-amzn-waf-action`, pagina "Human Verification", risposte
+troncate) lo scraper se ne accorge e rilancia con Puppeteer, esattamente come faceva prima. Se anche il browser
+fallisce, si conserva la cache precedente: il sito non si rompe mai.
+
+```bash
+# Confronto dal vivo fra i due percorsi (non scrive nulla nel repository)
+npm run parity                      # tutti i campionati, entrambi i percorsi
+node bin/parity-check.js --http-only --vs-cache   # veloce: solo HTTP contro la cache
+```
+
+> **Attenzione al rate limiting**: il WAF ha regole basate sulla frequenza. Eseguire molti scrape completi in
+> sequenza ravvicinata (come durante i test) può far comparire una verifica "Human Verification" che richiede
+> intervento umano. Nell'uso normale (una manciata di richieste a settimana) non è un problema.
+
+---
+
 ## 📁 Struttura del Progetto
 
 ```
@@ -203,11 +233,13 @@ scraping/
 ├── bin/
 │   ├── cli.js            # Interfaccia a riga di comando (CLI)
 │   ├── build-pages.js    # Rigenera gli asset di root per GitHub Pages da public/
+│   ├── parity-check.js   # Confronta dal vivo i percorsi HTTP e browser
 │   ├── fetch-from-render.js  # Scarica i dati dall'istanza sempre accesa (con retry)
 │   └── data-changed.js   # Rileva se i dati sportivi sono cambiati (evita commit inutili)
 ├── src/
 │   ├── config.js         # Configurazione campionati, URL e rilevamento Chrome
-│   ├── scraper.js        # Motore Puppeteer per estrazione dati e gestione WAF
+│   ├── scraper.js        # Orchestrazione: cache, modalità HTTP/browser, persistenza
+│   ├── http-scraper.js   # Percorso veloce: fetch + cookie, senza browser
 │   ├── parser.js         # Parsing HTML di giornate e classifiche (unica fonte di verità)
 │   ├── exporters.js      # Generatori di esportazione JSON, CSV e ICS (RFC 5545)
 │   └── server.js         # Server Express per API e Web Dashboard
@@ -220,7 +252,9 @@ scraping/
 │   ├── exporters.test.js
 │   ├── server.test.js
 │   ├── fetch-render.test.js
-│   └── data-changed.test.js
+│   ├── data-changed.test.js
+│   ├── http-scraper.test.js
+│   └── scraper-mode.test.js
 ├── index.html            # ┐
 ├── app.js                # ├ copie generate da public/ per GitHub Pages
 ├── style.css             # ┘ (npm run build:pages, committate dalla CI)
@@ -240,7 +274,8 @@ scraping/
 ## 🧪 Test e verifiche automatiche
 
 ```bash
-# Suite di test (parser HTML, exporter CSV/ICS/JSON, API Express e cache)
+# Suite di test (parser HTML, exporter CSV/ICS/JSON, API Express, cache,
+# percorso HTTP, rilevazione WAF e dispatch delle modalità)
 npm test
 
 # Verifica che gli asset di root siano allineati a public/
