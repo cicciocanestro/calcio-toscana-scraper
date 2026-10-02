@@ -48,7 +48,7 @@ function detectEnvironment() {
   }
 
   // Se siamo altrove (localhost o Render), verifichiamo se l'API risponde
-  fetch('/api/leagues')
+  fetch('/api/leagues', { cache: 'no-cache' })
     .then(r => {
       if (!r.ok) {
         setupStaticMode('Server Node.js non attivo. Visualizzazione dati in modalità statica.');
@@ -255,7 +255,7 @@ async function loadLeague(leagueId, forceRefresh = false) {
     // 1. Prova prima API backend (se attivo in locale o su Render)
     let loaded = false;
     try {
-      const resp = await fetch(`/api/leagues/${leagueId}`);
+      const resp = await fetch(`/api/leagues/${leagueId}?t=${Date.now()}`, { cache: 'no-cache' });
       if (resp.ok) {
         res = await resp.json();
         loaded = true;
@@ -264,15 +264,16 @@ async function loadLeague(leagueId, forceRefresh = false) {
 
     // 2. Se backend non attivo (es. GitHub Pages statico), carica JSON dalla cache
     if (!loaded) {
+      const t = Date.now();
       const possiblePaths = [
-        `data/cache/${leagueId}.json`,
-        `./data/cache/${leagueId}.json`,
-        `../data/cache/${leagueId}.json`
+        `data/cache/${leagueId}.json?t=${t}`,
+        `./data/cache/${leagueId}.json?t=${t}`,
+        `../data/cache/${leagueId}.json?t=${t}`
       ];
       let staticResp = null;
       for (const p of possiblePaths) {
         try {
-          const r = await fetch(p);
+          const r = await fetch(p, { cache: 'no-cache' });
           if (r && r.ok) {
             staticResp = r;
             break;
