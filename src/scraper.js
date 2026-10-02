@@ -261,7 +261,7 @@ class CalendarScraper {
       : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36';
   }
 
-  /** Avvia Chrome con le opzioni anti-automazione usate dallo scraper. */
+  /** Avvia Chrome con le opzioni anti-automazione e ottimizzazioni per ambienti containerizzati/low-resource. */
   async launchBrowser() {
     return puppeteer.launch({
       executablePath: this.resolveChromePath(),
@@ -274,6 +274,13 @@ class CalendarScraper {
         '--disable-accelerated-2d-canvas',
         '--disable-gpu',
         '--disable-blink-features=AutomationControlled',
+        '--disable-extensions',
+        '--disable-background-networking',
+        '--disable-default-apps',
+        '--disable-sync',
+        '--disable-translate',
+        '--mute-audio',
+        '--no-first-run',
         '--window-size=1920,1080',
         '--lang=it-IT,it'
       ]
@@ -329,6 +336,17 @@ class CalendarScraper {
         window.chrome = { runtime: {} };
         Object.defineProperty(navigator, 'languages', { get: () => ['it-IT', 'it', 'en-US', 'en'] });
         Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3, 4, 5] });
+      });
+
+      // Ottimizzazione performance: blocca risorse pesanti non necessarie per il WAF o per i dati
+      await page.setRequestInterception(true);
+      page.on('request', (req) => {
+        const resourceType = req.resourceType();
+        if (resourceType === 'image' || resourceType === 'media' || resourceType === 'font') {
+          req.abort();
+        } else {
+          req.continue();
+        }
       });
 
       try {
@@ -396,6 +414,17 @@ class CalendarScraper {
         window.chrome = { runtime: {} };
         Object.defineProperty(navigator, 'languages', { get: () => ['it-IT', 'it', 'en-US', 'en'] });
         Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3, 4, 5] });
+      });
+
+      // Ottimizzazione performance: blocca risorse pesanti non necessarie per il WAF o per il parsing
+      await page.setRequestInterception(true);
+      page.on('request', (req) => {
+        const resourceType = req.resourceType();
+        if (resourceType === 'image' || resourceType === 'media' || resourceType === 'font') {
+          req.abort();
+        } else {
+          req.continue();
+        }
       });
 
       this.onProgress(`Connessione a ${leagueConfig.url}...`);
