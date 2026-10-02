@@ -8,9 +8,9 @@
   "province": "",
   "url": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Risultati",
   "roundID": "TO.P.C",
-  "currentMatchDay": 3,
+  "currentMatchDay": 4,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-09-30T16:38:25.699Z",
+  "lastUpdated": "2026-10-02T21:35:09.219Z",
   "standings": [
     {
       "position": 1,
@@ -53,6 +53,19 @@
     },
     {
       "position": 4,
+      "team": "Nuova Foiano",
+      "points": 6,
+      "played": 3,
+      "won": 2,
+      "drawn": 0,
+      "lost": 1,
+      "goalsFor": 8,
+      "goalsAgainst": 3,
+      "goalDiff": 5,
+      "zone": "playoff"
+    },
+    {
+      "position": 5,
       "team": "Pontassieve",
       "points": 6,
       "played": 3,
@@ -65,7 +78,7 @@
       "zone": "playoff"
     },
     {
-      "position": 5,
+      "position": 6,
       "team": "Affrico",
       "points": 6,
       "played": 3,
@@ -75,10 +88,10 @@
       "goalsFor": 4,
       "goalsAgainst": 1,
       "goalDiff": 3,
-      "zone": "playoff"
+      "zone": "normal"
     },
     {
-      "position": 6,
+      "position": 7,
       "team": "Audace Galluzzo",
       "points": 6,
       "played": 3,
@@ -91,7 +104,7 @@
       "zone": "normal"
     },
     {
-      "position": 7,
+      "position": 8,
       "team": "Casentino",
       "points": 6,
       "played": 3,
@@ -104,7 +117,7 @@
       "zone": "normal"
     },
     {
-      "position": 8,
+      "position": 9,
       "team": "Resco Reggello",
       "points": 4,
       "played": 3,
@@ -114,19 +127,6 @@
       "goalsFor": 1,
       "goalsAgainst": 1,
       "goalDiff": 0,
-      "zone": "normal"
-    },
-    {
-      "position": 9,
-      "team": "Nuova Foiano",
-      "points": 3,
-      "played": 3,
-      "won": 1,
-      "drawn": 0,
-      "lost": 2,
-      "goalsFor": 5,
-      "goalsAgainst": 4,
-      "goalDiff": 1,
       "zone": "normal"
     },
     {
@@ -157,19 +157,6 @@
     },
     {
       "position": 12,
-      "team": "Centro Storico Lebowski",
-      "points": 3,
-      "played": 3,
-      "won": 1,
-      "drawn": 0,
-      "lost": 2,
-      "goalsFor": 1,
-      "goalsAgainst": 4,
-      "goalDiff": -3,
-      "zone": "playout"
-    },
-    {
-      "position": 13,
       "team": "Cortona Camucia Calcio",
       "points": 2,
       "played": 3,
@@ -182,7 +169,7 @@
       "zone": "playout"
     },
     {
-      "position": 14,
+      "position": 13,
       "team": "Settignanese",
       "points": 1,
       "played": 3,
@@ -195,7 +182,7 @@
       "zone": "playout"
     },
     {
-      "position": 15,
+      "position": 14,
       "team": "Ideal Club Incisa",
       "points": 0,
       "played": 3,
@@ -205,6 +192,19 @@
       "goalsFor": 1,
       "goalsAgainst": 6,
       "goalDiff": -5,
+      "zone": "playout"
+    },
+    {
+      "position": 15,
+      "team": "Centro Storico Lebowski",
+      "points": 0,
+      "played": 3,
+      "won": 0,
+      "drawn": 0,
+      "lost": 3,
+      "goalsFor": 0,
+      "goalsAgainst": 7,
+      "goalDiff": -7,
       "zone": "playout"
     },
     {
@@ -312,16 +312,14 @@
         {
           "homeTeam": "Centro Storico Lebowski",
           "awayTeam": "Nuova Foiano",
-          "homeScore": 1,
-          "awayScore": 0,
+          "homeScore": 0,
+          "awayScore": 3,
           "isPlayed": true,
           "status": "FINISHED",
           "date": "2026-09-13",
           "time": "15:30",
           "dateTime": "2026-09-13T15:30:00",
-          "homeScorers": [
-            "G. Vangi (9' st)"
-          ],
+          "homeScorers": [],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932795.png?v=1",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/18630.png?v=1",
@@ -563,8 +561,8 @@
           "dateTime": "2026-09-26T15:30:00",
           "homeScorers": [],
           "awayScorers": [
-            "A. Cerofolini (Rig.) (1' st)",
-            "A. Cerofolini (7' st)",
+            "G. Oliveros (Rig.) (1' st)",
+            "C. Torzoni (7' st)",
             "L. Romanò (44' st)"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/57743.png?v=2",
@@ -712,8 +710,24 @@
     {
       "dayNumber": 4,
       "dayTitle": "4° Giornata",
-      "dayDate": "4|10|2026",
+      "dayDate": "3|10|2026 - 4|10|2026",
       "matches": [
+        {
+          "homeTeam": "Cortona Camucia Calcio",
+          "awayTeam": "Acquaviva",
+          "homeScore": null,
+          "awayScore": null,
+          "isPlayed": false,
+          "status": "SCHEDULED",
+          "date": "2026-10-03",
+          "time": "15:30",
+          "dateTime": "2026-10-03T15:30:00",
+          "homeScorers": [],
+          "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/57743.png?v=2",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1007117.png?v=2",
+          "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/4.2/cortona-camucia-calcio-acquaviva"
+        },
         {
           "homeTeam": "Affrico",
           "awayTeam": "Centro Storico Lebowski",
@@ -729,22 +743,6 @@
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932795.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/4.1/affrico-centro-storico-lebowski"
-        },
-        {
-          "homeTeam": "Cortona Camucia Calcio",
-          "awayTeam": "Acquaviva",
-          "homeScore": null,
-          "awayScore": null,
-          "isPlayed": false,
-          "status": "SCHEDULED",
-          "date": "2026-10-04",
-          "time": "15:30",
-          "dateTime": "2026-10-04T15:30:00",
-          "homeScorers": [],
-          "awayScorers": [],
-          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/57743.png?v=2",
-          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1007117.png?v=2",
-          "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/4.2/cortona-camucia-calcio-acquaviva"
         },
         {
           "homeTeam": "Montagnano 1966",

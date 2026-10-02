@@ -8,9 +8,9 @@
   "province": "",
   "url": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Risultati",
   "roundID": "TO.2.I",
-  "currentMatchDay": 2,
+  "currentMatchDay": 3,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-09-30T16:39:29.900Z",
+  "lastUpdated": "2026-10-02T21:35:09.923Z",
   "standings": [
     {
       "position": 1,
@@ -686,8 +686,24 @@
     {
       "dayNumber": 4,
       "dayTitle": "4° Giornata",
-      "dayDate": "11|10|2026",
+      "dayDate": "10|10|2026 - 11|10|2026",
       "matches": [
+        {
+          "homeTeam": "Pieve al Toppo",
+          "awayTeam": "Fratticciola",
+          "homeScore": null,
+          "awayScore": null,
+          "isPlayed": false,
+          "status": "SCHEDULED",
+          "date": "2026-10-10",
+          "time": "15:30",
+          "dateTime": "2026-10-10T15:30:00",
+          "homeScorers": [],
+          "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
+          "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/4.8/pieve-al-toppo-fratticciola"
+        },
         {
           "homeTeam": "Arezzo FA",
           "awayTeam": "Pratovecchio",
@@ -799,22 +815,6 @@
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1124909.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/4.7/marino-mercato-subbiano-fortis-arezzo"
-        },
-        {
-          "homeTeam": "Pieve al Toppo",
-          "awayTeam": "Fratticciola",
-          "homeScore": null,
-          "awayScore": null,
-          "isPlayed": false,
-          "status": "SCHEDULED",
-          "date": "2026-10-11",
-          "time": "15:30",
-          "dateTime": "2026-10-11T15:30:00",
-          "homeScorers": [],
-          "awayScorers": [],
-          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
-          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750031.png?v=3",
-          "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/4.8/pieve-al-toppo-fratticciola"
         }
       ]
     },
