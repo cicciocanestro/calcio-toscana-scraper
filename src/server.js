@@ -135,6 +135,18 @@ function createServer(options = {}) {
     }
   });
 
+  // Forza refresh/scraping di tutti i campionati
+  app.post('/api/leagues/refresh-all', requireRefreshToken, async (req, res) => {
+    try {
+      console.log('[SERVER] Richiesto aggiornamento per tutti i campionati...');
+      const results = await scraper.scrapeAll({ forceRefresh: true });
+      res.json({ success: true, message: 'Tutti i campionati sono stati aggiornati con successo', data: results });
+    } catch (err) {
+      console.error('Errore aggiornamento globale campionati:', err);
+      res.status(500).json({ error: err.message });
+    }
+  });
+
   // Forza refresh/scraping di un campionato
   app.post('/api/leagues/:id/refresh', requireRefreshToken, async (req, res) => {
     const id = req.params.id;

@@ -209,51 +209,78 @@ function switchView(view) {
   else if (view === 'export') updateExportLinks();
 }
 
+async function refreshAllLeagues() {
+  showLoading(true, 'Aggiornamento di tutti i campionati dal sito ufficiale (Tuttocampo)...');
+  hideError();
+
+  try {
+    const resp = await fetch('/api/leagues/refresh-all', { method: 'POST' });
+    if (!resp.ok) {
+      // Se l'endpoint globale non risponde (es. backend precedente o singolo fallback), prova singolo
+      const singleResp = await fetch(`/api/leagues/${currentLeague}/refresh`, { method: 'POST' });
+      if (!singleResp.ok) throw new Error(`Errore HTTP ${singleResp.status}`);
+      const singleRes = await singleResp.json();
+      leagueData = singleRes.data ? singleRes.data : singleRes;
+    } else {
+      const allRes = await resp.json();
+      if (allRes.data && allRes.data[currentLeague]) {
+        leagueData = allRes.data[currentLeague];
+      } else {
+        await loadLeague(currentLeague, false);
+        return;
+      }
+    }
+
+    selectedDay = leagueData.currentMatchDay || 1;
+    renderHeaderInfo();
+    populateDaySelector();
+    populateTeamSelector();
+    switchView(currentView);
+  } catch (err) {
+    showError('Impossibile aggiornare i campionati: ' + (err.message || 'Errore di connessione col backend'));
+  } finally {
+    showLoading(false);
+  }
+}
+
 async function loadLeague(leagueId, forceRefresh = false) {
-  showLoading(true, forceRefresh ? 'Scraping in corso dal sito ufficiale (Tuttocampo)...' : 'Caricamento dati...');
+  if (forceRefresh) {
+    return refreshAllLeagues();
+  }
+  showLoading(true, 'Caricamento dati...');
   hideError();
 
   try {
     let res;
-    if (forceRefresh) {
-      try {
-        const resp = await fetch(`/api/leagues/${leagueId}/refresh`, { method: 'POST' });
-        if (!resp.ok) throw new Error(`Errore HTTP ${resp.status}`);
+    // 1. Prova prima API backend (se attivo in locale o su Render)
+    let loaded = false;
+    try {
+      const resp = await fetch(`/api/leagues/${leagueId}`);
+      if (resp.ok) {
         res = await resp.json();
-      } catch (err) {
-        throw new Error('Lo scraping live richiede il server backend Node attivo. I dati su questo sito statico vengono aggiornati automaticamente ogni fine settimana da GitHub Actions.');
+        loaded = true;
       }
-    } else {
-      // 1. Prova prima API backend (se attivo in locale o su Render)
-      let loaded = false;
-      try {
-        const resp = await fetch(`/api/leagues/${leagueId}`);
-        if (resp.ok) {
-          res = await resp.json();
-          loaded = true;
-        }
-      } catch (e) {}
+    } catch (e) {}
 
-      // 2. Se backend non attivo (es. GitHub Pages statico), carica JSON dalla cache
-      if (!loaded) {
-        const possiblePaths = [
-          `data/cache/${leagueId}.json`,
-          `./data/cache/${leagueId}.json`,
-          `../data/cache/${leagueId}.json`
-        ];
-        let staticResp = null;
-        for (const p of possiblePaths) {
-          try {
-            const r = await fetch(p);
-            if (r && r.ok) {
-              staticResp = r;
-              break;
-            }
-          } catch (e) {}
-        }
-        if (!staticResp) throw new Error('File dati non trovato nella cache');
-        res = await staticResp.json();
+    // 2. Se backend non attivo (es. GitHub Pages statico), carica JSON dalla cache
+    if (!loaded) {
+      const possiblePaths = [
+        `data/cache/${leagueId}.json`,
+        `./data/cache/${leagueId}.json`,
+        `../data/cache/${leagueId}.json`
+      ];
+      let staticResp = null;
+      for (const p of possiblePaths) {
+        try {
+          const r = await fetch(p);
+          if (r && r.ok) {
+            staticResp = r;
+            break;
+          }
+        } catch (e) {}
       }
+      if (!staticResp) throw new Error('File dati non trovato nella cache');
+      res = await staticResp.json();
     }
 
     leagueData = res.data ? res.data : res;

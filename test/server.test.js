@@ -168,10 +168,15 @@ test('con REFRESH_TOKEN attivo l\'aggiornamento forzato richiede il token', asyn
     // Scraping forzato senza token -> rifiutato
     assert.equal((await fetch(`${base}/api/leagues/promozione-c?refresh=true`)).status, 401);
     assert.equal((await fetch(`${base}/api/leagues/promozione-c/refresh`, { method: 'POST' })).status, 401);
+    assert.equal((await fetch(`${base}/api/leagues/refresh-all`, { method: 'POST' })).status, 401);
 
     // Token sbagliato -> rifiutato
     assert.equal(
       (await fetch(`${base}/api/leagues/promozione-c?refresh=true`, { headers: { 'x-refresh-token': 'nope' } })).status,
+      401
+    );
+    assert.equal(
+      (await fetch(`${base}/api/leagues/refresh-all`, { method: 'POST', headers: { 'x-refresh-token': 'nope' } })).status,
       401
     );
 
