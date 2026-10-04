@@ -10,132 +10,132 @@
   "roundID": "TO.P.C",
   "currentMatchDay": 4,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-10-02T21:46:22.094Z",
+  "lastUpdated": "2026-10-04T23:40:03.448Z",
   "standings": [
     {
       "position": 1,
       "team": "Montagnano 1966",
-      "points": 9,
-      "played": 3,
+      "points": 10,
+      "played": 4,
       "won": 3,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 0,
-      "goalsFor": 7,
-      "goalsAgainst": 0,
+      "goalsFor": 9,
+      "goalsAgainst": 2,
       "goalDiff": 7,
       "zone": "promotion"
     },
     {
       "position": 2,
-      "team": "Alberoro 1977",
+      "team": "Nuova Foiano",
       "points": 9,
-      "played": 3,
+      "played": 4,
       "won": 3,
       "drawn": 0,
-      "lost": 0,
-      "goalsFor": 6,
-      "goalsAgainst": 2,
-      "goalDiff": 4,
+      "lost": 1,
+      "goalsFor": 10,
+      "goalsAgainst": 3,
+      "goalDiff": 7,
       "zone": "playoff"
     },
     {
       "position": 3,
-      "team": "Sinalunghese",
+      "team": "Pontassieve",
       "points": 9,
-      "played": 3,
+      "played": 4,
       "won": 3,
       "drawn": 0,
-      "lost": 0,
-      "goalsFor": 6,
-      "goalsAgainst": 3,
-      "goalDiff": 3,
+      "lost": 1,
+      "goalsFor": 8,
+      "goalsAgainst": 2,
+      "goalDiff": 6,
       "zone": "playoff"
     },
     {
       "position": 4,
-      "team": "Nuova Foiano",
-      "points": 6,
-      "played": 3,
-      "won": 2,
+      "team": "Casentino",
+      "points": 9,
+      "played": 4,
+      "won": 3,
       "drawn": 0,
       "lost": 1,
-      "goalsFor": 8,
+      "goalsFor": 7,
       "goalsAgainst": 3,
-      "goalDiff": 5,
+      "goalDiff": 4,
       "zone": "playoff"
     },
     {
       "position": 5,
-      "team": "Pontassieve",
-      "points": 6,
-      "played": 3,
-      "won": 2,
+      "team": "Alberoro 1977",
+      "points": 9,
+      "played": 4,
+      "won": 3,
       "drawn": 0,
       "lost": 1,
-      "goalsFor": 6,
-      "goalsAgainst": 1,
-      "goalDiff": 5,
+      "goalsFor": 7,
+      "goalsAgainst": 4,
+      "goalDiff": 3,
       "zone": "playoff"
     },
     {
       "position": 6,
-      "team": "Affrico",
-      "points": 6,
-      "played": 3,
-      "won": 2,
+      "team": "Audace Galluzzo",
+      "points": 9,
+      "played": 4,
+      "won": 3,
       "drawn": 0,
       "lost": 1,
-      "goalsFor": 4,
-      "goalsAgainst": 1,
+      "goalsFor": 6,
+      "goalsAgainst": 3,
       "goalDiff": 3,
       "zone": "normal"
     },
     {
       "position": 7,
-      "team": "Audace Galluzzo",
-      "points": 6,
-      "played": 3,
-      "won": 2,
+      "team": "Sinalunghese",
+      "points": 9,
+      "played": 4,
+      "won": 3,
       "drawn": 0,
       "lost": 1,
-      "goalsFor": 5,
-      "goalsAgainst": 3,
+      "goalsFor": 6,
+      "goalsAgainst": 4,
       "goalDiff": 2,
       "zone": "normal"
     },
     {
       "position": 8,
-      "team": "Casentino",
+      "team": "Affrico",
       "points": 6,
-      "played": 3,
+      "played": 4,
       "won": 2,
       "drawn": 0,
-      "lost": 1,
+      "lost": 2,
       "goalsFor": 4,
-      "goalsAgainst": 3,
-      "goalDiff": 1,
+      "goalsAgainst": 2,
+      "goalDiff": 2,
       "zone": "normal"
     },
     {
       "position": 9,
-      "team": "Resco Reggello",
-      "points": 4,
-      "played": 3,
+      "team": "Cortona Camucia Calcio",
+      "points": 5,
+      "played": 4,
       "won": 1,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 1,
-      "goalsFor": 1,
-      "goalsAgainst": 1,
-      "goalDiff": 0,
+      "goalsFor": 5,
+      "goalsAgainst": 4,
+      "goalDiff": 1,
       "zone": "normal"
     },
     {
       "position": 10,
-      "team": "Acquaviva",
-      "points": 3,
-      "played": 3,
+      "team": "Resco Reggello",
+      "points": 4,
+      "played": 4,
       "won": 1,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 2,
       "goalsFor": 1,
       "goalsAgainst": 2,
@@ -145,48 +145,22 @@
     {
       "position": 11,
       "team": "AG Dicomano",
-      "points": 3,
-      "played": 3,
+      "points": 4,
+      "played": 4,
       "won": 1,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 2,
-      "goalsFor": 1,
-      "goalsAgainst": 4,
+      "goalsFor": 3,
+      "goalsAgainst": 6,
       "goalDiff": -3,
       "zone": "normal"
     },
     {
       "position": 12,
-      "team": "Cortona Camucia Calcio",
-      "points": 2,
-      "played": 3,
-      "won": 0,
-      "drawn": 2,
-      "lost": 1,
-      "goalsFor": 1,
-      "goalsAgainst": 4,
-      "goalDiff": -3,
-      "zone": "playout"
-    },
-    {
-      "position": 13,
-      "team": "Settignanese",
-      "points": 1,
-      "played": 3,
-      "won": 0,
-      "drawn": 1,
-      "lost": 2,
-      "goalsFor": 1,
-      "goalsAgainst": 4,
-      "goalDiff": -3,
-      "zone": "playout"
-    },
-    {
-      "position": 14,
-      "team": "Ideal Club Incisa",
-      "points": 0,
-      "played": 3,
-      "won": 0,
+      "team": "Acquaviva",
+      "points": 3,
+      "played": 4,
+      "won": 1,
       "drawn": 0,
       "lost": 3,
       "goalsFor": 1,
@@ -195,29 +169,55 @@
       "zone": "playout"
     },
     {
-      "position": 15,
+      "position": 13,
       "team": "Centro Storico Lebowski",
-      "points": 0,
-      "played": 3,
-      "won": 0,
+      "points": 3,
+      "played": 4,
+      "won": 1,
       "drawn": 0,
       "lost": 3,
-      "goalsFor": 0,
+      "goalsFor": 1,
       "goalsAgainst": 7,
+      "goalDiff": -6,
+      "zone": "playout"
+    },
+    {
+      "position": 14,
+      "team": "Cubino",
+      "points": 3,
+      "played": 4,
+      "won": 1,
+      "drawn": 0,
+      "lost": 3,
+      "goalsFor": 3,
+      "goalsAgainst": 10,
       "goalDiff": -7,
       "zone": "playout"
     },
     {
+      "position": 15,
+      "team": "Settignanese",
+      "points": 1,
+      "played": 4,
+      "won": 0,
+      "drawn": 1,
+      "lost": 3,
+      "goalsFor": 1,
+      "goalsAgainst": 7,
+      "goalDiff": -6,
+      "zone": "playout"
+    },
+    {
       "position": 16,
-      "team": "Cubino",
+      "team": "Ideal Club Incisa",
       "points": 0,
-      "played": 3,
+      "played": 4,
       "won": 0,
       "drawn": 0,
-      "lost": 3,
-      "goalsFor": 2,
-      "goalsAgainst": 10,
-      "goalDiff": -8,
+      "lost": 4,
+      "goalsFor": 1,
+      "goalsAgainst": 8,
+      "goalDiff": -7,
       "zone": "retrocession"
     }
   ],
@@ -262,7 +262,7 @@
             "G. Grillo"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1028179.png?v=1",
-          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/1.2/ag-dicomano-affrico"
         },
         {
@@ -406,7 +406,7 @@
             "M. Rocchini (8' pt)"
           ],
           "awayScorers": [],
-          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1007117.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/2.1/affrico-acquaviva"
         },
@@ -641,7 +641,7 @@
           ],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/920660.png?v=1",
-          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/3.4/casentino-affrico"
         },
         {
@@ -715,14 +715,19 @@
         {
           "homeTeam": "Cortona Camucia Calcio",
           "awayTeam": "Acquaviva",
-          "homeScore": null,
-          "awayScore": null,
-          "isPlayed": false,
-          "status": "SCHEDULED",
+          "homeScore": 4,
+          "awayScore": 0,
+          "isPlayed": true,
+          "status": "FINISHED",
           "date": "2026-10-03",
           "time": "15:30",
           "dateTime": "2026-10-03T15:30:00",
-          "homeScorers": [],
+          "homeScorers": [
+            "Seck (32' pt)",
+            "C. Petica (43' pt)",
+            "D. Senghore (8' st)",
+            "Seck (48' st)"
+          ],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/57743.png?v=2",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1007117.png?v=2",
@@ -731,31 +736,39 @@
         {
           "homeTeam": "Affrico",
           "awayTeam": "Centro Storico Lebowski",
-          "homeScore": null,
-          "awayScore": null,
-          "isPlayed": false,
-          "status": "SCHEDULED",
+          "homeScore": 0,
+          "awayScore": 1,
+          "isPlayed": true,
+          "status": "FINISHED",
           "date": "2026-10-04",
           "time": "15:30",
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
-          "awayScorers": [],
-          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "awayScorers": [
+            "F. Bettini"
+          ],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932795.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/4.1/affrico-centro-storico-lebowski"
         },
         {
           "homeTeam": "Montagnano 1966",
           "awayTeam": "AG Dicomano",
-          "homeScore": null,
-          "awayScore": null,
-          "isPlayed": false,
-          "status": "SCHEDULED",
+          "homeScore": 2,
+          "awayScore": 2,
+          "isPlayed": true,
+          "status": "FINISHED",
           "date": "2026-10-04",
           "time": "15:30",
           "dateTime": "2026-10-04T15:30:00",
-          "homeScorers": [],
-          "awayScorers": [],
+          "homeScorers": [
+            "L. Romanò",
+            "L. Romanò"
+          ],
+          "awayScorers": [
+            "F. Gurioli",
+            "B. Valencetti"
+          ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/934115.png?v=4",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1028179.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/4.3/montagnano-1966-ag-dicomano"
@@ -763,14 +776,17 @@
         {
           "homeTeam": "Nuova Foiano",
           "awayTeam": "Ideal Club Incisa",
-          "homeScore": null,
-          "awayScore": null,
-          "isPlayed": false,
-          "status": "SCHEDULED",
+          "homeScore": 2,
+          "awayScore": 0,
+          "isPlayed": true,
+          "status": "FINISHED",
           "date": "2026-10-04",
           "time": "15:30",
           "dateTime": "2026-10-04T15:30:00",
-          "homeScorers": [],
+          "homeScorers": [
+            "G. Guerrini",
+            "F. Lombardi"
+          ],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/18630.png?v=1",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/22740.png?v=1",
@@ -779,15 +795,20 @@
         {
           "homeTeam": "Pontassieve",
           "awayTeam": "Alberoro 1977",
-          "homeScore": null,
-          "awayScore": null,
-          "isPlayed": false,
-          "status": "SCHEDULED",
+          "homeScore": 2,
+          "awayScore": 1,
+          "isPlayed": true,
+          "status": "FINISHED",
           "date": "2026-10-04",
           "time": "15:30",
           "dateTime": "2026-10-04T15:30:00",
-          "homeScorers": [],
-          "awayScorers": [],
+          "homeScorers": [
+            "N. Patrignani (41' pt)",
+            "S. Del Zotto (55' st)"
+          ],
+          "awayScorers": [
+            "K. Alomar"
+          ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750657.png?v=2",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/935655.png?v=6",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/4.5/pontassieve-alberoro-1977"
@@ -795,15 +816,17 @@
         {
           "homeTeam": "Resco Reggello",
           "awayTeam": "Cubino",
-          "homeScore": null,
-          "awayScore": null,
-          "isPlayed": false,
-          "status": "SCHEDULED",
+          "homeScore": 0,
+          "awayScore": 1,
+          "isPlayed": true,
+          "status": "FINISHED",
           "date": "2026-10-04",
           "time": "15:30",
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
-          "awayScorers": [],
+          "awayScorers": [
+            "F. Schenone"
+          ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/41920.png?v=3",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1007106.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/4.6/resco-reggello-cubino"
@@ -811,15 +834,19 @@
         {
           "homeTeam": "Settignanese",
           "awayTeam": "Casentino",
-          "homeScore": null,
-          "awayScore": null,
-          "isPlayed": false,
-          "status": "SCHEDULED",
+          "homeScore": 0,
+          "awayScore": 3,
+          "isPlayed": true,
+          "status": "FINISHED",
           "date": "2026-10-04",
           "time": "15:30",
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
-          "awayScorers": [],
+          "awayScorers": [
+            "M. Mazzi",
+            "D. Lunghi (59' pt)",
+            "T. Pasquini (15' st)"
+          ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/62418.png?v=10",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/920660.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/4.7/settignanese-casentino"
@@ -827,15 +854,17 @@
         {
           "homeTeam": "Sinalunghese",
           "awayTeam": "Audace Galluzzo",
-          "homeScore": null,
-          "awayScore": null,
-          "isPlayed": false,
-          "status": "SCHEDULED",
+          "homeScore": 0,
+          "awayScore": 1,
+          "isPlayed": true,
+          "status": "FINISHED",
           "date": "2026-10-04",
           "time": "15:30",
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
-          "awayScorers": [],
+          "awayScorers": [
+            "P. Matrone"
+          ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/49380.png?v=3",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/4010.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/4.8/sinalunghese-audace-galluzzo"
@@ -956,7 +985,7 @@
           "homeScorers": [],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1007106.png?v=1",
-          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/5.7/cubino-affrico"
         },
         {
@@ -1010,7 +1039,7 @@
           "dateTime": "2026-10-18T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
-          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/935655.png?v=6",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/6.2/affrico-alberoro-1977"
         },
@@ -1162,7 +1191,7 @@
           "homeScorers": [],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/4010.png?v=1",
-          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/7.3/audace-galluzzo-affrico"
         },
         {
@@ -1280,7 +1309,7 @@
           "dateTime": "2026-11-01T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
-          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/750657.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/8.2/affrico-pontassieve"
         },
@@ -1496,7 +1525,7 @@
           "homeScorers": [],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/18630.png?v=1",
-          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/9.7/nuova-foiano-affrico"
         },
         {
@@ -1550,7 +1579,7 @@
           "dateTime": "2026-11-15T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
-          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/22740.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/10.2/affrico-ideal-club-incisa"
         },
@@ -1782,7 +1811,7 @@
           "homeScorers": [],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/49380.png?v=3",
-          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/11.8/sinalunghese-affrico"
         }
       ]
@@ -1917,7 +1946,7 @@
           "homeScorers": [],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/62418.png?v=10",
-          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/12.8/settignanese-affrico"
         }
       ]
@@ -1939,7 +1968,7 @@
           "dateTime": "2026-12-06T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
-          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/41920.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/13.1/affrico-resco-reggello"
         },
@@ -2139,7 +2168,7 @@
           "homeScorers": [],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/57743.png?v=2",
-          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/14.5/cortona-camucia-calcio-affrico"
         },
         {
@@ -2209,7 +2238,7 @@
           "dateTime": "2026-12-20T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
-          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/934115.png?v=4",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/15.1/affrico-montagnano-1966"
         },
@@ -2344,7 +2373,7 @@
           "dateTime": "2027-01-03T14:30:00",
           "homeScorers": [],
           "awayScorers": [],
-          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1028179.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/16.2/affrico-ag-dicomano"
         },
@@ -2480,7 +2509,7 @@
           "homeScorers": [],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1007117.png?v=2",
-          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/17.1/acquaviva-affrico"
         },
         {
@@ -2614,7 +2643,7 @@
           "dateTime": "2027-01-17T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
-          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/920660.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/18.4/affrico-casentino"
         },
@@ -2830,7 +2859,7 @@
           "homeScorers": [],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932795.png?v=1",
-          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/19.1/centro-storico-lebowski-affrico"
         },
         {
@@ -2884,7 +2913,7 @@
           "dateTime": "2027-01-31T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
-          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1007106.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/20.7/affrico-cubino"
         },
@@ -3036,7 +3065,7 @@
           "homeScorers": [],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/935655.png?v=6",
-          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/21.2/alberoro-1977-affrico"
         },
         {
@@ -3170,7 +3199,7 @@
           "dateTime": "2027-02-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
-          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/4010.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/22.3/affrico-audace-galluzzo"
         },
@@ -3402,7 +3431,7 @@
           "homeScorers": [],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750657.png?v=2",
-          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/23.2/pontassieve-affrico"
         }
       ]
@@ -3440,7 +3469,7 @@
           "dateTime": "2027-02-28T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
-          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/18630.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/24.7/affrico-nuova-foiano"
         },
@@ -3624,7 +3653,7 @@
           "homeScorers": [],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/22740.png?v=1",
-          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/25.2/ideal-club-incisa-affrico"
         },
         {
@@ -3710,7 +3739,7 @@
           "dateTime": "2027-03-14T15:00:00",
           "homeScorers": [],
           "awayScorers": [],
-          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/49380.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/26.8/affrico-sinalunghese"
         },
@@ -3829,7 +3858,7 @@
           "dateTime": "2027-04-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [],
-          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/62418.png?v=10",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/27.8/affrico-settignanese"
         },
@@ -4061,7 +4090,7 @@
           "homeScorers": [],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/41920.png?v=3",
-          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/28.1/resco-reggello-affrico"
         },
         {
@@ -4099,7 +4128,7 @@
           "dateTime": "2027-04-18T16:00:00",
           "homeScorers": [],
           "awayScorers": [],
-          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/57743.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/29.5/affrico-cortona-camucia-calcio"
         },
@@ -4331,7 +4360,7 @@
           "homeScorers": [],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/934115.png?v=4",
-          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=11",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/30.1/montagnano-1966-affrico"
         },
         {
