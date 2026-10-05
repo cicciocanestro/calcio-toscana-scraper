@@ -10,7 +10,7 @@
   "roundID": "TO.2.I",
   "currentMatchDay": 3,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-10-04T23:40:07.146Z",
+  "lastUpdated": "2026-10-05T16:32:53.136Z",
   "standings": [
     {
       "position": 1,
@@ -607,7 +607,7 @@
           "time": "15:30",
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [
-            "A. De Luca"
+            "A. De Luca (20' st)"
           ],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750283.png?v=1",

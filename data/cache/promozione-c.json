@@ -10,7 +10,7 @@
   "roundID": "TO.P.C",
   "currentMatchDay": 4,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-10-04T23:40:03.448Z",
+  "lastUpdated": "2026-10-05T16:32:49.740Z",
   "standings": [
     {
       "position": 1,
@@ -745,7 +745,7 @@
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [
-            "F. Bettini"
+            "F. Bettini (37' st)"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932795.png?v=1",
@@ -762,12 +762,12 @@
           "time": "15:30",
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [
-            "L. Romanò",
-            "L. Romanò"
+            "L. Romanò (40' pt)",
+            "L. Romanò (3' st)"
           ],
           "awayScorers": [
-            "F. Gurioli",
-            "B. Valencetti"
+            "F. Gurioli (6' st)",
+            "B. Valencetti (11' st)"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/934115.png?v=4",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1028179.png?v=1",
@@ -784,8 +784,8 @@
           "time": "15:30",
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [
-            "G. Guerrini",
-            "F. Lombardi"
+            "G. Guerrini (38' pt)",
+            "F. Lombardi (43' pt)"
           ],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/18630.png?v=1",
@@ -803,11 +803,11 @@
           "time": "15:30",
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [
-            "N. Patrignani (41' pt)",
-            "S. Del Zotto (55' st)"
+            "N. Patrignani (40' pt)",
+            "S. Del Zotto (50' st)"
           ],
           "awayScorers": [
-            "K. Alomar"
+            "K. Alomar (14' st)"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750657.png?v=2",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/935655.png?v=6",
@@ -825,7 +825,7 @@
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [
-            "F. Schenone"
+            "F. Schenone (11' st)"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/41920.png?v=3",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1007106.png?v=1",
@@ -843,9 +843,9 @@
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [
-            "M. Mazzi",
-            "D. Lunghi (59' pt)",
-            "T. Pasquini (15' st)"
+            "M. Mazzi (18' pt)",
+            "T. Pasquini (15' st)",
+            "D. Lunghi (28' st)"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/62418.png?v=10",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/920660.png?v=1",
@@ -863,7 +863,7 @@
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [
-            "P. Matrone"
+            "P. Matrone (30' pt)"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/49380.png?v=3",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/4010.png?v=1",

@@ -10,7 +10,7 @@
   "roundID": "TO.3.A.AR",
   "currentMatchDay": 3,
   "totalMatchDays": 34,
-  "lastUpdated": "2026-10-04T23:40:11.149Z",
+  "lastUpdated": "2026-10-05T16:32:56.842Z",
   "standings": [
     {
       "position": 1,
@@ -804,7 +804,8 @@
             "R. Falsetti (14' st)"
           ],
           "awayScorers": [
-            "M. Nandesi (Rig.) (37' pt)"
+            "M. Nandesi (Rig.) (37' pt)",
+            "O. Ndiaye (30' st)"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750248.png?v=1",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51890.png?v=2",
