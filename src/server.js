@@ -13,7 +13,9 @@ const { exportToJson, exportToCsv, exportToIcs, exportSlug } = require('./export
  */
 function createServer(options = {}) {
   const app = express();
-  const scraper = options.scraper || new CalendarScraper();
+  const scraper = options.scraper || new CalendarScraper({
+    onProgress: (msg) => console.log(`[SCRAPER] ${msg}`)
+  });
   const autoRevalidate = options.autoRevalidate !== false;
 
   // Richieste di ri-scraping in corso, per non duplicare lo stesso lavoro
