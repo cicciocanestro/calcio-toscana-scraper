@@ -287,6 +287,27 @@ class CalendarScraper {
     });
   }
 
+  /** Configura le evasioni anti-automazione sul contesto pagina. */
+  async applyStealthEvasions(page) {
+    await page.evaluateOnNewDocument(() => {
+      Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+      window.chrome = {
+        app: { isInstalled: false },
+        webstore: { onInstallStageChanged: {}, onDownloadProgress: {} },
+        runtime: {
+          PlatformOs: { MAC: 'mac', WIN: 'win', ANDROID: 'android', CROS: 'cros', LINUX: 'linux', OPENBSD: 'openbsd' },
+          PlatformArch: { ARM: 'arm', X86_32: 'x86-32', X86_64: 'x86-64' },
+          PlatformNaclArch: { ARM: 'arm', X86_32: 'x86-32', X86_64: 'x86-64' },
+          RequestUpdateCheckStatus: { THROTTLED: 'throttled', NO_UPDATE: 'no_update', UPDATE_AVAILABLE: 'update_available' },
+          OnInstalledReason: { INSTALL: 'install', UPDATE: 'update', CHROME_UPDATE: 'chrome_update', SHARED_MODULE_UPDATE: 'shared_module_update' },
+          OnRestartRequiredReason: { APP_UPDATE: 'app_update', OS_UPDATE: 'os_update', PERIODIC: 'periodic' }
+        }
+      };
+      Object.defineProperty(navigator, 'languages', { get: () => ['it-IT', 'it', 'en-US', 'en'] });
+      Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3, 4, 5] });
+    });
+  }
+
   /**
    * Sessione WAF condivisa: il bootstrap con il browser costa decine di secondi
    * su un'istanza piccola, quindi viene fatto una volta sola e riusato per tutti
@@ -331,23 +352,7 @@ class CalendarScraper {
       await page.setViewport({ width: 1920, height: 1080 });
 
       // Rimuove impronte di automazione per superare challenge AWS WAF
-      await page.evaluateOnNewDocument(() => {
-        Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
-        window.chrome = {
-          app: { isInstalled: false },
-          webstore: { onInstallStageChanged: {}, onDownloadProgress: {} },
-          runtime: {
-            PlatformOs: { MAC: 'mac', WIN: 'win', ANDROID: 'android', CROS: 'cros', LINUX: 'linux', OPENBSD: 'openbsd' },
-            PlatformArch: { ARM: 'arm', X86_32: 'x86-32', X86_64: 'x86-64' },
-            PlatformNaclArch: { ARM: 'arm', X86_32: 'x86-32', X86_64: 'x86-64' },
-            RequestUpdateCheckStatus: { THROTTLED: 'throttled', NO_UPDATE: 'no_update', UPDATE_AVAILABLE: 'update_available' },
-            OnInstalledReason: { INSTALL: 'install', UPDATE: 'update', CHROME_UPDATE: 'chrome_update', SHARED_MODULE_UPDATE: 'shared_module_update' },
-            OnRestartRequiredReason: { APP_UPDATE: 'app_update', OS_UPDATE: 'os_update', PERIODIC: 'periodic' }
-          }
-        };
-        Object.defineProperty(navigator, 'languages', { get: () => ['it-IT', 'it', 'en-US', 'en'] });
-        Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3, 4, 5] });
-      });
+      await this.applyStealthEvasions(page);
 
       // Durante la navigazione, blocchiamo solo video pesanti senza toccare immagini/font/script
       // perché AWS WAF usa pixel-tracker e risorse grafiche per validare l'ambiente browser.
@@ -421,23 +426,7 @@ class CalendarScraper {
       await page.evaluateOnNewDocument(PARSER_SOURCE);
 
       // Rimuove impronte di automazione per superare challenge AWS WAF
-      await page.evaluateOnNewDocument(() => {
-        Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
-        window.chrome = {
-          app: { isInstalled: false },
-          webstore: { onInstallStageChanged: {}, onDownloadProgress: {} },
-          runtime: {
-            PlatformOs: { MAC: 'mac', WIN: 'win', ANDROID: 'android', CROS: 'cros', LINUX: 'linux', OPENBSD: 'openbsd' },
-            PlatformArch: { ARM: 'arm', X86_32: 'x86-32', X86_64: 'x86-64' },
-            PlatformNaclArch: { ARM: 'arm', X86_32: 'x86-32', X86_64: 'x86-64' },
-            RequestUpdateCheckStatus: { THROTTLED: 'throttled', NO_UPDATE: 'no_update', UPDATE_AVAILABLE: 'update_available' },
-            OnInstalledReason: { INSTALL: 'install', UPDATE: 'update', CHROME_UPDATE: 'chrome_update', SHARED_MODULE_UPDATE: 'shared_module_update' },
-            OnRestartRequiredReason: { APP_UPDATE: 'app_update', OS_UPDATE: 'os_update', PERIODIC: 'periodic' }
-          }
-        };
-        Object.defineProperty(navigator, 'languages', { get: () => ['it-IT', 'it', 'en-US', 'en'] });
-        Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3, 4, 5] });
-      });
+      await this.applyStealthEvasions(page);
 
       await page.setRequestInterception(true);
       page.on('request', (req) => {
