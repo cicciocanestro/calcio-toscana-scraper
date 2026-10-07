@@ -39,6 +39,10 @@ class CalendarScraper {
     // Sessione WAF riusata fra i campionati (i token aws-waf-token durano pochi minuti)
     this.wafSession = null;
     this.wafSessionTtlMs = options.wafSessionTtlMs || 4 * 60 * 1000;
+
+    // URL di upstream (es. Render) per fallback trasparente quando l'IP è bloccato (es. su Oracle Cloud)
+    this.upstreamUrl = options.upstreamUrl || process.env.UPSTREAM_SCRAPER_URL || 'https://calcio-toscana-scraper.onrender.com';
+    this.upstreamToken = options.upstreamToken || process.env.UPSTREAM_SCRAPER_TOKEN || process.env.REFRESH_TOKEN || '';
   }
 
   /**
@@ -234,10 +238,46 @@ class CalendarScraper {
       );
     }
 
-    // 3) Ultima risorsa: browser completo
-    const data = await this.scrapeLeagueWithBrowser(leagueConfig, options);
-    this.recordScrape(leagueConfig.id, 'browser-fallback', Date.now() - startedAt, httpError.message);
-    return data;
+    // 3) Browser completo
+    try {
+      const data = await this.scrapeLeagueWithBrowser(leagueConfig, options);
+      this.recordScrape(leagueConfig.id, 'browser-fallback', Date.now() - startedAt, httpError.message);
+      return data;
+    } catch (browserErr) {
+      // 4) Se anche il browser fallisce (es. blocco IP 403 su datacenter come Oracle Cloud),
+      // e abbiamo un endpoint upstream configurato, proviamo a richiedere i dati freschi da lì.
+      if (this.upstreamUrl) {
+        this.onProgress(`⚠ Browser locale bloccato (${browserErr.message}): fallback su upstream ${this.upstreamUrl}...`);
+        try {
+          const data = await this.fetchLeagueFromUpstream(leagueConfig.id);
+          this.recordScrape(leagueConfig.id, 'upstream-fallback', Date.now() - startedAt, browserErr.message);
+          this.onProgress(`✔ Dati di ${leagueConfig.name} scaricati con successo da upstream.`);
+          return data;
+        } catch (upstreamErr) {
+          this.onProgress(`✖ Fallback upstream non riuscito: ${upstreamErr.message}`);
+        }
+      }
+      throw browserErr;
+    }
+  }
+
+  /**
+   * Scarica i dati del campionato da un'istanza remota non bloccata (es. Render).
+   */
+  async fetchLeagueFromUpstream(leagueId, timeoutMs = 60000) {
+    const url = `${this.upstreamUrl.replace(/\/$/, '')}/api/leagues/${leagueId}?refresh=true`;
+    const headers = { Accept: 'application/json' };
+    if (this.upstreamToken) headers['x-refresh-token'] = this.upstreamToken;
+
+    const resp = await fetch(url, { headers, signal: AbortSignal.timeout(timeoutMs) });
+    if (!resp.ok) {
+      throw new Error(`Upstream HTTP ${resp.status}`);
+    }
+    const payload = await resp.json();
+    if (!payload || !payload.id || !Array.isArray(payload.matchDays)) {
+      throw new Error('Payload upstream non valido');
+    }
+    return payload;
   }
 
   /**
