@@ -76,7 +76,7 @@ function createServer(options = {}) {
     });
   });
 
-  // Lista campionati supportati e stato cache
+  // Lista campionati supportati, stato cache e aggiornamenti in corso
   app.get('/api/leagues', (req, res) => {
     const list = Object.keys(LEAGUES).map(key => {
       const cfg = LEAGUES[key];
@@ -93,6 +93,7 @@ function createServer(options = {}) {
         url: cfg.url,
         isCached: cache.exists,
         isStale: cache.isStale,
+        isRevalidating: revalidations.has(key) || !!globalRefreshTask,
         lastUpdated: cached?.lastUpdated || cache.lastUpdated || null,
         currentMatchDay: cached?.currentMatchDay || null,
         totalMatchDays: cached?.totalMatchDays || null,
@@ -135,19 +136,56 @@ function createServer(options = {}) {
     }
   });
 
-  // Forza refresh/scraping di tutti i campionati
+  // Stato aggiornamenti globali/singoli in background per polling client
+  let globalRefreshTask = null;
+
+  function runGlobalRefresh() {
+    if (globalRefreshTask) return globalRefreshTask;
+
+    globalRefreshTask = (async () => {
+      console.log('[SERVER] Avvio aggiornamento globale in background...');
+      const results = {};
+      for (const id of Object.keys(LEAGUES)) {
+        try {
+          results[id] = await scraper.scrapeLeague(id, { forceRefresh: true });
+        } catch (err) {
+          console.warn(`[SERVER] Errore aggiornamento ${id}:`, err.message);
+        }
+      }
+      return results;
+    })().finally(() => {
+      globalRefreshTask = null;
+    });
+
+    return globalRefreshTask;
+  }
+
+  // Forza refresh/scraping di tutti i campionati:
+  // Supporta sia esecuzione asincrona non-bloccante (default, evita timeout proxy/502)
+  // sia bloccante/sincrona (con ?sync=true)
   app.post('/api/leagues/refresh-all', requireRefreshToken, async (req, res) => {
     try {
-      console.log('[SERVER] Richiesto aggiornamento per tutti i campionati...');
-      const results = await scraper.scrapeAll({ forceRefresh: true });
-      res.json({ success: true, message: 'Tutti i campionati sono stati aggiornati con successo', data: results });
+      const sync = req.query.sync === 'true';
+      const task = runGlobalRefresh();
+
+      if (sync) {
+        const results = await task;
+        return res.json({ success: true, message: 'Tutti i campionati sono stati aggiornati con successo', data: results });
+      }
+
+      // 202 Accepted: avvisiamo il client che l'operazione è in corso
+      res.status(202).json({
+        success: true,
+        message: 'Aggiornamento avviato in background',
+        inProgress: true
+      });
     } catch (err) {
       console.error('Errore aggiornamento globale campionati:', err);
       res.status(500).json({ error: err.message });
     }
   });
 
-  // Forza refresh/scraping di un campionato
+  // Forza refresh/scraping di un singolo campionato
   app.post('/api/leagues/:id/refresh', requireRefreshToken, async (req, res) => {
     const id = req.params.id;
     if (!LEAGUES[id]) {
@@ -155,9 +193,19 @@ function createServer(options = {}) {
     }
 
     try {
-      console.log(`[SERVER] Richiesto aggiornamento per ${id}...`);
-      const data = await scraper.scrapeLeague(id, { forceRefresh: true });
-      res.json({ success: true, message: 'Dati aggiornati con successo', data });
+      const sync = req.query.sync === 'true';
+      const task = revalidate(id);
+
+      if (sync) {
+        const data = await task;
+        return res.json({ success: true, message: 'Dati aggiornati con successo', data });
+      }
+
+      res.status(202).json({
+        success: true,
+        message: `Aggiornamento di ${id} avviato in background`,
+        inProgress: true
+      });
     } catch (err) {
       console.error(`Errore aggiornamento ${id}:`, err);
       res.status(500).json({ error: err.message });

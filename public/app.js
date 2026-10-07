@@ -210,35 +210,63 @@ function switchView(view) {
 }
 
 async function refreshAllLeagues() {
-  showLoading(true, 'Aggiornamento di tutti i campionati dal sito ufficiale (Tuttocampo)...');
+  showLoading(true, 'Aggiornamento dal sito ufficiale in corso in background (Tuttocampo)...');
   hideError();
 
   try {
-    const resp = await fetch('/api/leagues/refresh-all', { method: 'POST' });
+    const initialLastUpdated = leagueData?.lastUpdated || null;
+    let resp = await fetch('/api/leagues/refresh-all', { method: 'POST' });
     if (!resp.ok) {
-      // Se l'endpoint globale non risponde (es. backend precedente o singolo fallback), prova singolo
-      const singleResp = await fetch(`/api/leagues/${currentLeague}/refresh`, { method: 'POST' });
-      if (!singleResp.ok) throw new Error(`Errore HTTP ${singleResp.status}`);
-      const singleRes = await singleResp.json();
-      leagueData = singleRes.data ? singleRes.data : singleRes;
-    } else {
-      const allRes = await resp.json();
-      if (allRes.data && allRes.data[currentLeague]) {
-        leagueData = allRes.data[currentLeague];
-      } else {
-        await loadLeague(currentLeague, false);
-        return;
+      // Se l'endpoint globale fallisce, tenta il refresh della singola lega
+      resp = await fetch(`/api/leagues/${currentLeague}/refresh`, { method: 'POST' });
+      if (!resp.ok) throw new Error(`Errore HTTP ${resp.status}`);
+    }
+
+    const startPayload = await resp.json();
+
+    // Se il server ha già completato in modo sincrono:
+    if (startPayload.data) {
+      if (startPayload.data[currentLeague]) {
+        leagueData = startPayload.data[currentLeague];
+      } else if (startPayload.data.id === currentLeague) {
+        leagueData = startPayload.data;
+      }
+      selectedDay = leagueData.currentMatchDay || 1;
+      renderHeaderInfo();
+      populateDaySelector();
+      populateTeamSelector();
+      switchView(currentView);
+      showLoading(false);
+      return;
+    }
+
+    // Se l'aggiornamento è stato accettato in background (status 202 o inProgress),
+    // effettuiamo polling periodico su /api/leagues per monitorare il completamento
+    let completed = false;
+    const maxPollAttempts = 40; // max ~2 minuti (40 * 3s)
+    for (let i = 0; i < maxPollAttempts; i++) {
+      await new Promise(resolve => setTimeout(resolve, 3000));
+
+      try {
+        const checkResp = await fetch(`/api/leagues?t=${Date.now()}`, { cache: 'no-cache' });
+        if (checkResp.ok) {
+          const leagues = await checkResp.json();
+          const target = leagues.find(l => l.id === currentLeague);
+          // Terminato se non è più in corso di revalidation e i dati sono stati aggiornati
+          if (target && !target.isRevalidating && (!initialLastUpdated || target.lastUpdated !== initialLastUpdated)) {
+            completed = true;
+            break;
+          }
+        }
+      } catch (pollErr) {
+        // Ignora errori temporanei di rete durante il poll
       }
     }
 
-    selectedDay = leagueData.currentMatchDay || 1;
-    renderHeaderInfo();
-    populateDaySelector();
-    populateTeamSelector();
-    switchView(currentView);
+    // Ricarica la lega corrente con i dati aggiornati
+    await loadLeague(currentLeague, false);
   } catch (err) {
     showError('Impossibile aggiornare i campionati: ' + (err.message || 'Errore di connessione col backend'));
-  } finally {
     showLoading(false);
   }
 }
