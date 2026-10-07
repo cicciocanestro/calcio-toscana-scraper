@@ -11,7 +11,7 @@ const { HttpScraper } = require('./http-scraper');
 // usata sia nel browser dallo scraper sia nei test Node.
 const PARSER_SOURCE = fs.readFileSync(require.resolve('./parser'), 'utf-8');
 
-const VALID_MODES = ['auto', 'http', 'browser'];
+const VALID_MODES = ['auto', 'http', 'browser', 'upstream'];
 
 class CalendarScraper {
   constructor(options = {}) {
@@ -22,7 +22,8 @@ class CalendarScraper {
     this.headless = options.headless !== undefined ? options.headless : true;
     this.onProgress = options.onProgress || (() => {});
 
-    // auto (default): prova HTTP e ripiega su Puppeteer se il WAF si mette di mezzo
+    // auto (default): prova HTTP, ripiega su Puppeteer e infine upstream
+    // upstream: salta direttamente il browser locale e scarica da upstream (es. Render)
     const mode = options.mode || process.env.SCRAPER_MODE || 'auto';
     this.mode = VALID_MODES.includes(mode) ? mode : 'auto';
 
@@ -43,6 +44,10 @@ class CalendarScraper {
     // URL di upstream (es. Render) per fallback trasparente quando l'IP è bloccato (es. su Oracle Cloud)
     this.upstreamUrl = options.upstreamUrl || process.env.UPSTREAM_SCRAPER_URL || 'https://calcio-toscana-scraper.onrender.com';
     this.upstreamToken = options.upstreamToken || process.env.UPSTREAM_SCRAPER_TOKEN || process.env.REFRESH_TOKEN || '';
+
+    // Se l'host corrente ha già verificato che l'IP è bloccato dal WAF (403),
+    // memorizziamo il flag per andare DIRETTI a upstream nei campionati successivi
+    this.ipHardBlocked = false;
   }
 
   /**
@@ -204,6 +209,14 @@ class CalendarScraper {
   async produceLeagueData(leagueConfig, options = {}) {
     const startedAt = Date.now();
 
+    // Se è forzata la modalità upstream o se l'IP è già noto come bloccato dal WAF
+    if (this.mode === 'upstream' || (this.ipHardBlocked && this.upstreamUrl)) {
+      this.onProgress(`Scaricamento diretto da upstream per ${leagueConfig.name} (${this.upstreamUrl})...`);
+      const data = await this.fetchLeagueFromUpstream(leagueConfig.id);
+      this.recordScrape(leagueConfig.id, 'upstream', Date.now() - startedAt);
+      return data;
+    }
+
     if (this.mode === 'browser') {
       const data = await this.scrapeLeagueWithBrowser(leagueConfig, options);
       this.recordScrape(leagueConfig.id, 'browser', Date.now() - startedAt);
@@ -247,6 +260,10 @@ class CalendarScraper {
       // 4) Se anche il browser fallisce (es. blocco IP 403 su datacenter come Oracle Cloud),
       // e abbiamo un endpoint upstream configurato, proviamo a richiedere i dati freschi da lì.
       if (this.upstreamUrl) {
+        // Se è un blocco 403, contrassegniamo l'IP come bloccato per evitare attese inutili nei prossimi campionati
+        if (browserErr.message && browserErr.message.includes('403 Forbidden')) {
+          this.ipHardBlocked = true;
+        }
         this.onProgress(`⚠ Browser locale bloccato (${browserErr.message}): fallback su upstream ${this.upstreamUrl}...`);
         try {
           const data = await this.fetchLeagueFromUpstream(leagueConfig.id);
