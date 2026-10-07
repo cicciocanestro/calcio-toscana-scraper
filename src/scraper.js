@@ -309,6 +309,47 @@ class CalendarScraper {
   }
 
   /**
+   * Durante la navigazione blocca solo i video pesanti, senza toccare
+   * immagini/font/script: AWS WAF usa pixel-tracker e risorse grafiche per
+   * validare l'ambiente browser.
+   */
+  async blockHeavyMedia(page) {
+    await page.setRequestInterception(true);
+    page.on('request', (req) => {
+      if (req.resourceType() === 'media') {
+        req.abort();
+      } else {
+        req.continue();
+      }
+    });
+  }
+
+  /** True se la pagina corrente mostra una challenge AWS WAF. */
+  async isWafChallenge(page) {
+    return page.evaluate(() => {
+      return typeof AwsWafIntegration !== 'undefined' ||
+             document.querySelector('#challenge-container') !== null;
+    }).catch(() => false);
+  }
+
+  /**
+   * Naviga verso l'URL del campionato e, se compare la challenge AWS WAF,
+   * attende che challenge.js ricarichi la pagina.
+   */
+  async navigateAndSolveWafChallenge(page, url, waitUntil) {
+    try {
+      await page.goto(url, { waitUntil, timeout: 30000 });
+    } catch (err) {
+      // Un reload immediato causato dalla challenge (o un timeout) non è un errore
+    }
+
+    if (await this.isWafChallenge(page)) {
+      this.onProgress('Risoluzione della challenge AWS WAF in corso...');
+      await page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 25000 }).catch(() => {});
+    }
+  }
+
+  /**
    * Sessione WAF condivisa: il bootstrap con il browser costa decine di secondi
    * su un'istanza piccola, quindi viene fatto una volta sola e riusato per tutti
    * i campionati finché i cookie (token `aws-waf-token`) sono validi.
@@ -356,31 +397,8 @@ class CalendarScraper {
 
       // Durante la navigazione, blocchiamo solo video pesanti senza toccare immagini/font/script
       // perché AWS WAF usa pixel-tracker e risorse grafiche per validare l'ambiente browser.
-      await page.setRequestInterception(true);
-      page.on('request', (req) => {
-        const resourceType = req.resourceType();
-        if (resourceType === 'media') {
-          req.abort();
-        } else {
-          req.continue();
-        }
-      });
-
-      try {
-        await page.goto(leagueConfig.url, { waitUntil: 'domcontentloaded', timeout: 30000 });
-      } catch (err) {
-        // Un reload immediato causato dalla challenge non è un errore
-      }
-
-      const inChallenge = await page.evaluate(() => {
-        return typeof AwsWafIntegration !== 'undefined' ||
-               document.querySelector('#challenge-container') !== null;
-      }).catch(() => false);
-
-      if (inChallenge) {
-        this.onProgress('Risoluzione della challenge AWS WAF in corso...');
-        await page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 25000 }).catch(() => {});
-      }
+      await this.blockHeavyMedia(page);
+      await this.navigateAndSolveWafChallenge(page, leagueConfig.url, 'domcontentloaded');
 
       await page.waitForFunction(
         () => typeof tckk !== 'undefined' && typeof roundID !== 'undefined' && typeof matchesNumber !== 'undefined',
@@ -428,37 +446,10 @@ class CalendarScraper {
       // Rimuove impronte di automazione per superare challenge AWS WAF
       await this.applyStealthEvasions(page);
 
-      await page.setRequestInterception(true);
-      page.on('request', (req) => {
-        const resourceType = req.resourceType();
-        if (resourceType === 'media') {
-          req.abort();
-        } else {
-          req.continue();
-        }
-      });
+      await this.blockHeavyMedia(page);
 
       this.onProgress(`Connessione a ${leagueConfig.url}...`);
-      try {
-        await page.goto(leagueConfig.url, {
-          waitUntil: 'networkidle2',
-          timeout: 30000
-        });
-      } catch (err) {
-        // Se c'è un reload immediato causato da WAF o timeout networkidle, prosegui
-      }
-
-      // Controlla se la pagina è in challenge WAF
-      const inWafChallenge = await page.evaluate(() => {
-        return typeof AwsWafIntegration !== 'undefined' ||
-               document.querySelector('#challenge-container') !== null;
-      }).catch(() => false);
-
-      if (inWafChallenge) {
-        this.onProgress('Risoluzione automatica challenge AWS WAF in corso...');
-        // Attendi che il challenge.js ricarichi la pagina
-        await page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 25000 }).catch(() => {});
-      }
+      await this.navigateAndSolveWafChallenge(page, leagueConfig.url, 'networkidle2');
 
       // Attende che la pagina carichi le variabili di sessione e metadati
       this.onProgress('Attesa caricamento sessione e token...');

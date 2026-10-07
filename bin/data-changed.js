@@ -16,24 +16,26 @@ const path = require('path');
 const { execFileSync } = require('child_process');
 const { LEAGUES, ROOT_DIR } = require('../src/config');
 
-// Campi che cambiano ad ogni generazione senza che sia cambiato nulla di reale
-const VOLATILE_KEYS = new Set(['lastUpdated', 'isStale', 'DTSTAMP']);
-
 /**
- * Serializzazione stabile: chiavi ordinate, campi volatili esclusi.
- * Due dataset con gli stessi dati sportivi producono la stessa stringa.
+ * Serializzazione stabile: chiavi ordinate, così due dataset con gli stessi
+ * dati producono la stessa stringa indipendentemente dall'ordine delle chiavi.
  */
 function stableStringify(value) {
   if (Array.isArray(value)) {
     return `[${value.map(stableStringify).join(',')}]`;
   }
   if (value && typeof value === 'object') {
-    const keys = Object.keys(value).filter(k => !VOLATILE_KEYS.has(k)).sort();
+    const keys = Object.keys(value).sort();
     return `{${keys.map(k => `${JSON.stringify(k)}:${stableStringify(value[k])}`).join(',')}}`;
   }
   return JSON.stringify(value === undefined ? null : value);
 }
 
+/**
+ * Impronta dei soli dati sportivi. I campi volatili (`lastUpdated`, `isStale`)
+ * restano fuori per costruzione, perché qui vengono selezionati solo i campi
+ * che rappresentano lo stato reale del campionato.
+ */
 function sportsFingerprint(leagueData) {
   if (!leagueData || typeof leagueData !== 'object') return '';
   return stableStringify({
@@ -114,4 +116,4 @@ if (require.main === module) {
   main();
 }
 
-module.exports = { sportsFingerprint, diffAgainstPrevious, stableStringify, VOLATILE_KEYS };
+module.exports = { sportsFingerprint, diffAgainstPrevious, stableStringify };

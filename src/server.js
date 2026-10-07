@@ -21,6 +21,9 @@ function createServer(options = {}) {
   // Richieste di ri-scraping in corso, per non duplicare lo stesso lavoro
   const revalidations = new Map();
 
+  // Aggiornamento globale in corso, letto da /api/leagues per il polling client
+  let globalRefreshTask = null;
+
   function revalidate(leagueId) {
     if (revalidations.has(leagueId)) return revalidations.get(leagueId);
 
@@ -138,9 +141,7 @@ function createServer(options = {}) {
     }
   });
 
-  // Stato aggiornamenti globali/singoli in background per polling client
-  let globalRefreshTask = null;
-
+  // Avvia (una sola volta) lo scraping di tutti i campionati in background
   function runGlobalRefresh() {
     if (globalRefreshTask) return globalRefreshTask;
 

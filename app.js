@@ -35,31 +35,26 @@ const elBtnExportIcs = document.getElementById('btn-export-ics');
 const elBtnExportCsv = document.getElementById('btn-export-csv');
 const elBtnExportJson = document.getElementById('btn-export-json');
 const elRefreshWrapper = document.getElementById('refresh-wrapper');
-const elRefreshTooltip = document.getElementById('refresh-tooltip');
 
 let isStaticEnvironment = false;
 
 // Rilevamento ambiente (GitHub Pages vs Server Node locale/cloud)
 function detectEnvironment() {
-  const isGitHubPages = window.location.hostname.endsWith('github.io') || window.location.hostname.includes('github.io');
+  const isGitHubPages = window.location.hostname.endsWith('github.io');
   if (isGitHubPages) {
-    setupStaticMode('Su GitHub Pages i calendari e le classifiche vengono aggiornati in automatico ogni fine settimana con GitHub Actions.');
+    setupStaticMode();
     return;
   }
 
   // Se siamo altrove (localhost o Render), verifichiamo se l'API risponde
   fetch('/api/leagues', { cache: 'no-cache' })
     .then(r => {
-      if (!r.ok) {
-        setupStaticMode('Server Node.js non attivo. Visualizzazione dati in modalità statica.');
-      }
+      if (!r.ok) setupStaticMode();
     })
-    .catch(() => {
-      setupStaticMode('Server Node.js non attivo. Visualizzazione dati in modalità statica.');
-    });
+    .catch(() => setupStaticMode());
 }
 
-function setupStaticMode(tooltipText) {
+function setupStaticMode() {
   isStaticEnvironment = true;
   if (!elBtnRefresh) return;
   elBtnRefresh.classList.remove('btn-primary');
@@ -180,7 +175,7 @@ function setupEventListeners() {
   elBtnExportIcs.addEventListener('click', (e) => {
     e.preventDefault();
     if (!leagueData) return;
-    const ics = generateClientFullIcs(leagueData);
+    const ics = generateClientIcs(leagueData);
     const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
     triggerBlobDownload(blob, `${currentLeague}.ics`);
   });
@@ -206,7 +201,6 @@ function switchView(view) {
   if (view === 'calendar') renderCalendar();
   else if (view === 'standings') renderStandings();
   else if (view === 'team') renderTeamSection();
-  else if (view === 'export') updateExportLinks();
 }
 
 async function refreshAllLeagues() {
@@ -511,27 +505,6 @@ function renderTeamMatches(team) {
     return;
   }
 
-  elBtnTeamIcs.classList.remove('hidden');
-  elBtnTeamIcs.innerText = `🗓 Scarica Calendario .ICS per ${team}`;
-  
-  // Imposta link API server o genera Blob client-side
-  elBtnTeamIcs.onclick = (e) => {
-    // Prova a generare il blob localmente così funziona istantaneamente sia online che offline
-    const icsContent = generateClientTeamIcs(team, teamMatches);
-    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-    const blobUrl = URL.createObjectURL(blob);
-    const safeName = team.toLowerCase().replace(/[^a-z0-9]/g, '_');
-    
-    const tempA = document.createElement('a');
-    tempA.href = blobUrl;
-    tempA.download = `${currentLeague}_${safeName}.ics`;
-    document.body.appendChild(tempA);
-    tempA.click();
-    document.body.removeChild(tempA);
-    URL.revokeObjectURL(blobUrl);
-    return false;
-  };
-
   const teamMatches = [];
   leagueData.matchDays.forEach(day => {
     day.matches.forEach(m => {
@@ -540,6 +513,17 @@ function renderTeamMatches(team) {
       }
     });
   });
+
+  elBtnTeamIcs.classList.remove('hidden');
+  elBtnTeamIcs.innerText = `🗓 Scarica Calendario .ICS per ${team}`;
+
+  // Il calendario viene generato localmente: funziona sia col server attivo sia su GitHub Pages
+  elBtnTeamIcs.onclick = (e) => {
+    e.preventDefault();
+    const icsContent = generateClientIcs(leagueData, { team });
+    const safeName = team.toLowerCase().replace(/[^a-z0-9]/g, '_');
+    triggerBlobDownload(new Blob([icsContent], { type: 'text/calendar;charset=utf-8' }), `${currentLeague}_${safeName}.ics`);
+  };
 
   elTeamMatchesContainer.innerHTML = '';
   const grid = document.createElement('div');
@@ -552,63 +536,90 @@ function renderTeamMatches(team) {
   elTeamMatchesContainer.appendChild(grid);
 }
 
-function generateClientTeamIcs(team, teamMatches) {
+/**
+ * Formatta inizio/fine evento iCalendar a partire dai campi della partita.
+ * Restituisce null se non c'è una data utilizzabile.
+ */
+function formatIcsEventTimes(m) {
+  if (m.dateTime && m.dateTime.includes('T')) {
+    const [dPart, tPart] = m.dateTime.split('T');
+    const [y, mo, d] = dPart.split('-').map(Number);
+    const [hh, mm] = tPart.split(':').map(Number);
+    const start = new Date(y, mo - 1, d, hh || 15, mm || 30);
+    const end = new Date(start.getTime() + 105 * 60 * 1000);
+    const pad = (n) => String(n).padStart(2, '0');
+    const fmt = (dt) => `${dt.getFullYear()}${pad(dt.getMonth() + 1)}${pad(dt.getDate())}T${pad(dt.getHours())}${pad(dt.getMinutes())}00`;
+    return {
+      start: `DTSTART;TZID=Europe/Rome:${fmt(start)}`,
+      end: `DTEND;TZID=Europe/Rome:${fmt(end)}`
+    };
+  }
+
+  if (m.date) {
+    const day = m.date.replace(/[-]/g, '');
+    return { start: `DTSTART;VALUE=DATE:${day}`, end: `DTEND;VALUE=DATE:${day}` };
+  }
+
+  return null;
+}
+
+/**
+ * Genera un calendario .ics lato client.
+ * Con `options.team` limita gli eventi alle partite di quella squadra.
+ */
+function generateClientIcs(data, options = {}) {
   const now = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+  const calName = options.team ? `${options.team} - Calendario` : `${data.name} - Calendario`;
   const lines = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
     'PRODID:-//Scraper Calcio Dilettanti Toscana//IT',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
-    `X-WR-CALNAME:${team} - Calendario`,
+    `X-WR-CALNAME:${calName}`,
     'X-WR-TIMEZONE:Europe/Rome'
   ];
 
-  teamMatches.forEach(({ match: m, day }) => {
-    let dtStart = '', dtEnd = '';
-    if (m.dateTime && m.dateTime.includes('T')) {
-      const [dPart, tPart] = m.dateTime.split('T');
-      const [y, mo, d] = dPart.split('-').map(Number);
-      const [hh, mm] = tPart.split(':').map(Number);
-      const st = new Date(y, mo - 1, d, hh || 15, mm || 30);
-      const en = new Date(st.getTime() + 105 * 60 * 1000);
-      const pad = (n) => String(n).padStart(2, '0');
-      const fmt = (dt) => `${dt.getFullYear()}${pad(dt.getMonth() + 1)}${pad(dt.getDate())}T${pad(dt.getHours())}${pad(dt.getMinutes())}00`;
-      dtStart = `DTSTART;TZID=Europe/Rome:${fmt(st)}`;
-      dtEnd = `DTEND;TZID=Europe/Rome:${fmt(en)}`;
-    } else if (m.date) {
-      const cl = m.date.replace(/[-]/g, '');
-      dtStart = `DTSTART;VALUE=DATE:${cl}`;
-      dtEnd = `DTEND;VALUE=DATE:${cl}`;
-    } else {
-      return;
+  for (const day of data.matchDays || []) {
+    for (const m of day.matches || []) {
+      if (options.team && m.homeTeam !== options.team && m.awayTeam !== options.team) continue;
+
+      const times = formatIcsEventTimes(m);
+      if (!times) continue;
+
+      const safeHome = m.homeTeam.replace(/[^a-zA-Z0-9]/g, '');
+      const safeAway = m.awayTeam.replace(/[^a-zA-Z0-9]/g, '');
+      const uid = `match-${data.id}-${day.dayNumber}-${safeHome}-${safeAway}@calciotoscana.local`;
+
+      let summary = `${m.homeTeam} vs ${m.awayTeam}`;
+      if (m.isPlayed) summary += ` (${m.homeScore}-${m.awayScore})`;
+
+      let desc = `${day.dayTitle} - ${data.name}\\n`;
+      if (m.isPlayed) {
+        desc += `Risultato finale: ${m.homeTeam} ${m.homeScore} - ${m.awayScore} ${m.awayTeam}\\n`;
+        if (m.homeScorers && m.homeScorers.length > 0) {
+          desc += `Marcatori ${m.homeTeam}: ${m.homeScorers.join(', ')}\\n`;
+        }
+        if (m.awayScorers && m.awayScorers.length > 0) {
+          desc += `Marcatori ${m.awayTeam}: ${m.awayScorers.join(', ')}\\n`;
+        }
+      } else {
+        desc += `Partita in programma alle ${m.time || '15:30'}\\n`;
+      }
+
+      lines.push('BEGIN:VEVENT');
+      lines.push(`UID:${uid}`);
+      lines.push(`DTSTAMP:${now}`);
+      lines.push(times.start);
+      lines.push(times.end);
+      lines.push(`SUMMARY:${summary}`);
+      lines.push(`DESCRIPTION:${desc}`);
+      lines.push(`LOCATION:Campo sportivo ${m.homeTeam}`);
+      if (m.matchLink) lines.push(`URL:${m.matchLink}`);
+      lines.push('STATUS:CONFIRMED');
+      lines.push('END:VEVENT');
     }
-
-    const safeHome = m.homeTeam.replace(/[^a-zA-Z0-9]/g, '');
-    const safeAway = m.awayTeam.replace(/[^a-zA-Z0-9]/g, '');
-    const uid = `match-${day.dayNumber}-${safeHome}-${safeAway}@calciotoscana.local`;
-
-    let summary = `${m.homeTeam} vs ${m.awayTeam}`;
-    if (m.isPlayed) summary += ` (${m.homeScore}-${m.awayScore})`;
-
-    let desc = `${day.dayTitle} - ${leagueData?.name || 'Campionato'}\\n`;
-    if (m.isPlayed) {
-      desc += `Risultato finale: ${m.homeTeam} ${m.homeScore} - ${m.awayScore} ${m.awayTeam}\\n`;
-    } else {
-      desc += `Partita in programma alle ${m.time || '15:30'}\\n`;
-    }
-
-    lines.push('BEGIN:VEVENT');
-    lines.push(`UID:${uid}`);
-    lines.push(`DTSTAMP:${now}`);
-    lines.push(dtStart);
-    lines.push(dtEnd);
-    lines.push(`SUMMARY:${summary}`);
-    lines.push(`DESCRIPTION:${desc}`);
-    lines.push(`LOCATION:Campo sportivo ${m.homeTeam}`);
-    lines.push('STATUS:CONFIRMED');
-    lines.push('END:VEVENT');
-  });
+  }
 
   lines.push('END:VCALENDAR');
   return lines.join('\r\n');
@@ -675,84 +686,6 @@ function generateClientCsv(data) {
   }
 
   return rows.join('\r\n');
-}
-
-function generateClientFullIcs(data) {
-  const now = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
-  const lines = [
-    'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'PRODID:-//Scraper Calcio Dilettanti Toscana//IT',
-    'CALSCALE:GREGORIAN',
-    'METHOD:PUBLISH',
-    `X-WR-CALNAME:${data.name} - Calendario`,
-    'X-WR-TIMEZONE:Europe/Rome'
-  ];
-
-  for (const day of data.matchDays || []) {
-    for (const m of day.matches || []) {
-      let dtStart = '', dtEnd = '';
-      if (m.dateTime && m.dateTime.includes('T')) {
-        const [dPart, tPart] = m.dateTime.split('T');
-        const [y, mo, d] = dPart.split('-').map(Number);
-        const [hh, mm] = tPart.split(':').map(Number);
-        const st = new Date(y, mo - 1, d, hh || 15, mm || 30);
-        const en = new Date(st.getTime() + 105 * 60 * 1000);
-        const pad = (n) => String(n).padStart(2, '0');
-        const fmt = (dt) => `${dt.getFullYear()}${pad(dt.getMonth() + 1)}${pad(dt.getDate())}T${pad(dt.getHours())}${pad(dt.getMinutes())}00`;
-        dtStart = `DTSTART;TZID=Europe/Rome:${fmt(st)}`;
-        dtEnd = `DTEND;TZID=Europe/Rome:${fmt(en)}`;
-      } else if (m.date) {
-        const cl = m.date.replace(/[-]/g, '');
-        dtStart = `DTSTART;VALUE=DATE:${cl}`;
-        dtEnd = `DTEND;VALUE=DATE:${cl}`;
-      } else {
-        continue;
-      }
-
-      const safeHome = m.homeTeam.replace(/[^a-zA-Z0-9]/g, '');
-      const safeAway = m.awayTeam.replace(/[^a-zA-Z0-9]/g, '');
-      const uid = `match-${data.id}-${day.dayNumber}-${safeHome}-${safeAway}@calciotoscana.local`;
-
-      let summary = `${m.homeTeam} vs ${m.awayTeam}`;
-      if (m.isPlayed) summary += ` (${m.homeScore}-${m.awayScore})`;
-
-      let desc = `${day.dayTitle} - ${data.name}\\n`;
-      if (m.isPlayed) {
-        desc += `Risultato finale: ${m.homeTeam} ${m.homeScore} - ${m.awayScore} ${m.awayTeam}\\n`;
-        if (m.homeScorers && m.homeScorers.length > 0) {
-          desc += `Marcatori ${m.homeTeam}: ${m.homeScorers.join(', ')}\\n`;
-        }
-        if (m.awayScorers && m.awayScorers.length > 0) {
-          desc += `Marcatori ${m.awayTeam}: ${m.awayScorers.join(', ')}\\n`;
-        }
-      } else {
-        desc += `Partita in programma alle ${m.time || '15:30'}\\n`;
-      }
-
-      lines.push('BEGIN:VEVENT');
-      lines.push(`UID:${uid}`);
-      lines.push(`DTSTAMP:${now}`);
-      lines.push(dtStart);
-      lines.push(dtEnd);
-      lines.push(`SUMMARY:${summary}`);
-      lines.push(`DESCRIPTION:${desc}`);
-      lines.push(`LOCATION:Campo sportivo ${m.homeTeam}`);
-      if (m.matchLink) lines.push(`URL:${m.matchLink}`);
-      lines.push('STATUS:CONFIRMED');
-      lines.push('END:VEVENT');
-    }
-  }
-
-  lines.push('END:VCALENDAR');
-  return lines.join('\r\n');
-}
-
-function updateExportLinks() {
-  // Configura i link diretti per click destro "salva con nome"
-  elBtnExportIcs.href = `data/exports/${currentLeague}.ics`;
-  elBtnExportCsv.href = `data/exports/${currentLeague}.csv`;
-  elBtnExportJson.href = `data/exports/${currentLeague}.json`;
 }
 
 function showLoading(show, text = 'Caricamento...') {
