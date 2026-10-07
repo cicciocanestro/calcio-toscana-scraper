@@ -10,7 +10,7 @@
   "roundID": "TO.P.C",
   "currentMatchDay": 4,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-10-05T16:32:49.740Z",
+  "lastUpdated": "2026-10-07T23:17:59.173Z",
   "standings": [
     {
       "position": 1,
@@ -745,7 +745,7 @@
           "dateTime": "2026-10-04T15:30:00",
           "homeScorers": [],
           "awayScorers": [
-            "F. Bettini (37' st)"
+            "F. Bettini (37' pt)"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932795.png?v=1",
