@@ -4,6 +4,7 @@ const assert = require('node:assert/strict');
 const {
   normalizeRepo,
   resolveConfig,
+  describeConfig,
   dispatchWorkflow,
   createWorkflowDispatcher,
   DEFAULT_BRANCH,
@@ -44,10 +45,37 @@ test('resolveConfig usa RENDER_GIT_REPO come fallback e i valori di default', ()
 
   assert.deepEqual(config, {
     token: 'tok',
+    tokenFrom: 'GITHUB_DISPATCH_TOKEN',
     repo: 'a/b',
     branch: DEFAULT_BRANCH,
     workflowFile: DEFAULT_WORKFLOW_FILE
   });
+});
+
+test('resolveConfig segnala quando il token arriva da GITHUB_TOKEN', () => {
+  const config = resolveConfig({ GITHUB_TOKEN: 'tok', GITHUB_REPOSITORY: 'a/b' });
+  assert.equal(config.tokenFrom, 'GITHUB_TOKEN');
+});
+
+test('describeConfig dice se la pubblicazione è attiva senza esporre il token', () => {
+  assert.deepEqual(describeConfig(null), {
+    publishConfigured: false,
+    repo: null,
+    branch: null,
+    workflowFile: null,
+    tokenFrom: null
+  });
+
+  const described = describeConfig(resolveConfig(ENV));
+
+  assert.equal(described.publishConfigured, true);
+  assert.equal(described.repo, 'cicciocanestro/calcio-toscana-scraper');
+  assert.equal(described.tokenFrom, 'GITHUB_DISPATCH_TOKEN');
+  assert.equal(
+    JSON.stringify(described).includes('ghp_segreto'),
+    false,
+    'il token non deve mai comparire nella diagnostica'
+  );
 });
 
 test('resolveConfig accetta branch e file di workflow personalizzati', () => {

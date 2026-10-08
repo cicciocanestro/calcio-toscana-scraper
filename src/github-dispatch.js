@@ -37,7 +37,7 @@ function normalizeRepo(value) {
 
 /**
  * Configurazione del dispatcher, oppure null se manca token o repository.
- * @returns {{token:string, repo:string, branch:string, workflowFile:string}|null}
+ * @returns {{token:string, tokenFrom:string, repo:string, branch:string, workflowFile:string}|null}
  */
 function resolveConfig(env = process.env) {
   const token = env.GITHUB_DISPATCH_TOKEN || env.GITHUB_TOKEN || '';
@@ -46,9 +46,35 @@ function resolveConfig(env = process.env) {
 
   return {
     token,
+    // Da quale variabile arriva il token: utile in diagnostica, senza esporlo
+    tokenFrom: env.GITHUB_DISPATCH_TOKEN ? 'GITHUB_DISPATCH_TOKEN' : 'GITHUB_TOKEN',
     repo,
     branch: env.GITHUB_BRANCH || DEFAULT_BRANCH,
     workflowFile: env.GITHUB_WORKFLOW_FILE || DEFAULT_WORKFLOW_FILE
+  };
+}
+
+/**
+ * Stato della configurazione per /api/diagnostics: dice se la pubblicazione
+ * automatica è attiva e su quale repository, senza mai esporre il token.
+ */
+function describeConfig(config) {
+  if (!config) {
+    return {
+      publishConfigured: false,
+      repo: null,
+      branch: null,
+      workflowFile: null,
+      tokenFrom: null
+    };
+  }
+
+  return {
+    publishConfigured: true,
+    repo: config.repo,
+    branch: config.branch,
+    workflowFile: config.workflowFile,
+    tokenFrom: config.tokenFrom
   };
 }
 
@@ -105,6 +131,7 @@ function createWorkflowDispatcher(env = process.env, options = {}) {
 module.exports = {
   normalizeRepo,
   resolveConfig,
+  describeConfig,
   dispatchWorkflow,
   createWorkflowDispatcher,
   DEFAULT_BRANCH,

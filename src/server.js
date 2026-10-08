@@ -3,7 +3,7 @@ const path = require('path');
 const { LEAGUES, DATA_DIR, PUBLIC_DIR, EXPORT_DIR } = require('./config');
 const { CalendarScraper } = require('./scraper');
 const { exportToJson, exportToCsv, exportToIcs, exportSlug } = require('./exporters');
-const { createWorkflowDispatcher } = require('./github-dispatch');
+const { resolveConfig, describeConfig, dispatchWorkflow } = require('./github-dispatch');
 
 /**
  * Crea l'applicazione Express.
@@ -24,9 +24,10 @@ function createServer(options = {}) {
   const autoRevalidate = options.autoRevalidate !== false;
 
   // Pubblicazione su GitHub: attiva solo se configurata (vedi src/github-dispatch.js)
+  const githubConfig = resolveConfig();
   const dispatchUpdate = options.dispatchUpdate !== undefined
     ? options.dispatchUpdate
-    : createWorkflowDispatcher();
+    : (githubConfig ? () => dispatchWorkflow(githubConfig) : null);
 
   // Richieste di ri-scraping in corso, per non duplicare lo stesso lavoro
   const revalidations = new Map();
@@ -109,6 +110,8 @@ function createServer(options = {}) {
     const diagnostics = typeof scraper.getDiagnostics === 'function' ? scraper.getDiagnostics() : {};
     res.json({
       service: 'calcio-toscana-scraper',
+      // Dice se dopo un refresh manuale verrà avviato il workflow GitHub
+      github: describeConfig(githubConfig),
       ...diagnostics,
       cache: Object.keys(LEAGUES).map(key => ({ id: key, ...scraper.getCacheStatus(key) }))
     });

@@ -205,6 +205,20 @@ Pages). Il flag `--no-refresh` evita di pagare due volte il bootstrap del browse
 Se `GITHUB_DISPATCH_TOKEN` non è impostato il dispatcher è disattivato e non viene fatta nessuna chiamata
 di rete: sviluppo locale e deploy esistenti continuano a funzionare senza modifiche.
 
+**Come verificare che sia attivo** (senza esporre il token):
+
+```bash
+curl -s https://calcio-toscana-scraper.onrender.com/api/diagnostics | grep -A6 '"github"'
+```
+
+Se compare `"publishConfigured": true` con il `repo` giusto, il token è letto correttamente. Con `false`,
+la variabile non è impostata (o ha un nome sbagliato) su Render. Il campo `tokenFrom` dice da quale
+variabile arriva il token, ma **il valore non viene mai esposto**.
+
+La controprova funzionale: premi "Aggiorna dal Web" e cerca nel log di Render la riga
+`[SERVER] Workflow GitHub avviato (...)`, poi controlla che in GitHub → Actions sia comparsa una run con
+evento `workflow_dispatch` (`gh run list`).
+
 ### Sicurezza degli aggiornamenti forzati
 Senza configurazione, chiunque conosca l'URL dell'istanza può farle avviare uno scraping. Per blindarlo basta
 impostare **lo stesso valore** in due posti:

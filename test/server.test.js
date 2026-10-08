@@ -311,6 +311,14 @@ test('GET /api/diagnostics riporta modalità, commit e stato cache', withServer(
   assert.ok(body.cache.every(c => typeof c.exists === 'boolean'));
 }));
 
+test('GET /api/diagnostics espone lo stato della pubblicazione su GitHub', withServer(async (base) => {
+  const body = await (await fetch(`${base}/api/diagnostics`)).json();
+
+  assert.equal(typeof body.github.publishConfigured, 'boolean');
+  assert.ok('repo' in body.github && 'branch' in body.github && 'tokenFrom' in body.github);
+  assert.ok(!('token' in body.github), 'il token non deve essere esposto');
+}));
+
 test('GET /api/health è un health check leggero', withServer(async (base) => {
   const res = await fetch(`${base}/api/health`);
   assert.equal(res.status, 200);
