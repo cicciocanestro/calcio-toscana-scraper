@@ -1,0 +1,26 @@
+# File che non devono finire nell'immagine: il container serve solo
+# l'applicazione, non il repository di sviluppo.
+
+# Storia del repository (il file più pesante da copiare)
+/.git
+/.github
+/.gitignore
+/.dockerignore
+
+# Dipendenze: installate nell'immagine con `npm ci`
+/node_modules
+
+# Test: non vengono eseguiti nel container
+/test
+*.md
+
+# Copie di root della dashboard: servono solo a GitHub Pages, perché il server
+# espone public/. I percorsi sono ancorati alla radice per non escludere anche
+# public/index.html.
+/app.js
+/index.html
+/style.css
+
+# NOTA: data/ viene copiata di proposito. Il filesystem di Render è effimero,
+# quindi la cache committata è il punto di partenza del container: senza,
+# la prima richiesta dovrebbe aspettare uno scraping completo (~50 s).

@@ -35,11 +35,17 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci --omit=dev
 
-# Copia il codice sorgente e i dati iniziali
+# Copia il codice sorgente e i dati iniziali (cosa viene escluso: .dockerignore)
 COPY . .
 
-# Assicura permessi e cartelle dati
-RUN mkdir -p data/cache data/exports
+# Cartelle dati e proprietario.
+# L'immagine node include già l'utente "node" (uid 1000): lo usiamo per non far
+# girare Chromium come root. Le cartelle dati devono restare scrivibili, perché
+# lo scraping vi salva cache ed export.
+RUN mkdir -p data/cache data/exports \
+    && chown -R node:node /app
+
+USER node
 
 EXPOSE 3000
 

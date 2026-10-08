@@ -1,8 +1,8 @@
 {
-  "name": "scraping",
+  "name": "calcio-toscana-scraper",
   "version": "1.0.0",
   "description": "Scraper e tool calendari per i campionati dilettantistici toscani",
-  "main": "index.js",
+  "main": "bin/cli.js",
   "scripts": {
     "start": "node bin/cli.js serve",
     "serve": "node bin/cli.js serve",
@@ -21,8 +21,14 @@
   "bin": {
     "calcio-toscana": "./bin/cli.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "calcio",
+    "toscana",
+    "scraper",
+    "calendario",
+    "classifica"
+  ],
+  "author": "cicciocanestro",
   "license": "ISC",
   "type": "commonjs",
   "engines": {

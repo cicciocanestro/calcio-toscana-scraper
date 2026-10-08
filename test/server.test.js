@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 
-const { createServer, normalizeTeamParam } = require('../src/server');
+const { createServer, normalizeTeamParam, safeTokenEquals, createRateLimiter } = require('../src/server');
 const { CalendarScraper } = require('../src/scraper');
 const { LEAGUES, EXPORT_DIR } = require('../src/config');
 const { sampleLeagueData } = require('./fixtures');
@@ -433,4 +433,61 @@ test('lo scraping forzato via GET (percorso della CI) non avvia il workflow', ()
     scraper: fakeScraper(),
     dispatchUpdate: async (reason) => { dispatched.push(reason); }
   })();
+});
+
+test('safeTokenEquals confronta i token a tempo costante', () => {
+  assert.equal(safeTokenEquals('segreto-di-test', 'segreto-di-test'), true);
+  assert.equal(safeTokenEquals('segreto-di-test', 'segreto-di-tes7'), false);
+  assert.equal(safeTokenEquals('corto', 'molto piu lungo'), false);
+  assert.equal(safeTokenEquals(undefined, 'segreto'), false);
+  assert.equal(safeTokenEquals('', 'segreto'), false);
+  assert.equal(safeTokenEquals('', ''), true);
+});
+
+test('createRateLimiter blocca oltre la soglia e isola gli IP', () => {
+  const limiter = createRateLimiter({ windowMs: 60000, max: 2 });
+
+  const statuses = [];
+  const makeRes = () => ({
+    setHeader: () => {},
+    status(code) { this.code = code; return this; },
+    json() { statuses.push(this.code); return this; }
+  });
+
+  let passed = 0;
+  const next = () => { passed++; };
+
+  limiter({ ip: '10.0.0.1' }, makeRes(), next);
+  limiter({ ip: '10.0.0.1' }, makeRes(), next);
+  limiter({ ip: '10.0.0.1' }, makeRes(), next); // oltre la soglia
+
+  assert.equal(passed, 2, 'solo le prime due passano');
+  assert.deepEqual(statuses, [429]);
+
+  // Un IP diverso non è penalizzato
+  limiter({ ip: '10.0.0.2' }, makeRes(), next);
+  assert.equal(passed, 3);
+});
+
+test('l\'export è protetto dal rate limit', async () => {
+  const app = createServer({
+    autoRevalidate: false,
+    scraper: fakeScraper(),
+    exportRateLimit: { windowMs: 60000, max: 2 }
+  });
+  const server = app.listen(0);
+  await new Promise(resolve => server.once('listening', resolve));
+  const base = `http://127.0.0.1:${server.address().port}`;
+
+  try {
+    const first = await fetch(`${base}/api/leagues/promozione-c/export/json`);
+    const second = await fetch(`${base}/api/leagues/promozione-c/export/json`);
+    const third = await fetch(`${base}/api/leagues/promozione-c/export/json`);
+
+    assert.equal(first.status, 200);
+    assert.equal(second.status, 200);
+    assert.equal(third.status, 429, 'oltre la soglia deve rispondere 429');
+  } finally {
+    await new Promise(resolve => server.close(resolve));
+  }
 });

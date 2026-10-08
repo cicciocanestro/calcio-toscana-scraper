@@ -16,9 +16,10 @@ on:
     branches: [main]
   pull_request:
 
+# Permessi minimi a livello di workflow: ogni job alza solo ciò che gli serve,
+# così il job di verifica sulle pull request resta in sola lettura.
 permissions:
-  contents: write
-  pages: write
+  contents: read
 
 jobs:
   # Test automatici: parser, exporter e API del server + coerenza degli asset
@@ -26,6 +27,8 @@ jobs:
   verifica:
     if: github.event_name == 'push' || github.event_name == 'pull_request'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout del codice
@@ -49,6 +52,10 @@ jobs:
   scrape-and-update:
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
+    # Serve scrivere i dati nel repository e chiedere la build di Pages
+    permissions:
+      contents: write
+      pages: write
 
     steps:
       - name: Checkout del codice

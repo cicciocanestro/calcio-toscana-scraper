@@ -1,8 +1,62 @@
 const express = require('express');
+const crypto = require('crypto');
 const { LEAGUES, DATA_DIR, PUBLIC_DIR } = require('./config');
 const { CalendarScraper } = require('./scraper');
 const { exportSlug, buildCsv, buildIcs } = require('./exporters');
 const { resolveConfig, describeConfig, dispatchWorkflow } = require('./github-dispatch');
+
+/**
+ * Confronto a tempo costante fra due stringhe: `===` esce al primo carattere
+ * diverso e il tempo di risposta lascia intuire il token carattere per
+ * carattere. La lunghezza non è un segreto, quindi il controllo preventivo
+ * (necessario perché timingSafeEqual vuole buffer della stessa dimensione)
+ * non indebolisce il confronto.
+ */
+function safeTokenEquals(provided, expected) {
+  if (typeof provided !== 'string' || typeof expected !== 'string') return false;
+
+  const a = Buffer.from(provided, 'utf-8');
+  const b = Buffer.from(expected, 'utf-8');
+  if (a.length !== b.length) return false;
+
+  return crypto.timingSafeEqual(a, b);
+}
+
+/**
+ * Rate limit minimo in memoria, senza dipendenze esterne: finestra scorrevole
+ * per IP. Protegge gli endpoint pubblici — in particolare l'export, che
+ * costruisce i file in memoria — da raffiche di richieste.
+ */
+function createRateLimiter(options = {}) {
+  const windowMs = options.windowMs || 60000;
+  const max = options.max || 120;
+  const hits = new Map();
+
+  return function rateLimit(req, res, next) {
+    const now = Date.now();
+    const key = req.ip || (req.socket && req.socket.remoteAddress) || 'sconosciuto';
+
+    // Pulizia delle finestre scadute, per non far crescere la mappa
+    if (hits.size > 1000) {
+      for (const [ip, times] of hits) {
+        const recent = times.filter(t => now - t < windowMs);
+        if (recent.length === 0) hits.delete(ip);
+        else hits.set(ip, recent);
+      }
+    }
+
+    const recent = (hits.get(key) || []).filter(t => now - t < windowMs);
+    recent.push(now);
+    hits.set(key, recent);
+
+    if (recent.length > max) {
+      res.setHeader('Retry-After', Math.ceil(windowMs / 1000));
+      return res.status(429).json({ error: 'Troppe richieste: riprova fra poco.' });
+    }
+
+    return next();
+  };
+}
 
 /**
  * `?team=` può arrivare come array (`?team=a&team=b`): lo normalizziamo a una
@@ -28,6 +82,8 @@ function normalizeTeamParam(value) {
  *                                                     Default: dispatcher da variabili d'ambiente,
  *                                                     oppure null se non configurato. Passare una
  *                                                     funzione per i test, `null` per disattivare.
+ * @param {object} [options.exportRateLimit]         - soglia del rate limit sull'export
+ *                                                     ({ windowMs, max }). Default: 120 al minuto.
  */
 function createServer(options = {}) {
   const app = express();
@@ -91,9 +147,15 @@ function createServer(options = {}) {
   // così lo sviluppo locale e i deploy esistenti continuano a funzionare.
   const refreshToken = process.env.REFRESH_TOKEN || '';
 
+  if (!refreshToken && process.env.NODE_ENV === 'production') {
+    console.warn(
+      '[SERVER] ⚠ REFRESH_TOKEN non impostato: chiunque conosca l\'URL può avviare uno scraping forzato.'
+    );
+  }
+
   function requireRefreshToken(req, res, next) {
     if (!refreshToken) return next();
-    if (req.get('x-refresh-token') === refreshToken) return next();
+    if (safeTokenEquals(req.get('x-refresh-token'), refreshToken)) return next();
     return res.status(401).json({ error: 'Token di aggiornamento mancante o non valido.' });
   }
 
@@ -285,7 +347,12 @@ function createServer(options = {}) {
   // Download export (CSV, ICS, JSON) con filtro squadra opzionale.
   // Il contenuto viene generato in memoria: nessun file temporaneo su disco,
   // così richieste ripetute non si sovrascrivono e non si accumulano.
-  app.get('/api/leagues/:id/export/:format', async (req, res) => {
+  // Il rate limit protegge l'endpoint, che è pubblico e costoso da servire.
+  const exportRateLimit = createRateLimiter(
+    options.exportRateLimit || { windowMs: 60 * 1000, max: 120 }
+  );
+
+  app.get('/api/leagues/:id/export/:format', exportRateLimit, async (req, res) => {
     const { id, format } = req.params;
     const team = normalizeTeamParam(req.query.team);
 
@@ -336,5 +403,7 @@ function startServer(port = 3000) {
 module.exports = {
   createServer,
   startServer,
-  normalizeTeamParam
+  normalizeTeamParam,
+  safeTokenEquals,
+  createRateLimiter
 };
