@@ -301,6 +301,20 @@ body {
   margin: 1rem 0 0;
 }
 
+/* Intestazione del weekend: separa i finesettimana quando si mostrano tutti */
+.weekend-heading {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 1.5rem 0 0.75rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 2px solid var(--primary-light);
+}
+
+.weekend-heading:first-child {
+  margin-top: 1rem;
+}
+
 .sub-nav-btn {
   background: none;
   border: none;

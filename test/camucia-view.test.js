@@ -12,9 +12,13 @@ const ROOT = path.join(__dirname, '..');
  * testarla si carica index.html in linkedom e si esegue app.js in una sandbox,
  * con un `fetch` finto che restituisce dati sintetici: i test restano così
  * deterministici e indipendenti dai dati reali in cache.
+ *
+ * I dati riproducono la situazione reale: la stessa "4ª Giornata" cade su
+ * weekend diversi nei tre campionati (3-4 ottobre in Promozione, 10-11 ottobre
+ * in Seconda e Terza).
  */
 
-function match(homeTeam, awayTeam, homeScore = null, awayScore = null) {
+function match(homeTeam, awayTeam, date, homeScore = null, awayScore = null) {
   return {
     homeTeam,
     awayTeam,
@@ -22,9 +26,9 @@ function match(homeTeam, awayTeam, homeScore = null, awayScore = null) {
     awayScore,
     isPlayed: homeScore !== null && awayScore !== null,
     status: homeScore === null ? 'SCHEDULED' : 'FINISHED',
-    date: '2026-10-04',
+    date,
     time: '15:30',
-    dateTime: '2026-10-04T15:30:00',
+    dateTime: `${date}T15:30:00`,
     homeScorers: [],
     awayScorers: [],
     matchLink: ''
@@ -36,20 +40,20 @@ const DATA = {
     id: 'promozione-c',
     name: 'Promozione Toscana - Girone C',
     shortName: 'Promozione C',
-    currentMatchDay: 1,
-    totalMatchDays: 2,
+    currentMatchDay: 4,
+    totalMatchDays: 5,
     matchDays: [
       {
-        dayNumber: 1, dayTitle: '1° Giornata', dayDate: '04|10|2026',
+        dayNumber: 4, dayTitle: '4° Giornata', dayDate: '03|10|2026 - 04|10|2026',
         matches: [
-          match('Cortona Camucia Calcio', 'Acquaviva', 2, 1),
-          match('Altra Squadra', 'Terza Squadra'),
-          match('Acquaviva', 'Cortona Camucia Calcio') // trasferta: da escludere
+          match('Cortona Camucia Calcio', 'Acquaviva', '2026-10-03', 2, 1),
+          match('Altra Squadra', 'Terza Squadra', '2026-10-04'),
+          match('Acquaviva', 'Cortona Camucia Calcio', '2026-10-04') // trasferta
         ]
       },
       {
-        dayNumber: 2, dayTitle: '2° Giornata', dayDate: '11|10|2026',
-        matches: [match('Cortona Camucia Calcio', 'Resco Reggello')]
+        dayNumber: 5, dayTitle: '5° Giornata', dayDate: '10|10|2026 - 11|10|2026',
+        matches: [match('Cortona Camucia Calcio', 'Resco Reggello', '2026-10-10')]
       }
     ]
   },
@@ -57,15 +61,15 @@ const DATA = {
     id: 'seconda-i',
     name: 'Seconda Categoria Toscana - Girone I',
     shortName: 'Seconda Cat. I',
-    currentMatchDay: 1,
-    totalMatchDays: 1,
+    currentMatchDay: 4,
+    totalMatchDays: 4,
     matchDays: [
       {
-        dayNumber: 1, dayTitle: '1° Giornata', dayDate: '04|10|2026',
+        dayNumber: 4, dayTitle: '4° Giornata', dayDate: '10|10|2026 - 11|10|2026',
         matches: [
-          match('Fratta Santa Caterina', 'Poppi'),
-          match('Fratticciola', 'Bucine'),
-          match('Bucine', 'Fratticciola') // trasferta
+          match('Fratta Santa Caterina', 'Poppi', '2026-10-10'),
+          match('Fratticciola', 'Bucine', '2026-10-11'),
+          match('Bucine', 'Fratticciola', '2026-10-11') // trasferta
         ]
       }
     ]
@@ -74,15 +78,15 @@ const DATA = {
     id: 'terza-arezzo',
     name: 'Terza Categoria Arezzo - Girone Unico',
     shortName: 'Terza Cat. Arezzo',
-    currentMatchDay: 1,
-    totalMatchDays: 1,
+    currentMatchDay: 4,
+    totalMatchDays: 4,
     matchDays: [
       {
-        dayNumber: 1, dayTitle: '1° Giornata', dayDate: '04|10|2026',
+        dayNumber: 4, dayTitle: '4° Giornata', dayDate: '11|10|2026',
         matches: [
-          match('Montecchio', 'Tuscar'),
-          match('Monsigliolo', 'Badia Agnano'),
-          match('Terontola', 'Montecchio') // trasferta
+          match('Montecchio', 'Tuscar', '2026-10-11'),
+          match('Monsigliolo', 'Badia Agnano', '2026-10-11'),
+          match('Terontola', 'Montecchio', '2026-10-11') // trasferta
         ]
       }
     ]
@@ -116,7 +120,20 @@ function loadApp(payloads = DATA) {
 const homeOf = (card) => card.querySelector('.team-row.home .team-name').textContent;
 const awayOf = (card) => card.querySelector('.team-row.away .team-name').textContent;
 
-test('la scheda CC Camucia è collegata al pannello giusto', () => {
+/** Seleziona il weekend che inizia in una certa data, come farebbe l'utente. */
+function selectWeekend(ctx, fromDate) {
+  const weekend = ctx.camuciaWeekendOptions().find(w => w.from === fromDate);
+  assert.ok(weekend, `nessun weekend che inizia il ${fromDate}`);
+
+  vm.runInContext(
+    `camuciaSelectedWeekend = ${JSON.stringify(weekend.key)};` +
+    'populateCamuciaWeekendSelector(); renderCamuciaMatches();',
+    ctx
+  );
+  return weekend;
+}
+
+test('la scheda CC Camucia è collegata al pannello giusto ed è l\'ultima voce', () => {
   const { document } = loadApp();
 
   const button = [...document.querySelectorAll('.sub-nav-btn')]
@@ -125,9 +142,8 @@ test('la scheda CC Camucia è collegata al pannello giusto', () => {
   assert.ok(button, 'esiste il pulsante nella sotto-navigazione');
   assert.match(button.textContent, /CC Camucia/);
   assert.ok(document.getElementById('view-camucia'), 'esiste il pannello della vista');
-  assert.ok(document.getElementById('select-camucia-day'), 'esiste il selettore di giornata');
+  assert.ok(document.getElementById('select-camucia-weekend'), 'esiste il selettore di weekend');
 
-  // Deve restare l'ultima voce, dopo Esportazioni
   const voci = [...document.querySelectorAll('.sub-nav-btn')].map(b => b.getAttribute('data-view'));
   assert.deepEqual(voci, ['calendar', 'standings', 'team', 'export', 'camucia']);
 });
@@ -143,54 +159,135 @@ test('isCamuciaTeam riconosce le cinque squadre e ignora le altre', () => {
   }
 });
 
-test('collectCamuciaHomeMatches tiene solo le partite in casa, filtrabili per giornata', () => {
+test('isoWeekKey mette nello stesso gruppo sabato e domenica, e separa i weekend', () => {
   const { ctx } = loadApp();
 
-  const tutte = ctx.collectCamuciaHomeMatches(DATA['promozione-c'], null);
-  // Lo spread riporta l'array nel realm del test (deepStrictEqual confronta i prototipi)
-  assert.deepEqual([...tutte].map(x => x.match.homeTeam), ['Cortona Camucia Calcio', 'Cortona Camucia Calcio']);
-  assert.ok(tutte.every(x => x.match.awayTeam !== 'Cortona Camucia Calcio'), 'nessuna trasferta');
+  assert.equal(ctx.isoWeekKey('2026-10-03'), ctx.isoWeekKey('2026-10-04'), 'sabato e domenica');
+  assert.equal(ctx.isoWeekKey('2026-10-10'), ctx.isoWeekKey('2026-10-11'), 'sabato e domenica');
+  assert.notEqual(ctx.isoWeekKey('2026-10-03'), ctx.isoWeekKey('2026-10-10'), 'weekend diversi');
+  // Anche a cavallo di un mese
+  assert.equal(ctx.isoWeekKey('2026-10-31'), ctx.isoWeekKey('2026-11-01'));
 
-  const prima = ctx.collectCamuciaHomeMatches(DATA['promozione-c'], 1);
-  assert.equal(prima.length, 1);
-  assert.equal(prima[0].match.awayTeam, 'Acquaviva');
+  assert.equal(ctx.isoWeekKey(''), null);
+  assert.equal(ctx.isoWeekKey('non-una-data'), null);
 });
 
-test('la scheda aggrega i tre campionati e mostra una partita per squadra', async () => {
-  const { ctx, document } = loadApp();
+test('formatDateRange produce etichette italiane leggibili', () => {
+  const { ctx } = loadApp();
 
+  assert.equal(ctx.formatDateRange('2026-10-10', '2026-10-11'), '10–11 ottobre 2026');
+  assert.equal(ctx.formatDateRange('2026-10-11', '2026-10-11'), '11 ottobre 2026');
+  assert.equal(ctx.formatDateRange('2026-09-28', '2026-10-04'), '28 settembre – 4 ottobre 2026');
+  assert.equal(ctx.formatDateRange('', ''), '');
+});
+
+test('collectCamuciaBlocks tiene solo le partite in casa e filtra per weekend', () => {
+  const { ctx } = loadApp();
+  const leagues = [{ data: DATA['promozione-c'] }];
+
+  const tutte = ctx.collectCamuciaBlocks(leagues, null);
+  assert.equal(tutte.length, 2, 'una giornata per weekend');
+  assert.ok(tutte.every(b => b.matches.every(m => ctx.isCamuciaTeam(m.homeTeam))), 'nessuna trasferta');
+
+  const weekendDiOttobre = ctx.collectCamuciaBlocks(leagues, ctx.isoWeekKey('2026-10-10'));
+  assert.equal(weekendDiOttobre.length, 1);
+  assert.equal(weekendDiOttobre[0].matches.length, 1);
+  assert.equal(weekendDiOttobre[0].matches[0].awayTeam, 'Resco Reggello');
+});
+
+test('camuciaWeekendOptions elenca i weekend con etichetta, in ordine di data', () => {
+  const { ctx } = loadApp();
+
+  // Popola lo stato come farebbe l'apertura della scheda
+  return ctx.loadCamuciaLeagues().then(() => {
+    const options = ctx.camuciaWeekendOptions();
+
+    assert.equal(options.length, 2);
+    assert.deepEqual([...options].map(w => w.label), ['3–4 ottobre 2026', '10–11 ottobre 2026']);
+    assert.deepEqual([...options].map(w => w.from), ['2026-10-03', '2026-10-10']);
+  });
+});
+
+test('defaultCamuciaWeekend sceglie il prossimo weekend, altrimenti l\'ultimo', () => {
+  const { ctx } = loadApp();
+
+  const passato = { key: 'A', from: '2020-01-04', to: '2020-01-05' };
+  const futuro = { key: 'B', from: '2099-01-03', to: '2099-01-04' };
+
+  assert.equal(ctx.defaultCamuciaWeekend([passato, futuro]), 'B');
+  assert.equal(ctx.defaultCamuciaWeekend([passato]), 'A', 'se sono tutti passati si usa l\'ultimo');
+  assert.equal(ctx.defaultCamuciaWeekend([]), null);
+});
+
+test('la scheda raggruppa per weekend le partite dei tre campionati', async () => {
+  const { ctx, document } = loadApp();
   await ctx.openCamuciaView();
 
   const container = document.getElementById('camucia-container');
-  const cards = [...container.querySelectorAll('.match-card')];
+  const weekend = selectWeekend(ctx, '2026-10-10');
 
+  // Intestazione del weekend
+  const heading = container.querySelector('.weekend-heading');
+  assert.ok(heading, 'c\'è l\'intestazione del weekend');
+  assert.equal(heading.textContent, weekend.label);
+  assert.equal(heading.textContent, '10–11 ottobre 2026');
+
+  // Una partita in casa per ognuna delle cinque squadre, da tutti e tre i campionati
+  const cards = [...container.querySelectorAll('.match-card')];
   assert.deepEqual(
     cards.map(homeOf).sort(),
-    ['Cortona Camucia Calcio', 'Fratta Santa Caterina', 'Fratticciola', 'Montecchio', 'Monsigliolo'].sort(),
-    'una partita in casa per ognuna delle cinque squadre'
+    ['Cortona Camucia Calcio', 'Fratta Santa Caterina', 'Fratticciola', 'Montecchio', 'Monsigliolo'].sort()
   );
+  assert.ok(!cards.some(c => ctx.isCamuciaTeam(awayOf(c))), 'le trasferte non devono comparire');
 
+  // Un blocco per campionato, con la giornata come informazione secondaria
+  const blocchi = [...container.querySelectorAll('.matchday-block')];
+  assert.equal(blocchi.length, 3);
+  assert.deepEqual(
+    blocchi.map(b => b.querySelector('.matchday-title').textContent).sort(),
+    ['Promozione C', 'Seconda Cat. I', 'Terza Cat. Arezzo'].sort()
+  );
   assert.ok(
-    !cards.some(c => ctx.isCamuciaTeam(awayOf(c))),
-    'le partite in trasferta non devono comparire'
+    blocchi.every(b => /Giornata/.test(b.querySelector('.matchday-date').textContent)),
+    'ogni blocco riporta la propria giornata'
   );
-
-  // Un blocco per campionato, con il nome della competizione
-  const etichette = [...container.querySelectorAll('.matchday-block .matchday-date')].map(e => e.textContent);
-  assert.equal(etichette.length, 3);
-  for (const frammento of ['Promozione C', 'Seconda Cat. I', 'Terza Cat. Arezzo']) {
-    assert.ok(etichette.some(t => t.includes(frammento)), `manca il blocco di ${frammento}`);
-  }
 });
 
-test('il selettore di giornata limita le partite mostrate', async () => {
+test('i weekend diversi non si mescolano', async () => {
   const { ctx, document } = loadApp();
   await ctx.openCamuciaView();
 
-  // La giornata 2 esiste solo in Promozione, con una sola partita in casa
-  vm.runInContext('camuciaSelectedDay = 2; renderCamuciaMatches();', ctx);
+  const container = document.getElementById('camucia-container');
 
-  const cards = [...document.querySelectorAll('#camucia-container .match-card')];
+  // Weekend del 3-4 ottobre: solo il Cortona Camucia gioca in casa
+  selectWeekend(ctx, '2026-10-03');
+  let cards = [...container.querySelectorAll('.match-card')];
   assert.equal(cards.length, 1);
   assert.equal(homeOf(cards[0]), 'Cortona Camucia Calcio');
+  assert.equal(container.querySelector('.weekend-heading').textContent, '3–4 ottobre 2026');
+
+  // Weekend del 10-11 ottobre: cinque partite in casa
+  selectWeekend(ctx, '2026-10-10');
+  cards = [...container.querySelectorAll('.match-card')];
+  assert.equal(cards.length, 5);
+});
+
+test('il selettore elenca i weekend e l\'opzione "tutti" li mostra tutti', async () => {
+  const { ctx, document } = loadApp();
+  await ctx.openCamuciaView();
+
+  const select = document.getElementById('select-camucia-weekend');
+  const voci = [...select.querySelectorAll('option')].map(o => o.textContent);
+
+  assert.equal(voci[0], 'Tutti i weekend');
+  assert.deepEqual(voci.slice(1), ['3–4 ottobre 2026', '10–11 ottobre 2026']);
+
+  // "Tutti i weekend" mostra entrambi, ciascuno con la sua intestazione
+  vm.runInContext('camuciaSelectedWeekend = null; renderCamuciaMatches();', ctx);
+
+  const headings = [...document.querySelectorAll('#camucia-container .weekend-heading')].map(h => h.textContent);
+  assert.deepEqual(headings, ['3–4 ottobre 2026', '10–11 ottobre 2026']);
+
+  const cards = [...document.querySelectorAll('#camucia-container .match-card')];
+  assert.equal(cards.length, 6, '1 partita nel primo weekend + 5 nel secondo');
 });

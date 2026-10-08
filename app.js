@@ -11,9 +11,9 @@ let currentView = 'calendar';
 const CAMUCIA_LEAGUE_IDS = ['promozione-c', 'seconda-i', 'terza-arezzo'];
 const CAMUCIA_TEAMS = ['cortona camucia', 'fratta', 'fratticciola', 'montecchio', 'monsigliolo'];
 
-let camuciaLeagues = null;        // [{ id, data }] dei campionati caricati
-let camuciaSelectedDay = null;    // null = tutte le giornate
-let camuciaDayInitialized = false;
+let camuciaLeagues = null;            // [{ id, data }] dei campionati caricati
+let camuciaSelectedWeekend = null;    // chiave ISO del weekend (null = tutti)
+let camuciaWeekendInitialized = false;
 
 // Elementi DOM
 const elLeaguesTabs = document.getElementById('leagues-tabs');
@@ -35,7 +35,7 @@ const elBtnNextDay = document.getElementById('btn-next-day');
 const elBtnAllDays = document.getElementById('btn-all-days');
 const elCalendarContainer = document.getElementById('calendar-container');
 
-const elSelectCamuciaDay = document.getElementById('select-camucia-day');
+const elSelectCamuciaWeekend = document.getElementById('select-camucia-weekend');
 const elBtnCamuciaPrev = document.getElementById('btn-camucia-prev');
 const elBtnCamuciaNext = document.getElementById('btn-camucia-next');
 const elBtnCamuciaAll = document.getElementById('btn-camucia-all');
@@ -173,36 +173,19 @@ function setupEventListeners() {
     renderCalendar();
   });
 
-  // Scheda CC Camucia: selettore di giornata indipendente
-  elSelectCamuciaDay.addEventListener('change', (e) => {
+  // Scheda CC Camucia: selettore di weekend indipendente
+  elSelectCamuciaWeekend.addEventListener('change', (e) => {
     const val = e.target.value;
-    camuciaSelectedDay = val === 'all' ? null : parseInt(val, 10);
+    camuciaSelectedWeekend = val === 'all' ? null : val;
     renderCamuciaMatches();
   });
 
-  elBtnCamuciaPrev.addEventListener('click', () => {
-    const max = camuciaMaxDay();
-    if (camuciaSelectedDay === null) camuciaSelectedDay = max;
-    if (camuciaSelectedDay > 1) {
-      camuciaSelectedDay--;
-      elSelectCamuciaDay.value = camuciaSelectedDay;
-      renderCamuciaMatches();
-    }
-  });
-
-  elBtnCamuciaNext.addEventListener('click', () => {
-    const max = camuciaMaxDay();
-    if (camuciaSelectedDay === null) camuciaSelectedDay = 1;
-    if (camuciaSelectedDay < max) {
-      camuciaSelectedDay++;
-      elSelectCamuciaDay.value = camuciaSelectedDay;
-      renderCamuciaMatches();
-    }
-  });
+  elBtnCamuciaPrev.addEventListener('click', () => stepCamuciaWeekend(-1));
+  elBtnCamuciaNext.addEventListener('click', () => stepCamuciaWeekend(1));
 
   elBtnCamuciaAll.addEventListener('click', () => {
-    camuciaSelectedDay = null;
-    elSelectCamuciaDay.value = 'all';
+    camuciaSelectedWeekend = null;
+    elSelectCamuciaWeekend.value = 'all';
     renderCamuciaMatches();
   });
 
@@ -460,30 +443,164 @@ function isCamuciaTeam(name) {
   return CAMUCIA_TEAMS.some(team => clean.includes(team));
 }
 
-/**
- * Partite in casa delle squadre CC Camucia.
- * @param {object} data       dati di un campionato
- * @param {number|null} dayNumber giornata da considerare (null = tutte)
- * @returns {Array<{match:object, day:object}>}
- */
-function collectCamuciaHomeMatches(data, dayNumber) {
-  const found = [];
-  for (const day of (data && data.matchDays) || []) {
-    if (dayNumber !== null && dayNumber !== undefined && day.dayNumber !== dayNumber) continue;
+const MESI_IT = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno',
+  'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
 
-    for (const m of day.matches || []) {
-      if (isCamuciaTeam(m.homeTeam)) found.push({ match: m, day });
-    }
-  }
-  return found;
+/**
+ * Chiave della settimana ISO di una data YYYY-MM-DD (es. "2026-W41").
+ *
+ * Serve a raggruppare sabato e domenica dello stesso weekend (più l'eventuale
+ * turno infrasettimanale della stessa settimana). I tre campionati non giocano
+ * la stessa giornata nello stesso fine settimana, quindi la giornata non è un
+ * buon criterio di raggruppamento: la settimana sì.
+ *
+ * @returns {string|null} null se la data non è leggibile
+ */
+function isoWeekKey(dateStr) {
+  const parts = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(dateStr || ''));
+  if (!parts) return null;
+
+  const date = new Date(Date.UTC(Number(parts[1]), Number(parts[2]) - 1, Number(parts[3])));
+  // Una settimana ISO è identificata dal suo giovedì
+  date.setUTCDate(date.getUTCDate() - ((date.getUTCDay() + 6) % 7) + 3);
+
+  const firstThursday = new Date(Date.UTC(date.getUTCFullYear(), 0, 4));
+  firstThursday.setUTCDate(firstThursday.getUTCDate() - ((firstThursday.getUTCDay() + 6) % 7) + 3);
+
+  const week = 1 + Math.round((date - firstThursday) / (7 * 24 * 60 * 60 * 1000));
+  return `${date.getUTCFullYear()}-W${String(week).padStart(2, '0')}`;
 }
 
-/** Numero di giornate da mostrare nel selettore (il massimo fra i campionati). */
-function camuciaMaxDay() {
-  return (camuciaLeagues || []).reduce(
-    (max, entry) => Math.max(max, (entry.data && entry.data.totalMatchDays) || 0),
-    1
-  );
+/**
+ * Sabato e domenica della settimana ISO indicata, in formato YYYY-MM-DD.
+ * Il weekend viene etichettato con l'intervallo sabato-domenica (es. il 10 e 11
+ * ottobre), non con le sole date in cui giocano le squadre seguite.
+ */
+function isoWeekRange(key) {
+  const parts = /^(\d{4})-W(\d{2})$/.exec(String(key || ''));
+  if (!parts) return null;
+
+  // Il 4 gennaio appartiene sempre alla settimana 1: da lì risalgo al lunedì
+  const jan4 = new Date(Date.UTC(Number(parts[1]), 0, 4));
+  const mondayOfWeek1 = new Date(jan4);
+  mondayOfWeek1.setUTCDate(jan4.getUTCDate() - ((jan4.getUTCDay() + 6) % 7));
+
+  const monday = new Date(mondayOfWeek1);
+  monday.setUTCDate(mondayOfWeek1.getUTCDate() + (Number(parts[2]) - 1) * 7);
+
+  const saturday = new Date(monday);
+  saturday.setUTCDate(monday.getUTCDate() + 5);
+  const sunday = new Date(monday);
+  sunday.setUTCDate(monday.getUTCDate() + 6);
+
+  return { from: saturday.toISOString().slice(0, 10), to: sunday.toISOString().slice(0, 10) };
+}
+
+/**
+ * Etichetta italiana di un intervallo di date YYYY-MM-DD.
+ * Es. "2026-10-10" + "2026-10-11" -> "10–11 ottobre 2026".
+ */
+function formatDateRange(fromStr, toStr) {
+  const parse = (value) => {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value || ''));
+    return m ? { y: Number(m[1]), m: Number(m[2]), d: Number(m[3]) } : null;
+  };
+
+  const from = parse(fromStr);
+  if (!from) return '';
+  const to = parse(toStr) || from;
+
+  if (from.y === to.y && from.m === to.m && from.d === to.d) {
+    return `${from.d} ${MESI_IT[from.m - 1]} ${from.y}`;
+  }
+  if (from.y === to.y && from.m === to.m) {
+    return `${from.d}–${to.d} ${MESI_IT[from.m - 1]} ${from.y}`;
+  }
+  return `${from.d} ${MESI_IT[from.m - 1]} – ${to.d} ${MESI_IT[to.m - 1]} ${to.y}`;
+}
+
+/**
+ * Blocchi di partite in casa delle squadre CC Camucia: un blocco per giornata
+ * di un campionato, già filtrato per weekend.
+ *
+ * @param {Array<{data:object}>} leagues campionati caricati
+ * @param {string|null} weekendKey chiave ISO del weekend (null = tutti)
+ */
+function collectCamuciaBlocks(leagues, weekendKey = null) {
+  const blocks = [];
+
+  for (const entry of leagues || []) {
+    const data = entry && entry.data;
+    for (const day of (data && data.matchDays) || []) {
+      const matches = (day.matches || []).filter(m =>
+        isCamuciaTeam(m.homeTeam) && (weekendKey === null || isoWeekKey(m.date) === weekendKey)
+      );
+      if (matches.length === 0) continue;
+
+      const dates = matches.map(m => m.date).filter(Boolean).sort();
+      blocks.push({
+        league: data,
+        day,
+        matches,
+        from: dates[0] || '',
+        to: dates[dates.length - 1] || ''
+      });
+    }
+  }
+
+  blocks.sort((a, b) => {
+    if (a.from !== b.from) return a.from < b.from ? -1 : 1;
+    const nameA = String(a.league.shortName || a.league.name);
+    const nameB = String(b.league.shortName || b.league.name);
+    return nameA.localeCompare(nameB);
+  });
+
+  return blocks;
+}
+
+/** Weekend con almeno una partita in casa, ordinati per data. */
+function camuciaWeekendOptions() {
+  const keys = new Set();
+
+  for (const block of collectCamuciaBlocks(camuciaLeagues, null)) {
+    const key = isoWeekKey(block.from);
+    if (key) keys.add(key);
+  }
+
+  return [...keys]
+    .map(key => {
+      const range = isoWeekRange(key) || { from: '', to: '' };
+      return { key, from: range.from, to: range.to, label: formatDateRange(range.from, range.to) };
+    })
+    .sort((a, b) => (a.from < b.from ? -1 : 1));
+}
+
+/** Weekend da mostrare all'apertura: il prossimo, altrimenti l'ultimo. */
+function defaultCamuciaWeekend(options) {
+  if (!options || options.length === 0) return null;
+
+  const now = new Date();
+  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+
+  const next = options.find(w => w.to >= today);
+  return (next || options[options.length - 1]).key;
+}
+
+/** Sposta la selezione al weekend precedente (-1) o successivo (+1). */
+function stepCamuciaWeekend(delta) {
+  const options = camuciaWeekendOptions();
+  if (options.length === 0) return;
+
+  let index = options.findIndex(w => w.key === camuciaSelectedWeekend);
+  // Da "tutti i weekend": con +1 si parte dal primo, con -1 dall'ultimo
+  if (index === -1) index = delta > 0 ? -1 : options.length;
+
+  const target = options[index + delta];
+  if (!target) return;
+
+  camuciaSelectedWeekend = target.key;
+  if (elSelectCamuciaWeekend) elSelectCamuciaWeekend.value = target.key;
+  renderCamuciaMatches();
 }
 
 /** Carica i tre campionati coinvolti (una sola volta per sessione). */
@@ -505,23 +622,22 @@ async function loadCamuciaLeagues() {
   return camuciaLeagues;
 }
 
-function populateCamuciaDaySelector() {
-  if (!elSelectCamuciaDay || !camuciaLeagues) return;
+function populateCamuciaWeekendSelector() {
+  if (!elSelectCamuciaWeekend || !camuciaLeagues) return;
 
-  const maxDay = camuciaMaxDay();
-  elSelectCamuciaDay.innerHTML = '';
+  elSelectCamuciaWeekend.innerHTML = '';
 
   const optAll = document.createElement('option');
   optAll.value = 'all';
-  optAll.textContent = 'Tutte le Giornate';
-  elSelectCamuciaDay.appendChild(optAll);
+  optAll.textContent = 'Tutti i weekend';
+  elSelectCamuciaWeekend.appendChild(optAll);
 
-  for (let d = 1; d <= maxDay; d++) {
+  for (const weekend of camuciaWeekendOptions()) {
     const opt = document.createElement('option');
-    opt.value = d;
-    opt.textContent = `${d}° Giornata`;
-    if (d === camuciaSelectedDay) opt.selected = true;
-    elSelectCamuciaDay.appendChild(opt);
+    opt.value = weekend.key;
+    opt.textContent = weekend.label;
+    if (weekend.key === camuciaSelectedWeekend) opt.selected = true;
+    elSelectCamuciaWeekend.appendChild(opt);
   }
 }
 
@@ -533,43 +649,47 @@ function renderCamuciaMatches() {
     return;
   }
 
+  const options = camuciaWeekendOptions();
+  const selected = options.find(w => w.key === camuciaSelectedWeekend);
+  const weekends = camuciaSelectedWeekend === null ? options : (selected ? [selected] : []);
+
   elCamuciaContainer.innerHTML = '';
   let total = 0;
 
-  for (const { data } of camuciaLeagues) {
-    const days = (data.matchDays || []).filter(day =>
-      camuciaSelectedDay === null || day.dayNumber === camuciaSelectedDay
-    );
+  for (const weekend of weekends) {
+    const blocks = collectCamuciaBlocks(camuciaLeagues, weekend.key);
+    if (blocks.length === 0) continue;
 
-    for (const day of days) {
-      const matches = (day.matches || []).filter(m => isCamuciaTeam(m.homeTeam));
-      if (matches.length === 0) continue;
+    const heading = document.createElement('h2');
+    heading.className = 'weekend-heading';
+    heading.textContent = weekend.label;
+    elCamuciaContainer.appendChild(heading);
 
-      const block = document.createElement('div');
-      block.className = 'matchday-block';
+    for (const block of blocks) {
+      const blockEl = document.createElement('div');
+      blockEl.className = 'matchday-block';
 
       const header = document.createElement('div');
       header.className = 'matchday-header';
       header.innerHTML = `
-        <h3 class="matchday-title">${escapeHtml(day.dayTitle)}</h3>
-        <span class="matchday-date">${escapeHtml(data.shortName || data.name)}${day.dayDate ? ' · ' + escapeHtml(day.dayDate) : ''}</span>
+        <h3 class="matchday-title">${escapeHtml(block.league.shortName || block.league.name)}</h3>
+        <span class="matchday-date">${escapeHtml(block.day.dayTitle || '')}${block.from ? ' · ' + escapeHtml(formatDateRange(block.from, block.to)) : ''}</span>
       `;
-      block.appendChild(header);
+      blockEl.appendChild(header);
 
       const grid = document.createElement('div');
       grid.className = 'matches-grid';
-      matches.forEach(m => grid.appendChild(createMatchCard(m, day)));
+      block.matches.forEach(m => grid.appendChild(createMatchCard(m, block.day)));
 
-      block.appendChild(grid);
-      elCamuciaContainer.appendChild(block);
-      total += matches.length;
+      blockEl.appendChild(grid);
+      elCamuciaContainer.appendChild(blockEl);
+      total += block.matches.length;
     }
   }
 
   if (total === 0) {
-    const quando = camuciaSelectedDay === null ? '' : ` per la ${camuciaSelectedDay}° giornata`;
     elCamuciaContainer.innerHTML =
-      `<p class="empty-state">Nessuna partita in casa delle squadre CC Camucia${quando}.</p>`;
+      '<p class="empty-state">Nessuna partita in casa delle squadre CC Camucia per il weekend selezionato.</p>';
   }
 }
 
@@ -587,15 +707,12 @@ async function openCamuciaView() {
     }
   }
 
-  if (!camuciaDayInitialized && camuciaLeagues && camuciaLeagues.length > 0) {
-    camuciaSelectedDay = camuciaLeagues.reduce(
-      (max, entry) => Math.max(max, entry.data.currentMatchDay || 1),
-      1
-    );
-    camuciaDayInitialized = true;
+  if (!camuciaWeekendInitialized && camuciaLeagues && camuciaLeagues.length > 0) {
+    camuciaSelectedWeekend = defaultCamuciaWeekend(camuciaWeekendOptions());
+    camuciaWeekendInitialized = true;
   }
 
-  populateCamuciaDaySelector();
+  populateCamuciaWeekendSelector();
   renderCamuciaMatches();
 }
 
