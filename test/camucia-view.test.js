@@ -126,6 +126,10 @@ test('la scheda CC Camucia è collegata al pannello giusto', () => {
   assert.match(button.textContent, /CC Camucia/);
   assert.ok(document.getElementById('view-camucia'), 'esiste il pannello della vista');
   assert.ok(document.getElementById('select-camucia-day'), 'esiste il selettore di giornata');
+
+  // Deve restare l'ultima voce, dopo Esportazioni
+  const voci = [...document.querySelectorAll('.sub-nav-btn')].map(b => b.getAttribute('data-view'));
+  assert.deepEqual(voci, ['calendar', 'standings', 'team', 'export', 'camucia']);
 });
 
 test('isCamuciaTeam riconosce le cinque squadre e ignora le altre', () => {
