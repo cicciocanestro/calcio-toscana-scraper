@@ -5,6 +5,16 @@ let leagueData = null;
 let selectedDay = null;
 let currentView = 'calendar';
 
+// Scheda "CC Camucia": partite in casa delle squadre del territorio, che
+// militano in tre campionati diversi. La corrispondenza è parziale e in
+// minuscolo, così regge anche se il sito cambia leggermente la denominazione.
+const CAMUCIA_LEAGUE_IDS = ['promozione-c', 'seconda-i', 'terza-arezzo'];
+const CAMUCIA_TEAMS = ['cortona camucia', 'fratta', 'fratticciola', 'montecchio', 'monsigliolo'];
+
+let camuciaLeagues = null;        // [{ id, data }] dei campionati caricati
+let camuciaSelectedDay = null;    // null = tutte le giornate
+let camuciaDayInitialized = false;
+
 // Elementi DOM
 const elLeaguesTabs = document.getElementById('leagues-tabs');
 const elBtnRefresh = document.getElementById('btn-refresh');
@@ -24,6 +34,12 @@ const elBtnPrevDay = document.getElementById('btn-prev-day');
 const elBtnNextDay = document.getElementById('btn-next-day');
 const elBtnAllDays = document.getElementById('btn-all-days');
 const elCalendarContainer = document.getElementById('calendar-container');
+
+const elSelectCamuciaDay = document.getElementById('select-camucia-day');
+const elBtnCamuciaPrev = document.getElementById('btn-camucia-prev');
+const elBtnCamuciaNext = document.getElementById('btn-camucia-next');
+const elBtnCamuciaAll = document.getElementById('btn-camucia-all');
+const elCamuciaContainer = document.getElementById('camucia-container');
 
 const elStandingsTbody = document.getElementById('standings-tbody');
 
@@ -157,6 +173,39 @@ function setupEventListeners() {
     renderCalendar();
   });
 
+  // Scheda CC Camucia: selettore di giornata indipendente
+  elSelectCamuciaDay.addEventListener('change', (e) => {
+    const val = e.target.value;
+    camuciaSelectedDay = val === 'all' ? null : parseInt(val, 10);
+    renderCamuciaMatches();
+  });
+
+  elBtnCamuciaPrev.addEventListener('click', () => {
+    const max = camuciaMaxDay();
+    if (camuciaSelectedDay === null) camuciaSelectedDay = max;
+    if (camuciaSelectedDay > 1) {
+      camuciaSelectedDay--;
+      elSelectCamuciaDay.value = camuciaSelectedDay;
+      renderCamuciaMatches();
+    }
+  });
+
+  elBtnCamuciaNext.addEventListener('click', () => {
+    const max = camuciaMaxDay();
+    if (camuciaSelectedDay === null) camuciaSelectedDay = 1;
+    if (camuciaSelectedDay < max) {
+      camuciaSelectedDay++;
+      elSelectCamuciaDay.value = camuciaSelectedDay;
+      renderCamuciaMatches();
+    }
+  });
+
+  elBtnCamuciaAll.addEventListener('click', () => {
+    camuciaSelectedDay = null;
+    elSelectCamuciaDay.value = 'all';
+    renderCamuciaMatches();
+  });
+
   // Cambio Squadra nel tab squadra
   elSelectTeam.addEventListener('change', (e) => {
     const team = e.target.value;
@@ -199,6 +248,7 @@ function switchView(view) {
   }
 
   if (view === 'calendar') renderCalendar();
+  else if (view === 'camucia') openCamuciaView();
   else if (view === 'standings') renderStandings();
   else if (view === 'team') renderTeamSection();
 }
@@ -206,6 +256,9 @@ function switchView(view) {
 async function refreshAllLeagues() {
   showLoading(true, 'Aggiornamento dal sito ufficiale in corso in background (Tuttocampo)...');
   hideError();
+
+  // I dati della scheda CC Camucia vanno riletti dopo un aggiornamento
+  camuciaLeagues = null;
 
   try {
     const initialLastUpdated = leagueData?.lastUpdated || null;
@@ -263,6 +316,40 @@ async function refreshAllLeagues() {
   }
 }
 
+/**
+ * Dati di un campionato: prima l'API backend (locale o Render), altrimenti il
+ * JSON statico della cache (GitHub Pages). Riusata anche dalla scheda CC Camucia.
+ */
+async function fetchLeagueData(leagueId) {
+  // 1. API backend
+  try {
+    const resp = await fetch(`/api/leagues/${leagueId}?t=${Date.now()}`, { cache: 'no-cache' });
+    if (resp.ok) {
+      const res = await resp.json();
+      return res.data ? res.data : res;
+    }
+  } catch (e) {}
+
+  // 2. Cache statica
+  const t = Date.now();
+  const possiblePaths = [
+    `data/cache/${leagueId}.json?t=${t}`,
+    `./data/cache/${leagueId}.json?t=${t}`,
+    `../data/cache/${leagueId}.json?t=${t}`
+  ];
+  for (const p of possiblePaths) {
+    try {
+      const r = await fetch(p, { cache: 'no-cache' });
+      if (r && r.ok) {
+        const res = await r.json();
+        return res.data ? res.data : res;
+      }
+    } catch (e) {}
+  }
+
+  throw new Error('File dati non trovato nella cache');
+}
+
 async function loadLeague(leagueId, forceRefresh = false) {
   if (forceRefresh) {
     return refreshAllLeagues();
@@ -271,40 +358,7 @@ async function loadLeague(leagueId, forceRefresh = false) {
   hideError();
 
   try {
-    let res;
-    // 1. Prova prima API backend (se attivo in locale o su Render)
-    let loaded = false;
-    try {
-      const resp = await fetch(`/api/leagues/${leagueId}?t=${Date.now()}`, { cache: 'no-cache' });
-      if (resp.ok) {
-        res = await resp.json();
-        loaded = true;
-      }
-    } catch (e) {}
-
-    // 2. Se backend non attivo (es. GitHub Pages statico), carica JSON dalla cache
-    if (!loaded) {
-      const t = Date.now();
-      const possiblePaths = [
-        `data/cache/${leagueId}.json?t=${t}`,
-        `./data/cache/${leagueId}.json?t=${t}`,
-        `../data/cache/${leagueId}.json?t=${t}`
-      ];
-      let staticResp = null;
-      for (const p of possiblePaths) {
-        try {
-          const r = await fetch(p, { cache: 'no-cache' });
-          if (r && r.ok) {
-            staticResp = r;
-            break;
-          }
-        } catch (e) {}
-      }
-      if (!staticResp) throw new Error('File dati non trovato nella cache');
-      res = await staticResp.json();
-    }
-
-    leagueData = res.data ? res.data : res;
+    leagueData = await fetchLeagueData(leagueId);
 
     selectedDay = leagueData.currentMatchDay || 1;
 
@@ -394,6 +448,155 @@ function renderCalendar() {
     block.appendChild(grid);
     elCalendarContainer.appendChild(block);
   });
+}
+
+// ---------------------------------------------------------------------------
+// Scheda "CC Camucia"
+// ---------------------------------------------------------------------------
+
+/** True se la squadra rientra fra quelle seguite dalla scheda CC Camucia. */
+function isCamuciaTeam(name) {
+  const clean = String(name || '').toLowerCase();
+  return CAMUCIA_TEAMS.some(team => clean.includes(team));
+}
+
+/**
+ * Partite in casa delle squadre CC Camucia.
+ * @param {object} data       dati di un campionato
+ * @param {number|null} dayNumber giornata da considerare (null = tutte)
+ * @returns {Array<{match:object, day:object}>}
+ */
+function collectCamuciaHomeMatches(data, dayNumber) {
+  const found = [];
+  for (const day of (data && data.matchDays) || []) {
+    if (dayNumber !== null && dayNumber !== undefined && day.dayNumber !== dayNumber) continue;
+
+    for (const m of day.matches || []) {
+      if (isCamuciaTeam(m.homeTeam)) found.push({ match: m, day });
+    }
+  }
+  return found;
+}
+
+/** Numero di giornate da mostrare nel selettore (il massimo fra i campionati). */
+function camuciaMaxDay() {
+  return (camuciaLeagues || []).reduce(
+    (max, entry) => Math.max(max, (entry.data && entry.data.totalMatchDays) || 0),
+    1
+  );
+}
+
+/** Carica i tre campionati coinvolti (una sola volta per sessione). */
+async function loadCamuciaLeagues() {
+  if (camuciaLeagues) return camuciaLeagues;
+
+  const loaded = await Promise.all(CAMUCIA_LEAGUE_IDS.map(async (id) => {
+    try {
+      return { id, data: await fetchLeagueData(id) };
+    } catch (e) {
+      return { id, data: null };
+    }
+  }));
+
+  camuciaLeagues = loaded.filter(entry => entry.data);
+  // Se non si è caricato nulla non memorizziamo il fallimento: si ritenta
+  // alla prossima apertura della scheda.
+  if (camuciaLeagues.length === 0) camuciaLeagues = null;
+  return camuciaLeagues;
+}
+
+function populateCamuciaDaySelector() {
+  if (!elSelectCamuciaDay || !camuciaLeagues) return;
+
+  const maxDay = camuciaMaxDay();
+  elSelectCamuciaDay.innerHTML = '';
+
+  const optAll = document.createElement('option');
+  optAll.value = 'all';
+  optAll.textContent = 'Tutte le Giornate';
+  elSelectCamuciaDay.appendChild(optAll);
+
+  for (let d = 1; d <= maxDay; d++) {
+    const opt = document.createElement('option');
+    opt.value = d;
+    opt.textContent = `${d}° Giornata`;
+    if (d === camuciaSelectedDay) opt.selected = true;
+    elSelectCamuciaDay.appendChild(opt);
+  }
+}
+
+function renderCamuciaMatches() {
+  if (!elCamuciaContainer) return;
+
+  if (!camuciaLeagues || camuciaLeagues.length === 0) {
+    elCamuciaContainer.innerHTML = '<p class="empty-state">Dati dei campionati non disponibili.</p>';
+    return;
+  }
+
+  elCamuciaContainer.innerHTML = '';
+  let total = 0;
+
+  for (const { data } of camuciaLeagues) {
+    const days = (data.matchDays || []).filter(day =>
+      camuciaSelectedDay === null || day.dayNumber === camuciaSelectedDay
+    );
+
+    for (const day of days) {
+      const matches = (day.matches || []).filter(m => isCamuciaTeam(m.homeTeam));
+      if (matches.length === 0) continue;
+
+      const block = document.createElement('div');
+      block.className = 'matchday-block';
+
+      const header = document.createElement('div');
+      header.className = 'matchday-header';
+      header.innerHTML = `
+        <h3 class="matchday-title">${escapeHtml(day.dayTitle)}</h3>
+        <span class="matchday-date">${escapeHtml(data.shortName || data.name)}${day.dayDate ? ' · ' + escapeHtml(day.dayDate) : ''}</span>
+      `;
+      block.appendChild(header);
+
+      const grid = document.createElement('div');
+      grid.className = 'matches-grid';
+      matches.forEach(m => grid.appendChild(createMatchCard(m, day)));
+
+      block.appendChild(grid);
+      elCamuciaContainer.appendChild(block);
+      total += matches.length;
+    }
+  }
+
+  if (total === 0) {
+    const quando = camuciaSelectedDay === null ? '' : ` per la ${camuciaSelectedDay}° giornata`;
+    elCamuciaContainer.innerHTML =
+      `<p class="empty-state">Nessuna partita in casa delle squadre CC Camucia${quando}.</p>`;
+  }
+}
+
+/** Apre la scheda: carica i dati se serve, poi popola selettore ed elenco. */
+async function openCamuciaView() {
+  if (!camuciaLeagues) {
+    showLoading(true, 'Caricamento partite CC Camucia...');
+    hideError();
+    try {
+      await loadCamuciaLeagues();
+    } catch (err) {
+      showError('Impossibile caricare i dati per CC Camucia: ' + err.message);
+    } finally {
+      showLoading(false);
+    }
+  }
+
+  if (!camuciaDayInitialized && camuciaLeagues && camuciaLeagues.length > 0) {
+    camuciaSelectedDay = camuciaLeagues.reduce(
+      (max, entry) => Math.max(max, entry.data.currentMatchDay || 1),
+      1
+    );
+    camuciaDayInitialized = true;
+  }
+
+  populateCamuciaDaySelector();
+  renderCamuciaMatches();
 }
 
 function createMatchCard(m, day) {

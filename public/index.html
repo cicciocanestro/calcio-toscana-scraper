@@ -73,10 +73,11 @@
       </div>
     </section>
 
-    <!-- Sub Navigation (Calendario, Classifica, Squadra, Esporta) -->
+    <!-- Sub Navigation (Calendario, CC Camucia, Classifica, Squadra, Esporta) -->
     <section class="view-navigation">
       <div class="sub-nav">
         <button class="sub-nav-btn active" data-view="calendar">📅 Calendario</button>
+        <button class="sub-nav-btn" data-view="camucia">⚽ CC Camucia</button>
         <button class="sub-nav-btn" data-view="standings">🏆 Classifica</button>
         <button class="sub-nav-btn" data-view="team">🔍 Per Squadra</button>
         <button class="sub-nav-btn" data-view="export">📥 Esportazioni</button>
@@ -112,6 +113,33 @@
       </div>
 
       <div id="calendar-container" class="calendar-matches-grid">
+        <!-- Partite popolate dinamicamente -->
+      </div>
+    </section>
+
+    <!-- SEZIONE CC CAMUCIA -->
+    <section id="view-camucia" class="view-panel hidden">
+      <div class="calendar-controls">
+        <div class="day-switcher">
+          <button id="btn-camucia-prev" class="btn btn-outline" title="Giornata precedente">◀ Prec</button>
+          <div class="select-wrapper">
+            <select id="select-camucia-day" class="form-select">
+              <!-- Popolato via JS -->
+            </select>
+          </div>
+          <button id="btn-camucia-next" class="btn btn-outline" title="Giornata successiva">Succ ▶</button>
+        </div>
+        <div class="filter-actions">
+          <button id="btn-camucia-all" class="btn btn-outline">Mostra Tutte le Giornate</button>
+        </div>
+      </div>
+
+      <p class="camucia-hint">
+        Partite <strong>in casa</strong> di Cortona Camucia, Fratta Santa Caterina, Fratticciola, Montecchio e Monsigliolo
+        (Promozione C, Seconda I e Terza Arezzo).
+      </p>
+
+      <div id="camucia-container" class="calendar-matches-grid">
         <!-- Partite popolate dinamicamente -->
       </div>
     </section>

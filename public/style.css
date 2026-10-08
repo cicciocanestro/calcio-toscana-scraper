@@ -281,9 +281,17 @@ body {
 
 .sub-nav {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
   border-bottom: 2px solid var(--border);
   padding-bottom: 0.5rem;
+}
+
+/* Scheda CC Camucia */
+.camucia-hint {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 1rem 0 0;
 }
 
 .sub-nav-btn {
