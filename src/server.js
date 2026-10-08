@@ -110,8 +110,9 @@ function createServer(options = {}) {
     const diagnostics = typeof scraper.getDiagnostics === 'function' ? scraper.getDiagnostics() : {};
     res.json({
       service: 'calcio-toscana-scraper',
-      // Dice se dopo un refresh manuale verrà avviato il workflow GitHub
-      github: describeConfig(githubConfig),
+      // Dice se dopo un refresh manuale verrà avviato il workflow GitHub,
+      // e in caso negativo quale requisito manca
+      github: describeConfig(),
       ...diagnostics,
       cache: Object.keys(LEAGUES).map(key => ({ id: key, ...scraper.getCacheStatus(key) }))
     });

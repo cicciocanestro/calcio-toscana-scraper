@@ -37,11 +37,24 @@ test('resolveConfig è null senza token o senza repository', () => {
   assert.equal(resolveConfig({ GITHUB_REPOSITORY: 'a/b' }), null);
 });
 
-test('resolveConfig usa RENDER_GIT_REPO come fallback e i valori di default', () => {
-  const config = resolveConfig({
-    GITHUB_DISPATCH_TOKEN: 'tok',
-    RENDER_GIT_REPO: 'https://github.com/a/b.git'
-  });
+test('resolveConfig ricava il repository dalle varianti previste', () => {
+  // RENDER_GIT_REPO_SLUG è il nome documentato da Render (formato utente/repo)
+  assert.equal(
+    resolveConfig({ GITHUB_DISPATCH_TOKEN: 'tok', RENDER_GIT_REPO_SLUG: 'cicciocanestro/calcio-toscana-scraper' }).repo,
+    'cicciocanestro/calcio-toscana-scraper'
+  );
+  assert.equal(
+    resolveConfig({ GITHUB_DISPATCH_TOKEN: 'tok', RENDER_GIT_REPO: 'https://github.com/a/b.git' }).repo,
+    'a/b'
+  );
+  assert.equal(
+    resolveConfig({ GITHUB_DISPATCH_TOKEN: 'tok', GITHUB_REPOSITORY: 'a/b' }).repo,
+    'a/b'
+  );
+});
+
+test('resolveConfig usa i valori di default per branch e workflow', () => {
+  const config = resolveConfig({ GITHUB_DISPATCH_TOKEN: 'tok', RENDER_GIT_REPO_SLUG: 'a/b' });
 
   assert.deepEqual(config, {
     token: 'tok',
@@ -57,22 +70,37 @@ test('resolveConfig segnala quando il token arriva da GITHUB_TOKEN', () => {
   assert.equal(config.tokenFrom, 'GITHUB_TOKEN');
 });
 
-test('describeConfig dice se la pubblicazione è attiva senza esporre il token', () => {
-  assert.deepEqual(describeConfig(null), {
-    publishConfigured: false,
-    repo: null,
-    branch: null,
-    workflowFile: null,
-    tokenFrom: null
-  });
+test('describeConfig dice quale requisito manca, senza esporre il token', () => {
+  const nothing = describeConfig({});
+  assert.equal(nothing.publishConfigured, false);
+  assert.equal(nothing.tokenFound, false);
+  assert.equal(nothing.repoFound, false);
 
-  const described = describeConfig(resolveConfig(ENV));
+  // Token presente ma repository non risolvibile: è il caso che ha causato il
+  // falso "non configurato" quando si leggeva la variabile Render sbagliata.
+  const noRepo = describeConfig({ GITHUB_DISPATCH_TOKEN: 'tok' });
+  assert.equal(noRepo.publishConfigured, false);
+  assert.equal(noRepo.tokenFound, true);
+  assert.equal(noRepo.tokenFrom, 'GITHUB_DISPATCH_TOKEN');
+  assert.equal(noRepo.repoFound, false);
+  assert.equal(noRepo.repoFrom, null);
 
-  assert.equal(described.publishConfigured, true);
-  assert.equal(described.repo, 'cicciocanestro/calcio-toscana-scraper');
-  assert.equal(described.tokenFrom, 'GITHUB_DISPATCH_TOKEN');
+  // Repository presente ma token assente
+  const noToken = describeConfig({ RENDER_GIT_REPO_SLUG: 'a/b' });
+  assert.equal(noToken.publishConfigured, false);
+  assert.equal(noToken.tokenFound, false);
+  assert.equal(noToken.repoFound, true);
+  assert.equal(noToken.repoFrom, 'RENDER_GIT_REPO_SLUG');
+
+  const ok = describeConfig(ENV);
+  assert.equal(ok.publishConfigured, true);
+  assert.equal(ok.repo, 'cicciocanestro/calcio-toscana-scraper');
+  assert.equal(ok.repoFrom, 'GITHUB_REPOSITORY');
+  assert.equal(ok.tokenFrom, 'GITHUB_DISPATCH_TOKEN');
+  assert.equal(ok.branch, DEFAULT_BRANCH);
+  assert.equal(ok.workflowFile, DEFAULT_WORKFLOW_FILE);
   assert.equal(
-    JSON.stringify(described).includes('ghp_segreto'),
+    JSON.stringify(ok).includes('ghp_segreto'),
     false,
     'il token non deve mai comparire nella diagnostica'
   );

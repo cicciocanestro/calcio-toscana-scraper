@@ -36,18 +36,47 @@ function normalizeRepo(value) {
 }
 
 /**
+ * Legge token e repository dall'ambiente senza validarli.
+ *
+ * Nota sui nomi: Render espone il repository come `RENDER_GIT_REPO_SLUG`
+ * (formato `utente/repo`, vedi https://render.com/docs/environment-variables).
+ * `RENDER_GIT_REPO` non è documentato ma resta come ripiego.
+ */
+function readCredentials(env = process.env) {
+  const token = env.GITHUB_DISPATCH_TOKEN || env.GITHUB_TOKEN || '';
+  const repo = normalizeRepo(env.GITHUB_REPOSITORY)
+    || normalizeRepo(env.RENDER_GIT_REPO_SLUG)
+    || normalizeRepo(env.RENDER_GIT_REPO)
+    || '';
+  return { token, repo };
+}
+
+/** Nome della variabile da cui arriva il token (mai il valore). */
+function tokenSource(env = process.env) {
+  if (env.GITHUB_DISPATCH_TOKEN) return 'GITHUB_DISPATCH_TOKEN';
+  if (env.GITHUB_TOKEN) return 'GITHUB_TOKEN';
+  return null;
+}
+
+/** Nome della variabile da cui è stato ricavato il repository. */
+function repoSource(env = process.env) {
+  if (normalizeRepo(env.GITHUB_REPOSITORY)) return 'GITHUB_REPOSITORY';
+  if (normalizeRepo(env.RENDER_GIT_REPO_SLUG)) return 'RENDER_GIT_REPO_SLUG';
+  if (normalizeRepo(env.RENDER_GIT_REPO)) return 'RENDER_GIT_REPO';
+  return null;
+}
+
+/**
  * Configurazione del dispatcher, oppure null se manca token o repository.
  * @returns {{token:string, tokenFrom:string, repo:string, branch:string, workflowFile:string}|null}
  */
 function resolveConfig(env = process.env) {
-  const token = env.GITHUB_DISPATCH_TOKEN || env.GITHUB_TOKEN || '';
-  const repo = normalizeRepo(env.GITHUB_REPOSITORY) || normalizeRepo(env.RENDER_GIT_REPO);
+  const { token, repo } = readCredentials(env);
   if (!token || !repo) return null;
 
   return {
     token,
-    // Da quale variabile arriva il token: utile in diagnostica, senza esporlo
-    tokenFrom: env.GITHUB_DISPATCH_TOKEN ? 'GITHUB_DISPATCH_TOKEN' : 'GITHUB_TOKEN',
+    tokenFrom: tokenSource(env),
     repo,
     branch: env.GITHUB_BRANCH || DEFAULT_BRANCH,
     workflowFile: env.GITHUB_WORKFLOW_FILE || DEFAULT_WORKFLOW_FILE
@@ -56,25 +85,21 @@ function resolveConfig(env = process.env) {
 
 /**
  * Stato della configurazione per /api/diagnostics: dice se la pubblicazione
- * automatica è attiva e su quale repository, senza mai esporre il token.
+ * automatica è attiva e, se non lo è, QUALE dei due requisiti manca. Il token
+ * non viene mai esposto, solo il nome della variabile che lo contiene.
  */
-function describeConfig(config) {
-  if (!config) {
-    return {
-      publishConfigured: false,
-      repo: null,
-      branch: null,
-      workflowFile: null,
-      tokenFrom: null
-    };
-  }
+function describeConfig(env = process.env) {
+  const { token, repo } = readCredentials(env);
 
   return {
-    publishConfigured: true,
-    repo: config.repo,
-    branch: config.branch,
-    workflowFile: config.workflowFile,
-    tokenFrom: config.tokenFrom
+    publishConfigured: !!(token && repo),
+    tokenFound: !!token,
+    tokenFrom: tokenSource(env),
+    repoFound: !!repo,
+    repo: repo || null,
+    repoFrom: repoSource(env),
+    branch: env.GITHUB_BRANCH || DEFAULT_BRANCH,
+    workflowFile: env.GITHUB_WORKFLOW_FILE || DEFAULT_WORKFLOW_FILE
   };
 }
 
@@ -130,6 +155,9 @@ function createWorkflowDispatcher(env = process.env, options = {}) {
 
 module.exports = {
   normalizeRepo,
+  readCredentials,
+  tokenSource,
+  repoSource,
   resolveConfig,
   describeConfig,
   dispatchWorkflow,

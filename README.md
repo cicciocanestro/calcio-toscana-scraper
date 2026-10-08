@@ -199,7 +199,7 @@ Pages). Il flag `--no-refresh` evita di pagare due volte il bootstrap del browse
 | Dove | Nome | Tipo | A cosa serve |
 |---|---|---|---|
 | GitHub → Settings → Developer settings → **Fine-grained token** | `GITHUB_DISPATCH_TOKEN` | Env var su Render | PAT con permesso **Actions: Read and write** sul repo: abilita la pubblicazione automatica |
-| Render → Environment | `GITHUB_REPOSITORY` | Env var | `owner/repo` (opzionale: se assente si usa `RENDER_GIT_REPO`, che Render imposta da solo) |
+| Render → Environment | `GITHUB_REPOSITORY` | Env var | `owner/repo` (opzionale: se assente si usa `RENDER_GIT_REPO_SLUG`, che Render imposta da solo) |
 | Render → Environment | `GITHUB_BRANCH` | Env var | Branch del workflow (default: `main`) |
 
 Se `GITHUB_DISPATCH_TOKEN` non è impostato il dispatcher è disattivato e non viene fatta nessuna chiamata
@@ -208,12 +208,24 @@ di rete: sviluppo locale e deploy esistenti continuano a funzionare senza modifi
 **Come verificare che sia attivo** (senza esporre il token):
 
 ```bash
-curl -s https://calcio-toscana-scraper.onrender.com/api/diagnostics | grep -A6 '"github"'
+curl -s https://calcio-toscana-scraper.onrender.com/api/diagnostics | grep -A9 '"github"'
 ```
 
-Se compare `"publishConfigured": true` con il `repo` giusto, il token è letto correttamente. Con `false`,
-la variabile non è impostata (o ha un nome sbagliato) su Render. Il campo `tokenFrom` dice da quale
-variabile arriva il token, ma **il valore non viene mai esposto**.
+```jsonc
+"github": {
+  "publishConfigured": true,     // ← se è false, la pubblicazione non partirà
+  "tokenFound": true,
+  "tokenFrom": "GITHUB_DISPATCH_TOKEN",
+  "repoFound": true,
+  "repo": "cicciocanestro/calcio-toscana-scraper",
+  "repoFrom": "RENDER_GIT_REPO_SLUG",
+  "branch": "main",
+  "workflowFile": "update.yml"
+}
+```
+
+I campi `tokenFound` e `repoFound` dicono **quale dei due requisiti manca**: servono entrambi.
+Il valore del token non viene mai esposto, solo il nome della variabile che lo contiene.
 
 La controprova funzionale: premi "Aggiorna dal Web" e cerca nel log di Render la riga
 `[SERVER] Workflow GitHub avviato (...)`, poi controlla che in GitHub → Actions sia comparsa una run con
