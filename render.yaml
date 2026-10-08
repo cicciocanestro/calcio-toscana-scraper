@@ -5,5 +5,12 @@ services:
     plan: free
     region: frankfurt
     dockerfilePath: ./Dockerfile
-    healthCheckPath: /api/leagues
+    # Endpoint leggero: non legge né interpreta i JSON della cache come /api/leagues
+    healthCheckPath: /api/health
     autoDeploy: true
+
+# Variabili impostate dalla dashboard di Render (valori non versionati):
+#   REFRESH_TOKEN         - protegge gli aggiornamenti forzati (header x-refresh-token)
+#   GITHUB_DISPATCH_TOKEN - PAT con scope "actions: write": abilita la pubblicazione
+#                           automatica su GitHub dopo ogni "Aggiorna dal Web"
+#   GITHUB_REPOSITORY     - opzionale, "owner/repo" (altrimenti dedotto da RENDER_GIT_REPO)

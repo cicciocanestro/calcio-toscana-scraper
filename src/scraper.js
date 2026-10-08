@@ -75,6 +75,22 @@ class CalendarScraper {
   }
 
   /**
+   * Età dei dati in cache, in millisecondi.
+   *
+   * Si basa sul campo `lastUpdated` scritto nei dati e NON sull'mtime del file:
+   * un `git clone` (build di Render, checkout della CI) riscrive gli mtime a
+   * "adesso", facendo sembrare fresca una cache che non lo è. L'mtime viene
+   * usato solo come ripiego per file privi di `lastUpdated`.
+   */
+  cacheAgeMs(leagueId, data) {
+    const stamp = data ? Date.parse(data.lastUpdated || '') : NaN;
+    if (Number.isFinite(stamp)) return Math.max(0, Date.now() - stamp);
+
+    const league = LEAGUES[leagueId];
+    return Date.now() - fs.statSync(league.cacheFile).mtimeMs;
+  }
+
+  /**
    * Dati in cache, oppure null.
    * @param {number|null} maxAgeMs - età massima accettata. Passare null per accettare
    *                                 anche dati scaduti (fallback / modalità cache-first).
@@ -83,20 +99,22 @@ class CalendarScraper {
     const league = LEAGUES[leagueId];
     if (!league || !fs.existsSync(league.cacheFile)) return null;
 
+    let data;
     try {
-      if (maxAgeMs !== null && maxAgeMs !== undefined) {
-        const stats = fs.statSync(league.cacheFile);
-        if (Date.now() - stats.mtimeMs > maxAgeMs) return null;
-      }
-
-      return JSON.parse(fs.readFileSync(league.cacheFile, 'utf-8'));
+      data = JSON.parse(fs.readFileSync(league.cacheFile, 'utf-8'));
     } catch (err) {
       return null;
     }
+
+    if (maxAgeMs !== null && maxAgeMs !== undefined && this.cacheAgeMs(leagueId, data) > maxAgeMs) {
+      return null;
+    }
+
+    return data;
   }
 
   /**
-   * Stato della cache locale di un campionato (senza leggere il file).
+   * Stato della cache locale di un campionato.
    * @returns {{exists:boolean, isStale:boolean, ageMs:number|null, lastUpdated:string|null}}
    */
   getCacheStatus(leagueId, maxAgeMs = CACHE_TTL_MS) {
@@ -105,13 +123,23 @@ class CalendarScraper {
     if (!league || !fs.existsSync(league.cacheFile)) return empty;
 
     try {
-      const stats = fs.statSync(league.cacheFile);
-      const ageMs = Date.now() - stats.mtimeMs;
+      let data = null;
+      try {
+        data = JSON.parse(fs.readFileSync(league.cacheFile, 'utf-8'));
+      } catch (err) {
+        // Cache illeggibile: si ripiega sull'mtime del file
+      }
+
+      const ageMs = this.cacheAgeMs(leagueId, data);
+      const stamp = data ? Date.parse(data.lastUpdated || '') : NaN;
+
       return {
         exists: true,
         isStale: ageMs > maxAgeMs,
         ageMs,
-        lastUpdated: stats.mtime.toISOString()
+        lastUpdated: Number.isFinite(stamp)
+          ? new Date(stamp).toISOString()
+          : new Date(Date.now() - ageMs).toISOString()
       };
     } catch (err) {
       return empty;

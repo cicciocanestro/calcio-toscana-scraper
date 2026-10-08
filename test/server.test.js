@@ -1,8 +1,12 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const os = require('node:os');
+const path = require('node:path');
 
 const { createServer } = require('../src/server');
 const { CalendarScraper } = require('../src/scraper');
+const { LEAGUES } = require('../src/config');
 const { sampleLeagueData } = require('./fixtures');
 
 // Scraper finto: permette di testare le rotte (token, revalidation) senza
@@ -154,6 +158,45 @@ test('getCacheStatus riporta correttamente cache assente e presente', () => {
   assert.ok(status.lastUpdated);
 });
 
+test('la scadenza della cache si basa su lastUpdated, non sull\'mtime del file', () => {
+  // Regressione: un `git clone` (build di Render, checkout della CI) riscrive
+  // gli mtime a "adesso". Se la scadenza dipendesse dall'mtime, dopo ogni
+  // deploy la cache committata sembrerebbe fresca per tutto il TTL.
+  const league = LEAGUES['promozione-c'];
+  const originalCacheFile = league.cacheFile;
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'cache-age-'));
+  const file = path.join(dir, 'promozione-c.json');
+
+  try {
+    const scraper = new CalendarScraper({ onProgress: () => {} });
+
+    // Dati vecchi di 10 ore, ma file appena scritto (mtime = adesso)
+    const old = { ...sampleLeagueData(), lastUpdated: new Date(Date.now() - 10 * 3600 * 1000).toISOString() };
+    fs.writeFileSync(file, JSON.stringify(old));
+    league.cacheFile = file;
+
+    const oldStatus = scraper.getCacheStatus('promozione-c');
+    assert.equal(oldStatus.exists, true);
+    assert.equal(oldStatus.isStale, true, 'dati vecchi con mtime fresco devono risultare scaduti');
+    assert.equal(oldStatus.lastUpdated, old.lastUpdated, 'lastUpdated deve venire dai dati, non dall\'mtime');
+    assert.ok(oldStatus.ageMs > 9 * 3600 * 1000);
+    assert.equal(scraper.getCachedLeague('promozione-c'), null, 'il TTL deve scartare i dati vecchi');
+
+    // Dati freschi, ma file con mtime di 10 ore fa: non deve risultare scaduto
+    const fresh = { ...sampleLeagueData(), lastUpdated: new Date().toISOString() };
+    fs.writeFileSync(file, JSON.stringify(fresh));
+    const past = new Date(Date.now() - 10 * 3600 * 1000);
+    fs.utimesSync(file, past, past);
+
+    const freshStatus = scraper.getCacheStatus('promozione-c');
+    assert.equal(freshStatus.isStale, false, 'un mtime vecchio non deve scadere dati freschi');
+    assert.ok(scraper.getCachedLeague('promozione-c'), 'i dati freschi devono restare disponibili');
+  } finally {
+    league.cacheFile = originalCacheFile;
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 test('con REFRESH_TOKEN attivo l\'aggiornamento forzato richiede il token', async () => {
   const previous = process.env.REFRESH_TOKEN;
   process.env.REFRESH_TOKEN = 'segreto-di-test';
@@ -267,3 +310,61 @@ test('GET /api/diagnostics riporta modalità, commit e stato cache', withServer(
   assert.ok(Array.isArray(body.cache) && body.cache.length === 3);
   assert.ok(body.cache.every(c => typeof c.exists === 'boolean'));
 }));
+
+test('GET /api/health è un health check leggero', withServer(async (base) => {
+  const res = await fetch(`${base}/api/health`);
+  assert.equal(res.status, 200);
+
+  const body = await res.json();
+  assert.equal(body.status, 'ok');
+  assert.equal(typeof body.uptime, 'number');
+}));
+
+test('un refresh manuale chiede al workflow GitHub di pubblicare i dati', () => {
+  const dispatched = [];
+  let notify;
+  const once = new Promise(resolve => { notify = resolve; });
+
+  return withServer(async (base) => {
+    const res = await fetch(`${base}/api/leagues/refresh-all`, { method: 'POST' });
+    assert.equal(res.status, 202, 'la risposta al client resta immediata');
+
+    await once;
+    assert.equal(dispatched.length, 1, 'una sola richiesta di pubblicazione per refresh');
+    assert.match(dispatched[0], /tutti i campionati/);
+  }, {
+    scraper: fakeScraper(),
+    dispatchUpdate: async (reason) => { dispatched.push(reason); notify(); return { dispatched: true }; }
+  })();
+});
+
+test('il refresh manuale di un singolo campionato avvia il workflow', () => {
+  const dispatched = [];
+
+  return withServer(async (base) => {
+    const res = await fetch(`${base}/api/leagues/promozione-c/refresh?sync=true`, { method: 'POST' });
+    assert.equal(res.status, 200);
+
+    await new Promise(resolve => setTimeout(resolve, 30));
+    assert.equal(dispatched.length, 1);
+    assert.match(dispatched[0], /promozione-c/);
+  }, {
+    scraper: fakeScraper(),
+    dispatchUpdate: async (reason) => { dispatched.push(reason); }
+  })();
+});
+
+test('lo scraping forzato via GET (percorso della CI) non avvia il workflow', () => {
+  const dispatched = [];
+
+  return withServer(async (base) => {
+    const res = await fetch(`${base}/api/leagues/promozione-c?refresh=true`);
+    assert.equal(res.status, 200);
+
+    await new Promise(resolve => setTimeout(resolve, 30));
+    assert.equal(dispatched.length, 0, 'la CI non deve innescare il workflow: si creerebbe un ciclo');
+  }, {
+    scraper: fakeScraper(),
+    dispatchUpdate: async (reason) => { dispatched.push(reason); }
+  })();
+});

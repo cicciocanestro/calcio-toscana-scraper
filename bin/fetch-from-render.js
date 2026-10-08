@@ -8,9 +8,14 @@
  * quindi i dati vanno riportati nel repository per essere duraturi.
  *
  *   node bin/fetch-from-render.js [--url https://...] [--out data/cache] [--token XXX]
- *                                [--retries 3] [--retry-delay 15000]
+ *                                [--retries 3] [--retry-delay 15000] [--no-refresh]
  *
- * Variabili d'ambiente: RENDER_URL, REFRESH_TOKEN
+ * Con `--no-refresh` si legge la cache già presente sull'istanza remota invece di
+ * chiedere un nuovo scraping: serve quando è l'istanza stessa ad aver appena
+ * aggiornato i dati (es. pulsante "Aggiorna dal Web") e non vogliamo pagare due
+ * volte il bootstrap del browser per la challenge WAF.
+ *
+ * Variabili d'ambiente: RENDER_URL, REFRESH_TOKEN, FETCH_NO_REFRESH
  *
  * Exit code: 0 tutte le leghe aggiornate, 1 aggiornamento parziale, 2 nessuna.
  */
@@ -73,7 +78,8 @@ function parseArgs(argv) {
     out: CACHE_DIR,
     token: process.env.REFRESH_TOKEN || '',
     retries: DEFAULT_RETRIES,
-    retryDelayMs: DEFAULT_RETRY_DELAY_MS
+    retryDelayMs: DEFAULT_RETRY_DELAY_MS,
+    noRefresh: process.env.FETCH_NO_REFRESH === 'true'
   };
   for (let i = 2; i < argv.length; i++) {
     const next = argv[i + 1];
@@ -82,12 +88,14 @@ function parseArgs(argv) {
     else if (argv[i] === '--token' && next) args.token = argv[++i];
     else if (argv[i] === '--retries' && next) args.retries = Math.max(1, parseInt(argv[++i], 10) || DEFAULT_RETRIES);
     else if (argv[i] === '--retry-delay' && next) args.retryDelayMs = Math.max(0, parseInt(argv[++i], 10) || 0);
+    else if (argv[i] === '--no-refresh') args.noRefresh = true;
   }
   return args;
 }
 
-async function fetchLeague(baseUrl, leagueId, token, timeoutMs) {
-  const url = `${baseUrl.replace(/\/$/, '')}/api/leagues/${leagueId}?refresh=true`;
+async function fetchLeague(baseUrl, leagueId, token, options = {}) {
+  const { timeoutMs, noRefresh = false } = options;
+  const url = `${baseUrl.replace(/\/$/, '')}/api/leagues/${leagueId}${noRefresh ? '' : '?refresh=true'}`;
   const headers = { Accept: 'application/json' };
   if (token) headers['x-refresh-token'] = token;
 
@@ -126,7 +134,7 @@ async function fetchLeagueWithRetry(baseUrl, leagueId, token, options) {
 
   for (let attempt = 1; attempt <= attempts; attempt++) {
     try {
-      return await fetchLeague(baseUrl, leagueId, token, options.timeoutMs);
+      return await fetchLeague(baseUrl, leagueId, token, options);
     } catch (err) {
       lastError = err;
       if (!err.retryable || attempt === attempts) break;
@@ -152,7 +160,8 @@ async function main() {
   const outDir = path.isAbsolute(args.out) ? args.out : path.join(process.cwd(), args.out);
   fs.mkdirSync(outDir, { recursive: true });
 
-  console.log(`ℹ Aggiornamento dati da ${args.url} (scraping eseguito dall'istanza remota)...`);
+  console.log(`ℹ Aggiornamento dati da ${args.url} ` +
+    `(${args.noRefresh ? 'uso la cache dell\'istanza remota' : 'scraping eseguito dall\'istanza remota'})...`);
 
   const leagueIds = Object.keys(LEAGUES);
   let failures = 0;
@@ -172,7 +181,8 @@ async function main() {
       const payload = await fetchLeagueWithRetry(args.url, leagueId, args.token, {
         retries: args.retries,
         retryDelayMs: args.retryDelayMs,
-        timeoutMs: DEFAULT_TIMEOUT_MS
+        timeoutMs: DEFAULT_TIMEOUT_MS,
+        noRefresh: args.noRefresh
       });
       const problem = validateLeaguePayload(payload, { expectedId: leagueId, minLastUpdated: previousUpdated });
 

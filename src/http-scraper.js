@@ -32,6 +32,11 @@ const DEFAULT_TIMEOUT_MS = 20000;
 // Marcatori tipici delle pagine di challenge AWS WAF
 const WAF_MARKERS = ['AwsWafIntegration', 'challenge-container', 'aws-waf-token', 'captcha-container'];
 
+// Status con cui il WAF presenta la sua challenge. Il 202 è incluso perché non
+// è un errore HTTP (`fetch` lo considera ok) e TuttoCampo lo usa per la pagina
+// di challenge: senza questo controllo la risposta finirebbe al parser.
+const WAF_STATUSES = new Set([202, 403, 405, 429]);
+
 /** Errore del percorso HTTP: se `waf` è true conviene ripiegare sul browser. */
 class HttpScrapeError extends Error {
   constructor(message, options = {}) {
@@ -80,7 +85,7 @@ function extractSessionTokens(html) {
 
 /** True se la risposta sembra una challenge/blocco del WAF. */
 function looksLikeWaf(status, headers, body) {
-  if (status === 403 || status === 405 || status === 429) return true;
+  if (WAF_STATUSES.has(status)) return true;
   if (headers && typeof headers.get === 'function' && headers.get('x-amzn-waf-action')) return true;
   return WAF_MARKERS.some(marker => typeof body === 'string' && body.includes(marker));
 }

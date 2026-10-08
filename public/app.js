@@ -236,7 +236,6 @@ async function refreshAllLeagues() {
 
     // Se l'aggiornamento è stato accettato in background (status 202 o inProgress),
     // effettuiamo polling periodico su /api/leagues per monitorare il completamento
-    let completed = false;
     const maxPollAttempts = 40; // max ~2 minuti (40 * 3s)
     for (let i = 0; i < maxPollAttempts; i++) {
       await new Promise(resolve => setTimeout(resolve, 3000));
@@ -248,7 +247,6 @@ async function refreshAllLeagues() {
           const target = leagues.find(l => l.id === currentLeague);
           // Terminato se non è più in corso di revalidation e i dati sono stati aggiornati
           if (target && !target.isRevalidating && (!initialLastUpdated || target.lastUpdated !== initialLastUpdated)) {
-            completed = true;
             break;
           }
         }

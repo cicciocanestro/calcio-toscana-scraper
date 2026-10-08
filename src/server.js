@@ -3,6 +3,7 @@ const path = require('path');
 const { LEAGUES, DATA_DIR, PUBLIC_DIR, EXPORT_DIR } = require('./config');
 const { CalendarScraper } = require('./scraper');
 const { exportToJson, exportToCsv, exportToIcs, exportSlug } = require('./exporters');
+const { createWorkflowDispatcher } = require('./github-dispatch');
 
 /**
  * Crea l'applicazione Express.
@@ -10,6 +11,10 @@ const { exportToJson, exportToCsv, exportToIcs, exportSlug } = require('./export
  * @param {object} options
  * @param {CalendarScraper} [options.scraper]        - scraper da usare (utile nei test)
  * @param {boolean} [options.autoRevalidate=true]    - aggiorna in background i campionati scaduti
+ * @param {Function|null} [options.dispatchUpdate]   - pubblica su GitHub dopo un refresh manuale.
+ *                                                     Default: dispatcher da variabili d'ambiente,
+ *                                                     oppure null se non configurato. Passare una
+ *                                                     funzione per i test, `null` per disattivare.
  */
 function createServer(options = {}) {
   const app = express();
@@ -18,11 +23,33 @@ function createServer(options = {}) {
   });
   const autoRevalidate = options.autoRevalidate !== false;
 
+  // Pubblicazione su GitHub: attiva solo se configurata (vedi src/github-dispatch.js)
+  const dispatchUpdate = options.dispatchUpdate !== undefined
+    ? options.dispatchUpdate
+    : createWorkflowDispatcher();
+
   // Richieste di ri-scraping in corso, per non duplicare lo stesso lavoro
   const revalidations = new Map();
 
   // Aggiornamento globale in corso, letto da /api/leagues per il polling client
   let globalRefreshTask = null;
+
+  /**
+   * Dopo un refresh *manuale* chiede al workflow GitHub di pubblicare i dati.
+   * Best-effort: un errore non deve mai compromettere la risposta di scraping.
+   */
+  function requestGitHubPublish(reason) {
+    if (typeof dispatchUpdate !== 'function') return;
+
+    Promise.resolve()
+      .then(() => dispatchUpdate(reason))
+      .then((result) => {
+        console.log(`[SERVER] Workflow GitHub avviato (${reason})${result && result.repo ? ` su ${result.repo}` : ''}.`);
+      })
+      .catch((err) => {
+        console.warn(`[SERVER] Workflow GitHub non avviato (${reason}): ${err.message}`);
+      });
+  }
 
   function revalidate(leagueId) {
     if (revalidations.has(leagueId)) return revalidations.get(leagueId);
@@ -69,6 +96,12 @@ function createServer(options = {}) {
   // I dati (cache JSON + export ICS/CSV/JSON) restano raggiungibili dalla
   // dashboard statica su GitHub Pages tramite gli stessi percorsi relativi.
   app.use('/data', express.static(DATA_DIR));
+
+  // Health check leggero (usato da Render): non legge né interpreta la cache,
+  // a differenza di /api/leagues che deve parsare i JSON di tutti i campionati.
+  app.get('/api/health', (req, res) => {
+    res.json({ status: 'ok', uptime: Math.round(process.uptime()) });
+  });
 
   // Diagnostica: commit in esecuzione, modalità di scraping e percorso usato
   // l'ultima volta per ogni campionato (nessun dato sensibile).
@@ -155,6 +188,14 @@ function createServer(options = {}) {
           console.warn(`[SERVER] Errore aggiornamento ${id}:`, err.message);
         }
       }
+
+      // Questo percorso è usato solo dall'aggiornamento manuale (la CI usa
+      // `GET ?refresh=true`): se almeno un campionato è stato davvero riscaricato
+      // chiediamo al workflow GitHub di pubblicarlo nel repository.
+      if (Object.values(results).some(data => data && !data.isStale)) {
+        requestGitHubPublish('aggiornamento manuale di tutti i campionati');
+      }
+
       return results;
     })().finally(() => {
       globalRefreshTask = null;
@@ -201,8 +242,17 @@ function createServer(options = {}) {
 
       if (sync) {
         const data = await task;
+        if (data && !data.isStale) requestGitHubPublish(`aggiornamento manuale di ${id}`);
         return res.json({ success: true, message: 'Dati aggiornati con successo', data });
       }
+
+      // In background: la pubblicazione parte solo se lo scraping è riuscito
+      task.then(
+        (data) => {
+          if (data && !data.isStale) requestGitHubPublish(`aggiornamento manuale di ${id}`);
+        },
+        () => {}
+      );
 
       res.status(202).json({
         success: true,

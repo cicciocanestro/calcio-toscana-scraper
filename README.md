@@ -143,6 +143,12 @@ Apri nel tuo browser: **[http://localhost:3000](http://localhost:3000)**
 - `GET /api/diagnostics` mostra il commit in esecuzione, la modalità di scraping attiva e **quale percorso**
   (HTTP o browser) ha prodotto i dati l'ultima volta per ogni campionato: utile per capire cosa succede
   sull'istanza remota senza leggere i log.
+- `GET /api/health` è un health check minimale (`{ "status": "ok" }`) che **non legge la cache**: è quello
+  configurato come `healthCheckPath` su Render, al posto di `/api/leagues` che deve interpretare i JSON di
+  tutti i campionati a ogni ping.
+- Dopo un **aggiornamento manuale** andato a buon fine (pulsante "Aggiorna dal Web") l'istanza chiede al
+  workflow GitHub Actions di pubblicare i dati nel repository: vedi
+  [Pubblicazione su GitHub](#-pubblicazione-su-github-dal-pulsante-di-render).
 
 ---
 
@@ -165,6 +171,39 @@ Se l'istanza remota non risponde, il workflow ripiega sullo scraping locale dal 
 bloccato) e in ultima istanza **conserva i dati in cache** emettendo un warning, senza mai rompere il sito.
 Se i dati sportivi sono identici a quelli già pubblicati, **non viene creato nessun commit**: i campi volatili
 (`lastUpdated`, `DTSTAMP` degli ICS) vengono scartati per non sporcare la cronologia ogni settimana.
+
+### 🔘 Pubblicazione su GitHub dal pulsante di Render
+
+Il pulsante "Aggiorna dal Web" della dashboard aggiorna i dati **anche sul sito pubblico**, non solo
+sull'istanza. Funziona solo se configuri un token; senza token il comportamento resta quello di prima
+(i dati vengono aggiornati solo sull'istanza e restano lì fino alla prossima esecuzione del cron).
+
+```
+Pulsante "Aggiorna dal Web" sulla dashboard Render
+   └─> POST /api/leagues/refresh-all          # scraping reale sull'istanza (IP non bloccato)
+   └─> il server avvia il workflow GitHub Actions (workflow_dispatch)
+         └─> node bin/fetch-from-render.js --no-refresh   # riusa i dati appena scaricati
+         └─> export + data-changed + commit + push        # stessa pipeline del cron
+```
+
+Perché così e non un push diretto da Render: il workflow resta **l'unico scrittore** del repository e
+conosce le regole di pubblicazione (confronto dei soli dati sportivi, rigenerazione degli export, asset di
+Pages). Il flag `--no-refresh` evita di pagare due volte il bootstrap del browser per la challenge WAF.
+
+> Il workflow viene avviato **solo** dai refresh manuali (`POST .../refresh-all` e `POST .../:id/refresh`).
+> Lo scraping forzato via `GET ?refresh=true`, che è quello usato dalla CI, non lo innesca: altrimenti ogni
+> esecuzione del cron ne genererebbe un'altra all'infinito.
+
+#### Configurazione (facoltativa)
+
+| Dove | Nome | Tipo | A cosa serve |
+|---|---|---|---|
+| GitHub → Settings → Developer settings → **Fine-grained token** | `GITHUB_DISPATCH_TOKEN` | Env var su Render | PAT con permesso **Actions: Read and write** sul repo: abilita la pubblicazione automatica |
+| Render → Environment | `GITHUB_REPOSITORY` | Env var | `owner/repo` (opzionale: se assente si usa `RENDER_GIT_REPO`, che Render imposta da solo) |
+| Render → Environment | `GITHUB_BRANCH` | Env var | Branch del workflow (default: `main`) |
+
+Se `GITHUB_DISPATCH_TOKEN` non è impostato il dispatcher è disattivato e non viene fatta nessuna chiamata
+di rete: sviluppo locale e deploy esistenti continuano a funzionare senza modifiche.
 
 ### Sicurezza degli aggiornamenti forzati
 Senza configurazione, chiunque conosca l'URL dell'istanza può farle avviare uno scraping. Per blindarlo basta
@@ -190,6 +229,10 @@ Se invece la imposti su Render con un valore diverso da quello del secret, gli a
 ```bash
 # Aggiornamento manuale dall'istanza remota verso la cache locale
 node bin/fetch-from-render.js --url https://calcio-toscana-scraper.onrender.com --out data/cache
+
+# Se l'istanza ha appena scrapato (es. pulsante "Aggiorna dal Web"), riusa la sua
+# cache invece di forzare un secondo scraping (evita un altro bootstrap del browser)
+node bin/fetch-from-render.js --no-refresh
 
 # Verifica se i dati sportivi sono cambiati rispetto all'ultimo commit
 node bin/data-changed.js   # exit 0 = cambiati, 1 = invariati
@@ -254,6 +297,7 @@ scraping/
 │   ├── http-scraper.js   # Percorso veloce: fetch + cookie, senza browser
 │   ├── parser.js         # Parsing HTML di giornate e classifiche (unica fonte di verità)
 │   ├── exporters.js      # Generatori di esportazione JSON, CSV e ICS (RFC 5545)
+│   ├── github-dispatch.js # Avvio del workflow GitHub dopo un refresh manuale (opzionale)
 │   └── server.js         # Server Express per API e Web Dashboard
 ├── public/               # ⚠️ Sorgente della dashboard: modificare SOLO questi file
 │   ├── index.html        # Pagina principale della Web Dashboard
@@ -265,6 +309,7 @@ scraping/
 │   ├── server.test.js
 │   ├── fetch-render.test.js
 │   ├── data-changed.test.js
+│   ├── github-dispatch.test.js
 │   ├── http-scraper.test.js
 │   └── scraper-mode.test.js
 ├── index.html            # ┐

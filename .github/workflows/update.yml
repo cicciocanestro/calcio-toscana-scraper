@@ -6,7 +6,12 @@ on:
     - cron: '0 21 * * 0'
     # Ogni lunedì mattina alle 08:00 UTC
     - cron: '0 8 * * 1'
-  workflow_dispatch: # Permette di avviare l'aggiornamento a mano da GitHub
+  workflow_dispatch: # Avvio manuale da GitHub oppure dall'istanza Render dopo un refresh
+    inputs:
+      use_cache:
+        description: 'Usa i dati già aggiornati sull''istanza Render (nessun nuovo scraping)'
+        type: boolean
+        default: false
   push:
     branches: [main]
   pull_request:
@@ -64,8 +69,17 @@ jobs:
           RENDER_URL: ${{ vars.RENDER_URL || 'https://calcio-toscana-scraper.onrender.com' }}
           REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
         run: |
+          # Se il refresh è partito dall'istanza Render i dati sono già freschi:
+          # li leggiamo dalla sua cache invece di rifare lo scraping (e pagare
+          # una seconda volta il bootstrap del browser per la challenge WAF).
+          extra=""
+          if [ "${{ inputs.use_cache }}" = "true" ]; then
+            extra="--no-refresh"
+            echo "Uso la cache già aggiornata dell'istanza remota."
+          fi
+
           rc=0
-          node bin/fetch-from-render.js || rc=$?
+          node bin/fetch-from-render.js $extra || rc=$?
 
           if [ "$rc" = "0" ]; then
             echo "aggiornato=true" >> "$GITHUB_OUTPUT"

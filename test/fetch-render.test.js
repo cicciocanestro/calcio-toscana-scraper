@@ -55,10 +55,13 @@ test('parseArgs legge URL, cartella di output e token', () => {
   assert.equal(args.url, 'https://example.com');
   assert.equal(args.out, '/tmp/x');
   assert.equal(args.token, 'abc');
+  assert.equal(args.noRefresh, false);
 
   const defaults = parseArgs(['node', 'script']);
   assert.equal(defaults.url, '');
   assert.ok(path.isAbsolute(defaults.out), 'la cartella di default deve essere assoluta');
+
+  assert.equal(parseArgs(['node', 'script', '--no-refresh']).noRefresh, true);
 });
 
 test('validateLeaguePayload rifiuta un campionato diverso da quello richiesto', () => {
@@ -122,6 +125,45 @@ test('il comando di fetch scrive la cache leggendo da un\'istanza remota', async
       assert.match(req.url, /\?refresh=true$/);
       assert.equal(req.token, 'token-di-prova');
     }
+  } finally {
+    await new Promise(resolve => server.close(resolve));
+    fs.rmSync(outDir, { recursive: true, force: true });
+  }
+});
+
+test('con --no-refresh legge la cache remota senza chiedere un nuovo scraping', async () => {
+  const http = require('node:http');
+  const { execFile } = require('node:child_process');
+  const { promisify } = require('node:util');
+  const run = promisify(execFile);
+
+  const requests = [];
+  const server = http.createServer((req, res) => {
+    requests.push(req.url);
+    const id = req.url.split('/api/leagues/')[1].split('?')[0];
+    res.setHeader('content-type', 'application/json');
+    res.end(JSON.stringify({ ...sampleLeagueData(), id, lastUpdated: new Date().toISOString() }));
+  });
+
+  await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+  const base = `http://127.0.0.1:${server.address().port}`;
+  const outDir = fs.mkdtempSync(path.join(os.tmpdir(), 'render-norefresh-'));
+
+  try {
+    await run(process.execPath, [
+      path.join(__dirname, '..', 'bin', 'fetch-from-render.js'),
+      '--url', base,
+      '--out', outDir,
+      '--no-refresh'
+    ], { cwd: path.join(__dirname, '..') });
+
+    assert.equal(requests.length, 3);
+    for (const url of requests) {
+      assert.doesNotMatch(url, /refresh=true/, 'non deve chiedere uno scraping forzato');
+      assert.match(url, /^\/api\/leagues\/[a-z-]+$/);
+    }
+
+    assert.deepEqual(fs.readdirSync(outDir).sort(), ['promozione-c.json', 'seconda-i.json', 'terza-arezzo.json']);
   } finally {
     await new Promise(resolve => server.close(resolve));
     fs.rmSync(outDir, { recursive: true, force: true });

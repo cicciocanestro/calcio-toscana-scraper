@@ -82,6 +82,11 @@ test('looksLikeWaf riconosce status e marcatori di challenge', () => {
 
   const challenge = new Headers({ 'x-amzn-waf-action': 'challenge' });
   assert.equal(looksLikeWaf(202, challenge, ''), true);
+
+  // TuttoCampo presenta la challenge anche con 202 e senza header dedicati:
+  // 202 non è un errore per fetch, quindi va riconosciuto dallo status.
+  assert.equal(looksLikeWaf(202, headers, ''), true);
+  assert.equal(looksLikeWaf(202, headers, 'Verifica del browser in corso'), true);
 });
 
 test('scrapeLeague via HTTP produce i dati completi e mantiene i cookie di sessione', async () => {
