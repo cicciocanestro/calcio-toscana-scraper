@@ -136,6 +136,13 @@ Apri nel tuo browser: **[http://localhost:3000](http://localhost:3000)**
 - `POST /api/leagues/:id/refresh` (pulsante "Aggiorna dal Web") oppure `GET /api/leagues/:id?refresh=true` forzano lo scraping live e attendono il risultato.
 - Se lo scraping live fallisce (WAF, rete, timeout) ma esiste una copia in cache, viene servita quella marcata `isStale: true`
   invece di restituire un errore.
+- Prima di sovrascrivere la cache si controlla che i dati **non siano in regressione**: se la classifica si accorcia o le
+  partite con risultato diminuiscono, il risultato viene scartato e resta la cache precedente. Serve a non pubblicare i
+  dati degradati che il parser produce quando cambia la struttura HTML di Tuttocampo.
+- Gli export (`/api/leagues/:id/export/:format`) sono generati **in memoria** e inviati nella risposta: nessun file
+  temporaneo su disco, quindi richieste ripetute non si sovrascrivono né si accumulano.
+- I file `.ics` rispettano la RFC 5545: line folding a 75 ottetti, escape di virgole e punti e virgola nelle
+  descrizioni, blocco `VTIMEZONE` per `Europe/Rome`, `STATUS:TENTATIVE` per le partite rinviate.
 - Gli endpoint statici espongono **solo** `public/` (dashboard) e `/data` (cache ed export): sorgenti, configurazione e
   dipendenze non sono scaricabili.
 - Se sulla macchina/istanza è impostata la variabile `REFRESH_TOKEN`, gli aggiornamenti forzati richiedono

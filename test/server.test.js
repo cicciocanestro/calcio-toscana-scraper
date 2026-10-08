@@ -4,9 +4,9 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 
-const { createServer } = require('../src/server');
+const { createServer, normalizeTeamParam } = require('../src/server');
 const { CalendarScraper } = require('../src/scraper');
-const { LEAGUES } = require('../src/config');
+const { LEAGUES, EXPORT_DIR } = require('../src/config');
 const { sampleLeagueData } = require('./fixtures');
 
 // Scraper finto: permette di testare le rotte (token, revalidation) senza
@@ -99,6 +99,64 @@ test('id o formato non validi non provocano scraping', withServer(async (base) =
   assert.equal((await fetch(`${base}/api/leagues/seconda-i/export/pdf`)).status, 400);
   assert.equal((await fetch(`${base}/api/leagues/non-esiste/export/ics`)).status, 404);
 }));
+
+test('normalizeTeamParam riduce un array a una stringa e limita la lunghezza', () => {
+  assert.equal(normalizeTeamParam(undefined), null);
+  assert.equal(normalizeTeamParam(''), null);
+  assert.equal(normalizeTeamParam('   '), null);
+  assert.equal(normalizeTeamParam('Arezzo FA'), 'Arezzo FA');
+  assert.equal(normalizeTeamParam('  Lebowski  '), 'Lebowski');
+  // Express passa ?team=a&team=b come array
+  assert.equal(normalizeTeamParam(['primo', 'secondo']), 'primo');
+  assert.equal(normalizeTeamParam('x'.repeat(500)).length, 100);
+});
+
+test('un filtro squadra passato come array non provoca più un 500', withServer(async (base) => {
+  // Regressione: options.team.toLowerCase su un array lanciava un TypeError
+  const res = await fetch(`${base}/api/leagues/promozione-c/export/csv?team=lebowski&team=altro`);
+
+  assert.equal(res.status, 200);
+  assert.match(res.headers.get('content-type'), /text\/csv/);
+
+  const body = await res.text();
+  assert.match(body, /Centro Storico Lebowski/);
+  assert.doesNotMatch(body, /Acquaviva vs/);
+}));
+
+test('gli export rispondono con il contenuto giusto e senza file temporanei', async () => {
+  const before = fs.readdirSync(EXPORT_DIR).sort();
+
+  await withServer(async (base) => {
+    const json = await fetch(`${base}/api/leagues/promozione-c/export/json`);
+    assert.equal(json.status, 200);
+    assert.match(json.headers.get('content-type'), /application\/json/);
+    assert.equal((await json.json()).id, 'promozione-c');
+
+    const csv = await fetch(`${base}/api/leagues/promozione-c/export/csv`);
+    assert.equal(csv.status, 200);
+    assert.match(csv.headers.get('content-type'), /text\/csv/);
+    assert.match(csv.headers.get('content-disposition'), /attachment; filename="promozione-c\.csv"/);
+    assert.match(await csv.text(), /Campionato;Categoria;Girone/);
+
+    const ics = await fetch(`${base}/api/leagues/promozione-c/export/ics`);
+    assert.equal(ics.status, 200);
+    assert.match(ics.headers.get('content-type'), /text\/calendar/);
+    const icsBody = await ics.text();
+    assert.match(icsBody, /BEGIN:VCALENDAR/);
+    assert.match(icsBody, /BEGIN:VTIMEZONE/);
+    assert.equal(
+      icsBody.split('\r\n').filter(l => Buffer.byteLength(l, 'utf-8') > 75).length,
+      0,
+      'nessuna riga oltre i 75 ottetti'
+    );
+  })();
+
+  assert.deepEqual(
+    fs.readdirSync(EXPORT_DIR).sort(),
+    before,
+    'gli export HTTP non devono scrivere in data/exports'
+  );
+});
 
 test('il costruttore dello scraper non cerca Chrome (ricerca lazy)', () => {
   const scraper = new CalendarScraper();

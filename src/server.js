@@ -1,9 +1,22 @@
 const express = require('express');
-const path = require('path');
-const { LEAGUES, DATA_DIR, PUBLIC_DIR, EXPORT_DIR } = require('./config');
+const { LEAGUES, DATA_DIR, PUBLIC_DIR } = require('./config');
 const { CalendarScraper } = require('./scraper');
-const { exportToJson, exportToCsv, exportToIcs, exportSlug } = require('./exporters');
+const { exportSlug, buildCsv, buildIcs } = require('./exporters');
 const { resolveConfig, describeConfig, dispatchWorkflow } = require('./github-dispatch');
+
+/**
+ * `?team=` può arrivare come array (`?team=a&team=b`): lo normalizziamo a una
+ * sola stringa, con lunghezza limitata, altrimenti gli exporter riceverebbero
+ * un array e la richiesta finirebbe in errore 500.
+ * @returns {string|null}
+ */
+function normalizeTeamParam(value) {
+  const raw = Array.isArray(value) ? value[0] : value;
+  if (raw === undefined || raw === null) return null;
+
+  const team = String(raw).trim().slice(0, 100);
+  return team || null;
+}
 
 /**
  * Crea l'applicazione Express.
@@ -269,10 +282,12 @@ function createServer(options = {}) {
     }
   });
 
-  // Download export (CSV, ICS, JSON) con filtro squadra opzionale
+  // Download export (CSV, ICS, JSON) con filtro squadra opzionale.
+  // Il contenuto viene generato in memoria: nessun file temporaneo su disco,
+  // così richieste ripetute non si sovrascrivono e non si accumulano.
   app.get('/api/leagues/:id/export/:format', async (req, res) => {
     const { id, format } = req.params;
-    const team = req.query.team || null;
+    const team = normalizeTeamParam(req.query.team);
 
     if (!LEAGUES[id]) {
       return res.status(404).json({ error: `Campionato '${id}' non trovato` });
@@ -289,18 +304,17 @@ function createServer(options = {}) {
       }
 
       const teamSuffix = team ? `_${exportSlug(team)}` : '';
-      const tempFilename = `${id}${teamSuffix}.${format}`;
-      const tempPath = path.join(EXPORT_DIR, tempFilename);
+      const filename = `${id}${teamSuffix}.${format}`;
 
-      if (format === 'json') {
-        exportToJson(data, tempPath);
-      } else if (format === 'csv') {
-        exportToCsv(data, tempPath, { team });
-      } else {
-        exportToIcs(data, tempPath, { team });
-      }
+      const formats = {
+        json: { body: JSON.stringify(data, null, 2), type: 'application/json; charset=utf-8' },
+        csv: { body: buildCsv(data, { team }), type: 'text/csv; charset=utf-8' },
+        ics: { body: buildIcs(data, { team }), type: 'text/calendar; charset=utf-8' }
+      };
 
-      return res.download(tempPath, `${id}${teamSuffix}.${format}`);
+      res.setHeader('Content-Type', formats[format].type);
+      res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+      return res.send(formats[format].body);
     } catch (err) {
       console.error('Errore export:', err);
       res.status(500).json({ error: err.message });
@@ -321,5 +335,6 @@ function startServer(port = 3000) {
 
 module.exports = {
   createServer,
-  startServer
+  startServer,
+  normalizeTeamParam
 };

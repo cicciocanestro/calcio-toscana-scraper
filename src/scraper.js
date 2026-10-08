@@ -13,6 +13,42 @@ const PARSER_SOURCE = fs.readFileSync(require.resolve('./parser'), 'utf-8');
 
 const VALID_MODES = ['auto', 'http', 'browser'];
 
+/** Numero di partite con risultato presente nei dati. */
+function countPlayedMatches(leagueData) {
+  return (leagueData.matchDays || []).reduce(
+    (total, day) => total + (day.matches || []).filter(m => m.isPlayed).length,
+    0
+  );
+}
+
+/**
+ * Rileva una regressione fra i dati precedenti e quelli appena scrapati.
+ *
+ * Serve a non sovrascrivere una cache buona con il risultato di un parsing
+ * degradato: se cambia la struttura HTML di Tuttocampo, il parser tende a
+ * restituire classifiche più corte o partite senza risultato, e quei dati
+ * finirebbero nei commit del bot.
+ *
+ * @returns {string|null} descrizione del problema, oppure null se non c'è regressione
+ */
+function describeRegression(previousData, leagueData) {
+  if (!previousData || !leagueData) return null;
+
+  const previousTeams = (previousData.standings || []).length;
+  const nextTeams = (leagueData.standings || []).length;
+  if (previousTeams > 0 && nextTeams < previousTeams) {
+    return `classifica più corta (${nextTeams} squadre contro ${previousTeams})`;
+  }
+
+  const previousPlayed = countPlayedMatches(previousData);
+  const nextPlayed = countPlayedMatches(leagueData);
+  if (nextPlayed < previousPlayed) {
+    return `partite con risultato diminuite (${nextPlayed} contro ${previousPlayed})`;
+  }
+
+  return null;
+}
+
 class CalendarScraper {
   constructor(options = {}) {
     // Nota: il browser NON viene cercato qui. findChrome() è lazy e viene
@@ -38,6 +74,7 @@ class CalendarScraper {
 
     // Sessione WAF riusata fra i campionati (i token aws-waf-token durano pochi minuti)
     this.wafSession = null;
+    this.wafSessionPending = null;
     this.wafSessionTtlMs = options.wafSessionTtlMs || 4 * 60 * 1000;
 
     // Tetto complessivo per un singolo bootstrap (vedi browserBootstrap)
@@ -201,16 +238,30 @@ class CalendarScraper {
   }
 
   /**
-   * Scraping dal sito sorgente (nessuna gestione cache).
+   * Scraping dal sito sorgente, con salvataggio in cache ed export.
    *
-   * Modalità (`SCRAPER_MODE` o opzione `mode`):
+   * Prima di sovrascrivere la cache si controlla che i dati non siano in
+   * regressione: se il parser degrada (struttura HTML cambiata) la classifica
+   * si accorcia o le partite giocate diminuiscono, e in quel caso si scarta il
+   * risultato lasciando intatta la cache buona.
+   *
+   * Modalità (`SCRAPER_MODE` o opzione `mode`, usata da produceLeagueData):
    *  - `auto` (default): prima HTTP, con fallback su Puppeteer se il WAF
    *    risponde con una challenge;
    *  - `http`: solo richieste HTTP (nessun browser);
    *  - `browser`: solo Puppeteer (comportamento storico).
    */
   async scrapeLeagueLive(leagueConfig, options = {}) {
-    const leagueData = await this.produceLeagueData(leagueConfig, options);
+    const previousData = 'previousData' in options
+      ? options.previousData
+      : this.getCachedLeague(leagueConfig.id, null);
+
+    const leagueData = await this.produceLeagueData(leagueConfig, { ...options, previousData });
+
+    const regression = describeRegression(previousData, leagueData);
+    if (regression) {
+      throw new Error(`dati in regressione per ${leagueConfig.name}: ${regression}`);
+    }
 
     this.persistLeagueData(leagueConfig, leagueData);
     this.onProgress(`Completato scraping di ${leagueConfig.name}. Salvato in cache ed export.`);
@@ -397,17 +448,30 @@ class CalendarScraper {
       return this.wafSession;
     }
 
-    const bootstrapped = await this.browserBootstrap(leagueConfig);
+    // Bootstrap già in corso (richieste concorrenti, es. dashboard e CI insieme):
+    // si aspetta quello invece di avviare un secondo Chrome. Su un'istanza da
+    // 512 MB due browser in parallelo sono un rischio di esaurimento memoria.
+    if (this.wafSessionPending) {
+      this.onProgress('Bootstrap del browser già in corso: attendo quello avviato poco fa.');
+      return this.wafSessionPending;
+    }
 
-    // Vengono riusati cookie e User-Agent: i token di sessione (tckk/roundID)
-    // sono specifici del campionato e vengono riletti via HTTP per ogni lega.
-    this.wafSession = {
-      cookies: bootstrapped.cookies,
-      userAgent: bootstrapped.userAgent,
-      at: Date.now()
-    };
+    this.wafSessionPending = this.browserBootstrap(leagueConfig)
+      .then((bootstrapped) => {
+        // Vengono riusati cookie e User-Agent: i token di sessione (tckk/roundID)
+        // sono specifici del campionato e vengono riletti via HTTP per ogni lega.
+        this.wafSession = {
+          cookies: bootstrapped.cookies,
+          userAgent: bootstrapped.userAgent,
+          at: Date.now()
+        };
+        return this.wafSession;
+      })
+      .finally(() => {
+        this.wafSessionPending = null;
+      });
 
-    return this.wafSession;
+    return this.wafSessionPending;
   }
 
   /**
@@ -635,4 +699,4 @@ class CalendarScraper {
   }
 }
 
-module.exports = { CalendarScraper, PARSER_SOURCE, VALID_MODES };
+module.exports = { CalendarScraper, PARSER_SOURCE, VALID_MODES, describeRegression };

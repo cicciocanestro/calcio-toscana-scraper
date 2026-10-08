@@ -37,6 +37,12 @@
   };
 
   /**
+   * Orario usato quando la pagina non lo indica: deve coincidere con quello
+   * citato negli export, altrimenti lo stesso dato compare con due orari.
+   */
+  const DEFAULT_MATCH_TIME = '15:30';
+
+  /**
    * Testo normalizzato di un elemento: usa innerText quando disponibile
    * (browser) e textContent come fallback (DOM "leggeri" / elementi non renderizzati).
    */
@@ -101,6 +107,13 @@
     return null;
   }
 
+  /** Aggiunge un anno a una data YYYY-MM-DD (per le giornate a cavallo d'anno). */
+  function addOneYear(isoDate) {
+    const [year, month, day] = String(isoDate).split('-').map(Number);
+    const shifted = new Date(Date.UTC(year + 1, month - 1, day));
+    return Number.isNaN(shifted.getTime()) ? isoDate : shifted.toISOString().slice(0, 10);
+  }
+
   function createDocument(html, functionName) {
     if (typeof DOMParser === 'undefined') {
       throw new Error(`${functionName} richiede un DOMParser (browser oppure linkedom/jsdom in Node)`);
@@ -147,7 +160,15 @@
 
     for (const row of rows) {
       if (row.classList && row.classList.contains('date')) {
-        const parsed = parseDateHeader(text(row), defaultYear);
+        let parsed = parseDateHeader(text(row), defaultYear);
+
+        // Passaggio d'anno: una giornata a cavallo di Capodanno ha date tipo
+        // "28|12|2026 - 03|01|2027", ma l'anno di riferimento resta quello
+        // iniziale. Se la data torna indietro siamo nell'anno successivo.
+        if (parsed && currentDate && parsed < currentDate) {
+          parsed = addOneYear(parsed);
+        }
+
         if (parsed) currentDate = parsed;
         continue;
       }
@@ -191,7 +212,7 @@
       if (currentDate && time.includes(':')) {
         dateTime = `${currentDate}T${time}:00`;
       } else if (currentDate) {
-        dateTime = `${currentDate}T15:00:00`;
+        dateTime = `${currentDate}T${DEFAULT_MATCH_TIME}:00`;
       }
 
       matches.push({

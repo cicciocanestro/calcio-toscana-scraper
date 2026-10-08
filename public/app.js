@@ -885,6 +885,81 @@ function formatIcsEventTimes(m) {
  * Genera un calendario .ics lato client.
  * Con `options.team` limita gli eventi alle partite di quella squadra.
  */
+// Blocco VTIMEZONE per Europe/Rome (regole UE: ultima domenica di marzo e
+// ottobre). Senza, i client più rigidi interpretano TZID come ora locale.
+const ICS_TIMEZONE = [
+  'BEGIN:VTIMEZONE',
+  'TZID:Europe/Rome',
+  'X-LIC-LOCATION:Europe/Rome',
+  'BEGIN:DAYLIGHT',
+  'TZOFFSETFROM:+0100',
+  'TZOFFSETTO:+0200',
+  'TZNAME:CEST',
+  'DTSTART:19700329T020000',
+  'RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU',
+  'END:DAYLIGHT',
+  'BEGIN:STANDARD',
+  'TZOFFSETFROM:+0200',
+  'TZOFFSETTO:+0100',
+  'TZNAME:CET',
+  'DTSTART:19701025T030000',
+  'RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU',
+  'END:STANDARD',
+  'END:VTIMEZONE'
+];
+
+/** Escape dei valori TEXT iCalendar (backslash, punto e virgola, virgola, a capo). */
+function escapeIcsText(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/\\/g, '\\\\')
+    .replace(/;/g, '\\;')
+    .replace(/,/g, '\\,')
+    .replace(/\n/g, '\\n');
+}
+
+/** Lunghezza in ottetti UTF-8 (serve per il folding a 75 ottetti). */
+function utf8Length(str) {
+  return new TextEncoder().encode(str).length;
+}
+
+/** Line folding RFC 5545: righe da massimo 75 ottetti, continuazioni con spazio. */
+function foldIcsLines(text) {
+  return String(text)
+    .split('\r\n')
+    .map((line) => {
+      if (utf8Length(line) <= 75) return line;
+
+      const pieces = [];
+      let current = '';
+      let currentBytes = 0;
+      let limit = 75; // una continuazione consuma un ottetto per lo spazio iniziale
+
+      for (const char of line) {
+        const size = utf8Length(char);
+        if (currentBytes + size > limit && current !== '') {
+          pieces.push(current);
+          current = char;
+          currentBytes = size;
+          limit = 74;
+        } else {
+          current += char;
+          currentBytes += size;
+        }
+      }
+      pieces.push(current);
+
+      return pieces.join('\r\n ');
+    })
+    .join('\r\n');
+}
+
+/** STATUS iCalendar: una partita rinviata non è confermata. */
+function icsStatus(m) {
+  if (!m.isPlayed && m.status === 'POSTPONED') return 'TENTATIVE';
+  return 'CONFIRMED';
+}
+
 function generateClientIcs(data, options = {}) {
   const now = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
   const calName = options.team ? `${options.team} - Calendario` : `${data.name} - Calendario`;
@@ -894,8 +969,9 @@ function generateClientIcs(data, options = {}) {
     'PRODID:-//Scraper Calcio Dilettanti Toscana//IT',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
-    `X-WR-CALNAME:${calName}`,
-    'X-WR-TIMEZONE:Europe/Rome'
+    `X-WR-CALNAME:${escapeIcsText(calName)}`,
+    'X-WR-TIMEZONE:Europe/Rome',
+    ...ICS_TIMEZONE
   ];
 
   for (const day of data.matchDays || []) {
@@ -912,17 +988,19 @@ function generateClientIcs(data, options = {}) {
       let summary = `${m.homeTeam} vs ${m.awayTeam}`;
       if (m.isPlayed) summary += ` (${m.homeScore}-${m.awayScore})`;
 
-      let desc = `${day.dayTitle} - ${data.name}\\n`;
+      // La descrizione si compone con a capo reali e viene escapata una volta
+      // sola: virgole e punti e virgola dei nomi e dei marcatori vanno protetti.
+      const descParts = [`${day.dayTitle} - ${data.name}`];
       if (m.isPlayed) {
-        desc += `Risultato finale: ${m.homeTeam} ${m.homeScore} - ${m.awayScore} ${m.awayTeam}\\n`;
+        descParts.push(`Risultato finale: ${m.homeTeam} ${m.homeScore} - ${m.awayScore} ${m.awayTeam}`);
         if (m.homeScorers && m.homeScorers.length > 0) {
-          desc += `Marcatori ${m.homeTeam}: ${m.homeScorers.join(', ')}\\n`;
+          descParts.push(`Marcatori ${m.homeTeam}: ${m.homeScorers.join(', ')}`);
         }
         if (m.awayScorers && m.awayScorers.length > 0) {
-          desc += `Marcatori ${m.awayTeam}: ${m.awayScorers.join(', ')}\\n`;
+          descParts.push(`Marcatori ${m.awayTeam}: ${m.awayScorers.join(', ')}`);
         }
       } else {
-        desc += `Partita in programma alle ${m.time || '15:30'}\\n`;
+        descParts.push(`Partita in programma alle ${m.time || '15:30'}`);
       }
 
       lines.push('BEGIN:VEVENT');
@@ -930,17 +1008,17 @@ function generateClientIcs(data, options = {}) {
       lines.push(`DTSTAMP:${now}`);
       lines.push(times.start);
       lines.push(times.end);
-      lines.push(`SUMMARY:${summary}`);
-      lines.push(`DESCRIPTION:${desc}`);
-      lines.push(`LOCATION:Campo sportivo ${m.homeTeam}`);
+      lines.push(`SUMMARY:${escapeIcsText(summary)}`);
+      lines.push(`DESCRIPTION:${escapeIcsText(descParts.join('\n'))}`);
+      lines.push(`LOCATION:${escapeIcsText('Campo sportivo ' + m.homeTeam)}`);
       if (m.matchLink) lines.push(`URL:${m.matchLink}`);
-      lines.push('STATUS:CONFIRMED');
+      lines.push(`STATUS:${icsStatus(m)}`);
       lines.push('END:VEVENT');
     }
   }
 
   lines.push('END:VCALENDAR');
-  return lines.join('\r\n');
+  return foldIcsLines(lines.join('\r\n'));
 }
 
 function triggerBlobDownload(blob, filename) {

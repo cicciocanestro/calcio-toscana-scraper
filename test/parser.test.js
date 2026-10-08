@@ -66,8 +66,39 @@ test('parseMatchdayHtml estrae giornata, date, risultati e marcatori', () => {
   // Partita rinviata
   assert.equal(postponed.status, 'POSTPONED');
   assert.equal(postponed.isPlayed, false);
-  // Senza orario valido si usa il fallback delle 15:00
-  assert.equal(postponed.dateTime, '2026-09-20T15:00:00');
+  // Senza orario valido si usa l'orario di default, 15:30
+  assert.equal(postponed.dateTime, '2026-09-20T15:30:00');
+});
+
+test('parseMatchdayHtml gestisce il passaggio d\'anno fra dicembre e gennaio', () => {
+  const html = `<div id="match_day">18° Giornata</div>
+<div id="match_date">28|12|2026 - 03|01|2027</div>
+<table class="table-results">
+  <tr class="date"><td>Sab. 28 dicembre</td></tr>
+  <tr class="match">
+    <td class="team home"><a class="team-name">Casa</a><span class="goal">1</span></td>
+    <td class="match-time"><span class="hour">15:30</span></td>
+    <td class="team away"><a class="team-name">Ospite</a><span class="goal">0</span></td>
+  </tr>
+  <tr class="date"><td>Domenica 3 gennaio</td></tr>
+  <tr class="match">
+    <td class="team home"><a class="team-name">Casa 2</a><span class="goal">-</span></td>
+    <td class="match-time"><span class="hour">15:00</span></td>
+    <td class="team away"><a class="team-name">Ospite 2</a><span class="goal">-</span></td>
+  </tr>
+</table>`;
+
+  const day = parser.parseMatchdayHtml(html, 18);
+
+  // La data di gennaio deve passare all'anno successivo, non restare al 2026
+  assert.deepEqual(day.matches.map(m => m.date), ['2026-12-28', '2027-01-03']);
+  assert.equal(day.matches[1].dateTime, '2027-01-03T15:00:00');
+});
+
+test('una giornata normale non viene spostata di anno', () => {
+  // Stesso mese, date in ordine crescente: nessun salto
+  const day = parser.parseMatchdayHtml(MATCHDAY_HTML, 4);
+  assert.deepEqual(day.matches.map(m => m.date), ['2026-09-19', '2026-09-20', '2026-09-20']);
 });
 
 test('parseStandingsHtml estrae classifica, zone e gestisce le celle vuote', () => {

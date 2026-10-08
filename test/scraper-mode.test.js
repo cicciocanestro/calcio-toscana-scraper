@@ -1,7 +1,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 
-const { CalendarScraper } = require('../src/scraper');
+const { CalendarScraper, describeRegression } = require('../src/scraper');
 const { HttpScrapeError } = require('../src/http-scraper');
 const { LEAGUES } = require('../src/config');
 const { sampleLeagueData } = require('./fixtures');
@@ -32,6 +32,10 @@ function instrumentedScraper(mode, httpImpl, bootstrapImpl) {
   };
 
   const scraper = new CalendarScraper({ mode, onProgress: () => {}, httpScraper });
+
+  // L'harness usa dati sintetici: non deve leggere la cache reale del progetto,
+  // altrimenti i controlli di regressione confronterebbero dati non omogenei.
+  scraper.getCachedLeague = () => null;
 
   scraper.browserBootstrap = async (leagueConfig) => {
     calls.bootstrap++;
@@ -295,4 +299,90 @@ test('la sessione WAF valida non viene rifatta', async () => {
   await scraper.produceLeagueData(LEAGUES['promozione-c']);
 
   assert.equal(calls.bootstrap, 1);
+});
+
+test('due richieste concorrenti condividono un solo bootstrap del browser', async () => {
+  const { scraper, calls } = instrumentedScraper('auto', (leagueConfig, options) => {
+    if (!options.session) throw wafError();
+    return { ...sampleLeagueData(), id: leagueConfig.id };
+  });
+
+  // Bootstrap lento: la seconda richiesta deve agganciarsi a quella in corso
+  // invece di avviare un secondo Chrome
+  let release;
+  const gate = new Promise((resolve) => { release = resolve; });
+  const slowBootstrap = scraper.browserBootstrap;
+  scraper.browserBootstrap = async (leagueConfig) => {
+    await gate;
+    return slowBootstrap(leagueConfig);
+  };
+
+  const first = scraper.produceLeagueData(LEAGUES['promozione-c']);
+  const second = scraper.produceLeagueData(LEAGUES['seconda-i']);
+
+  release();
+  await Promise.all([first, second]);
+
+  assert.equal(calls.bootstrap, 1, 'un solo avvio di Chrome anche con richieste concorrenti');
+  assert.equal(calls.http.length, 4, 'due tentativi HTTP per campionato');
+});
+
+test('describeRegression riconosce classifica più corta e partite in meno', () => {
+  const previous = sampleLeagueData();
+
+  assert.equal(describeRegression(previous, sampleLeagueData()), null, 'dati identici: nessuna regressione');
+  assert.equal(describeRegression(null, sampleLeagueData()), null, 'senza dati precedenti non si giudica');
+
+  const shorter = sampleLeagueData();
+  shorter.standings = [];
+  assert.match(describeRegression(previous, shorter), /classifica più corta/);
+
+  const fewerPlayed = sampleLeagueData();
+  fewerPlayed.matchDays[0].matches[0].isPlayed = false;
+  assert.match(describeRegression(previous, fewerPlayed), /partite con risultato diminuite/);
+
+  // Una crescita non è una regressione
+  const grown = sampleLeagueData();
+  grown.standings.push({ position: 2, team: 'Nuova', points: 0 });
+  grown.matchDays[1].matches[0].isPlayed = true;
+  assert.equal(describeRegression(previous, grown), null);
+});
+
+test('i dati in regressione vengono scartati e resta la cache buona', async () => {
+  const { scraper, calls } = instrumentedScraper('http', () => {
+    const degraded = sampleLeagueData();
+    degraded.standings = []; // parsing degradato: nessuna squadra
+    return degraded;
+  });
+
+  // Cache precedente buona
+  const good = { ...sampleLeagueData(), lastUpdated: '2026-09-30T10:00:00.000Z' };
+  scraper.getCachedLeague = () => good;
+
+  const data = await scraper.scrapeLeague('promozione-c', { forceRefresh: true });
+
+  assert.equal(calls.persisted.length, 0, 'i dati degradati non devono essere salvati');
+  assert.equal(data.isStale, true, 'si ripiega sulla cache');
+  assert.ok(data.standings.length > 0, 'i dati restituiti sono quelli buoni');
+});
+
+test('i dati sani vengono salvati normalmente', async () => {
+  const { scraper, calls } = instrumentedScraper('http', () => ({ ...sampleLeagueData(), lastUpdated: '2026-10-08T10:00:00.000Z' }));
+
+  scraper.getCachedLeague = () => ({ ...sampleLeagueData(), lastUpdated: '2026-09-30T10:00:00.000Z' });
+  // La partita della giornata 2 diventa giocata: crescita, non regressione
+  const improved = () => {
+    const data = sampleLeagueData();
+    data.matchDays[1].matches[0].isPlayed = true;
+    data.matchDays[1].matches[0].homeScore = 1;
+    data.matchDays[1].matches[0].awayScore = 0;
+    return data;
+  };
+  const growth = instrumentedScraper('http', improved);
+  growth.scraper.getCachedLeague = () => ({ ...sampleLeagueData(), lastUpdated: '2026-09-30T10:00:00.000Z' });
+
+  const data = await growth.scraper.scrapeLeague('promozione-c', { forceRefresh: true });
+
+  assert.equal(growth.calls.persisted.length, 1, 'i dati sani devono essere salvati');
+  assert.equal(data.isStale, undefined);
 });
