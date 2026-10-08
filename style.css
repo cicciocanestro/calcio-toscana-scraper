@@ -37,12 +37,6 @@ body {
   max-width: 1140px;
   margin: 0 auto;
   padding: 0 1.25rem;
-  /* `body` è un flex container in colonna: con i margini auto lo stretch non si
-     applica e il figlio verrebbe dimensionato a fit-content, cioè almeno quanto
-     il min-content della tabella classifica (che è larga di proposito). La
-     larghezza definita gli impedisce di allargare la pagina: la tabella scorre
-     dentro .table-responsive, come previsto. */
-  width: 100%;
 }
 
 /* Header */
@@ -776,6 +770,16 @@ tr.zone-retrocession td.col-pos { border-left: 4px solid var(--retrocession); }
 
 /* Responsive Design */
 @media (max-width: 900px) {
+  /* `body` è un flex container in colonna e `.container` ha `margin: 0 auto`:
+     i margini auto disattivano lo stretch, quindi il contenitore viene
+     dimensionato a fit-content, che non scende sotto il min-content della
+     tabella classifica (341px + padding). Sotto questa soglia gli diamo una
+     larghezza definita, così la tabella scorre dentro .table-responsive
+     invece di far scorrere tutta la pagina. */
+  .container {
+    width: 100%;
+  }
+
   .matches-grid {
     grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
   }
