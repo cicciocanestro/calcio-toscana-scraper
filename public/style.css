@@ -37,6 +37,12 @@ body {
   max-width: 1140px;
   margin: 0 auto;
   padding: 0 1.25rem;
+  /* `body` è un flex container in colonna: con i margini auto lo stretch non si
+     applica e il figlio verrebbe dimensionato a fit-content, cioè almeno quanto
+     il min-content della tabella classifica (che è larga di proposito). La
+     larghezza definita gli impedisce di allargare la pagina: la tabella scorre
+     dentro .table-responsive, come previsto. */
+  width: 100%;
 }
 
 /* Header */
@@ -184,7 +190,9 @@ body {
 
 .nav-tabs {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* minmax(0, 1fr) invece di 1fr: la traccia può restringersi sotto il
+     min-content del testo, altrimenti i tab sfondano lo schermo su mobile */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.75rem;
 }
 
@@ -197,6 +205,7 @@ body {
   text-align: left;
   display: flex;
   flex-direction: column;
+  min-width: 0;
   transition: all 0.2s ease;
 }
 
@@ -217,6 +226,10 @@ body {
   text-transform: uppercase;
   color: var(--primary);
   letter-spacing: 0.05em;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .league-title {
@@ -811,10 +824,10 @@ tr.zone-retrocession td.col-pos { border-left: 4px solid var(--retrocession); }
     font-size: 0.78rem;
   }
 
-  /* Selettore campionati: 3 tab perfettamente distribuiti su mobile */
+  /* Selettore campionati: 3 tab distribuiti, senza sfondare su schermi stretti */
   .nav-tabs {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.4rem;
     padding-bottom: 0;
   }
@@ -840,23 +853,20 @@ tr.zone-retrocession td.col-pos { border-left: 4px solid var(--retrocession); }
     max-width: 100%;
   }
 
-  /* Navigazione sottoviste: 4 tab a griglia per pollice */
+  /* Navigazione sottoviste: flex con a capo automatico, così regge qualsiasi
+     numero di voci (ora sono 5) senza numeri magici nel CSS */
   .sub-nav {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
     gap: 0.3rem;
     padding-bottom: 0;
     border-bottom: none;
   }
 
   .sub-nav-btn {
-    padding: 0.5rem 0.25rem;
+    padding: 0.5rem 0.6rem;
     font-size: 0.76rem;
     text-align: center;
     border-radius: 8px;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   /* Tabella Classifica con prime 2 colonne sticky */
@@ -1016,6 +1026,22 @@ tr.zone-retrocession td.col-pos { border-left: 4px solid var(--retrocession); }
   .matches-grid {
     grid-template-columns: 1fr;
     gap: 0.6rem;
+  }
+
+  /* Intestazione giornata: titolo e data impilati, altrimenti il titolo
+     si spezza su due righe per far posto alla data */
+  .matchday-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.1rem;
+  }
+
+  .matchday-title {
+    font-size: 1.05rem;
+  }
+
+  .matchday-date {
+    font-size: 0.78rem;
   }
 
   .match-card {
