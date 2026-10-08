@@ -236,6 +236,42 @@ test('il bootstrap WAF viene condiviso fra i campionati dello stesso run', async
   assert.deepEqual(paths, ['http-after-bootstrap', 'http-after-bootstrap', 'http-after-bootstrap']);
 });
 
+test('il bootstrap viene interrotto (e Chrome terminato) se non risponde', async () => {
+  const scraper = new CalendarScraper({ onProgress: () => {}, bootstrapTimeoutMs: 20 });
+  let killed = 0;
+
+  scraper.launchBrowser = async () => ({
+    process: () => ({ kill: () => { killed++; } }),
+    close: async () => {}
+  });
+  // Bootstrap che non termina mai: simula Chrome appeso sulla challenge
+  scraper.runBrowserBootstrap = () => new Promise(() => {});
+
+  await assert.rejects(
+    () => scraper.browserBootstrap(LEAGUES['promozione-c']),
+    /non ha completato il bootstrap entro/
+  );
+  assert.equal(killed, 1, 'il processo Chrome deve essere terminato');
+});
+
+test('un bootstrap riuscito chiude Chrome senza intervento del watchdog', async () => {
+  const scraper = new CalendarScraper({ onProgress: () => {}, bootstrapTimeoutMs: 5000 });
+  let closed = 0;
+  let killed = 0;
+
+  scraper.launchBrowser = async () => ({
+    process: () => ({ kill: () => { killed++; } }),
+    close: async () => { closed++; }
+  });
+  scraper.runBrowserBootstrap = async () => ({ tckk: 'A', roundID: 'TO.P.C', cookies: 'c=1', userAgent: 'UA' });
+
+  const bootstrapped = await scraper.browserBootstrap(LEAGUES['promozione-c']);
+
+  assert.equal(bootstrapped.tckk, 'A');
+  assert.equal(closed, 1, 'Chrome va chiuso normalmente');
+  assert.equal(killed, 0, 'il watchdog non deve intervenire');
+});
+
 test('la sessione WAF scade e viene rifatta una volta trascorso il TTL', async () => {
   const { scraper, calls } = instrumentedScraper('auto', (leagueConfig, options) => {
     if (!options.session) throw wafError();

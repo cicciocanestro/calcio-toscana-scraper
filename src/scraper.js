@@ -39,6 +39,9 @@ class CalendarScraper {
     // Sessione WAF riusata fra i campionati (i token aws-waf-token durano pochi minuti)
     this.wafSession = null;
     this.wafSessionTtlMs = options.wafSessionTtlMs || 4 * 60 * 1000;
+
+    // Tetto complessivo per un singolo bootstrap (vedi browserBootstrap)
+    this.bootstrapTimeoutMs = options.bootstrapTimeoutMs || 120000;
   }
 
   /**
@@ -374,6 +377,9 @@ class CalendarScraper {
     if (await this.isWafChallenge(page)) {
       this.onProgress('Risoluzione della challenge AWS WAF in corso...');
       await page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 25000 }).catch(() => {});
+      // Senza questo messaggio il log resterebbe muto per tutta la lettura dei
+      // token, che sulla challenge AWS dura decine di secondi.
+      this.onProgress('Challenge superata, lettura dei token di sessione...');
     }
   }
 
@@ -408,45 +414,77 @@ class CalendarScraper {
    * Naviga la pagina con il browser solo per superare la challenge del WAF e
    * restituisce cookie + token di sessione, da riusare con le richieste HTTP.
    *
+   * Il lavoro vero sta in runBrowserBootstrap; qui si aggiunge solo un tetto di
+   * tempo complessivo, perché alcune chiamate Puppeteer (`page.evaluate`,
+   * `browser.close`) non accettano un timeout: se Chrome si blocca sulla
+   * challenge, senza questo limite il bootstrap resterebbe appeso per sempre e
+   * la revalidation risulterebbe "in corso" a tempo indefinito.
+   *
    * @returns {Promise<{tckk:string, roundID:string, totalDays:number, currentDay:number, cookies:string, userAgent:string}>}
    */
   async browserBootstrap(leagueConfig) {
     this.onProgress(`Bootstrap con il browser per superare la challenge WAF di ${leagueConfig.name}...`);
 
     const browser = await this.launchBrowser();
+    let watchdogTimer = null;
+    let timedOut = false;
+
+    const watchdog = new Promise((resolve, reject) => {
+      watchdogTimer = setTimeout(() => {
+        timedOut = true;
+        reject(new Error(
+          `Chrome non ha completato il bootstrap entro ${Math.round(this.bootstrapTimeoutMs / 1000)}s`
+        ));
+      }, this.bootstrapTimeoutMs);
+    });
+
     try {
-      const page = await browser.newPage();
-      const userAgent = this.resolveUserAgent();
-      await page.setUserAgent(userAgent);
-      await page.setViewport({ width: 1920, height: 1080 });
-
-      // Rimuove impronte di automazione per superare challenge AWS WAF
-      await this.applyStealthEvasions(page);
-
-      // Durante la navigazione, blocchiamo solo video pesanti senza toccare immagini/font/script
-      // perché AWS WAF usa pixel-tracker e risorse grafiche per validare l'ambiente browser.
-      await this.blockHeavyMedia(page);
-      await this.navigateAndSolveWafChallenge(page, leagueConfig.url, 'domcontentloaded');
-
-      await page.waitForFunction(
-        () => typeof tckk !== 'undefined' && typeof roundID !== 'undefined' && typeof matchesNumber !== 'undefined',
-        { timeout: 40000 }
-      );
-
-      const meta = await page.evaluate(() => ({
-        tckk,
-        roundID,
-        totalDays: parseInt(matchesNumber, 10),
-        currentDay: parseInt(currentMatchDay, 10)
-      }));
-
-      const cookies = await page.cookies();
-      const cookieHeader = cookies.map(c => `${c.name}=${c.value}`).join('; ');
-
-      return { ...meta, cookies: cookieHeader, userAgent };
+      return await Promise.race([this.runBrowserBootstrap(browser, leagueConfig), watchdog]);
     } finally {
-      await browser.close().catch(() => {});
+      clearTimeout(watchdogTimer);
+      if (timedOut) {
+        // Chrome è probabilmente appeso: `close()` da solo non risponderebbe
+        browser.process()?.kill('SIGKILL');
+      } else {
+        await browser.close().catch(() => {});
+      }
     }
+  }
+
+  /**
+   * Corpo del bootstrap: naviga, supera la challenge e legge i token di sessione.
+   * È separato da browserBootstrap per potergli applicare un tetto di tempo.
+   */
+  async runBrowserBootstrap(browser, leagueConfig) {
+    const page = await browser.newPage();
+    const userAgent = this.resolveUserAgent();
+    await page.setUserAgent(userAgent);
+    await page.setViewport({ width: 1920, height: 1080 });
+
+    // Rimuove impronte di automazione per superare challenge AWS WAF
+    await this.applyStealthEvasions(page);
+
+    // Durante la navigazione, blocchiamo solo video pesanti senza toccare immagini/font/script
+    // perché AWS WAF usa pixel-tracker e risorse grafiche per validare l'ambiente browser.
+    await this.blockHeavyMedia(page);
+    await this.navigateAndSolveWafChallenge(page, leagueConfig.url, 'domcontentloaded');
+
+    await page.waitForFunction(
+      () => typeof tckk !== 'undefined' && typeof roundID !== 'undefined' && typeof matchesNumber !== 'undefined',
+      { timeout: 40000 }
+    );
+
+    const meta = await page.evaluate(() => ({
+      tckk,
+      roundID,
+      totalDays: parseInt(matchesNumber, 10),
+      currentDay: parseInt(currentMatchDay, 10)
+    }));
+
+    const cookies = await page.cookies();
+    const cookieHeader = cookies.map(c => `${c.name}=${c.value}`).join('; ');
+
+    return { ...meta, cookies: cookieHeader, userAgent };
   }
 
   /**
