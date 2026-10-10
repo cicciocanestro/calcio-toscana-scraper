@@ -10,7 +10,7 @@
   "roundID": "TO.2.I",
   "currentMatchDay": 4,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-10-08T19:26:35.097Z",
+  "lastUpdated": "2026-10-10T13:53:00.634Z",
   "standings": [
     {
       "position": 1,
@@ -66,15 +66,15 @@
     },
     {
       "position": 5,
-      "team": "Pieve al Toppo",
-      "points": 5,
-      "played": 3,
-      "won": 1,
-      "drawn": 2,
-      "lost": 0,
+      "team": "Fratticciola",
+      "points": 6,
+      "played": 4,
+      "won": 2,
+      "drawn": 0,
+      "lost": 2,
       "goalsFor": 5,
-      "goalsAgainst": 4,
-      "goalDiff": 1,
+      "goalsAgainst": 3,
+      "goalDiff": 2,
       "zone": "playoff"
     },
     {
@@ -92,6 +92,19 @@
     },
     {
       "position": 7,
+      "team": "Pieve al Toppo",
+      "points": 5,
+      "played": 4,
+      "won": 1,
+      "drawn": 2,
+      "lost": 1,
+      "goalsFor": 5,
+      "goalsAgainst": 5,
+      "goalDiff": 0,
+      "zone": "normal"
+    },
+    {
+      "position": 8,
       "team": "Rassina",
       "points": 4,
       "played": 3,
@@ -104,7 +117,7 @@
       "zone": "normal"
     },
     {
-      "position": 8,
+      "position": 9,
       "team": "Pratovecchio",
       "points": 4,
       "played": 3,
@@ -114,19 +127,6 @@
       "goalsFor": 1,
       "goalsAgainst": 1,
       "goalDiff": 0,
-      "zone": "normal"
-    },
-    {
-      "position": 9,
-      "team": "Fratticciola",
-      "points": 3,
-      "played": 3,
-      "won": 1,
-      "drawn": 0,
-      "lost": 2,
-      "goalsFor": 4,
-      "goalsAgainst": 3,
-      "goalDiff": 1,
       "zone": "normal"
     },
     {
@@ -719,10 +719,10 @@
         {
           "homeTeam": "Pieve al Toppo",
           "awayTeam": "Fratticciola",
-          "homeScore": null,
-          "awayScore": null,
-          "isPlayed": false,
-          "status": "SCHEDULED",
+          "homeScore": 0,
+          "awayScore": 1,
+          "isPlayed": true,
+          "status": "LIVE",
           "date": "2026-10-10",
           "time": "15:30",
           "dateTime": "2026-10-10T15:30:00",
