@@ -104,7 +104,12 @@ jobs:
 
       - name: Rigenerazione export (CSV, ICS, JSON)
         if: steps.aggiorna.outputs.aggiornato == 'true'
-        run: node bin/cli.js export all
+        run: |
+          # 1. Aggiorna SQLite con i dati freschi e rigenera lo snapshot JSONL
+          node bin/db-import.js
+          node bin/db-snapshot.js dump
+          # 2. Rigenera gli export (CSV, ICS, JSON)
+          node bin/cli.js export all
 
       - name: Rigenerazione asset dashboard per GitHub Pages
         run: npm run build:pages
@@ -118,7 +123,7 @@ jobs:
           # Salta il commit se l'unica differenza sono i campi volatili
           # (lastUpdated nella cache/export JSON e DTSTAMP negli ICS)
           if node bin/data-changed.js; then
-            git add data/cache/ data/exports/ index.html app.js style.css
+            git add data/cache/ data/exports/ data/db/snapshot.jsonl index.html app.js style.css
             if git diff --staged --quiet; then
               echo "Nessun aggiornamento trovato, i dati sono già aggiornati."
               echo "pushed=false" >> "$GITHUB_OUTPUT"

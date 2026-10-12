@@ -346,3 +346,52 @@ test('una sessione con soli cookie WAF evita il browser ma rilegge i token via H
   assert.equal(data.totalMatchDays, 2);
   assert.equal(data.matchDays.length, 2);
 });
+
+test('scrapeLeague con opzione incremental scarica solo la giornata corrente e unisce le altre dalla cache', async () => {
+  const fetchImpl = fakeFetch(standardRoutes());
+  const scraper = new HttpScraper({ fetch: fetchImpl, onProgress: () => {} });
+
+  const previousData = {
+    id: 'promozione-c',
+    matchDays: [
+      { dayNumber: 1, dayTitle: '1° Giornata', dayDate: '10/09', matches: [{ homeTeam: 'A', awayTeam: 'B' }] },
+      { dayNumber: 2, dayTitle: '2° Giornata', dayDate: '17/09', matches: [{ homeTeam: 'C', awayTeam: 'D' }] }
+    ]
+  };
+
+  const data = await scraper.scrapeLeague(LEAGUE, {
+    previousData,
+    incremental: true
+  });
+
+  assert.equal(data.totalMatchDays, 2);
+  assert.equal(data.matchDays.length, 2);
+  assert.equal(data.standings.length, 4);
+});
+
+test('scrapeLeague con matchDays espliciti scarica solo le giornate indicate', async () => {
+  const fetchImpl = fakeFetch(standardRoutes());
+  const scraper = new HttpScraper({ fetch: fetchImpl, onProgress: () => {} });
+
+  const previousData = {
+    id: 'promozione-c',
+    matchDays: [
+      { dayNumber: 1, dayTitle: '1° Giornata', dayDate: '10/09', matches: [{ homeTeam: 'A', awayTeam: 'B' }] },
+      { dayNumber: 2, dayTitle: '2° Giornata', dayDate: '17/09', matches: [{ homeTeam: 'C', awayTeam: 'D' }] }
+    ]
+  };
+
+  const data = await scraper.scrapeLeague(LEAGUE, {
+    previousData,
+    matchDays: [2]
+  });
+
+  // Chiamate fetch: 1 pagina + 1 classifica + 1 sola giornata (giornata 2)
+  assert.equal(fetchImpl.calls.length, 3);
+  assert.ok(fetchImpl.calls.some(c => c.url.includes('match_day_id=2')));
+  assert.ok(!fetchImpl.calls.some(c => c.url.includes('match_day_id=1')));
+
+  // La giornata 1 viene preservata da previousData
+  assert.equal(data.matchDays.length, 2);
+  assert.equal(data.matchDays[0].matches[0].homeTeam, 'A');
+});

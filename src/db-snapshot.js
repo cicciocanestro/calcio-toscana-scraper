@@ -1,0 +1,113 @@
+const fs = require('fs');
+const readline = require('readline');
+const path = require('path');
+const { DB_SNAPSHOT_PATH } = require('./config');
+
+const SNAPSHOT_TABLES = [
+  'leagues',
+  'seasons',
+  'teams',
+  'team_aliases',
+  'matchdays',
+  'matches',
+  'goals',
+  'standings_snapshots'
+];
+
+/**
+ * Esporta tutte le tabelle del database in un file JSON Lines ordinato e stabile.
+ * Ogni riga ha la forma: { table: "nome_tabella", data: { ... } }
+ *
+ * @param {DatabaseSync} db - Istanza SQLite aperta
+ * @param {string} [filePath] - Percorso del file snapshot JSONL (default: DB_SNAPSHOT_PATH)
+ * @returns {number} Numero totale di record esportati
+ */
+function dumpSnapshot(db, filePath = DB_SNAPSHOT_PATH) {
+  const dir = path.dirname(filePath);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+
+  const lines = [];
+  // Header con metadati
+  lines.push(JSON.stringify({ _type: 'header', version: 1, exported_at: new Date().toISOString() }));
+
+  let totalRows = 0;
+  for (const table of SNAPSHOT_TABLES) {
+    const rows = db.prepare(`SELECT * FROM ${table} ORDER BY rowid ASC`).all();
+    for (const row of rows) {
+      lines.push(JSON.stringify({ table, data: row }));
+      totalRows++;
+    }
+  }
+
+  fs.writeFileSync(filePath, lines.join('\n') + '\n', 'utf-8');
+  return totalRows;
+}
+
+/**
+ * Ripristina il database SQLite partendo da un file snapshot JSONL.
+ *
+ * @param {DatabaseSync} db - Istanza SQLite aperta e inizializzata con schema DDL
+ * @param {string} [filePath] - Percorso del file snapshot JSONL
+ * @returns {number} Numero di record ripristinati
+ */
+function restoreSnapshot(db, filePath = DB_SNAPSHOT_PATH) {
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`File snapshot non trovato: ${filePath}`);
+  }
+
+  const raw = fs.readFileSync(filePath, 'utf-8');
+  const lines = raw.split('\n').filter(line => line.trim().length > 0);
+
+  db.exec('PRAGMA foreign_keys = OFF;');
+  db.exec('BEGIN TRANSACTION;');
+
+  let restoredRows = 0;
+  try {
+    // Svuota le tabelle prima del restore
+    for (const table of [...SNAPSHOT_TABLES].reverse()) {
+      db.prepare(`DELETE FROM ${table}`).run();
+    }
+
+    const stmtCache = new Map();
+
+    for (const line of lines) {
+      const parsed = JSON.parse(line);
+      if (parsed._type === 'header') continue;
+
+      const { table, data } = parsed;
+      if (!SNAPSHOT_TABLES.includes(table)) continue;
+
+      const keys = Object.keys(data);
+      if (keys.length === 0) continue;
+
+      let stmt = stmtCache.get(table);
+      if (!stmt) {
+        const placeholders = keys.map(() => '?').join(', ');
+        const cols = keys.map(k => `"${k}"`).join(', ');
+        stmt = db.prepare(`INSERT INTO ${table} (${cols}) VALUES (${placeholders})`);
+        stmtCache.set(table, stmt);
+      }
+
+      const values = keys.map(k => data[k]);
+      stmt.run(...values);
+      restoredRows++;
+    }
+
+    db.exec('COMMIT;');
+  } catch (err) {
+    db.exec('ROLLBACK;');
+    throw err;
+  } finally {
+    db.exec('PRAGMA foreign_keys = ON;');
+  }
+
+  return restoredRows;
+}
+
+module.exports = {
+  SNAPSHOT_TABLES,
+  dumpSnapshot,
+  restoreSnapshot
+};

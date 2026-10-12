@@ -5,10 +5,12 @@ const Table = require('cli-table3');
 const chalkModule = require('chalk');
 const chalk = chalkModule.default || chalkModule;
 const path = require('path');
-const { LEAGUES, EXPORT_DIR } = require('../src/config');
+const { LEAGUES, EXPORT_DIR, DB_PATH } = require('../src/config');
 const { CalendarScraper } = require('../src/scraper');
 const { exportToJson, exportToCsv, exportToIcs, exportSlug } = require('../src/exporters');
 const { startServer } = require('../src/server');
+const { initDatabase } = require('../src/db');
+const { getTopScorers, getTeamsForm } = require('../src/db-sync');
 
 const program = new Command();
 
@@ -42,11 +44,17 @@ program
   .command('scrape [league]')
   .description('Scarica o aggiorna i dati dei campionati (promozione-c, seconda-i, terza-arezzo o all)')
   .option('-r, --refresh', 'Forza il refresh ignorando la cache locale')
+  .option('-i, --incremental', 'Scraping incrementale: scarica solo la giornata corrente, precedente e successiva')
   .action(async (league, options) => {
     try {
       const scraper = new CalendarScraper({
         onProgress: (msg) => console.log(chalk.cyan(`ℹ ${msg}`))
       });
+
+      const scrapeOpts = {
+        forceRefresh: !!options.refresh,
+        incremental: !!options.incremental
+      };
 
       if (league === 'all') {
         console.log(chalk.bold.green('\n⚽ Avvio scraping di tutti i campionati configurati...\n'));
@@ -55,7 +63,7 @@ program
         const fromCache = [];
 
         for (const key of keys) {
-          const data = await scraper.scrapeLeague(key, { forceRefresh: !!options.refresh });
+          const data = await scraper.scrapeLeague(key, scrapeOpts);
           if (data.isStale) fromCache.push(LEAGUES[key].name);
         }
 
@@ -76,7 +84,7 @@ program
       } else {
         const key = getLeagueKey(league);
         console.log(chalk.bold.green(`\n⚽ Aggiornamento dati per: ${LEAGUES[key].name}\n`));
-        const data = await scraper.scrapeLeague(key, { forceRefresh: !!options.refresh });
+        const data = await scraper.scrapeLeague(key, scrapeOpts);
 
         if (data.isStale) {
           console.warn(chalk.yellow('\n⚠ Aggiornamento dal sito ufficiale non riuscito: sono stati usati i dati in cache.\n'));
@@ -138,6 +146,95 @@ program
         chalk.cyan('■ Playoff ') + 
         chalk.magenta('■ Playout ') + 
         chalk.red('■ Retrocessione\n'));
+    } catch (err) {
+      console.error(chalk.red('Errore:'), err.message);
+      process.exit(1);
+    }
+  });
+
+// COMANDO: scorers / marcatori
+program
+  .command('scorers [league]')
+  .alias('marcatori')
+  .description('Mostra la classifica marcatori del campionato')
+  .option('-l, --limit <number>', 'Numero massimo di marcatori da mostrare', '15')
+  .action((league, options) => {
+    try {
+      const key = getLeagueKey(league);
+      const db = initDatabase(DB_PATH);
+      const limit = parseInt(options.limit, 10) || 15;
+      const list = getTopScorers(db, key, limit);
+
+      console.log(chalk.bold.yellow(`\n⚽ CLASSIFICA MARCATORI: ${LEAGUES[key].name.toUpperCase()}\n`));
+
+      if (list.length === 0) {
+        console.log(chalk.gray('Nessun marcatore registrato per questo campionato.\n'));
+        return;
+      }
+
+      const table = new Table({
+        head: ['#', 'Calciatore', 'Squadra', 'Gol Totali', 'Rigori'].map(h => chalk.bold.white(h)),
+        style: { head: [], border: [] }
+      });
+
+      for (const s of list) {
+        table.push([
+          s.position,
+          chalk.bold.cyan(s.player),
+          s.team,
+          chalk.bold.yellow(s.goals),
+          s.penalties > 0 ? chalk.gray(s.penalties) : '0'
+        ]);
+      }
+
+      console.log(table.toString() + '\n');
+    } catch (err) {
+      console.error(chalk.red('Errore:'), err.message);
+      process.exit(1);
+    }
+  });
+
+// COMANDO: form / forma
+program
+  .command('form [league]')
+  .alias('forma')
+  .description('Mostra lo stato di forma delle squadre nelle ultime 5 partite')
+  .option('-m, --matches <number>', 'Numero di partite recenti da considerare', '5')
+  .action((league, options) => {
+    try {
+      const key = getLeagueKey(league);
+      const db = initDatabase(DB_PATH);
+      const matchesCount = parseInt(options.matches, 10) || 5;
+      const list = getTeamsForm(db, key, matchesCount);
+
+      console.log(chalk.bold.yellow(`\n📈 STATO DI FORMA (Ultime ${matchesCount} partite): ${LEAGUES[key].name.toUpperCase()}\n`));
+
+      if (list.length === 0) {
+        console.log(chalk.gray('Nessuna partita disputata registrata per questo campionato.\n'));
+        return;
+      }
+
+      const table = new Table({
+        head: ['Squadra', 'Forma', 'Punti Recenti', 'Partite Giocate'].map(h => chalk.bold.white(h)),
+        style: { head: [], border: [] }
+      });
+
+      for (const f of list) {
+        const coloredForm = f.form.split('').map(r => {
+          if (r === 'V') return chalk.green('V');
+          if (r === 'N') return chalk.yellow('N');
+          return chalk.red('P');
+        }).join(' ');
+
+        table.push([
+          chalk.bold(f.team),
+          coloredForm || chalk.gray('-'),
+          chalk.bold.yellow(f.pointsRecent),
+          f.playedTotal
+        ]);
+      }
+
+      console.log(table.toString() + '\n');
     } catch (err) {
       console.error(chalk.red('Errore:'), err.message);
       process.exit(1);

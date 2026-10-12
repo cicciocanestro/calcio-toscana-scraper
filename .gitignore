@@ -11,3 +11,9 @@ node_modules/
 data/exports/*_*.ics
 data/exports/*_*.csv
 data/exports/*_*.json
+
+# database SQLite locale
+data/db/*.sqlite
+data/db/*.sqlite-journal
+data/db/*.sqlite-wal
+data/db/*.sqlite-shm

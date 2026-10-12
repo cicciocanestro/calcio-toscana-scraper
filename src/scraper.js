@@ -5,6 +5,7 @@ const os = require('os');
 const { findChrome, LEAGUES, CACHE_DIR, EXPORT_DIR, CACHE_TTL_MS } = require('./config');
 const { exportToJson, exportToCsv, exportToIcs } = require('./exporters');
 const { HttpScraper } = require('./http-scraper');
+const { defaultStore } = require('./store');
 
 // Sorgente del parser HTML: viene iniettato nella pagina come window.CalcioParser.
 // In questo modo esiste UNA sola implementazione del parsing (src/parser.js),
@@ -61,6 +62,9 @@ class CalendarScraper {
     // auto (default): prova HTTP e ripiega su Puppeteer se il WAF si mette di mezzo
     const mode = options.mode || process.env.SCRAPER_MODE || 'auto';
     this.mode = VALID_MODES.includes(mode) ? mode : 'auto';
+
+    // Store per cache e persistenza (JsonStore per default, o custom/DB)
+    this.store = options.store || defaultStore;
 
     // Utile in ambienti dove la cartella temporanea di sistema non è scrivibile
     this.userDataDir = options.userDataDir || process.env.CHROME_USER_DATA_DIR || undefined;
@@ -123,6 +127,9 @@ class CalendarScraper {
    * usato solo come ripiego per file privi di `lastUpdated`.
    */
   cacheAgeMs(leagueId, data) {
+    if (this.store && typeof this.store.cacheAgeMs === 'function') {
+      return this.store.cacheAgeMs(leagueId, data);
+    }
     const stamp = data ? Date.parse(data.lastUpdated || '') : NaN;
     if (Number.isFinite(stamp)) return Math.max(0, Date.now() - stamp);
 
@@ -136,6 +143,9 @@ class CalendarScraper {
    *                                 anche dati scaduti (fallback / modalità cache-first).
    */
   getCachedLeague(leagueId, maxAgeMs = CACHE_TTL_MS) {
+    if (this.store && typeof this.store.getLeague === 'function') {
+      return this.store.getLeague(leagueId, maxAgeMs);
+    }
     const league = LEAGUES[leagueId];
     if (!league || !fs.existsSync(league.cacheFile)) return null;
 
@@ -158,6 +168,9 @@ class CalendarScraper {
    * @returns {{exists:boolean, isStale:boolean, ageMs:number|null, lastUpdated:string|null}}
    */
   getCacheStatus(leagueId, maxAgeMs = CACHE_TTL_MS) {
+    if (this.store && typeof this.store.getCacheStatus === 'function') {
+      return this.store.getCacheStatus(leagueId, maxAgeMs);
+    }
     const league = LEAGUES[leagueId];
     const empty = { exists: false, isStale: false, ageMs: null, lastUpdated: null };
     if (!league || !fs.existsSync(league.cacheFile)) return empty;
@@ -680,6 +693,9 @@ class CalendarScraper {
    * Condiviso dai percorsi HTTP e browser.
    */
   persistLeagueData(leagueConfig, leagueData) {
+    if (this.store && typeof this.store.saveLeague === 'function') {
+      return this.store.saveLeague(leagueConfig, leagueData);
+    }
     exportToJson(leagueData, leagueConfig.cacheFile);
     exportToCsv(leagueData, path.join(EXPORT_DIR, `${leagueConfig.id}.csv`));
     exportToIcs(leagueData, path.join(EXPORT_DIR, `${leagueConfig.id}.ics`));

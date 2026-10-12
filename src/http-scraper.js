@@ -287,15 +287,46 @@ class HttpScraper {
       ((previousData && previousData.matchDays) || []).map(day => [day.dayNumber, day])
     );
 
-    const days = Array.from({ length: tokens.totalDays }, (_, i) => i + 1);
-    const matchDays = [];
+    // Modalità incrementale (options.incremental = true, oppure options.matchDays target specifici):
+    // Se non specificato, si scaricano tutte le giornate.
+    // In modalità incrementale si scaricano tipicamente: giornata attuale, precedente e successiva,
+    // preservando dai dati precedenti le altre giornate.
+    let targetDays;
+    if (Array.isArray(options.matchDays) && options.matchDays.length > 0) {
+      targetDays = options.matchDays.filter(d => d >= 1 && d <= tokens.totalDays);
+    } else if (options.incremental && previousDays.size > 0 && Number.isFinite(tokens.currentDay)) {
+      const cur = tokens.currentDay;
+      const set = new Set([cur]);
+      if (cur > 1) set.add(cur - 1);
+      if (cur < tokens.totalDays) set.add(cur + 1);
+      targetDays = Array.from(set).sort((a, b) => a - b);
+    } else {
+      targetDays = Array.from({ length: tokens.totalDays }, (_, i) => i + 1);
+    }
 
-    for (let i = 0; i < days.length; i += this.concurrency) {
-      const chunk = days.slice(i, i + this.concurrency);
+    if (targetDays.length < tokens.totalDays) {
+      this.onProgress(`Scraping incrementale: recupero di ${targetDays.length} giornate (${targetDays.join(', ')}) su ${tokens.totalDays}...`);
+    } else {
+      this.onProgress(`Recupero di tutte le ${tokens.totalDays} giornate del calendario (concorrenza ${this.concurrency})...`);
+    }
+
+    const fetchedMap = new Map();
+    for (let i = 0; i < targetDays.length; i += this.concurrency) {
+      const chunk = targetDays.slice(i, i + this.concurrency);
       const parsed = await Promise.all(
         chunk.map(dayNumber => this.fetchMatchday(origin, tokens, dayNumber, previousDays.get(dayNumber)))
       );
-      matchDays.push(...parsed);
+      parsed.forEach(day => fetchedMap.set(day.dayNumber, day));
+    }
+
+    // Unisci le giornate appena scaricate con quelle precedenti
+    const matchDays = [];
+    for (let dayNum = 1; dayNum <= tokens.totalDays; dayNum++) {
+      if (fetchedMap.has(dayNum)) {
+        matchDays.push(fetchedMap.get(dayNum));
+      } else if (previousDays.has(dayNum)) {
+        matchDays.push(previousDays.get(dayNum));
+      }
     }
 
     matchDays.sort((a, b) => a.dayNumber - b.dayNumber);

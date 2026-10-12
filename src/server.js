@@ -1,9 +1,11 @@
 const express = require('express');
 const crypto = require('crypto');
-const { LEAGUES, DATA_DIR, PUBLIC_DIR } = require('./config');
+const { LEAGUES, DATA_DIR, PUBLIC_DIR, DB_PATH } = require('./config');
 const { CalendarScraper } = require('./scraper');
 const { exportSlug, buildCsv, buildIcs } = require('./exporters');
 const { resolveConfig, describeConfig, dispatchWorkflow } = require('./github-dispatch');
+const { initDatabase } = require('./db');
+const { getTopScorers, getTeamsForm } = require('./db-sync');
 
 /**
  * Confronto a tempo costante fra due stringhe: `===` esce al primo carattere
@@ -249,6 +251,42 @@ function createServer(options = {}) {
       res.json(data);
     } catch (err) {
       console.error(`Errore caricamento ${id}:`, err);
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  // Classifica marcatori aggregata dal database relazionale
+  app.get('/api/leagues/:id/scorers', (req, res) => {
+    const id = req.params.id;
+    if (!LEAGUES[id]) {
+      return res.status(404).json({ error: `Campionato '${id}' non trovato` });
+    }
+
+    try {
+      const limit = Math.min(100, Math.max(1, parseInt(req.query.limit || '20', 10)));
+      const db = initDatabase(DB_PATH);
+      const scorers = getTopScorers(db, id, limit);
+      res.json({ leagueId: id, scorers });
+    } catch (err) {
+      console.error(`Errore caricamento marcatori per ${id}:`, err);
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  // Forma recente delle squadre (ultime N partite)
+  app.get('/api/leagues/:id/form', (req, res) => {
+    const id = req.params.id;
+    if (!LEAGUES[id]) {
+      return res.status(404).json({ error: `Campionato '${id}' non trovato` });
+    }
+
+    try {
+      const matchesCount = Math.min(15, Math.max(1, parseInt(req.query.matches || '5', 10)));
+      const db = initDatabase(DB_PATH);
+      const form = getTeamsForm(db, id, matchesCount);
+      res.json({ leagueId: id, matchesCount, form });
+    } catch (err) {
+      console.error(`Errore caricamento forma per ${id}:`, err);
       res.status(500).json({ error: err.message });
     }
   });
