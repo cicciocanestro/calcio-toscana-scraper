@@ -10,7 +10,7 @@
   "roundID": "TO.P.C",
   "currentMatchDay": 5,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-10-12T00:03:40.896Z",
+  "lastUpdated": "2026-10-12T17:06:48.799Z",
   "standings": [
     {
       "position": 1,
@@ -887,10 +887,10 @@
           "time": "15:30",
           "dateTime": "2026-10-10T15:30:00",
           "homeScorers": [
-            "L. Cacciamano"
+            "L. Cacciamano (16' st)"
           ],
           "awayScorers": [
-            "L. Romanò (Rig.)"
+            "L. Romanò (Rig.) (10' st)"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1007117.png?v=2",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/934115.png?v=4",
@@ -907,7 +907,7 @@
           "time": "15:30",
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [
-            "F. Gurioli (48' st)"
+            "F. Gurioli (47' st)"
           ],
           "awayScorers": [
             "T. Bencini (3' pt)"
@@ -927,12 +927,12 @@
           "time": "15:30",
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [
-            "A. Orlandini",
-            "E. Braccalenti"
+            "A. Orlandini (30' st)",
+            "E. Braccalenti (45' st)"
           ],
           "awayScorers": [
-            "G. Guerrini",
-            "F. Borgogni"
+            "G. Guerrini (37' pt)",
+            "F. Borgogni (40' pt)"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/935655.png?v=6",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/18630.png?v=1",
@@ -949,7 +949,7 @@
           "time": "15:30",
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [
-            "A. Rachidi (41' st)"
+            "A. Rachidi (40' st)"
           ],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/4010.png?v=1",
@@ -967,8 +967,8 @@
           "time": "15:30",
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [
-            "G. Diani (29' pt)",
-            "S. Lorenzoni (38' pt)"
+            "G. Diani (18' pt)",
+            "S. Lorenzoni (41' pt)"
           ],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/920660.png?v=1",
@@ -1005,9 +1005,9 @@
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [
-            "F. Tanini",
-            "M. Bargellini",
-            "G. Fantechi"
+            "F. Tanini (17' pt)",
+            "M. Bargellini (7' st)",
+            "G. Fantechi (27' st)"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1007106.png?v=1",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
@@ -1024,11 +1024,11 @@
           "time": "15:30",
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [
-            "E. Bighellini",
-            "M. Merola Raimondo"
+            "E. Bighellini (8' pt)",
+            "M. Merola Raimondo (23' pt)"
           ],
           "awayScorers": [
-            "D. Senghore"
+            "D. Senghore (17' st)"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/22740.png?v=1",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/57743.png?v=2",

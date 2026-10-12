@@ -10,7 +10,7 @@
   "roundID": "TO.2.I",
   "currentMatchDay": 4,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-10-12T00:03:43.991Z",
+  "lastUpdated": "2026-10-12T17:06:52.299Z",
   "standings": [
     {
       "position": 1,
@@ -751,7 +751,9 @@
             "A. Cifrodelli (34' pt)",
             "A. Cifrodelli (43' st)"
           ],
-          "awayScorers": [],
+          "awayScorers": [
+            "S. Giannotti (26' pt)"
+          ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/59236.png?v=3",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/4.1/arezzo-fa-pratovecchio"
