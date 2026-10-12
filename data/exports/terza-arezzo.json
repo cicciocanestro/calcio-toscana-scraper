@@ -10,7 +10,7 @@
   "roundID": "TO.3.A.AR",
   "currentMatchDay": 4,
   "totalMatchDays": 34,
-  "lastUpdated": "2026-10-11T14:58:10.977Z",
+  "lastUpdated": "2026-10-12T00:03:47.488Z",
   "standings": [
     {
       "position": 1,
@@ -20,40 +20,53 @@
       "won": 4,
       "drawn": 0,
       "lost": 0,
-      "goalsFor": 12,
+      "goalsFor": 13,
       "goalsAgainst": 5,
-      "goalDiff": 7,
+      "goalDiff": 8,
       "zone": "promotion"
     },
     {
       "position": 2,
+      "team": "Lorese Calcio",
+      "points": 10,
+      "played": 4,
+      "won": 3,
+      "drawn": 1,
+      "lost": 0,
+      "goalsFor": 7,
+      "goalsAgainst": 2,
+      "goalDiff": 5,
+      "zone": "playoff"
+    },
+    {
+      "position": 3,
       "team": "Monterchiese",
       "points": 9,
       "played": 4,
       "won": 3,
       "drawn": 0,
       "lost": 1,
-      "goalsFor": 11,
+      "goalsFor": 13,
       "goalsAgainst": 3,
-      "goalDiff": 8,
-      "zone": "playoff"
-    },
-    {
-      "position": 3,
-      "team": "Lorese Calcio",
-      "points": 8,
-      "played": 4,
-      "won": 2,
-      "drawn": 2,
-      "lost": 0,
-      "goalsFor": 6,
-      "goalsAgainst": 2,
-      "goalDiff": 4,
+      "goalDiff": 10,
       "zone": "playoff"
     },
     {
       "position": 4,
-      "team": "Pietraia",
+      "team": "Tregozzano",
+      "points": 9,
+      "played": 4,
+      "won": 3,
+      "drawn": 0,
+      "lost": 1,
+      "goalsFor": 8,
+      "goalsAgainst": 4,
+      "goalDiff": 4,
+      "zone": "playoff"
+    },
+    {
+      "position": 5,
+      "team": "Badia Agnano",
       "points": 7,
       "played": 4,
       "won": 2,
@@ -65,46 +78,20 @@
       "zone": "playoff"
     },
     {
-      "position": 5,
-      "team": "Badia Agnano",
-      "points": 7,
-      "played": 4,
-      "won": 2,
-      "drawn": 1,
-      "lost": 1,
-      "goalsFor": 8,
-      "goalsAgainst": 6,
-      "goalDiff": 2,
-      "zone": "playoff"
-    },
-    {
       "position": 6,
-      "team": "Tregozzano",
+      "team": "Pietraia",
       "points": 7,
       "played": 4,
       "won": 2,
       "drawn": 1,
       "lost": 1,
-      "goalsFor": 6,
-      "goalsAgainst": 4,
+      "goalsFor": 9,
+      "goalsAgainst": 7,
       "goalDiff": 2,
       "zone": "normal"
     },
     {
       "position": 7,
-      "team": "San Leolino",
-      "points": 6,
-      "played": 4,
-      "won": 2,
-      "drawn": 0,
-      "lost": 2,
-      "goalsFor": 12,
-      "goalsAgainst": 11,
-      "goalDiff": 1,
-      "zone": "normal"
-    },
-    {
-      "position": 8,
       "team": "Tuscar",
       "points": 6,
       "played": 4,
@@ -114,6 +101,19 @@
       "goalsFor": 6,
       "goalsAgainst": 5,
       "goalDiff": 1,
+      "zone": "normal"
+    },
+    {
+      "position": 8,
+      "team": "San Leolino",
+      "points": 6,
+      "played": 4,
+      "won": 2,
+      "drawn": 0,
+      "lost": 2,
+      "goalsFor": 12,
+      "goalsAgainst": 12,
+      "goalDiff": 0,
       "zone": "normal"
     },
     {
@@ -132,27 +132,27 @@
     {
       "position": 10,
       "team": "Sangiustinese",
-      "points": 5,
+      "points": 4,
       "played": 4,
       "won": 1,
-      "drawn": 2,
-      "lost": 1,
+      "drawn": 1,
+      "lost": 2,
       "goalsFor": 4,
-      "goalsAgainst": 3,
-      "goalDiff": 1,
+      "goalsAgainst": 4,
+      "goalDiff": 0,
       "zone": "normal"
     },
     {
       "position": 11,
-      "team": "Atletico Valdambra",
-      "points": 5,
+      "team": "Terontola",
+      "points": 4,
       "played": 4,
       "won": 1,
-      "drawn": 2,
-      "lost": 1,
-      "goalsFor": 3,
-      "goalsAgainst": 3,
-      "goalDiff": 0,
+      "drawn": 1,
+      "lost": 2,
+      "goalsFor": 4,
+      "goalsAgainst": 5,
+      "goalDiff": -1,
       "zone": "normal"
     },
     {
@@ -164,21 +164,21 @@
       "drawn": 1,
       "lost": 2,
       "goalsFor": 6,
-      "goalsAgainst": 7,
-      "goalDiff": -1,
+      "goalsAgainst": 8,
+      "goalDiff": -2,
       "zone": "normal"
     },
     {
       "position": 13,
-      "team": "Terontola",
+      "team": "Atletico Valdambra",
       "points": 4,
       "played": 4,
       "won": 1,
       "drawn": 1,
       "lost": 2,
-      "goalsFor": 4,
+      "goalsFor": 3,
       "goalsAgainst": 5,
-      "goalDiff": -1,
+      "goalDiff": -2,
       "zone": "normal"
     },
     {
@@ -196,6 +196,19 @@
     },
     {
       "position": 15,
+      "team": "Faellese",
+      "points": 4,
+      "played": 4,
+      "won": 1,
+      "drawn": 1,
+      "lost": 2,
+      "goalsFor": 5,
+      "goalsAgainst": 9,
+      "goalDiff": -4,
+      "zone": "normal"
+    },
+    {
+      "position": 16,
       "team": "San Marco La Sella",
       "points": 4,
       "played": 4,
@@ -203,21 +216,8 @@
       "drawn": 1,
       "lost": 2,
       "goalsFor": 4,
-      "goalsAgainst": 7,
-      "goalDiff": -3,
-      "zone": "normal"
-    },
-    {
-      "position": 16,
-      "team": "Faellese",
-      "points": 4,
-      "played": 4,
-      "won": 1,
-      "drawn": 1,
-      "lost": 2,
-      "goalsFor": 4,
-      "goalsAgainst": 9,
-      "goalDiff": -5,
+      "goalsAgainst": 8,
+      "goalDiff": -4,
       "zone": "normal"
     },
     {
@@ -228,9 +228,9 @@
       "won": 0,
       "drawn": 1,
       "lost": 3,
-      "goalsFor": 2,
+      "goalsFor": 3,
       "goalsAgainst": 7,
-      "goalDiff": -5,
+      "goalDiff": -4,
       "zone": "normal"
     },
     {
@@ -242,8 +242,8 @@
       "drawn": 0,
       "lost": 4,
       "goalsFor": 1,
-      "goalsAgainst": 14,
-      "goalDiff": -13,
+      "goalsAgainst": 16,
+      "goalDiff": -15,
       "zone": "normal"
     }
   ],
@@ -844,14 +844,17 @@
           "homeTeam": "Atletico Valdambra",
           "awayTeam": "Tregozzano",
           "homeScore": 0,
-          "awayScore": 0,
+          "awayScore": 2,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-11",
           "time": "15:30",
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [],
-          "awayScorers": [],
+          "awayScorers": [
+            "K. Maloku",
+            "M. Castellani"
+          ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1138295.png?v=13",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/4.1/atletico-valdambra-tregozzano"
@@ -859,15 +862,16 @@
         {
           "homeTeam": "Badia a Roti Calcio",
           "awayTeam": "San Marco La Sella",
-          "homeScore": 1,
+          "homeScore": 2,
           "awayScore": 0,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-11",
           "time": "15:30",
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [
-            "M. Paternostro"
+            "M. Paternostro",
+            "A. Fejzaj"
           ],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1010935.png?v=2",
@@ -877,16 +881,17 @@
         {
           "homeTeam": "Faellese",
           "awayTeam": "San Leolino",
-          "homeScore": 2,
+          "homeScore": 3,
           "awayScore": 6,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-11",
           "time": "15:30",
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [
             "A. Selloumi",
-            "F. Focardi"
+            "S. Mesina",
+            "S. Mesina"
           ],
           "awayScorers": [
             "E. Malaj",
@@ -904,15 +909,16 @@
           "homeTeam": "Monsigliolo",
           "awayTeam": "Badia Agnano",
           "homeScore": 0,
-          "awayScore": 1,
+          "awayScore": 2,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-11",
           "time": "15:30",
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [],
           "awayScorers": [
-            "A. Hoxha"
+            "A. Hoxha",
+            "G. Falchi"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/64395.png?v=4",
@@ -924,7 +930,7 @@
           "homeScore": 0,
           "awayScore": 0,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-11",
           "time": "15:30",
           "dateTime": "2026-10-11T15:30:00",
@@ -937,10 +943,10 @@
         {
           "homeTeam": "Monterchiese",
           "awayTeam": "Virtus Arezzo",
-          "homeScore": 5,
+          "homeScore": 7,
           "awayScore": 0,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-11",
           "time": "15:30",
           "dateTime": "2026-10-11T15:30:00",
@@ -950,7 +956,8 @@
             "D. Ruggeri",
             "N. Terzi",
             "M. Trombi",
-            "M. Trombi"
+            "L. Pancioni",
+            "B. Elwarraky"
           ],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1124910.png?v=1",
@@ -961,9 +968,9 @@
           "homeTeam": "Pietraia",
           "awayTeam": "Colonna Indicatore",
           "homeScore": 2,
-          "awayScore": 0,
+          "awayScore": 1,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-11",
           "time": "15:30",
           "dateTime": "2026-10-11T15:30:00",
@@ -971,7 +978,9 @@
             "L. Criscuolo",
             "S. Pica"
           ],
-          "awayScorers": [],
+          "awayScorers": [
+            "L. Nocenti (25' st)"
+          ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750499.png?v=1",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1200820.png?v=11",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/4.7/pietraia-colonna-indicatore"
@@ -980,14 +989,16 @@
           "homeTeam": "Sangiustinese",
           "awayTeam": "Lorese Calcio",
           "homeScore": 0,
-          "awayScore": 0,
+          "awayScore": 1,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-11",
           "time": "15:30",
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [],
-          "awayScorers": [],
+          "awayScorers": [
+            "E. Fibbi (30' pt)"
+          ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1058251.png?v=1",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/4.8/sangiustinese-lorese-calcio"
@@ -998,7 +1009,7 @@
           "homeScore": 1,
           "awayScore": 0,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-11",
           "time": "15:30",
           "dateTime": "2026-10-11T15:30:00",

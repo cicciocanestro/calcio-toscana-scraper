@@ -10,7 +10,7 @@
   "roundID": "TO.2.I",
   "currentMatchDay": 4,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-10-11T14:58:04.584Z",
+  "lastUpdated": "2026-10-12T00:03:43.991Z",
   "standings": [
     {
       "position": 1,
@@ -28,14 +28,14 @@
     {
       "position": 2,
       "team": "Arezzo FA",
-      "points": 8,
+      "points": 10,
       "played": 4,
-      "won": 2,
-      "drawn": 2,
+      "won": 3,
+      "drawn": 1,
       "lost": 0,
-      "goalsFor": 6,
+      "goalsFor": 7,
       "goalsAgainst": 3,
-      "goalDiff": 3,
+      "goalDiff": 4,
       "zone": "playoff"
     },
     {
@@ -98,26 +98,13 @@
       "won": 2,
       "drawn": 0,
       "lost": 2,
-      "goalsFor": 3,
-      "goalsAgainst": 4,
+      "goalsFor": 4,
+      "goalsAgainst": 5,
       "goalDiff": -1,
       "zone": "normal"
     },
     {
       "position": 8,
-      "team": "Pratovecchio",
-      "points": 5,
-      "played": 4,
-      "won": 1,
-      "drawn": 2,
-      "lost": 1,
-      "goalsFor": 2,
-      "goalsAgainst": 2,
-      "goalDiff": 0,
-      "zone": "normal"
-    },
-    {
-      "position": 9,
       "team": "Pieve al Toppo",
       "points": 5,
       "played": 4,
@@ -130,7 +117,7 @@
       "zone": "normal"
     },
     {
-      "position": 10,
+      "position": 9,
       "team": "Valdichiana Calcio",
       "points": 4,
       "played": 4,
@@ -143,20 +130,20 @@
       "zone": "normal"
     },
     {
-      "position": 11,
+      "position": 10,
       "team": "Rassina",
       "points": 4,
       "played": 4,
       "won": 1,
       "drawn": 1,
       "lost": 2,
-      "goalsFor": 4,
-      "goalsAgainst": 5,
+      "goalsFor": 5,
+      "goalsAgainst": 6,
       "goalDiff": -1,
       "zone": "normal"
     },
     {
-      "position": 12,
+      "position": 11,
       "team": "Fratta Santa Caterina",
       "points": 4,
       "played": 4,
@@ -165,6 +152,19 @@
       "lost": 2,
       "goalsFor": 3,
       "goalsAgainst": 4,
+      "goalDiff": -1,
+      "zone": "normal"
+    },
+    {
+      "position": 12,
+      "team": "Pratovecchio",
+      "points": 4,
+      "played": 4,
+      "won": 1,
+      "drawn": 1,
+      "lost": 2,
+      "goalsFor": 2,
+      "goalsAgainst": 3,
       "goalDiff": -1,
       "zone": "normal"
     },
@@ -740,15 +740,16 @@
         {
           "homeTeam": "Arezzo FA",
           "awayTeam": "Pratovecchio",
-          "homeScore": 1,
+          "homeScore": 2,
           "awayScore": 1,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-11",
           "time": "15:30",
           "dateTime": "2026-10-11T15:30:00",
           "homeScorers": [
-            "A. Cifrodelli (34' pt)"
+            "A. Cifrodelli (34' pt)",
+            "A. Cifrodelli (43' st)"
           ],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
@@ -758,15 +759,20 @@
         {
           "homeTeam": "Bucine",
           "awayTeam": "Rassina",
-          "homeScore": 1,
-          "awayScore": 0,
+          "homeScore": 2,
+          "awayScore": 1,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-11",
           "time": "15:30",
           "dateTime": "2026-10-11T15:30:00",
-          "homeScorers": [],
-          "awayScorers": [],
+          "homeScorers": [
+            "A. Giannerini",
+            "S. Innocenti"
+          ],
+          "awayScorers": [
+            "A. Spartà"
+          ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/4.2/bucine-rassina"
@@ -777,7 +783,7 @@
           "homeScore": 0,
           "awayScore": 0,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-11",
           "time": "15:30",
           "dateTime": "2026-10-11T15:30:00",
@@ -793,7 +799,7 @@
           "homeScore": 1,
           "awayScore": 1,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-11",
           "time": "15:30",
           "dateTime": "2026-10-11T15:30:00",
@@ -813,7 +819,7 @@
           "homeScore": 2,
           "awayScore": 2,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-11",
           "time": "15:30",
           "dateTime": "2026-10-11T15:30:00",
@@ -821,7 +827,10 @@
             "L. Aglietti",
             "M. Cacciapuoti"
           ],
-          "awayScorers": [],
+          "awayScorers": [
+            "A. Migliorini",
+            "C. Pancioni"
+          ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/19960.png?v=3",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/4.5/fulgor-castelfranco-arno-castiglioni-laterina"
@@ -832,7 +841,7 @@
           "homeScore": 0,
           "awayScore": 1,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-11",
           "time": "15:30",
           "dateTime": "2026-10-11T15:30:00",
@@ -850,7 +859,7 @@
           "homeScore": 1,
           "awayScore": 0,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-11",
           "time": "15:30",
           "dateTime": "2026-10-11T15:30:00",
