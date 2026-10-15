@@ -51,7 +51,7 @@ jobs:
 
   scrape-and-update:
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux]
     # Serve scrivere i dati nel repository e chiedere la build di Pages
     permissions:
       contents: write
@@ -70,36 +70,38 @@ jobs:
       - name: Installazione dipendenze
         run: npm ci
 
-      - name: Aggiornamento dati (istanza sempre accesa, IP non bloccato dal WAF)
+      - name: Aggiornamento dati (IP residenziale Raspberry Pi con fallback remoto)
         id: aggiorna
         env:
           RENDER_URL: ${{ vars.RENDER_URL || 'https://calcio-toscana-scraper.onrender.com' }}
           REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
         run: |
-          # Se il refresh è partito dall'istanza Render i dati sono già freschi:
-          # li leggiamo dalla sua cache invece di rifare lo scraping (e pagare
-          # una seconda volta il bootstrap del browser per la challenge WAF).
-          extra=""
-          if [ "${{ inputs.use_cache }}" = "true" ]; then
-            extra="--no-refresh"
-            echo "Uso la cache già aggiornata dell'istanza remota."
-          fi
-
-          rc=0
-          node bin/fetch-from-render.js $extra || rc=$?
-
-          if [ "$rc" = "0" ]; then
+          # 1. Sul runner Raspberry Pi l'IP residenziale di casa non viene bloccato dal WAF:
+          # lo scraping diretto impiega appena ~2 secondi in HTTP puro.
+          if [ "${{ inputs.use_cache }}" != "true" ] && node bin/cli.js scrape all --refresh; then
             echo "aggiornato=true" >> "$GITHUB_OUTPUT"
-            echo "Tutti i campionati aggiornati dall'istanza remota."
-          elif [ "$rc" = "1" ]; then
-            echo "aggiornato=true" >> "$GITHUB_OUTPUT"
-            echo "::warning::Aggiornamento remoto parziale: alcune leghe non sono state aggiornate (vedi log). Gli export vengono comunque rigenerati con i dati più recenti disponibili."
-          elif node bin/cli.js scrape all --refresh; then
-            echo "aggiornato=true" >> "$GITHUB_OUTPUT"
-            echo "Dati aggiornati direttamente dal runner."
+            echo "✔ Dati aggiornati direttamente dal runner Raspberry Pi."
           else
-            echo "aggiornato=false" >> "$GITHUB_OUTPUT"
-            echo "::warning::Aggiornamento non riuscito: istanza remota irraggiungibile e scraping dal runner bloccato dal WAF di Tuttocampo. I dati in cache sono stati conservati."
+            # 2. Fallback su istanza remota (es. Render) se richiesto use_cache o in caso di errore
+            extra=""
+            if [ "${{ inputs.use_cache }}" = "true" ]; then
+              extra="--no-refresh"
+              echo "Uso la cache già aggiornata dell'istanza remota."
+            fi
+
+            rc=0
+            node bin/fetch-from-render.js $extra || rc=$?
+
+            if [ "$rc" = "0" ]; then
+              echo "aggiornato=true" >> "$GITHUB_OUTPUT"
+              echo "✔ Tutti i campionati aggiornati dall'istanza remota."
+            elif [ "$rc" = "1" ]; then
+              echo "aggiornato=true" >> "$GITHUB_OUTPUT"
+              echo "::warning::Aggiornamento remoto parziale: alcune leghe non sono state aggiornate (vedi log)."
+            else
+              echo "aggiornato=false" >> "$GITHUB_OUTPUT"
+              echo "::warning::Aggiornamento non riuscito. I dati in cache sono stati conservati."
+            fi
           fi
 
       - name: Rigenerazione export (CSV, ICS, JSON)
