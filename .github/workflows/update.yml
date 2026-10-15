@@ -117,16 +117,22 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Salta il commit se l'unica differenza sono i campi volatili
-          # (lastUpdated nella cache/export JSON e DTSTAMP negli ICS)
+          # Se l'utente ha premuto manualmente il tasto "Aggiorna dal Web" (workflow_dispatch),
+          # committiamo sempre per aggiornare la data e confermare la sincronizzazione su GitHub Pages.
+          # Se l'avvio è automatico (cron schedulato), saltiamo il commit se non ci sono nuovi risultati.
+          has_sports_changes=false
           if node bin/data-changed.js; then
+            has_sports_changes=true
+          fi
+
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ "$has_sports_changes" = "true" ]; then
             git add data/cache/ data/exports/ data/db/snapshot.jsonl index.html app.js style.css favicon.svg
             [ -f auth.json ] && git add auth.json || true
             if git diff --staged --quiet; then
               echo "Nessun aggiornamento trovato, i dati sono già aggiornati."
               echo "pushed=false" >> "$GITHUB_OUTPUT"
             else
-              git commit -m "chore(data): aggiornamento automatico calendari e classifiche"
+              git commit -m "chore(data): aggiornamento calendari e classifiche"
               git push
               echo "pushed=true" >> "$GITHUB_OUTPUT"
             fi
