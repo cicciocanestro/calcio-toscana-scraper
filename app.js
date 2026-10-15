@@ -57,6 +57,12 @@ const elRefreshModal = document.getElementById('refresh-confirm-modal');
 const elBtnConfirmRefresh = document.getElementById('btn-confirm-refresh');
 const elBtnCancelRefresh = document.getElementById('btn-cancel-refresh');
 
+const elRefreshTokenSection = document.getElementById('refresh-token-section');
+const elInputRefreshToken = document.getElementById('input-refresh-token');
+const elCheckRememberToken = document.getElementById('check-remember-token');
+const elBtnForgetToken = document.getElementById('btn-forget-token');
+const elTokenStatusMsg = document.getElementById('token-status-msg');
+
 let isStaticEnvironment = Boolean(
   typeof window !== 'undefined' &&
   window.location &&
@@ -82,11 +88,11 @@ function detectEnvironment() {
 function setupStaticMode() {
   isStaticEnvironment = true;
   if (!elBtnRefresh) return;
-  elBtnRefresh.classList.remove('btn-primary');
-  elBtnRefresh.classList.add('btn-disabled');
-  elBtnRefresh.innerHTML = '<span class="btn-icon">🤖</span> Auto-Aggiornato (Actions)';
+  elBtnRefresh.classList.remove('btn-disabled');
+  elBtnRefresh.classList.add('btn-primary');
+  elBtnRefresh.innerHTML = '<span class="btn-icon">🔄</span> <span id="btn-refresh-text">Aggiorna dal Web</span>';
   if (elRefreshWrapper) {
-    elRefreshWrapper.classList.add('is-static');
+    elRefreshWrapper.classList.remove('is-static');
   }
 }
 
@@ -124,17 +130,6 @@ function setupEventListeners() {
   // Aggiorna dal Web / Click su Auto-Aggiornato
   elBtnRefresh.addEventListener('click', (e) => {
     e.preventDefault();
-    if (isStaticEnvironment) {
-      if (elRefreshWrapper) {
-        elRefreshWrapper.classList.toggle('show-tooltip');
-      }
-      alert(
-        '🤖 AGGIORNAMENTO AUTOMATICO ATTIVO\n\n' +
-        'Su GitHub Pages il backend Node.js non è attivo in background: i calendari, i risultati e le classifiche vengono aggiornati automaticamente ogni fine settimana (domenica sera e lunedì mattina) tramite GitHub Actions.\n\n' +
-        '👉 Per eseguire lo scraping live immediato è possibile avviare il tool in locale sul proprio computer (con "npm start") oppure ospitarlo gratuitamente su Render.com col Dockerfile già presente nel progetto.'
-      );
-      return;
-    }
     openRefreshConfirmModal();
   });
 
@@ -142,10 +137,43 @@ function setupEventListeners() {
     elBtnCancelRefresh.addEventListener('click', () => closeRefreshConfirmModal());
   }
 
+  if (elBtnForgetToken) {
+    elBtnForgetToken.addEventListener('click', (e) => {
+      e.preventDefault();
+      removeSavedToken();
+      if (elInputRefreshToken) elInputRefreshToken.value = '';
+      elBtnForgetToken.classList.add('hidden');
+      if (elTokenStatusMsg) {
+        elTokenStatusMsg.className = 'token-status-msg info';
+        elTokenStatusMsg.textContent = 'Chiave rimossa. Inseriscine una nuova per continuare.';
+      }
+    });
+  }
+
   if (elBtnConfirmRefresh) {
-    elBtnConfirmRefresh.addEventListener('click', () => {
-      closeRefreshConfirmModal();
-      loadLeague(currentLeague, true);
+    elBtnConfirmRefresh.addEventListener('click', async () => {
+      if (isStaticEnvironment) {
+        const tokenInput = elInputRefreshToken ? elInputRefreshToken.value.trim() : '';
+        const token = tokenInput || getSavedToken();
+
+        if (!token) {
+          if (elTokenStatusMsg) {
+            elTokenStatusMsg.className = 'token-status-msg error';
+            elTokenStatusMsg.textContent = '⚠️ Inserisci la chiave di sicurezza per autorizzare l\'aggiornamento.';
+          }
+          if (elInputRefreshToken) elInputRefreshToken.focus();
+          return;
+        }
+
+        if (elCheckRememberToken && elCheckRememberToken.checked) {
+          saveToken(token);
+        }
+
+        await triggerGitHubActionsWorkflow(token);
+      } else {
+        closeRefreshConfirmModal();
+        loadLeague(currentLeague, true);
+      }
     });
   }
 
@@ -285,9 +313,51 @@ function switchView(view) {
   else if (view === 'team') renderTeamSection();
 }
 
+function getSavedToken() {
+  try {
+    return localStorage.getItem('calcio_dispatch_token') || '';
+  } catch (e) {
+    return '';
+  }
+}
+
+function saveToken(token) {
+  try {
+    localStorage.setItem('calcio_dispatch_token', token);
+  } catch (e) {}
+}
+
+function removeSavedToken() {
+  try {
+    localStorage.removeItem('calcio_dispatch_token');
+  } catch (e) {}
+}
+
 function openRefreshConfirmModal() {
   if (elRefreshModal) {
     elRefreshModal.classList.remove('hidden');
+
+    if (isStaticEnvironment) {
+      if (elRefreshTokenSection) elRefreshTokenSection.classList.remove('hidden');
+      const saved = getSavedToken();
+      if (saved) {
+        if (elInputRefreshToken) elInputRefreshToken.value = saved;
+        if (elBtnForgetToken) elBtnForgetToken.classList.remove('hidden');
+        if (elTokenStatusMsg) {
+          elTokenStatusMsg.className = 'token-status-msg success';
+          elTokenStatusMsg.textContent = '✔ Dispositivo autorizzato (chiave salvata). Pronto all\'avvio.';
+        }
+      } else {
+        if (elInputRefreshToken) elInputRefreshToken.value = '';
+        if (elBtnForgetToken) elBtnForgetToken.classList.add('hidden');
+        if (elTokenStatusMsg) {
+          elTokenStatusMsg.className = 'token-status-msg info';
+          elTokenStatusMsg.textContent = 'Inserisci il tuo token GitHub per avviare il Raspberry Pi.';
+        }
+      }
+    } else {
+      if (elRefreshTokenSection) elRefreshTokenSection.classList.add('hidden');
+    }
     return;
   }
   // Fallback nel caso il markup del modale non sia presente
@@ -305,6 +375,91 @@ function closeRefreshConfirmModal() {
   if (elRefreshModal) {
     elRefreshModal.classList.add('hidden');
   }
+}
+
+/**
+ * Avvia il workflow GitHub Actions dal browser chiamando l'API ufficiale.
+ * GitHub riceve la richiesta e assegna il compito al Raspberry Pi di casa!
+ */
+async function triggerGitHubActionsWorkflow(token) {
+  if (elBtnConfirmRefresh) elBtnConfirmRefresh.disabled = true;
+  if (elTokenStatusMsg) {
+    elTokenStatusMsg.className = 'token-status-msg info';
+    elTokenStatusMsg.textContent = '⏳ Invio richiesta a GitHub per avviare il Raspberry Pi...';
+  }
+
+  try {
+    const resp = await fetch(
+      'https://api.github.com/repos/cicciocanestro/calcio-toscana-scraper/actions/workflows/update.yml/dispatches',
+      {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/vnd.github+json',
+          'Authorization': `Bearer ${token}`,
+          'X-GitHub-Api-Version': '2022-11-28',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ ref: 'main' })
+      }
+    );
+
+    if (resp.status === 204) {
+      closeRefreshConfirmModal();
+      showSuccessBanner(
+        '🚀 Aggiornamento avviato con successo sul tuo Raspberry Pi!\n' +
+        'Il Pi sta eseguendo lo scraping dall\'IP di casa: i dati nuovi saranno online tra circa 1–2 minuti.'
+      );
+      pollForPagesUpdate();
+    } else if (resp.status === 401 || resp.status === 403) {
+      if (elTokenStatusMsg) {
+        elTokenStatusMsg.className = 'token-status-msg error';
+        elTokenStatusMsg.textContent = '❌ Chiave non valida o permessi insufficienti (serve Actions: Read & Write).';
+      }
+    } else {
+      const detail = await resp.text().catch(() => '');
+      if (elTokenStatusMsg) {
+        elTokenStatusMsg.className = 'token-status-msg error';
+        elTokenStatusMsg.textContent = `❌ Risposta da GitHub (${resp.status}): ${detail.slice(0, 100)}`;
+      }
+    }
+  } catch (err) {
+    if (elTokenStatusMsg) {
+      elTokenStatusMsg.className = 'token-status-msg error';
+      elTokenStatusMsg.textContent = `❌ Errore di connessione: ${err.message}`;
+    }
+  } finally {
+    if (elBtnConfirmRefresh) elBtnConfirmRefresh.disabled = false;
+  }
+}
+
+/**
+ * Monitora GitHub Pages per ricaricare i dati non appena il Raspberry Pi ha completato il push.
+ */
+function pollForPagesUpdate() {
+  const initialUpdated = leagueData?.lastUpdated || null;
+  let attempts = 0;
+  const maxAttempts = 18; // 18 tentativi da 10s = 3 minuti
+
+  const timer = setInterval(async () => {
+    attempts++;
+    try {
+      const testData = await fetchLeagueData(currentLeague);
+      if (testData && testData.lastUpdated && testData.lastUpdated !== initialUpdated) {
+        clearInterval(timer);
+        leagueData = testData;
+        renderHeaderInfo();
+        populateDaySelector();
+        populateTeamSelector();
+        switchView(currentView);
+        showSuccessBanner('✔ Aggiornamento completato! Tutti i calendari e classifiche sono aggiornati.');
+        setTimeout(() => hideError(), 8000);
+      }
+    } catch (e) {}
+
+    if (attempts >= maxAttempts) {
+      clearInterval(timer);
+    }
+  }, 10000);
 }
 
 async function refreshAllLeagues() {
@@ -1273,12 +1428,26 @@ function showLoading(show, text = 'Caricamento...') {
   elLoadingSpinner.classList.toggle('hidden', !show);
 }
 
+function showSuccessBanner(msg) {
+  if (!elErrorBanner) return;
+  elErrorBanner.classList.remove('hidden', 'alert-error');
+  elErrorBanner.classList.add('alert-success');
+  const icon = elErrorBanner.querySelector('.alert-icon');
+  if (icon) icon.textContent = '🎉';
+  if (elErrorMessage) elErrorMessage.innerText = msg;
+}
+
 function showError(msg) {
-  elErrorMessage.innerText = msg;
-  elErrorBanner.classList.remove('hidden');
+  if (!elErrorBanner) return;
+  elErrorBanner.classList.remove('hidden', 'alert-success');
+  elErrorBanner.classList.add('alert-error');
+  const icon = elErrorBanner.querySelector('.alert-icon');
+  if (icon) icon.textContent = '⚠️';
+  if (elErrorMessage) elErrorMessage.innerText = msg;
 }
 
 function hideError() {
+  if (!elErrorBanner) return;
   elErrorBanner.classList.add('hidden');
 }
 

@@ -385,6 +385,12 @@ body {
   border: 1px solid #fecaca;
 }
 
+.alert-success {
+  background-color: #dcfce7;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
 /* Calendario Controls */
 .calendar-controls {
   display: flex;
@@ -832,6 +838,87 @@ tr.zone-retrocession td.col-pos { border-left: 4px solid var(--retrocession); }
 .modal-time-notice span {
   color: var(--text-muted);
   font-size: 0.82rem;
+}
+
+/* Sezione autorizzazione token modale */
+.token-auth-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  background: #f8fafc;
+  padding: 0.85rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.token-label {
+  font-size: 0.82rem;
+  color: var(--text-main);
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-size: 0.88rem;
+  font-family: inherit;
+  outline: none;
+  background: white;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus {
+  border-color: var(--primary);
+}
+
+.token-remember-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 0.78rem;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.btn-link:hover {
+  color: #b91c1c;
+}
+
+.token-status-msg {
+  font-size: 0.8rem;
+  line-height: 1.35;
+  min-height: 1.1rem;
+}
+
+.token-status-msg.error {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.token-status-msg.success {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.token-status-msg.info {
+  color: var(--text-muted);
 }
 
 .modal-actions {
