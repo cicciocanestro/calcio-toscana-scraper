@@ -61,18 +61,13 @@ jobs:
       - name: Checkout del codice
         uses: actions/checkout@v7
 
-      - name: Configurazione Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version: 22
-          cache: 'npm'
-
       - name: Installazione dipendenze
         run: npm ci
 
       - name: Aggiornamento dati (IP residenziale Raspberry Pi con fallback remoto)
         id: aggiorna
         env:
+          SCRAPER_MODE: http
           RENDER_URL: ${{ vars.RENDER_URL || 'https://calcio-toscana-scraper.onrender.com' }}
           REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
         run: |
