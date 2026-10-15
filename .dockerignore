@@ -27,6 +27,7 @@
 # espone public/. I percorsi sono ancorati alla radice per non escludere anche
 # public/index.html.
 /app.js
+/auth.json
 /favicon.svg
 /index.html
 /style.css

@@ -121,6 +121,7 @@ jobs:
           # (lastUpdated nella cache/export JSON e DTSTAMP negli ICS)
           if node bin/data-changed.js; then
             git add data/cache/ data/exports/ data/db/snapshot.jsonl index.html app.js style.css favicon.svg
+            [ -f auth.json ] && git add auth.json || true
             if git diff --staged --quiet; then
               echo "Nessun aggiornamento trovato, i dati sono già aggiornati."
               echo "pushed=false" >> "$GITHUB_OUTPUT"
