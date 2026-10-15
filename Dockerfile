@@ -42,7 +42,7 @@ COPY . .
 # L'immagine node include già l'utente "node" (uid 1000): lo usiamo per non far
 # girare Chromium come root. Le cartelle dati devono restare scrivibili, perché
 # lo scraping vi salva cache ed export.
-RUN mkdir -p data/cache data/exports \
+RUN mkdir -p data/cache data/exports data/db \
     && chown -R node:node /app
 
 USER node

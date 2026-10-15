@@ -281,8 +281,6 @@ class HttpScraper {
       this.onProgress(`⚠ la classifica ha ${standings.length} squadre contro ${previousData.standings.length} in cache`);
     }
 
-    this.onProgress(`Recupero di tutte le ${tokens.totalDays} giornate del calendario (concorrenza ${this.concurrency})...`);
-
     const previousDays = new Map(
       ((previousData && previousData.matchDays) || []).map(day => [day.dayNumber, day])
     );

@@ -65,9 +65,12 @@ function restoreSnapshot(db, filePath = DB_SNAPSHOT_PATH) {
 
   let restoredRows = 0;
   try {
-    // Svuota le tabelle prima del restore
+    // Svuota le tabelle prima del restore e riallinea sqlite_sequence
     for (const table of [...SNAPSHOT_TABLES].reverse()) {
       db.prepare(`DELETE FROM ${table}`).run();
+      try {
+        db.prepare('DELETE FROM sqlite_sequence WHERE name = ?').run(table);
+      } catch (e) {}
     }
 
     const stmtCache = new Map();

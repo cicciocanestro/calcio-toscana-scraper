@@ -7,12 +7,12 @@ function parseScorer(rawScorer) {
   if (!rawScorer || typeof rawScorer !== 'string') return null;
   const raw = rawScorer.trim();
   const isPenalty = /\(rig\.?\)/i.test(raw);
-  const isOwnGoal = /\bautogol\b/i.test(raw);
+  const isOwnGoal = /(\bautogol\b|\(aut\.?\))/i.test(raw);
 
-  // Estrai minutaggio e tempo (es. "27' pt" o "30' st")
+  // Estrai minutaggio e tempo (es. "27' pt", "30' st" o recupero "45'+2 pt")
   let minute = null;
   let half = null;
-  const timeMatch = raw.match(/\((\d+)'?\s*(pt|st)?\)/i);
+  const timeMatch = raw.match(/\((\d+(?:\+\d+)?)'?\s*(pt|st|dts|pts)?\)/i);
   if (timeMatch) {
     minute = timeMatch[1];
     half = timeMatch[2] ? timeMatch[2].toLowerCase() : null;
@@ -40,10 +40,13 @@ function parseScorer(rawScorer) {
 function upsertTeam(db, teamName, logoUrl = null) {
   const slug = exportSlug(teamName);
 
-  const selectStmt = db.prepare('SELECT id, logo_url FROM teams WHERE name = ?');
-  const existing = selectStmt.get(teamName);
+  const selectStmt = db.prepare('SELECT id, name, logo_url FROM teams WHERE name = ? OR slug = ?');
+  const existing = selectStmt.get(teamName, slug);
 
   if (existing) {
+    if (existing.name !== teamName) {
+      db.prepare('INSERT OR IGNORE INTO team_aliases (team_id, alias) VALUES (?, ?)').run(existing.id, teamName);
+    }
     if (logoUrl && !existing.logo_url) {
       db.prepare('UPDATE teams SET logo_url = ? WHERE id = ?').run(logoUrl, existing.id);
     }
@@ -97,6 +100,7 @@ function importLeagueDocument(db, leagueData, options = {}) {
     );
 
     // 2. Stagione
+    db.prepare('UPDATE seasons SET is_current = 0 WHERE league_id = ? AND label != ?').run(leagueData.id, seasonLabel);
     db.prepare(`
       INSERT INTO seasons (league_id, label, is_current)
       VALUES (?, ?, 1)
@@ -202,7 +206,14 @@ function importLeagueDocument(db, leagueData, options = {}) {
         END
     `);
 
-    const selectMatchStmt = db.prepare('SELECT id FROM matches WHERE source_key = ?');
+    const selectExistingMatchByTeamsStmt = db.prepare(`
+      SELECT id, source_key, is_played, status
+      FROM matches
+      WHERE season_id = ? AND matchday_number = ? AND home_team_id = ? AND away_team_id = ?
+    `);
+    const updateMatchSourceKeyStmt = db.prepare('UPDATE matches SET source_key = ? WHERE id = ?');
+    const selectMatchStmt = db.prepare('SELECT id, is_played, status FROM matches WHERE source_key = ?');
+    const selectGoalsStmt = db.prepare('SELECT team_id, player_raw, ordinal FROM goals WHERE match_id = ? ORDER BY ordinal ASC');
     const deleteGoalsStmt = db.prepare('DELETE FROM goals WHERE match_id = ?');
     const insertGoalStmt = db.prepare(`
       INSERT INTO goals (
@@ -222,6 +233,15 @@ function importLeagueDocument(db, leagueData, options = {}) {
 
         // Se matchLink è presente, genera la source_key (es. "TO.P.C:1.1:acquaviva-resco-reggello")
         const sourceKey = m.matchLink || `${leagueData.id}:${md.dayNumber}:${exportSlug(m.homeTeam)}-${exportSlug(m.awayTeam)}`;
+
+        // Evita duplicati se una partita già registrata senza matchLink ne riceve uno in seguito
+        const existingByTeams = selectExistingMatchByTeamsStmt.get(seasonId, md.dayNumber, homeTeamId, awayTeamId);
+        const wasPlayedFinished = Boolean(
+          existingByTeams && existingByTeams.is_played === 1 && existingByTeams.status === 'FINISHED'
+        );
+        if (existingByTeams && existingByTeams.source_key !== sourceKey) {
+          updateMatchSourceKeyStmt.run(sourceKey, existingByTeams.id);
+        }
 
         insertMatchStmt.run(
           seasonId,
@@ -243,25 +263,42 @@ function importLeagueDocument(db, leagueData, options = {}) {
         const matchRow = selectMatchStmt.get(sourceKey);
         if (matchRow) {
           const matchId = matchRow.id;
-          deleteGoalsStmt.run(matchId);
+          // Anti-regressione sui marcatori: se la partita era già conclusa e il nuovo dato
+          // non risulta giocato, preserviamo anche i gol già registrati.
+          if (wasPlayedFinished && !m.isPlayed) {
+            continue;
+          }
 
+          const incomingGoals = [];
           let ordinal = 1;
           for (const raw of m.homeScorers || []) {
             const parsed = parseScorer(raw);
             if (parsed) {
-              insertGoalStmt.run(
-                matchId, homeTeamId, parsed.raw, parsed.name,
-                parsed.minute, parsed.half, parsed.isPenalty, parsed.isOwnGoal, ordinal++
-              );
+              incomingGoals.push({ teamId: homeTeamId, parsed, ordinal: ordinal++ });
             }
           }
-
           for (const raw of m.awayScorers || []) {
             const parsed = parseScorer(raw);
             if (parsed) {
+              incomingGoals.push({ teamId: awayTeamId, parsed, ordinal: ordinal++ });
+            }
+          }
+
+          // Riscrive i gol solo se sono effettivamente cambiati, evitando di far crescere
+          // inutilmente gli ID AUTOINCREMENT ad ogni importazione.
+          const currentGoals = selectGoalsStmt.all(matchId);
+          const sameGoals = currentGoals.length === incomingGoals.length && currentGoals.every(
+            (g, i) => g.team_id === incomingGoals[i].teamId
+              && g.player_raw === incomingGoals[i].parsed.raw
+              && g.ordinal === incomingGoals[i].ordinal
+          );
+
+          if (!sameGoals) {
+            deleteGoalsStmt.run(matchId);
+            for (const g of incomingGoals) {
               insertGoalStmt.run(
-                matchId, awayTeamId, parsed.raw, parsed.name,
-                parsed.minute, parsed.half, parsed.isPenalty, parsed.isOwnGoal, ordinal++
+                matchId, g.teamId, g.parsed.raw, g.parsed.name,
+                g.parsed.minute, g.parsed.half, g.parsed.isPenalty, g.parsed.isOwnGoal, g.ordinal
               );
             }
           }
@@ -368,7 +405,7 @@ function reconstructLeagueDocument(db, leagueId, seasonLabel = '2026/27') {
     JOIN teams ht ON m.home_team_id = ht.id
     JOIN teams at ON m.away_team_id = at.id
     WHERE m.season_id = ?
-    ORDER BY m.matchday_number ASC, m.id ASC
+    ORDER BY m.matchday_number ASC, m.date ASC, m.id ASC
   `).all(seasonId);
 
   const matchesByDay = new Map();
@@ -434,7 +471,7 @@ function getTopScorers(db, leagueId, limit = 20) {
       penalties
     FROM v_top_scorers
     WHERE league_id = ?
-    ORDER BY total_goals DESC, player_name ASC
+    ORDER BY total_goals DESC, penalties ASC, player_name ASC
     LIMIT ?
   `).all(leagueId, limit);
 
@@ -447,77 +484,10 @@ function getTopScorers(db, leagueId, limit = 20) {
   }));
 }
 
-/**
- * Restituisce lo stato di forma recente (ultime N partite disputate) per ogni squadra del campionato.
- */
-function getTeamsForm(db, leagueId, lastMatchesCount = 5) {
-  const league = db.prepare('SELECT id FROM leagues WHERE id = ?').get(leagueId);
-  if (!league) return [];
-
-  // Tutte le partite concluse del campionato ordinate cronologicamente
-  const matches = db.prepare(`
-    SELECT
-      m.id,
-      m.matchday_number,
-      ht.name AS home_team,
-      at.name AS away_team,
-      m.home_score,
-      m.away_score
-    FROM matches m
-    JOIN seasons s ON m.season_id = s.id
-    JOIN teams ht ON m.home_team_id = ht.id
-    JOIN teams at ON m.away_team_id = at.id
-    WHERE s.league_id = ? AND m.is_played = 1 AND m.home_score IS NOT NULL AND m.away_score IS NOT NULL
-    ORDER BY m.matchday_number ASC, m.id ASC
-  `).all(leagueId);
-
-  // Mappa squadra -> array risultati ('V', 'N', 'P')
-  const teamHistory = new Map();
-  for (const m of matches) {
-    if (!teamHistory.has(m.home_team)) teamHistory.set(m.home_team, []);
-    if (!teamHistory.has(m.away_team)) teamHistory.set(m.away_team, []);
-
-    let homeRes, awayRes;
-    if (m.home_score > m.away_score) {
-      homeRes = 'V';
-      awayRes = 'P';
-    } else if (m.home_score < m.away_score) {
-      homeRes = 'P';
-      awayRes = 'V';
-    } else {
-      homeRes = 'N';
-      awayRes = 'N';
-    }
-
-    teamHistory.get(m.home_team).push({ res: homeRes, opponent: m.away_team, day: m.matchday_number, isHome: true, score: `${m.home_score}-${m.away_score}` });
-    teamHistory.get(m.away_team).push({ res: awayRes, opponent: m.home_team, day: m.matchday_number, isHome: false, score: `${m.away_score}-${m.home_score}` });
-  }
-
-  const result = [];
-  for (const [team, history] of teamHistory.entries()) {
-    const recent = history.slice(-lastMatchesCount);
-    const formString = recent.map(h => h.res).join('');
-    const pointsInRecent = recent.reduce((sum, h) => sum + (h.res === 'V' ? 3 : h.res === 'N' ? 1 : 0), 0);
-
-    result.push({
-      team,
-      playedTotal: history.length,
-      recentCount: recent.length,
-      form: formString,
-      pointsRecent: pointsInRecent,
-      history: recent
-    });
-  }
-
-  // Ordina per punti nelle partite recenti
-  return result.sort((a, b) => b.pointsRecent - a.pointsRecent || b.playedTotal - a.playedTotal);
-}
-
 module.exports = {
   parseScorer,
   upsertTeam,
   importLeagueDocument,
   reconstructLeagueDocument,
-  getTopScorers,
-  getTeamsForm
+  getTopScorers
 };

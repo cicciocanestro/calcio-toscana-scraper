@@ -92,7 +92,7 @@
     let year = defaultYear || new Date().getFullYear().toString();
 
     for (const t of tokens) {
-      if (!day && /^\d{1,2}$/.test(t)) {
+      if (!day && /^\d{1,2}$/.test(t) && Number(t) >= 1 && Number(t) <= 31) {
         day = t.padStart(2, '0');
       } else if (IT_MONTHS[t]) {
         month = IT_MONTHS[t];
@@ -107,10 +107,10 @@
     return null;
   }
 
-  /** Aggiunge un anno a una data YYYY-MM-DD (per le giornate a cavallo d'anno). */
-  function addOneYear(isoDate) {
+  /** Sposta l'anno di una data YYYY-MM-DD di deltaYears (+1 o -1). */
+  function shiftYear(isoDate, deltaYears) {
     const [year, month, day] = String(isoDate).split('-').map(Number);
-    const shifted = new Date(Date.UTC(year + 1, month - 1, day));
+    const shifted = new Date(Date.UTC(year + deltaYears, month - 1, day));
     return Number.isNaN(shifted.getTime()) ? isoDate : shifted.toISOString().slice(0, 10);
   }
 
@@ -160,13 +160,23 @@
 
     for (const row of rows) {
       if (row.classList && row.classList.contains('date')) {
-        let parsed = parseDateHeader(text(row), defaultYear);
+        const headerText = text(row);
+        const hasExplicitYear = /\b\d{4}\b/.test(headerText);
+        let parsed = parseDateHeader(headerText, defaultYear);
 
-        // Passaggio d'anno: una giornata a cavallo di Capodanno ha date tipo
-        // "28|12|2026 - 03|01|2027", ma l'anno di riferimento resta quello
-        // iniziale. Se la data torna indietro siamo nell'anno successivo.
-        if (parsed && currentDate && parsed < currentDate) {
-          parsed = addOneYear(parsed);
+        // Passaggio d'anno: quando l'intestazione non indica l'anno (es. "Domenica 3 gennaio"
+        // in una giornata di dicembre, o "Sab. 30 dicembre" in una giornata di gennaio),
+        // confrontiamo il mese della riga con quello di riferimento della giornata,
+        // senza spostare di anno un normale anticipo del sabato (es. 19/09 prima di 20/09).
+        const refDate = defaultDate || currentDate;
+        if (parsed && refDate && !hasExplicitYear) {
+          const refMonth = Number(refDate.split('-')[1]);
+          const rowMonth = Number(parsed.split('-')[1]);
+          if (refMonth >= 8 && rowMonth <= 6) {
+            parsed = shiftYear(parsed, 1);
+          } else if (refMonth <= 6 && rowMonth >= 8) {
+            parsed = shiftYear(parsed, -1);
+          }
         }
 
         if (parsed) currentDate = parsed;
@@ -204,9 +214,12 @@
         return img.getAttribute('data-src') || img.getAttribute('src') || '';
       };
 
-      const matchLink = row.getAttribute('data-link')
+      const rawMatchLink = row.getAttribute('data-link')
         || (row.querySelector('a.btn.info') && row.querySelector('a.btn.info').getAttribute('href'))
         || '';
+      const matchLink = rawMatchLink.startsWith('/')
+        ? `https://www.tuttocampo.it${rawMatchLink}`
+        : rawMatchLink;
 
       let dateTime = '';
       if (currentDate && time.includes(':')) {

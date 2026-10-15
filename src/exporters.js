@@ -32,10 +32,12 @@ const ICS_TIMEZONE = [
 
 /**
  * Slug usato nei nomi file quando si filtra per squadra
- * (es. "Centro Storico Lebowski" -> "centro_storico_lebowski").
+ * (es. "Centro Storico Lebowski" -> "centro_storico_lebowski", "Pian Di Scò" -> "pian_di_sco").
  */
 function exportSlug(value) {
   return String(value || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()
     .replace(/[^a-z0-9]/g, '_')
     .replace(/_{2,}/g, '_')
@@ -43,14 +45,62 @@ function exportSlug(value) {
 }
 
 /**
+ * Crea un predicato di filtro per squadra: se il filtro corrisponde esattamente
+ * al nome di una squadra del campionato usa il confronto esatto, altrimenti
+ * effettua una ricerca parziale (case-insensitive).
+ */
+function createTeamMatcher(leagueData, rawTeam) {
+  const filter = rawTeam ? String(Array.isArray(rawTeam) ? rawTeam[0] : rawTeam).trim().toLowerCase() : '';
+  if (!filter) return () => true;
+
+  const allTeams = new Set();
+  for (const s of leagueData.standings || []) {
+    if (s.team) allTeams.add(String(s.team).toLowerCase());
+  }
+  for (const d of leagueData.matchDays || []) {
+    for (const m of d.matches || []) {
+      if (m.homeTeam) allTeams.add(String(m.homeTeam).toLowerCase());
+      if (m.awayTeam) allTeams.add(String(m.awayTeam).toLowerCase());
+    }
+  }
+
+  const isExact = allTeams.has(filter);
+  return (m) => {
+    const home = String(m.homeTeam || '').toLowerCase();
+    const away = String(m.awayTeam || '').toLowerCase();
+    if (isExact) return home === filter || away === filter;
+    return home.includes(filter) || away.includes(filter);
+  };
+}
+
+/**
+ * Restituisce una copia di leagueData eventuale filtrata per squadra.
+ */
+function filterLeagueData(leagueData, options = {}) {
+  const { isStale, ...cleanData } = leagueData || {};
+  if (!options.team) return cleanData;
+  const matchesTeam = createTeamMatcher(cleanData, options.team);
+  return {
+    ...cleanData,
+    matchDays: (cleanData.matchDays || [])
+      .map(day => ({
+        ...day,
+        matches: (day.matches || []).filter(matchesTeam)
+      }))
+      .filter(day => day.matches.length > 0)
+  };
+}
+
+/**
  * Esporta i dati completi in formato JSON
  */
-function exportToJson(leagueData, outputPath) {
+function exportToJson(leagueData, outputPath, options = {}) {
   const dir = path.dirname(outputPath);
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
   }
-  fs.writeFileSync(outputPath, JSON.stringify(leagueData, null, 2), 'utf-8');
+  const payload = filterLeagueData(leagueData, options);
+  fs.writeFileSync(outputPath, JSON.stringify(payload, null, 2), 'utf-8');
   return outputPath;
 }
 
@@ -65,7 +115,7 @@ function escapeCsv(val) {
  * Restituisce la stringa: la scrittura su disco è compito di exportToCsv.
  */
 function buildCsv(leagueData, options = {}) {
-  const teamFilter = options.team ? String(options.team).toLowerCase() : null;
+  const matchesTeam = createTeamMatcher(leagueData, options.team);
 
   const headers = [
     'Campionato',
@@ -90,13 +140,7 @@ function buildCsv(leagueData, options = {}) {
 
   for (const day of leagueData.matchDays || []) {
     for (const m of day.matches || []) {
-      if (teamFilter) {
-        const home = String(m.homeTeam || '').toLowerCase();
-        const away = String(m.awayTeam || '').toLowerCase();
-        if (!home.includes(teamFilter) && !away.includes(teamFilter)) {
-          continue;
-        }
-      }
+      if (!matchesTeam(m)) continue;
 
       const row = [
         escapeCsv(leagueData.name),
@@ -145,11 +189,13 @@ function formatIcsDateTime(dateTimeStr, dateOnlyStr) {
     const [y, m, d] = dPart.split('-').map(Number);
     const [hh, mm] = tPart.split(':').map(Number);
 
-    const startObj = new Date(y, m - 1, d, hh || 15, mm || 30);
+    const hours = Number.isFinite(hh) ? hh : 15;
+    const minutes = Number.isFinite(mm) ? mm : 30;
+    const startObj = new Date(Date.UTC(y, m - 1, d, hours, minutes));
     const endObj = new Date(startObj.getTime() + 105 * 60 * 1000); // +105 min (90 min + intervallo)
 
     const pad = (n) => String(n).padStart(2, '0');
-    const fmt = (dt) => `${dt.getFullYear()}${pad(dt.getMonth() + 1)}${pad(dt.getDate())}T${pad(dt.getHours())}${pad(dt.getMinutes())}00`;
+    const fmt = (dt) => `${dt.getUTCFullYear()}${pad(dt.getUTCMonth() + 1)}${pad(dt.getUTCDate())}T${pad(dt.getUTCHours())}${pad(dt.getUTCMinutes())}00`;
 
     return {
       dtStart: `DTSTART;TZID=Europe/Rome:${fmt(startObj)}`,
@@ -158,6 +204,17 @@ function formatIcsDateTime(dateTimeStr, dateOnlyStr) {
   }
 
   if (dateOnlyStr) {
+    const [y, m, d] = String(dateOnlyStr).split('-').map(Number);
+    if (Number.isFinite(y) && Number.isFinite(m) && Number.isFinite(d)) {
+      const startObj = new Date(Date.UTC(y, m - 1, d));
+      const endObj = new Date(Date.UTC(y, m - 1, d + 1)); // RFC 5545: DTEND VALUE=DATE è esclusivo
+      const pad = (n) => String(n).padStart(2, '0');
+      const fmtDate = (dt) => `${dt.getUTCFullYear()}${pad(dt.getUTCMonth() + 1)}${pad(dt.getUTCDate())}`;
+      return {
+        dtStart: `DTSTART;VALUE=DATE:${fmtDate(startObj)}`,
+        dtEnd: `DTEND;VALUE=DATE:${fmtDate(endObj)}`
+      };
+    }
     const clean = dateOnlyStr.replace(/[-]/g, '');
     return {
       dtStart: `DTSTART;VALUE=DATE:${clean}`,
@@ -226,7 +283,7 @@ function icsStatus(match) {
  * La scrittura su disco è compito di exportToIcs.
  */
 function buildIcs(leagueData, options = {}) {
-  const teamFilter = options.team ? String(options.team).toLowerCase() : null;
+  const matchesTeam = createTeamMatcher(leagueData, options.team);
   const calName = options.team
     ? `${options.team} - ${leagueData.shortName || leagueData.name}`
     : `${leagueData.name} - Calendario`;
@@ -246,13 +303,7 @@ function buildIcs(leagueData, options = {}) {
 
   for (const day of leagueData.matchDays || []) {
     for (const m of day.matches || []) {
-      if (teamFilter) {
-        const home = String(m.homeTeam || '').toLowerCase();
-        const away = String(m.awayTeam || '').toLowerCase();
-        if (!home.includes(teamFilter) && !away.includes(teamFilter)) {
-          continue;
-        }
-      }
+      if (!matchesTeam(m)) continue;
 
       const times = formatIcsDateTime(m.dateTime, m.date);
       if (!times) continue;
@@ -319,6 +370,8 @@ function exportToIcs(leagueData, outputPath, options = {}) {
 
 module.exports = {
   exportSlug,
+  createTeamMatcher,
+  filterLeagueData,
   exportToJson,
   buildCsv,
   exportToCsv,

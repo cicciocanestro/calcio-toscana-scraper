@@ -345,7 +345,9 @@ class CalendarScraper {
 
     return httpScraper.scrapeLeague(leagueConfig, {
       previousData: options.previousData,
-      session: options.session || null
+      session: options.session || null,
+      incremental: !!options.incremental,
+      matchDays: options.matchDays
     });
   }
 
@@ -636,12 +638,31 @@ class CalendarScraper {
         }
       }, meta.tckk, meta.roundID);
 
-      // 2. Recupero di tutte le Giornate in blocchi paralleli
-      this.onProgress(`Recupero di tutte le ${meta.totalDays} giornate del calendario...`);
+      // 2. Recupero delle Giornate in blocchi paralleli (supporta anche modalità incrementale)
+      const previousDays = new Map(
+        ((options.previousData && options.previousData.matchDays) || []).map(day => [day.dayNumber, day])
+      );
 
-      const daysToFetch = Array.from({ length: meta.totalDays }, (_, i) => i + 1);
+      let daysToFetch;
+      if (Array.isArray(options.matchDays) && options.matchDays.length > 0) {
+        daysToFetch = options.matchDays.filter(d => d >= 1 && d <= meta.totalDays);
+      } else if (options.incremental && previousDays.size > 0 && Number.isFinite(meta.currentDay)) {
+        const cur = meta.currentDay;
+        const set = new Set([cur]);
+        if (cur > 1) set.add(cur - 1);
+        if (cur < meta.totalDays) set.add(cur + 1);
+        daysToFetch = Array.from(set).sort((a, b) => a - b);
+      } else {
+        daysToFetch = Array.from({ length: meta.totalDays }, (_, i) => i + 1);
+      }
 
-      const matchDays = await page.evaluate(async (days, tckk, roundID) => {
+      if (daysToFetch.length < meta.totalDays) {
+        this.onProgress(`Scraping incrementale (browser): recupero di ${daysToFetch.length} giornate (${daysToFetch.join(', ')}) su ${meta.totalDays}...`);
+      } else {
+        this.onProgress(`Recupero di tutte le ${meta.totalDays} giornate del calendario...`);
+      }
+
+      const fetchedDays = await page.evaluate(async (days, tckk, roundID) => {
         const results = [];
         const chunkSize = 6;
 
@@ -662,6 +683,16 @@ class CalendarScraper {
         results.sort((a, b) => a.dayNumber - b.dayNumber);
         return results;
       }, daysToFetch, meta.tckk, meta.roundID);
+
+      const fetchedMap = new Map(fetchedDays.map(day => [day.dayNumber, day]));
+      const matchDays = [];
+      for (let dayNum = 1; dayNum <= meta.totalDays; dayNum++) {
+        if (fetchedMap.has(dayNum)) {
+          matchDays.push(fetchedMap.get(dayNum));
+        } else if (previousDays.has(dayNum)) {
+          matchDays.push(previousDays.get(dayNum));
+        }
+      }
 
       const leagueData = {
         id: leagueConfig.id,

@@ -2,10 +2,10 @@ const express = require('express');
 const crypto = require('crypto');
 const { LEAGUES, DATA_DIR, PUBLIC_DIR, DB_PATH } = require('./config');
 const { CalendarScraper } = require('./scraper');
-const { exportSlug, buildCsv, buildIcs } = require('./exporters');
+const { exportSlug, filterLeagueData, buildCsv, buildIcs } = require('./exporters');
 const { resolveConfig, describeConfig, dispatchWorkflow } = require('./github-dispatch');
 const { initDatabase } = require('./db');
-const { getTopScorers, getTeamsForm } = require('./db-sync');
+const { getTopScorers } = require('./db-sync');
 
 /**
  * Confronto a tempo costante fra due stringhe: `===` esce al primo carattere
@@ -89,10 +89,21 @@ function normalizeTeamParam(value) {
  */
 function createServer(options = {}) {
   const app = express();
+  app.set('trust proxy', 1);
+
   const scraper = options.scraper || new CalendarScraper({
     onProgress: (msg) => console.log(`[SCRAPER] ${msg}`)
   });
   const autoRevalidate = options.autoRevalidate !== false;
+
+  // Connessione SQLite condivisa (lazy) per non riaprire il DB a ogni richiesta
+  let dbInstance = options.db || null;
+  function getDb() {
+    if (!dbInstance) {
+      dbInstance = initDatabase(DB_PATH);
+    }
+    return dbInstance;
+  }
 
   // Pubblicazione su GitHub: attiva solo se configurata (vedi src/github-dispatch.js)
   const githubConfig = resolveConfig();
@@ -264,29 +275,10 @@ function createServer(options = {}) {
 
     try {
       const limit = Math.min(100, Math.max(1, parseInt(req.query.limit || '20', 10)));
-      const db = initDatabase(DB_PATH);
-      const scorers = getTopScorers(db, id, limit);
+      const scorers = getTopScorers(getDb(), id, limit);
       res.json({ leagueId: id, scorers });
     } catch (err) {
       console.error(`Errore caricamento marcatori per ${id}:`, err);
-      res.status(500).json({ error: err.message });
-    }
-  });
-
-  // Forma recente delle squadre (ultime N partite)
-  app.get('/api/leagues/:id/form', (req, res) => {
-    const id = req.params.id;
-    if (!LEAGUES[id]) {
-      return res.status(404).json({ error: `Campionato '${id}' non trovato` });
-    }
-
-    try {
-      const matchesCount = Math.min(15, Math.max(1, parseInt(req.query.matches || '5', 10)));
-      const db = initDatabase(DB_PATH);
-      const form = getTeamsForm(db, id, matchesCount);
-      res.json({ leagueId: id, matchesCount, form });
-    } catch (err) {
-      console.error(`Errore caricamento forma per ${id}:`, err);
       res.status(500).json({ error: err.message });
     }
   });
@@ -412,7 +404,7 @@ function createServer(options = {}) {
       const filename = `${id}${teamSuffix}.${format}`;
 
       const formats = {
-        json: { body: JSON.stringify(data, null, 2), type: 'application/json; charset=utf-8' },
+        json: { body: JSON.stringify(filterLeagueData(data, { team }), null, 2), type: 'application/json; charset=utf-8' },
         csv: { body: buildCsv(data, { team }), type: 'text/csv; charset=utf-8' },
         ics: { body: buildIcs(data, { team }), type: 'text/calendar; charset=utf-8' }
       };

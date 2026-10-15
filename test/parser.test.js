@@ -101,6 +101,28 @@ test('una giornata normale non viene spostata di anno', () => {
   assert.deepEqual(day.matches.map(m => m.date), ['2026-09-19', '2026-09-20', '2026-09-20']);
 });
 
+test('un anticipo al sabato in una giornata con data singola non sposta l\'anno avanti', () => {
+  const html = `<div id="match_day">16° Giornata</div>
+<div id="match_date">3|01|2027</div>
+<table class="table-results">
+  <tr class="date"><td>Sab. 2 gennaio</td></tr>
+  <tr class="match">
+    <td class="team home"><a class="team-name">Casa 1</a><span class="goal">1</span></td>
+    <td class="match-time"><span class="hour">14:30</span></td>
+    <td class="team away"><a class="team-name">Ospite 1</a><span class="goal">1</span></td>
+  </tr>
+  <tr class="date"><td>Dom. 3 gennaio</td></tr>
+  <tr class="match">
+    <td class="team home"><a class="team-name">Casa 2</a><span class="goal">-</span></td>
+    <td class="match-time"><span class="hour">15:00</span></td>
+    <td class="team away"><a class="team-name">Ospite 2</a><span class="goal">-</span></td>
+  </tr>
+</table>`;
+
+  const day = parser.parseMatchdayHtml(html, 16);
+  assert.deepEqual(day.matches.map(m => m.date), ['2027-01-02', '2027-01-03']);
+});
+
 test('parseStandingsHtml estrae classifica, zone e gestisce le celle vuote', () => {
   const standings = parser.parseStandingsHtml(STANDINGS_HTML);
 

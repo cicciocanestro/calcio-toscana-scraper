@@ -122,7 +122,8 @@ CREATE TABLE IF NOT EXISTS standings_snapshots (
 CREATE INDEX IF NOT EXISTS idx_standings_season_day ON standings_snapshots(season_id, matchday_number);
 
 -- Vista classifica marcatori aggregata
-CREATE VIEW IF NOT EXISTS v_top_scorers AS
+DROP VIEW IF EXISTS v_top_scorers;
+CREATE VIEW v_top_scorers AS
 SELECT
   g.player_name,
   t.name AS team_name,
@@ -136,7 +137,7 @@ JOIN matches m ON g.match_id = m.id
 JOIN seasons s ON m.season_id = s.id
 JOIN leagues l ON s.league_id = l.id
 JOIN teams t ON g.team_id = t.id
-WHERE g.is_own_goal = 0
+WHERE g.is_own_goal = 0 AND s.is_current = 1
 GROUP BY g.player_name, t.id, m.season_id
 ORDER BY total_goals DESC;
 `;

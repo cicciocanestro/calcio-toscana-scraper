@@ -109,4 +109,11 @@ test('il calendario del browser usa lo stesso default orario dell\'export', () =
   const logical = unfold(ctx.generateClientIcs(data));
   assert.match(logical, /Partita in programma alle 15:30/, 'il default è 15:30');
   assert.match(logical, /DTSTART;TZID=Europe\/Rome:20261003T153000/);
+
+  // Partita alle 15:00 esatte (minuti = 00): deve restare 15:00 e non slittare a 15:30
+  data.matchDays[0].matches[0].time = '15:00';
+  data.matchDays[0].matches[0].dateTime = '2026-10-03T15:00:00';
+  const logical1500 = unfold(ctx.generateClientIcs(data));
+  assert.match(logical1500, /DTSTART;TZID=Europe\/Rome:20261003T150000/);
+  assert.match(logical1500, /DTEND;TZID=Europe\/Rome:20261003T164500/);
 });

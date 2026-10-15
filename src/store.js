@@ -30,6 +30,9 @@ class JsonStore extends BaseStore {
     super();
     this.leagues = options.leagues || LEAGUES;
     this.exportDir = options.exportDir || EXPORT_DIR;
+    this.dbPath = options.dbPath || DB_PATH;
+    this.syncDb = options.syncDb !== false;
+    this._db = options.db || null;
   }
 
   cacheAgeMs(leagueId, data) {
@@ -96,6 +99,16 @@ class JsonStore extends BaseStore {
       exportToCsv(leagueData, path.join(this.exportDir, `${leagueConfig.id}.csv`));
       exportToIcs(leagueData, path.join(this.exportDir, `${leagueConfig.id}.ics`));
       exportToJson(leagueData, path.join(this.exportDir, `${leagueConfig.id}.json`));
+    }
+    if (this.syncDb) {
+      try {
+        if (!this._db) {
+          this._db = initDatabase(this.dbPath);
+        }
+        importLeagueDocument(this._db, leagueData);
+      } catch (err) {
+        // Non blocca il salvataggio dei file statici
+      }
     }
     return leagueData;
   }

@@ -2,7 +2,7 @@
 
 > 🌐 **Dashboard Web Online:** **[https://cicciocanestro.github.io/calcio-toscana-scraper/](https://cicciocanestro.github.io/calcio-toscana-scraper/)**
 
-Un tool completo e automatizzato di web scraping e database relazionale per estrarre, consultare ed esportare i **calendari aggiornati**, i **risultati**, le **classifiche**, la **classifica marcatori** e lo **stato di forma** dei campionati dilettantistici toscani:
+Un tool completo e automatizzato di web scraping e database relazionale per estrarre, consultare ed esportare i **calendari aggiornati**, i **risultati**, le **classifiche** e la **classifica marcatori** dei campionati dilettantistici toscani:
 
 1. **Promozione Toscana - Girone C**
 2. **Seconda Categoria Toscana - Girone I**
@@ -16,8 +16,7 @@ La fonte dati principale è [Tuttocampo.it](https://www.tuttocampo.it), con gest
 
 - 📅 **Calendario Completo**: Tutte le giornate della stagione con date, orari, squadre in casa e trasferta, risultati finali e marcatori con minutaggio.
 - 🏆 **Classifica Aggiornata**: Punti, partite giocate, vinte, nulle, perse, gol fatti/subiti, differenza reti ed evidenziazione delle zone (promozione diretta, playoff, playout, retrocessione).
-- ⚽ **Classifica Marcatori (Novità Database)**: Tabella marcatori aggregata per girone con gol totali, rigori e squadra di appartenenza.
-- 📈 **Stato di Forma (Novità Database)**: Analisi delle ultime partite disputate da ogni squadra con striscia risultati (`V`, `N`, `P`) e punti conquistati.
+- ⚽ **Classifica Marcatori (Novità Database & Dashboard)**: Tabella marcatori aggregata per girone con gol totali, rigori e filtro per squadra di appartenenza.
 - ⏭ **Prossimo Turno & Ultimi Risultati**: Visualizzazione istantanea delle partite del turno in programma e dei risultati dell'ultimo turno disputato.
 - 🔍 **Filtro Squadra**: Possibilità di filtrare il calendario per qualsiasi squadra (es. *Centro Storico Lebowski*, *Arezzo FA*, *Monterchiese*, ecc.).
 - 📥 **Esportazione Multi-Formato**:
@@ -67,14 +66,6 @@ node bin/cli.js scorers terza-arezzo
 
 # Con limite personalizzato
 node bin/cli.js scorers promozione-c --limit 25
-```
-
-### 📈 Visualizzare lo Stato di Forma (Nuovo)
-```bash
-# Mostra la forma nelle ultime 5 partite
-node bin/cli.js form promozione-c
-node bin/cli.js form seconda-i --matches 3
-node bin/cli.js form terza-arezzo
 ```
 
 ### ⚽ Visualizzare il Prossimo Turno & Risultati
@@ -160,7 +151,6 @@ Apri nel tuo browser: **[http://localhost:3000](http://localhost:3000)**
 - `GET /api/leagues`: elenco campionati, stato cache e aggiornamenti.
 - `GET /api/leagues/:id`: dati completi del campionato.
 - `GET /api/leagues/:id/scorers?limit=20`: classifica marcatori aggregata.
-- `GET /api/leagues/:id/form?matches=5`: stato di forma recente delle squadre.
 - `GET /api/leagues/:id/export/:format`: download al volo di file `.ics`, `.csv` o `.json`.
 
 ---

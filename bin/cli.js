@@ -10,7 +10,7 @@ const { CalendarScraper } = require('../src/scraper');
 const { exportToJson, exportToCsv, exportToIcs, exportSlug } = require('../src/exporters');
 const { startServer } = require('../src/server');
 const { initDatabase } = require('../src/db');
-const { getTopScorers, getTeamsForm } = require('../src/db-sync');
+const { getTopScorers } = require('../src/db-sync');
 
 const program = new Command();
 
@@ -36,7 +36,7 @@ async function getOrScrape(leagueKey, forceRefresh = false) {
   const scraper = new CalendarScraper({
     onProgress: (msg) => console.log(chalk.cyan(`ℹ ${msg}`))
   });
-  return await scraper.scrapeLeague(leagueKey, { forceRefresh });
+  return await scraper.scrapeLeague(leagueKey, { forceRefresh, cacheFirst: !forceRefresh });
 }
 
 // COMANDO: scrape
@@ -159,9 +159,10 @@ program
   .description('Mostra la classifica marcatori del campionato')
   .option('-l, --limit <number>', 'Numero massimo di marcatori da mostrare', '15')
   .action((league, options) => {
+    let db = null;
     try {
       const key = getLeagueKey(league);
-      const db = initDatabase(DB_PATH);
+      db = initDatabase(DB_PATH);
       const limit = parseInt(options.limit, 10) || 15;
       const list = getTopScorers(db, key, limit);
 
@@ -191,53 +192,8 @@ program
     } catch (err) {
       console.error(chalk.red('Errore:'), err.message);
       process.exit(1);
-    }
-  });
-
-// COMANDO: form / forma
-program
-  .command('form [league]')
-  .alias('forma')
-  .description('Mostra lo stato di forma delle squadre nelle ultime 5 partite')
-  .option('-m, --matches <number>', 'Numero di partite recenti da considerare', '5')
-  .action((league, options) => {
-    try {
-      const key = getLeagueKey(league);
-      const db = initDatabase(DB_PATH);
-      const matchesCount = parseInt(options.matches, 10) || 5;
-      const list = getTeamsForm(db, key, matchesCount);
-
-      console.log(chalk.bold.yellow(`\n📈 STATO DI FORMA (Ultime ${matchesCount} partite): ${LEAGUES[key].name.toUpperCase()}\n`));
-
-      if (list.length === 0) {
-        console.log(chalk.gray('Nessuna partita disputata registrata per questo campionato.\n'));
-        return;
-      }
-
-      const table = new Table({
-        head: ['Squadra', 'Forma', 'Punti Recenti', 'Partite Giocate'].map(h => chalk.bold.white(h)),
-        style: { head: [], border: [] }
-      });
-
-      for (const f of list) {
-        const coloredForm = f.form.split('').map(r => {
-          if (r === 'V') return chalk.green('V');
-          if (r === 'N') return chalk.yellow('N');
-          return chalk.red('P');
-        }).join(' ');
-
-        table.push([
-          chalk.bold(f.team),
-          coloredForm || chalk.gray('-'),
-          chalk.bold.yellow(f.pointsRecent),
-          f.playedTotal
-        ]);
-      }
-
-      console.log(table.toString() + '\n');
-    } catch (err) {
-      console.error(chalk.red('Errore:'), err.message);
-      process.exit(1);
+    } finally {
+      if (db && typeof db.close === 'function') db.close();
     }
   });
 
@@ -336,10 +292,18 @@ program
       const key = getLeagueKey(league);
       const data = await getOrScrape(key, !!options.refresh);
 
-      // Trova la prima giornata che ha partite non ancora giocate, oppure currentMatchDay
-      let targetDay = data.matchDays.find(d => d.matches.some(m => !m.isPlayed));
+      // Trova il prossimo turno a partire dalla giornata corrente (evitando che un singolo
+      // recupero/rinvio di inizio stagione faccia puntare sempre alla 1ª giornata)
+      const currentDayNum = data.currentMatchDay || 1;
+      let targetDay =
+        data.matchDays.find(d => d.dayNumber >= currentDayNum && d.matches.some(m => !m.isPlayed)) ||
+        data.matchDays.find(d => d.matches.some(m => !m.isPlayed && m.status !== 'POSTPONED')) ||
+        data.matchDays.find(d => d.matches.some(m => !m.isPlayed)) ||
+        data.matchDays[data.matchDays.length - 1];
+
       if (!targetDay) {
-        targetDay = data.matchDays[data.matchDays.length - 1];
+        console.log(chalk.yellow('Nessuna giornata disponibile.\n'));
+        return;
       }
 
       console.log(chalk.bold.green(`\n⚽ PROSSIMO TURNO: ${data.name.toUpperCase()}`));
@@ -389,6 +353,11 @@ program
       // Trova l'ultima giornata con partite giocate
       const playedDays = data.matchDays.filter(d => d.matches.some(m => m.isPlayed));
       const targetDay = playedDays.length > 0 ? playedDays[playedDays.length - 1] : data.matchDays[0];
+
+      if (!targetDay) {
+        console.log(chalk.yellow('Nessuna giornata disponibile.\n'));
+        return;
+      }
 
       console.log(chalk.bold.green(`\n⚽ ULTIMI RISULTATI: ${data.name.toUpperCase()}`));
       console.log(chalk.bold.cyan(`▶ ${targetDay.dayTitle} ${targetDay.dayDate ? chalk.gray('(' + targetDay.dayDate + ')') : ''}\n`));
@@ -440,6 +409,10 @@ program
     try {
       const outDir = options.output || EXPORT_DIR;
       const format = options.format.toLowerCase();
+      if (!['all', 'json', 'csv', 'ics'].includes(format)) {
+        console.error(chalk.red(`Formato non supportato: ${format}. Usa json, csv, ics o all.`));
+        process.exit(1);
+      }
       const keys = (!league || league === 'all') ? Object.keys(LEAGUES) : [getLeagueKey(league)];
 
       for (const key of keys) {
@@ -452,7 +425,7 @@ program
 
         if (format === 'all' || format === 'json') {
           const p = path.join(outDir, `${baseName}.json`);
-          exportToJson(data, p);
+          exportToJson(data, p, { team: options.team });
           console.log(chalk.green(`✔ JSON esportato: `) + chalk.white(p));
         }
         if (format === 'all' || format === 'csv') {

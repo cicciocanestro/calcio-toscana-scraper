@@ -13,11 +13,21 @@
 # Test: non vengono eseguiti nel container
 /test
 *.md
+*.log
+.env
+/.chrome-tmp
+
+# Database SQLite locale: viene ricostruito automaticamente da data/db/snapshot.jsonl
+/data/db/*.sqlite
+/data/db/*.sqlite-journal
+/data/db/*.sqlite-wal
+/data/db/*.sqlite-shm
 
 # Copie di root della dashboard: servono solo a GitHub Pages, perché il server
 # espone public/. I percorsi sono ancorati alla radice per non escludere anche
 # public/index.html.
 /app.js
+/favicon.svg
 /index.html
 /style.css
 

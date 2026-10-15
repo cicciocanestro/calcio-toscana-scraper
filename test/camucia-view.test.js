@@ -145,7 +145,40 @@ test('la scheda CC Camucia è collegata al pannello giusto ed è l\'ultima voce'
   assert.ok(document.getElementById('select-camucia-weekend'), 'esiste il selettore di weekend');
 
   const voci = [...document.querySelectorAll('.sub-nav-btn')].map(b => b.getAttribute('data-view'));
-  assert.deepEqual(voci, ['calendar', 'standings', 'team', 'export', 'camucia']);
+  assert.deepEqual(voci, ['calendar', 'standings', 'scorers', 'team', 'export', 'camucia']);
+});
+
+test('la scheda Marcatori calcola e mostra la classifica marcatori del campionato', () => {
+  const { ctx, document } = loadApp();
+
+  const customLeague = {
+    ...DATA['promozione-c'],
+    standings: [{ position: 1, team: 'Cortona Camucia Calcio' }, { position: 2, team: 'Acquaviva' }],
+    matchDays: [
+      {
+        dayNumber: 1,
+        matches: [
+          {
+            homeTeam: 'Cortona Camucia Calcio',
+            awayTeam: 'Acquaviva',
+            homeScorers: ["M. Rossi (12' pt)", "M. Rossi (Rig.) (40' st)", "AUTOGOL (5' st)"],
+            awayScorers: ["L. Bianchi (20' pt)"]
+          }
+        ]
+      }
+    ]
+  };
+
+  vm.runInContext(
+    `leagueData = ${JSON.stringify(customLeague)}; populateTeamSelector(); switchView('scorers');`,
+    ctx
+  );
+
+  const rows = [...document.querySelectorAll('#scorers-tbody tr')];
+  assert.equal(rows.length, 2, 'l\'autogol va escluso dalla classifica marcatori');
+  assert.match(rows[0].textContent, /M\. Rossi/);
+  assert.match(rows[0].textContent, /Cortona Camucia Calcio/);
+  assert.match(rows[1].textContent, /L\. Bianchi/);
 });
 
 test('isCamuciaTeam riconosce le cinque squadre e ignora le altre', () => {
@@ -290,4 +323,19 @@ test('il selettore elenca i weekend e l\'opzione "tutti" li mostra tutti', async
 
   const cards = [...document.querySelectorAll('#camucia-container .match-card')];
   assert.equal(cards.length, 6, '1 partita nel primo weekend + 5 nel secondo');
+});
+
+test('il modale di conferma per Aggiorna dal Web avvisa del tempo stimato (1-2 minuti) e permette di annullare', () => {
+  const { ctx, document } = loadApp();
+
+  const modal = document.getElementById('refresh-confirm-modal');
+  assert.ok(modal, 'il modale di conferma deve esistere nel DOM');
+  assert.ok(modal.classList.contains('hidden'), 'il modale è inizialmente nascosto');
+  assert.match(modal.textContent, /1–2 minuti/, 'deve indicare il tempo medio di 1-2 minuti');
+
+  ctx.openRefreshConfirmModal();
+  assert.equal(modal.classList.contains('hidden'), false, 'il modale si apre su richiesta');
+
+  ctx.closeRefreshConfirmModal();
+  assert.equal(modal.classList.contains('hidden'), true, 'il modale si chiude se l\'utente annulla');
 });

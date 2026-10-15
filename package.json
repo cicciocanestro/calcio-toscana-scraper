@@ -12,7 +12,6 @@
     "next": "node bin/cli.js next",
     "results": "node bin/cli.js results",
     "scorers": "node bin/cli.js scorers",
-    "form": "node bin/cli.js form",
     "db:import": "node bin/db-import.js",
     "db:dump": "node bin/db-snapshot.js dump",
     "db:restore": "node bin/db-snapshot.js restore",

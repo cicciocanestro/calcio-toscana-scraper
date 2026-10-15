@@ -20,6 +20,7 @@ function unfold(ics) {
 test('exportSlug normalizza il nome squadra per il file', () => {
   assert.equal(exportSlug('Centro Storico Lebowski'), 'centro_storico_lebowski');
   assert.equal(exportSlug('Arezzo FA'), 'arezzo_fa');
+  assert.equal(exportSlug('Pian Di Scò'), 'pian_di_sco');
   assert.equal(exportSlug('  Poppi  '), 'poppi');
   assert.equal(exportSlug(''), '');
 });
@@ -74,6 +75,9 @@ test('exportToIcs genera un calendario valido, con un VEVENT per partita', () =>
 
   assert.match(text, /DTSTART;TZID=Europe\/Rome:20260913T153000/);
   assert.match(text, /DTEND;TZID=Europe\/Rome:20260913T171500/);
+  // La seconda partita è alle 15:00 (minuti = 00): non deve diventare 15:30!
+  assert.match(text, /DTSTART;TZID=Europe\/Rome:20260920T150000/);
+  assert.match(text, /DTEND;TZID=Europe\/Rome:20260920T164500/);
   assert.match(text, /SUMMARY:Centro Storico Lebowski vs Acquaviva \(2-1\)/);
   assert.match(logical, /Marcatori Centro Storico Lebowski: M\. Rossi \(12' pt\)/);
 

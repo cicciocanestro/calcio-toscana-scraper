@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calcio Toscana - Calendari e Classifiche</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="style.css?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -73,11 +74,12 @@
       </div>
     </section>
 
-    <!-- Sub Navigation (Calendario, Classifica, Squadra, Esporta, CC Camucia) -->
+    <!-- Sub Navigation (Calendario, Classifica, Marcatori, Squadra, Esporta, CC Camucia) -->
     <section class="view-navigation">
       <div class="sub-nav">
         <button class="sub-nav-btn active" data-view="calendar">📅 Calendario</button>
         <button class="sub-nav-btn" data-view="standings">🏆 Classifica</button>
+        <button class="sub-nav-btn" data-view="scorers">⚽ Marcatori</button>
         <button class="sub-nav-btn" data-view="team">🔍 Per Squadra</button>
         <button class="sub-nav-btn" data-view="export">📥 Esportazioni</button>
         <button class="sub-nav-btn" data-view="camucia">⚽ CC Camucia</button>
@@ -146,6 +148,32 @@
         <span class="legend-item"><span class="legend-color color-playoff"></span> Playoff</span>
         <span class="legend-item"><span class="legend-color color-playout"></span> Playout</span>
         <span class="legend-item"><span class="legend-color color-retrocession"></span> Retrocessione</span>
+      </div>
+    </section>
+
+    <!-- SEZIONE MARCATORI -->
+    <section id="view-scorers" class="view-panel hidden">
+      <div class="team-filter-bar scorers-filter-bar">
+        <label for="select-scorers-team"><strong>Filtra per Squadra:</strong></label>
+        <select id="select-scorers-team" class="form-select">
+          <option value="">Tutte le squadre</option>
+        </select>
+      </div>
+      <div class="table-responsive">
+        <table class="standings-table scorers-table">
+          <thead>
+            <tr>
+              <th class="col-pos">#</th>
+              <th class="col-team">Giocatore</th>
+              <th class="col-scorer-team">Squadra</th>
+              <th class="col-pt">Gol</th>
+              <th>Rigori</th>
+            </tr>
+          </thead>
+          <tbody id="scorers-tbody">
+            <!-- Popolato via JS -->
+          </tbody>
+        </table>
       </div>
     </section>
 
@@ -224,6 +252,30 @@
       <p class="source-note">Fonte dati ufficiali e aggiornamenti: Tuttocampo.it</p>
     </div>
   </footer>
+
+  <!-- Modale di conferma Aggiornamento dal Web -->
+  <div id="refresh-confirm-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="refresh-modal-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <span class="modal-icon">🔄</span>
+        <h3 id="refresh-modal-title">Conferma Aggiornamento dal Web</h3>
+      </div>
+      <div class="modal-body">
+        <p>
+          Stai per avviare lo scaricamento in tempo reale di calendari, risultati, classifiche e marcatori dal sito ufficiale (<strong>Tuttocampo.it</strong>).
+        </p>
+        <p class="modal-time-notice">
+          ⏱ <strong>Tempo medio richiesto: circa 1–2 minuti</strong><br>
+          <span>(può variare da pochi secondi fino a ~2 minuti se il server deve riattivarsi o superare la verifica anti-bot WAF).</span>
+        </p>
+        <p>Vuoi procedere con l'aggiornamento adesso?</p>
+      </div>
+      <div class="modal-actions">
+        <button id="btn-cancel-refresh" type="button" class="btn btn-outline">Annulla</button>
+        <button id="btn-confirm-refresh" type="button" class="btn btn-primary">Sì, aggiorna ora</button>
+      </div>
+    </div>
+  </div>
 
   <script src="app.js?v=2"></script>
 </body>

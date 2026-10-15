@@ -8,9 +8,9 @@
   "province": "",
   "url": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Risultati",
   "roundID": "TO.P.C",
-  "currentMatchDay": 5,
+  "currentMatchDay": 6,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-10-12T20:23:25.447Z",
+  "lastUpdated": "2026-10-15T09:38:54.317Z",
   "standings": [
     {
       "position": 1,
@@ -1006,7 +1006,7 @@
           "homeScorers": [],
           "awayScorers": [
             "F. Tanini (17' pt)",
-            "M. Bargellini (7' st)",
+            "AUTOGOL (7' st)",
             "G. Fantechi (27' st)"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1007106.png?v=1",
@@ -1039,8 +1039,40 @@
     {
       "dayNumber": 6,
       "dayTitle": "6° Giornata",
-      "dayDate": "18|10|2026",
+      "dayDate": "17|10|2026 - 18|10|2026",
       "matches": [
+        {
+          "homeTeam": "Montagnano 1966",
+          "awayTeam": "Cubino",
+          "homeScore": null,
+          "awayScore": null,
+          "isPlayed": false,
+          "status": "SCHEDULED",
+          "date": "2026-10-17",
+          "time": "15:30",
+          "dateTime": "2026-10-17T15:30:00",
+          "homeScorers": [],
+          "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/934115.png?v=4",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1007106.png?v=1",
+          "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/6.4/montagnano-1966-cubino"
+        },
+        {
+          "homeTeam": "Sinalunghese",
+          "awayTeam": "Nuova Foiano",
+          "homeScore": null,
+          "awayScore": null,
+          "isPlayed": false,
+          "status": "SCHEDULED",
+          "date": "2026-10-17",
+          "time": "15:30",
+          "dateTime": "2026-10-17T15:30:00",
+          "homeScorers": [],
+          "awayScorers": [],
+          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/49380.png?v=3",
+          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/18630.png?v=1",
+          "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/6.8/sinalunghese-nuova-foiano"
+        },
         {
           "homeTeam": "Acquaviva",
           "awayTeam": "AG Dicomano",
@@ -1090,22 +1122,6 @@
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/6.3/cortona-camucia-calcio-casentino"
         },
         {
-          "homeTeam": "Montagnano 1966",
-          "awayTeam": "Cubino",
-          "homeScore": null,
-          "awayScore": null,
-          "isPlayed": false,
-          "status": "SCHEDULED",
-          "date": "2026-10-18",
-          "time": "15:30",
-          "dateTime": "2026-10-18T15:30:00",
-          "homeScorers": [],
-          "awayScorers": [],
-          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/934115.png?v=4",
-          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1007106.png?v=1",
-          "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/6.4/montagnano-1966-cubino"
-        },
-        {
           "homeTeam": "Pontassieve",
           "awayTeam": "Ideal Club Incisa",
           "homeScore": null,
@@ -1152,22 +1168,6 @@
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/62418.png?v=10",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932795.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/6.7/settignanese-centro-storico-lebowski"
-        },
-        {
-          "homeTeam": "Sinalunghese",
-          "awayTeam": "Nuova Foiano",
-          "homeScore": null,
-          "awayScore": null,
-          "isPlayed": false,
-          "status": "SCHEDULED",
-          "date": "2026-10-18",
-          "time": "15:30",
-          "dateTime": "2026-10-18T15:30:00",
-          "homeScorers": [],
-          "awayScorers": [],
-          "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/49380.png?v=3",
-          "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/18630.png?v=1",
-          "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/6.8/sinalunghese-nuova-foiano"
         }
       ]
     },

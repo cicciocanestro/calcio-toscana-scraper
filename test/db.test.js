@@ -5,10 +5,11 @@ const path = require('path');
 const os = require('os');
 const { LEAGUES, DB_PATH } = require('../src/config');
 const { initDatabase } = require('../src/db');
-const { reconstructLeagueDocument } = require('../src/db-sync');
+const { importLeagueDocument, reconstructLeagueDocument, parseScorer } = require('../src/db-sync');
 const { sportsFingerprint } = require('../bin/data-changed');
 const { SqliteStore, createStore } = require('../src/store');
 const { dumpSnapshot, restoreSnapshot } = require('../src/db-snapshot');
+const { sampleLeagueData } = require('./fixtures');
 
 test('SQLite database contiene le tabelle e i vincoli corretti', () => {
   const db = initDatabase(':memory:');
@@ -130,4 +131,43 @@ test('dumpSnapshot e restoreSnapshot preservano fedelmente i dati', () => {
   } finally {
     fs.rmSync(tempDir, { recursive: true, force: true });
   }
+});
+
+test('importLeagueDocument preserva i marcatori in caso di regressione e non gonfia gli ID dei gol', () => {
+  const db = initDatabase(':memory:');
+  const initial = sampleLeagueData();
+
+  importLeagueDocument(db, initial);
+  const firstIds = db.prepare('SELECT id, player_raw FROM goals ORDER BY id ASC').all();
+  assert.equal(firstIds.length, 1);
+
+  // Re-import identico: gli ID dei gol non devono aumentare
+  importLeagueDocument(db, initial);
+  const secondIds = db.prepare('SELECT id, player_raw FROM goals ORDER BY id ASC').all();
+  assert.deepEqual(secondIds, firstIds, 'nessun nuovo ID AUTOINCREMENT se i marcatori sono invariati');
+
+  // Regressione: la partita giocata arriva come non giocata e senza marcatori
+  const regressed = sampleLeagueData();
+  regressed.matchDays[0].matches[0].isPlayed = false;
+  regressed.matchDays[0].matches[0].status = 'SCHEDULED';
+  regressed.matchDays[0].matches[0].homeScore = null;
+  regressed.matchDays[0].matches[0].awayScore = null;
+  regressed.matchDays[0].matches[0].homeScorers = [];
+
+  importLeagueDocument(db, regressed);
+  const reconstructed = reconstructLeagueDocument(db, 'promozione-c');
+  assert.equal(reconstructed.matchDays[0].matches[0].isPlayed, true);
+  assert.deepEqual(reconstructed.matchDays[0].matches[0].homeScorers, ["M. Rossi (12' pt)"]);
+});
+
+test('parseScorer riconosce autogol con (Aut.) e minuti di recupero', () => {
+  const aut = parseScorer("M. Rossi (Aut.) (15' pt)");
+  assert.equal(aut.isOwnGoal, 1);
+  assert.equal(aut.name, 'M. Rossi');
+  assert.equal(aut.minute, '15');
+  assert.equal(aut.half, 'pt');
+
+  const injury = parseScorer("L. Bianchi (45+2' pt)");
+  assert.equal(injury.minute, '45+2');
+  assert.equal(injury.half, 'pt');
 });

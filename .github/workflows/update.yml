@@ -123,7 +123,7 @@ jobs:
           # Salta il commit se l'unica differenza sono i campi volatili
           # (lastUpdated nella cache/export JSON e DTSTAMP negli ICS)
           if node bin/data-changed.js; then
-            git add data/cache/ data/exports/ data/db/snapshot.jsonl index.html app.js style.css
+            git add data/cache/ data/exports/ data/db/snapshot.jsonl index.html app.js style.css favicon.svg
             if git diff --staged --quiet; then
               echo "Nessun aggiornamento trovato, i dati sono già aggiornati."
               echo "pushed=false" >> "$GITHUB_OUTPUT"
@@ -133,7 +133,7 @@ jobs:
               echo "pushed=true" >> "$GITHUB_OUTPUT"
             fi
           else
-            git checkout -- data/ index.html app.js style.css
+            git checkout -- data/ index.html app.js style.css favicon.svg
             echo "pushed=false" >> "$GITHUB_OUTPUT"
             echo "Dati sportivi invariati: nessun commit creato."
           fi

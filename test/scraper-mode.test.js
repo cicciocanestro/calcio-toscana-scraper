@@ -26,7 +26,12 @@ function instrumentedScraper(mode, httpImpl, bootstrapImpl) {
 
   const httpScraper = {
     scrapeLeague: async (leagueConfig, options = {}) => {
-      calls.http.push({ id: leagueConfig.id, session: options.session || null });
+      calls.http.push({
+        id: leagueConfig.id,
+        session: options.session || null,
+        incremental: !!options.incremental,
+        matchDays: options.matchDays || null
+      });
       return httpImpl(leagueConfig, options);
     }
   };
@@ -183,6 +188,16 @@ test('scrapeLeague fornisce allo scraper HTTP i dati precedenti dalla cache', as
   assert.equal(calls.http.length, 1);
   assert.equal(calls.http[0].session, null, 'la prima chiamata non deve avere una sessione');
   assert.equal(scraper.getDiagnostics().lastScrapes['promozione-c'].path, 'http');
+});
+
+test('scrapeLeague inoltra correttamente le opzioni incremental e matchDays allo scraper HTTP', async () => {
+  const { scraper, calls } = instrumentedScraper('http', () => ({ ...sampleLeagueData() }));
+
+  await scraper.scrapeLeague('promozione-c', { forceRefresh: true, incremental: true, matchDays: [2] });
+
+  assert.equal(calls.http.length, 1);
+  assert.equal(calls.http[0].incremental, true);
+  assert.deepEqual(calls.http[0].matchDays, [2]);
 });
 
 test('la diagnostica espone modalità, durata e versione di Node', async () => {

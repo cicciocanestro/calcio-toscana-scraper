@@ -42,6 +42,8 @@ const elBtnCamuciaAll = document.getElementById('btn-camucia-all');
 const elCamuciaContainer = document.getElementById('camucia-container');
 
 const elStandingsTbody = document.getElementById('standings-tbody');
+const elScorersTbody = document.getElementById('scorers-tbody');
+const elSelectScorersTeam = document.getElementById('select-scorers-team');
 
 const elSelectTeam = document.getElementById('select-team');
 const elBtnTeamIcs = document.getElementById('btn-team-ics');
@@ -51,13 +53,20 @@ const elBtnExportIcs = document.getElementById('btn-export-ics');
 const elBtnExportCsv = document.getElementById('btn-export-csv');
 const elBtnExportJson = document.getElementById('btn-export-json');
 const elRefreshWrapper = document.getElementById('refresh-wrapper');
+const elRefreshModal = document.getElementById('refresh-confirm-modal');
+const elBtnConfirmRefresh = document.getElementById('btn-confirm-refresh');
+const elBtnCancelRefresh = document.getElementById('btn-cancel-refresh');
 
-let isStaticEnvironment = false;
+let isStaticEnvironment = Boolean(
+  typeof window !== 'undefined' &&
+  window.location &&
+  typeof window.location.hostname === 'string' &&
+  window.location.hostname.endsWith('github.io')
+);
 
 // Rilevamento ambiente (GitHub Pages vs Server Node locale/cloud)
 function detectEnvironment() {
-  const isGitHubPages = window.location.hostname.endsWith('github.io');
-  if (isGitHubPages) {
+  if (isStaticEnvironment) {
     setupStaticMode();
     return;
   }
@@ -126,7 +135,30 @@ function setupEventListeners() {
       );
       return;
     }
-    loadLeague(currentLeague, true);
+    openRefreshConfirmModal();
+  });
+
+  if (elBtnCancelRefresh) {
+    elBtnCancelRefresh.addEventListener('click', () => closeRefreshConfirmModal());
+  }
+
+  if (elBtnConfirmRefresh) {
+    elBtnConfirmRefresh.addEventListener('click', () => {
+      closeRefreshConfirmModal();
+      loadLeague(currentLeague, true);
+    });
+  }
+
+  if (elRefreshModal) {
+    elRefreshModal.addEventListener('click', (e) => {
+      if (e.target === elRefreshModal) closeRefreshConfirmModal();
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && elRefreshModal && !elRefreshModal.classList.contains('hidden')) {
+      closeRefreshConfirmModal();
+    }
   });
 
   // Cambio Sotto-Vista (Calendario, Classifica, Squadra, Esporta)
@@ -149,7 +181,12 @@ function setupEventListeners() {
 
   elBtnPrevDay.addEventListener('click', () => {
     if (!leagueData || !leagueData.matchDays) return;
-    if (selectedDay === null) selectedDay = leagueData.currentMatchDay;
+    if (selectedDay === null) {
+      selectedDay = Math.max(1, (leagueData.currentMatchDay || 1) - 1);
+      elSelectDay.value = selectedDay;
+      renderCalendar();
+      return;
+    }
     if (selectedDay > 1) {
       selectedDay--;
       elSelectDay.value = selectedDay;
@@ -159,7 +196,12 @@ function setupEventListeners() {
 
   elBtnNextDay.addEventListener('click', () => {
     if (!leagueData || !leagueData.matchDays) return;
-    if (selectedDay === null) selectedDay = leagueData.currentMatchDay;
+    if (selectedDay === null) {
+      selectedDay = Math.min(leagueData.totalMatchDays, (leagueData.currentMatchDay || 1) + 1);
+      elSelectDay.value = selectedDay;
+      renderCalendar();
+      return;
+    }
     if (selectedDay < leagueData.totalMatchDays) {
       selectedDay++;
       elSelectDay.value = selectedDay;
@@ -194,6 +236,12 @@ function setupEventListeners() {
     const team = e.target.value;
     renderTeamMatches(team);
   });
+
+  if (elSelectScorersTeam) {
+    elSelectScorersTeam.addEventListener('change', () => {
+      renderScorers();
+    });
+  }
 
   // Download Esportazioni (CSV, ICS, JSON)
   elBtnExportCsv.addEventListener('click', (e) => {
@@ -233,11 +281,34 @@ function switchView(view) {
   if (view === 'calendar') renderCalendar();
   else if (view === 'camucia') openCamuciaView();
   else if (view === 'standings') renderStandings();
+  else if (view === 'scorers') renderScorers();
   else if (view === 'team') renderTeamSection();
 }
 
+function openRefreshConfirmModal() {
+  if (elRefreshModal) {
+    elRefreshModal.classList.remove('hidden');
+    return;
+  }
+  // Fallback nel caso il markup del modale non sia presente
+  const proceed = typeof window.confirm === 'function'
+    ? window.confirm(
+        'L\'aggiornamento dal web richiede in media circa 1-2 minuti.\nVuoi procedere con l\'aggiornamento?'
+      )
+    : true;
+  if (proceed) {
+    loadLeague(currentLeague, true);
+  }
+}
+
+function closeRefreshConfirmModal() {
+  if (elRefreshModal) {
+    elRefreshModal.classList.add('hidden');
+  }
+}
+
 async function refreshAllLeagues() {
-  showLoading(true, 'Aggiornamento dal sito ufficiale in corso in background (Tuttocampo)...');
+  showLoading(true, 'Aggiornamento dal sito ufficiale in corso (tempo medio: ~1–2 minuti)...');
   hideError();
 
   // I dati della scheda CC Camucia vanno riletti dopo un aggiornamento
@@ -304,14 +375,21 @@ async function refreshAllLeagues() {
  * JSON statico della cache (GitHub Pages). Riusata anche dalla scheda CC Camucia.
  */
 async function fetchLeagueData(leagueId) {
-  // 1. API backend
-  try {
-    const resp = await fetch(`/api/leagues/${leagueId}?t=${Date.now()}`, { cache: 'no-cache' });
-    if (resp.ok) {
-      const res = await resp.json();
-      return res.data ? res.data : res;
+  // 1. API backend (saltata su GitHub Pages o in modalità statica per non generare 404 in console)
+  if (!isStaticEnvironment) {
+    try {
+      const resp = await fetch(`/api/leagues/${leagueId}?t=${Date.now()}`, { cache: 'no-cache' });
+      if (resp.ok) {
+        const res = await resp.json();
+        return res.data ? res.data : res;
+      }
+      if (resp.status === 404) {
+        setupStaticMode();
+      }
+    } catch (e) {
+      setupStaticMode();
     }
-  } catch (e) {}
+  }
 
   // 2. Cache statica
   const t = Date.now();
@@ -796,9 +874,90 @@ function renderStandings() {
   });
 }
 
+/**
+ * Calcola la classifica marcatori a partire dalle partite del campionato
+ * (funziona sia su GitHub Pages statico sia con il server attivo).
+ */
+function computeLeagueScorers(data, teamFilter = '') {
+  if (!data || !Array.isArray(data.matchDays)) return [];
+
+  const totals = new Map();
+
+  const recordGoal = (rawScorer, team) => {
+    if (!rawScorer || typeof rawScorer !== 'string') return;
+    const raw = rawScorer.trim();
+    if (/(\bautogol\b|\(aut\.?\))/i.test(raw)) return;
+
+    const isPenalty = /\(rig\.?\)/i.test(raw) ? 1 : 0;
+    const player = raw.replace(/\(.*?\)/g, '').trim();
+    if (!player) return;
+
+    const key = `${player}|||${team}`;
+    const entry = totals.get(key) || { player, team, goals: 0, penalties: 0 };
+    entry.goals += 1;
+    entry.penalties += isPenalty;
+    totals.set(key, entry);
+  };
+
+  for (const day of data.matchDays) {
+    for (const m of day.matches || []) {
+      for (const s of m.homeScorers || []) recordGoal(s, m.homeTeam);
+      for (const s of m.awayScorers || []) recordGoal(s, m.awayTeam);
+    }
+  }
+
+  let list = Array.from(totals.values());
+  if (teamFilter) {
+    list = list.filter(item => item.team === teamFilter);
+  }
+
+  list.sort((a, b) =>
+    b.goals - a.goals ||
+    a.penalties - b.penalties ||
+    a.player.localeCompare(b.player, 'it')
+  );
+
+  return list.map((item, idx) => ({
+    position: idx + 1,
+    ...item
+  }));
+}
+
+function renderScorers() {
+  if (!elScorersTbody || !leagueData) return;
+  elScorersTbody.innerHTML = '';
+
+  const teamFilter = elSelectScorersTeam ? elSelectScorersTeam.value : '';
+  const scorers = computeLeagueScorers(leagueData, teamFilter);
+
+  if (scorers.length === 0) {
+    elScorersTbody.innerHTML = `
+      <tr>
+        <td colspan="5" class="empty-state">Nessun marcatore registrato per la selezione corrente.</td>
+      </tr>
+    `;
+    return;
+  }
+
+  scorers.forEach(row => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="col-pos">${row.position}</td>
+      <td class="col-team">${escapeHtml(row.player)}</td>
+      <td class="col-scorer-team">${escapeHtml(row.team)}</td>
+      <td class="col-pt">${row.goals}</td>
+      <td>${row.penalties > 0 ? row.penalties : '-'}</td>
+    `;
+    elScorersTbody.appendChild(tr);
+  });
+}
+
 function populateTeamSelector() {
   if (!leagueData || !leagueData.standings) return;
   elSelectTeam.innerHTML = '<option value="">-- Seleziona una squadra --</option>';
+  if (elSelectScorersTeam) {
+    elSelectScorersTeam.innerHTML = '<option value="">Tutte le squadre</option>';
+  }
 
   const teams = leagueData.standings.map(s => s.team).sort();
   teams.forEach(team => {
@@ -806,14 +965,18 @@ function populateTeamSelector() {
     opt.value = team;
     opt.textContent = team;
     elSelectTeam.appendChild(opt);
+
+    if (elSelectScorersTeam) {
+      const scorerOpt = document.createElement('option');
+      scorerOpt.value = team;
+      scorerOpt.textContent = team;
+      elSelectScorersTeam.appendChild(scorerOpt);
+    }
   });
 }
 
 function renderTeamSection() {
-  const team = elSelectTeam.value;
-  if (team) {
-    renderTeamMatches(team);
-  }
+  renderTeamMatches(elSelectTeam.value);
 }
 
 function renderTeamMatches(team) {
@@ -839,7 +1002,13 @@ function renderTeamMatches(team) {
   elBtnTeamIcs.onclick = (e) => {
     e.preventDefault();
     const icsContent = generateClientIcs(leagueData, { team });
-    const safeName = team.toLowerCase().replace(/[^a-z0-9]/g, '_');
+    const safeName = team
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, '_')
+      .replace(/_{2,}/g, '_')
+      .replace(/^_|_$/g, '');
     triggerBlobDownload(new Blob([icsContent], { type: 'text/calendar;charset=utf-8' }), `${currentLeague}_${safeName}.ics`);
   };
 
@@ -863,10 +1032,12 @@ function formatIcsEventTimes(m) {
     const [dPart, tPart] = m.dateTime.split('T');
     const [y, mo, d] = dPart.split('-').map(Number);
     const [hh, mm] = tPart.split(':').map(Number);
-    const start = new Date(y, mo - 1, d, hh || 15, mm || 30);
+    const hours = Number.isFinite(hh) ? hh : 15;
+    const minutes = Number.isFinite(mm) ? mm : 30;
+    const start = new Date(Date.UTC(y, mo - 1, d, hours, minutes));
     const end = new Date(start.getTime() + 105 * 60 * 1000);
     const pad = (n) => String(n).padStart(2, '0');
-    const fmt = (dt) => `${dt.getFullYear()}${pad(dt.getMonth() + 1)}${pad(dt.getDate())}T${pad(dt.getHours())}${pad(dt.getMinutes())}00`;
+    const fmt = (dt) => `${dt.getUTCFullYear()}${pad(dt.getUTCMonth() + 1)}${pad(dt.getUTCDate())}T${pad(dt.getUTCHours())}${pad(dt.getUTCMinutes())}00`;
     return {
       start: `DTSTART;TZID=Europe/Rome:${fmt(start)}`,
       end: `DTEND;TZID=Europe/Rome:${fmt(end)}`
@@ -874,6 +1045,14 @@ function formatIcsEventTimes(m) {
   }
 
   if (m.date) {
+    const [y, mo, d] = String(m.date).split('-').map(Number);
+    if (Number.isFinite(y) && Number.isFinite(mo) && Number.isFinite(d)) {
+      const start = new Date(Date.UTC(y, mo - 1, d));
+      const end = new Date(Date.UTC(y, mo - 1, d + 1));
+      const pad = (n) => String(n).padStart(2, '0');
+      const fmtDate = (dt) => `${dt.getUTCFullYear()}${pad(dt.getUTCMonth() + 1)}${pad(dt.getUTCDate())}`;
+      return { start: `DTSTART;VALUE=DATE:${fmtDate(start)}`, end: `DTEND;VALUE=DATE:${fmtDate(end)}` };
+    }
     const day = m.date.replace(/[-]/g, '');
     return { start: `DTSTART;VALUE=DATE:${day}`, end: `DTEND;VALUE=DATE:${day}` };
   }
@@ -962,7 +1141,9 @@ function icsStatus(m) {
 
 function generateClientIcs(data, options = {}) {
   const now = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
-  const calName = options.team ? `${options.team} - Calendario` : `${data.name} - Calendario`;
+  const calName = options.team
+    ? `${options.team} - ${data.shortName || data.name}`
+    : `${data.name} - Calendario`;
   const lines = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
@@ -1001,6 +1182,9 @@ function generateClientIcs(data, options = {}) {
         }
       } else {
         descParts.push(`Partita in programma alle ${m.time || '15:30'}`);
+      }
+      if (m.matchLink) {
+        descParts.push(`Dettagli e formazioni: ${m.matchLink}`);
       }
 
       lines.push('BEGIN:VEVENT');

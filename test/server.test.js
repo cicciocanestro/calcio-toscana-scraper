@@ -47,6 +47,7 @@ test('la dashboard viene servita da public/', withServer(async (base) => {
 
   assert.equal((await fetch(`${base}/app.js`)).status, 200);
   assert.equal((await fetch(`${base}/style.css`)).status, 200);
+  assert.equal((await fetch(`${base}/favicon.svg`)).status, 200);
 }));
 
 test('i file interni del progetto NON sono esposti staticamente', withServer(async (base) => {
@@ -508,28 +509,6 @@ test('GET /api/leagues/:id/scorers restituisce la classifica marcatori', async (
     if (body.scorers.length > 0) {
       assert.ok(body.scorers[0].player);
       assert.ok(body.scorers[0].goals >= 0);
-    }
-  } finally {
-    await new Promise(resolve => server.close(resolve));
-  }
-});
-
-test('GET /api/leagues/:id/form restituisce la forma recente delle squadre', async () => {
-  const app = createServer({ autoRevalidate: false, scraper: fakeScraper() });
-  const server = app.listen(0);
-  await new Promise(resolve => server.once('listening', resolve));
-  const base = `http://127.0.0.1:${server.address().port}`;
-
-  try {
-    const res = await fetch(`${base}/api/leagues/seconda-i/form?matches=3`);
-    assert.equal(res.status, 200);
-    const body = await res.json();
-    assert.equal(body.leagueId, 'seconda-i');
-    assert.equal(body.matchesCount, 3);
-    assert.ok(Array.isArray(body.form));
-    if (body.form.length > 0) {
-      assert.ok(body.form[0].team);
-      assert.ok(typeof body.form[0].form === 'string');
     }
   } finally {
     await new Promise(resolve => server.close(resolve));
