@@ -1,0 +1,171 @@
+# 🍓 Guida Raspberry Pi - Scraping & Automazione
+
+Questa guida spiega come utilizzare e gestire il tuo **Raspberry Pi 3** come motore di scraping locale, server della dashboard web e runner autonomo per GitHub Actions.
+
+---
+
+## 🌟 Perché il Raspberry Pi è l'ambiente ideale?
+
+1. **Zero blocchi WAF / Anti-Bot**: Utilizzando la connessione Wi-Fi di casa (IP residenziale italiano), Tuttocampo non mostra alcuna challenge CAPTCHA o blocco WAF: lo scraping avviene in **modalità HTTP pura in pochissimi secondi** senza dover aprire Chromium.
+2. **Consumo energetico quasi nullo**: Il Raspberry Pi 3 consuma meno di 2–3 Watt ed è sempre attivo e pronto 24/7.
+3. **Completamente autonomo**: Tramite il servizio di sistema (`actions.runner`), GitHub Actions delega l'aggiornamento automatico della domenica sera e del lunedì direttamente al Pi.
+
+---
+
+## 🔌 1. Connessione al Raspberry Pi via SSH
+
+Dal tuo Mac (collegato alla stessa rete Wi-Fi di casa):
+
+```bash
+# Tramite indirizzo IP locale:
+ssh cicciocanestro@192.168.1.151
+
+# Oppure tramite nome host:
+ssh cicciocanestro@calcio-pi
+```
+
+Inserisci la tua password quando richiesto.
+
+Entra nella cartella del progetto:
+```bash
+cd ~/calcio-toscana-scraper
+```
+
+---
+
+## 🔄 2. Eseguire lo Scraping dal Raspberry
+
+### A. Scraping Veloce Incrementale (~5-10 secondi) ⚡
+Aggiorna miratamente solo la giornata corrente, precedente e successiva:
+```bash
+node bin/cli.js scrape all --refresh -i
+```
+
+### B. Scraping Completo di tutte le 94 giornate (~30-60 secondi)
+Riscarica da zero ogni giornata, risultato e marcatore della stagione:
+```bash
+node bin/cli.js scrape all --refresh
+```
+
+### C. Scraping di un singolo campionato
+```bash
+node bin/cli.js scrape promozione-c --refresh
+node bin/cli.js scrape seconda-i --refresh
+node bin/cli.js scrape terza-arezzo --refresh
+```
+
+---
+
+## 📊 3. Consultare i Dati dal Terminale
+
+Puoi visualizzare tabelle formattate a colori direttamente dentro la sessione SSH:
+
+```bash
+# 🏆 Classifica aggiornata con evidenziazione zone playoff/playout
+node bin/cli.js standings promozione-c
+node bin/cli.js standings seconda-i
+node bin/cli.js standings terza-arezzo
+
+# ⚽ Classifica marcatori con gol e rigori
+node bin/cli.js scorers promozione-c
+node bin/cli.js scorers seconda-i
+node bin/cli.js scorers terza-arezzo --limit 20
+
+# ⏭ Prossimo turno in programma
+node bin/cli.js next promozione-c
+node bin/cli.js next seconda-i --team "Arezzo FA"
+
+# ⚽ Ultimi risultati disputati con marcatori
+node bin/cli.js results promozione-c
+
+# 📅 Calendario completo o per squadra
+node bin/cli.js calendar promozione-c --day 6
+node bin/cli.js calendar promozione-c --team "Lebowski"
+```
+
+---
+
+## 🌐 4. Pubblicare su GitHub Pages direttamente dal Raspberry
+
+Se esegui lo scraping manualmente da SSH e desideri pubblicare subito i nuovi calendari sul sito pubblico (`cicciocanestro.github.io`):
+
+```bash
+# Scarica i dati, aggiorna il database SQLite, rigenera gli export e invia a GitHub
+node bin/cli.js scrape all --refresh && \
+npm run db:import && \
+npm run db:dump && \
+npm run export && \
+npm run build:pages && \
+git commit -am "chore(data): aggiornamento manuale da Raspberry Pi" && \
+git push origin main
+```
+
+---
+
+## ⚙️ 5. Gestione dei Servizi in Background
+
+Sul Raspberry Pi sono attivi due servizi che ripartono automaticamente all'avvio:
+
+### 1. Dashboard Web Locale (PM2)
+La dashboard web locale è raggiungibile da qualsiasi dispositivo connesso al Wi-Fi:
+👉 **`http://calcio-pi:3000`** *(oppure `http://192.168.1.151:3000`)*
+
+Comandi utili per PM2:
+```bash
+# Visualizza lo stato del server (CPU, RAM, Uptime)
+pm2 status
+
+# Visualizza i log in tempo reale del server
+pm2 logs calcio-scraper
+
+# Riavvia il server web
+pm2 restart calcio-scraper
+
+# Ferma o riavvia
+pm2 stop calcio-scraper
+pm2 start calcio-scraper
+```
+
+### 2. GitHub Actions Self-Hosted Runner
+È il demone che ascolta GitHub e fa partire lo scraping quando premi *"Aggiorna dal Web"* sul sito (con PIN `6619`) o durante il cron settimanale:
+
+```bash
+# Controlla lo stato del runner
+cd ~/actions-runner && sudo ./svc.sh status
+
+# Riavvia il runner se necessario
+cd ~/actions-runner && sudo ./svc.sh restart
+
+# Ferma o avvia il servizio
+cd ~/actions-runner && sudo ./svc.sh stop
+cd ~/actions-runner && sudo ./svc.sh start
+```
+
+---
+
+## 🛠️ 6. Domande Frequenti e Risoluzione Problemi
+
+### Se va via la corrente o riavvio il Raspberry?
+Il Raspberry Pi riparte automaticamente:
+- Il servizio **PM2** riaccende la dashboard web.
+- Il servizio **actions-runner** si ricollega a GitHub in pochi secondi.
+Non devi fare nulla!
+
+### Come riavviare il Raspberry Pi via SSH?
+```bash
+sudo reboot
+```
+
+### Come spegnere in sicurezza il Raspberry Pi?
+```bash
+sudo shutdown -h now
+```
+
+### Se aggiorno il codice del progetto su GitHub dal Mac?
+Per allineare anche la copia locale sul Raspberry:
+```bash
+cd ~/calcio-toscana-scraper
+git pull
+pm2 restart calcio-scraper
+```
+*(Nota: il runner GitHub Actions scarica comunque sempre l'ultimo commit all'inizio di ogni esecuzione).*
