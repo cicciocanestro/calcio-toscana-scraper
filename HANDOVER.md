@@ -137,6 +137,8 @@ Tool full-stack in Node.js (CommonJS, Node >=20, testato su Node 22/24) per web 
 ---
 
 ## 7. Stato Corrente e Comandi Utili
+- **Telemetria Benchmark su Raspberry Pi 3:**  
+  Scraping completo di 94 giornate testato empiricamente via SSH: durata ~18s, CPU picco 49% (media 18%), RAM picco 428 MB (476 MB sempre liberi su 905 MB), Swap 0 MB, temperatura 50–52°C. Anche in caso di fallback forzato su Chromium la RAM non supera i 553 MB e la temperatura resta sotto i 60°C.
 - **Suite di Test:** Eseguire `npm run verify` (verifica parità asset di root con `check:pages` ed esegue i 135 test con `node --test`). Attualmente **135/135 passati**.
 - **Working Tree Git:** Pulito, allineato su `main` con il remote `origin/main`.
 - **Come avviare lo scraping da Raspberry via SSH:**
