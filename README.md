@@ -16,7 +16,10 @@ La fonte dati principale è [Tuttocampo.it](https://www.tuttocampo.it), con gest
 
 - 📅 **Calendario Completo**: Tutte le giornate della stagione con date, orari, squadre in casa e trasferta, risultati finali e marcatori con minutaggio.
 - 🏆 **Classifica Aggiornata**: Punti, partite giocate, vinte, nulle, perse, gol fatti/subiti, differenza reti ed evidenziazione delle zone (promozione diretta, playoff, playout, retrocessione).
-- ⚽ **Classifica Marcatori (Novità Database & Dashboard)**: Tabella marcatori aggregata per girone con gol totali, rigori e filtro per squadra di appartenenza.
+- ⚽ **Classifica Marcatori (Database & Dashboard)**: Tabella marcatori aggregata per girone con gol totali, rigori e filtro per squadra di appartenenza sia da riga di comando che su interfaccia web.
+- 🏟️ **Scheda Speciale CC Camucia**: Raggruppamento per weekend di tutte le partite in casa delle squadre del territorio (Cortona Camucia, Fratta, Fratticciola, Montecchio, Monsigliolo) militanti nei tre campionati diversi.
+- 🔐 **Aggiornamento Protetto da PIN**: Possibilità di avviare l'aggiornamento in tempo reale direttamente dal browser con un PIN facile a 4 cifre, memorizzabile sul proprio dispositivo e decifrato tramite Web Crypto API (AES-256-GCM).
+- 🍓 **Supporto Raspberry Pi 3 (Self-Hosted Runner)**: Scraping con IP residenziale di casa in ~2 secondi (zero blocchi WAF) e piena autonomia senza dipendere da servizi cloud a pagamento.
 - ⏭ **Prossimo Turno & Ultimi Risultati**: Visualizzazione istantanea delle partite del turno in programma e dei risultati dell'ultimo turno disputato.
 - 🔍 **Filtro Squadra**: Possibilità di filtrare il calendario per qualsiasi squadra (es. *Centro Storico Lebowski*, *Arezzo FA*, *Monterchiese*, ecc.).
 - 📥 **Esportazione Multi-Formato**:
@@ -155,31 +158,32 @@ Apri nel tuo browser: **[http://localhost:3000](http://localhost:3000)**
 
 ---
 
-## 🔄 Come funziona l'architettura da Remoto (Render + GitHub Actions)
+## 🔄 Come funziona l'architettura (Raspberry Pi + GitHub Actions + Render)
 
-Il WAF di Tuttocampo **blocca gli IP datacenter aggressivi (come GitHub Actions e Oracle Cloud)** con un errore `403 Forbidden`. L'istanza **Render** invece possiede un indirizzo IP non bloccato.
-
-L'architettura sfrutta questa sinergia a costo zero:
+Il WAF di Tuttocampo blocca gli IP dei data center dei runner standard di GitHub con un errore `403 Forbidden`. Per questo motivo il progetto sfrutta l'**IP residenziale del Raspberry Pi a casa** come runner dedicato, mantenendo **Render.com** come riserva automatica:
 
 ```
-[Visitatore / Smartphone] ───> GitHub Pages (CDN globale sempre attiva, zero sleep)
-                                    ▲
-                                    │ commit + push automatico
-                                    │
-                              GitHub Actions (Cron dom/lun o manuale)
-                                    ▲
-                                    │ chiede i dati freschi
-                                    │
-                               Render.com (Istanza Node.js con IP fidato)
-                                    ▲
-                                    │ scraping incrementale HTTP
-                                    │
-                              Tuttocampo.it (Sito ufficiale)
+[Smartphone / Visitatore] ───> GitHub Pages (CDN globale sempre attiva, 100% gratuita)
+                                     ▲
+                                     │ push automatico dei dati aggiornati
+                                     │
+                             GitHub Actions (Cron dom/lun o tasto web con PIN)
+                                     ▲
+                                     │ esegue il job direttamente a casa
+                                     │
+                             Raspberry Pi 3 (Runner dedicato con IP residenziale)
+                             [oppure Render.com come riserva cloud di backup]
+                                     ▲
+                                     │ scraping HTTP puro ultra-veloce (~2s)
+                                     │
+                               Tuttocampo.it (Sito ufficiale)
 ```
 
 1. **GitHub Pages** ospita il sito statico pubblico: è sempre attivo, veloce e non va mai in standby.
-2. **Render** fa da motore di scraping senza blocchi IP.
-3. **GitHub Actions** sincronizza i dati, aggiorna SQLite, crea lo snapshot Git `data/db/snapshot.jsonl` e pubblica il sito aggiornato.
+2. **Raspberry Pi 3 (Runner di casa)**: esegue lo scraping con l'IP della linea domestica in appena ~2 secondi senza blocchi WAF, rigenera SQLite, gli export e pubblica su GitHub Pages.
+3. **Aggiornamento Web con PIN**: puoi avviare l'aggiornamento anche dal sito web inserendo il tuo PIN (es. `6619`), che decifra il token in memoria locale tramite Web Crypto API senza esporlo pubblicamente.
+
+> 📖 **Guida completa per Raspberry Pi:** vedi **[RASPBERRY.md](./RASPBERRY.md)** per le istruzioni dettagliate su SSH, PM2, comandi da terminale e gestione del runner.
 
 ---
 
@@ -189,11 +193,12 @@ L'architettura sfrutta questa sinergia a costo zero:
 scraping/
 ├── bin/
 │   ├── cli.js            # Interfaccia a riga di comando (CLI)
+│   ├── set-pin.js        # Configura il PIN cifrato per l'aggiornamento da web
 │   ├── db-import.js      # Popola SQLite partendo dai file cache JSON
 │   ├── db-snapshot.js    # Dump e restore dello snapshot JSONL per Git
 │   ├── build-pages.js    # Rigenera gli asset di root per GitHub Pages da public/
 │   ├── parity-check.js   # Confronta dal vivo i percorsi HTTP e browser
-│   ├── fetch-from-render.js  # Scarica i dati dall'istanza remota
+│   ├── fetch-from-render.js  # Scarica i dati dall'istanza remota (fallback)
 │   └── data-changed.js   # Rileva se i dati sportivi sono cambiati
 ├── src/
 │   ├── config.js         # Configurazione campionati, percorsi e database
@@ -213,8 +218,9 @@ scraping/
 │   │   └── calcio.sqlite   # Database SQLite locale (ignorato da Git)
 │   ├── cache/            # Cache JSON per campionato
 │   └── exports/          # File esportati (.csv, .ics, .json)
-├── public/               # Sorgente della dashboard web
+├── public/               # Sorgente della dashboard web (HTML, CSS, JS, favicon)
 ├── test/                 # Suite di test automatizzati (node:test)
+├── RASPBERRY.md          # Guida completa all'uso e gestione su Raspberry Pi
 ├── package.json
 └── README.md
 ```
