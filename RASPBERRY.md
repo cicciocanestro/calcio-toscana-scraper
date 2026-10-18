@@ -128,12 +128,14 @@ npm run db:sync      # ripristina solo se serve
 pm2 restart calcio-scraper
 ```
 
-> ⚠️ **Il sync non sovrascrive mai un DB più avanti dello snapshot.** Se sul Pi hai premuto "Aggiorna dal Web" (o fatto `db:import` senza `dump`), il database contiene classifiche e marcatori che lo snapshot non ha: in quel caso il comando si ferma con un avviso ed elenca le tabelle coinvolte. Le due strade:
+> ⚠️ **Il sync non sovrascrive mai un DB più avanti dello snapshot.** Se sul Pi hai premuto "Aggiorna dal Web" (o fatto `db:import` senza `dump`), il database contiene classifiche e marcatori che lo snapshot non ha — oppure valori più recenti sulle stesse righe: in entrambi i casi il comando si ferma con un avviso (indicando le tabelle o i "valori locali più recenti"). Le due strade:
 >
 > ```bash
 > npm run db:dump                 # esporta prima quello che c'è nel DB
-> npm run db:sync -- --force      # oppure forza (backup automatico in calcio.sqlite.bak)
+> npm run db:sync -- --force      # oppure forza (backup automatico)
 > ```
+>
+> I backup non si sovrascrivono: il primo è `data/db/calcio.sqlite.bak`, i successivi hanno un nome con timestamp (`calcio.sqlite.<data>.bak`).
 >
 > `npm test` **non** tocca il database: l'allineamento non è più agganciato ai test.
 
