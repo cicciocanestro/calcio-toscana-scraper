@@ -87,10 +87,19 @@ node bin/cli.js calendar promozione-c --team "Lebowski"
 
 ## 🌐 4. Pubblicare su GitHub Pages direttamente dal Raspberry
 
-Se esegui lo scraping manualmente da SSH e desideri pubblicare subito i nuovi calendari sul sito pubblico (`cicciocanestro.github.io`):
+Se esegui lo scraping manualmente da SSH e desideri pubblicare subito i nuovi calendari sul sito pubblico (`cicciocanestro.github.io`), il comando rapido fa tutto da solo:
 
 ```bash
-# Scarica i dati, aggiorna il database SQLite, rigenera gli export e invia a GitHub
+# Allinea il DB allo snapshot, scarica i dati, rigenera export e asset, poi commit e push
+npm run sync
+```
+
+`npm run sync` esegue in sequenza: `db:sync` (allinea SQLite se il contenuto è diverso dallo snapshot) → scraping incrementale → `db:import` → `db:dump` → export CSV/ICS → `build:pages` → commit → push.
+
+Se preferisci il controllo manuale passo per passo:
+
+```bash
+node bin/db-snapshot.js sync && \
 node bin/cli.js scrape all --refresh && \
 npm run db:import && \
 npm run db:dump && \
@@ -99,6 +108,21 @@ npm run build:pages && \
 git commit -am "chore(data): aggiornamento manuale da Raspberry Pi" && \
 git push origin main
 ```
+
+---
+
+## 📥 4b. Dopo un `git pull` sul Raspberry
+
+Il database locale `data/db/calcio.sqlite` non è versionato: se il pull ha portato dati nuovi, va riallineato prima di usarlo. Ci pensa `npm run db:sync` (gratuito quando è già a posto, perché confronta un checksum e non le date):
+
+```bash
+cd ~/calcio-toscana-scraper
+git pull origin main
+npm run db:sync      # ripristina solo se serve
+pm2 restart calcio-scraper
+```
+
+Lo stesso allineamento è agganciato a `npm test` tramite il hook `pretest`, quindi non serve ricordarselo.
 
 ---
 

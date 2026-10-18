@@ -111,7 +111,7 @@ Tool full-stack in Node.js (CommonJS, Node >=20, testato su Node 22/24) per web 
 ├── bin/
 │   ├── cli.js                   # CLI principale (scrape, standings, scorers, results, next, export)
 │   ├── db-import.js             # Importa i file data/cache/*.json nel DB SQLite
-│   ├── db-snapshot.js           # Dump (dump) e restore (restore) di data/db/snapshot.jsonl
+│   ├── db-snapshot.js           # Dump (dump), restore (restore) e allineamento (sync) di data/db/snapshot.jsonl
 │   └── build-pages.js           # Sincronizza gli asset da public/ alla root del repo per Pages
 ├── src/
 │   ├── config.js                # Definizione dei campionati (LEAGUES) e percorsi
@@ -148,11 +148,13 @@ Tool full-stack in Node.js (CommonJS, Node >=20, testato su Node 22/24) per web 
   Scraping completo di 94 giornate testato empiricamente via SSH: durata ~18s, CPU picco 49% (media 18%), RAM picco 428 MB (476 MB sempre liberi su 905 MB), Swap 0 MB, temperatura 50–52°C. Anche in caso di fallback forzato su Chromium la RAM non supera i 553 MB e la temperatura resta sotto i 60°C.
 - **Suite di Test:** Eseguire `npm run verify` (verifica parità asset di root con `check:pages` ed esegue i test con `node --test`). Attualmente **150/150 passati**.
 - **Working Tree Git:** Pulito, allineato su `main` con il remote `origin/main`.
+- **Allineamento DB dopo un pull:** `npm run db:sync` (`node bin/db-snapshot.js sync`) ripristina `calcio.sqlite` dallo snapshot **solo se il contenuto è diverso**, confrontando il `checksum` scritto nell'header del JSONL (fallback sul mtime per gli snapshot vecchi, privi di checksum). È agganciato a `npm run sync` (primo passo) e a `npm test` (`pretest`), quindi non va ricordato a mano. Il DB è gitignored: senza questo passo, dopo un pull che porta dati nuovi il test di parità DB↔cache fallisce.
 - **Come avviare lo scraping da Raspberry via SSH:**
   ```bash
   cd ~/calcio-toscana-scraper
   node bin/cli.js scrape all --refresh -i   # Veloce incrementale (~5-10s)
   node bin/cli.js scrape all --refresh      # Completo 94 giornate (~60s)
+  npm run sync                              # scrape + export + commit + push (con db:sync iniziale)
   ```
 - **Come riavviare il server web locale sul Raspberry:**
   ```bash

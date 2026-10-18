@@ -125,6 +125,11 @@ node bin/cli.js export terza-arezzo --team "Monterchiese" --format ics
 I dati relazionali vivono in `data/db/calcio.sqlite` e vengono salvati in formato testuale diffabile su Git tramite lo snapshot JSON Lines (`data/db/snapshot.jsonl`):
 
 ```bash
+# Allinea SQLite allo snapshot: ripristina SOLO se il contenuto è diverso
+# (dopo un git pull, prima di un test o di uno scraping)
+npm run db:sync
+# oppure: node bin/db-snapshot.js sync
+
 # Stato del database e conteggio record per tabella
 npm run db:status
 # oppure: node bin/db-snapshot.js status
@@ -133,7 +138,7 @@ npm run db:status
 npm run db:dump
 # oppure: node bin/db-snapshot.js dump
 
-# Ripristina SQLite dallo snapshot JSONL
+# Ripristina SQLite dallo snapshot JSONL (sempre, senza controlli)
 npm run db:restore
 # oppure: node bin/db-snapshot.js restore
 
@@ -141,6 +146,8 @@ npm run db:restore
 npm run db:import
 # oppure: node bin/db-import.js
 ```
+
+> ✅ `db:sync` è agganciato automaticamente: `npm run sync` lo esegue come primo passo e `npm test` lo esegue come `pretest`. Dopo un `git pull` il database locale si riallinea da solo, senza ripristini inutili quando il contenuto combacia già (il confronto è un checksum nell'header dello snapshot, non la data dei file).
 
 ---
 
