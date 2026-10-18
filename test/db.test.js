@@ -249,8 +249,11 @@ test('dumpSnapshot aggiorna exported_at solo se i dati nel dump sono effettivame
     const exp2 = JSON.parse(firstLine2).exported_at;
     assert.equal(exp2, exp1, 'exported_at deve rimanere invariato se i dati non sono cambiati');
 
-    // Modifica dati nel DB
+    // Modifica dati nel DB. Attendiamo qualche millisecondo: `exported_at` ha
+    // risoluzione al millisecondo e due dump istantanei darebbero lo stesso valore.
     db.prepare('UPDATE leagues SET name = ? WHERE id = ?').run('Nuovo Nome', 'promozione-c');
+    const wait = Date.now() + 5;
+    while (Date.now() < wait) { /* attesa attiva di pochi ms */ }
     dumpSnapshot(db, snapFile);
     const firstLine3 = fs.readFileSync(snapFile, 'utf-8').split('\n')[0];
     const exp3 = JSON.parse(firstLine3).exported_at;
