@@ -194,8 +194,13 @@ function main() {
       if (result.backup) console.log(`  Copia di sicurezza: ${result.backup}`);
     } else if (result.skipped) {
       console.warn(`⚠ [SYNC] Ripristino annullato: ${result.reason}.`);
-      console.warn('  Il database contiene dati che lo snapshot non ha (es. refresh dalla dashboard');
-      console.warn('  o db-import senza dump). Ripristinare li cancellerebbe.');
+      if (result.dbOnly) {
+        console.warn('  Il database contiene righe che lo snapshot non ha (es. refresh dalla dashboard');
+        console.warn('  o db-import senza dump): ripristinare le cancellerebbe.');
+      } else {
+        console.warn('  Il database è stato scritto dopo lo snapshot, quindi contiene valori più');
+        console.warn('  recenti (es. refresh dalla dashboard): ripristinare li riporterebbe indietro.');
+      }
       console.warn('  Scelte possibili:');
       console.warn('   • esporta prima quello che c\'è:  npm run db:dump');
       console.warn('   • oppure forza (backup automatico): npm run db:sync -- --force');

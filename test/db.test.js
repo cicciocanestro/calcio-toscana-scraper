@@ -8,7 +8,7 @@ const { initDatabase } = require('../src/db');
 const { importLeagueDocument, reconstructLeagueDocument, parseScorer } = require('../src/db-sync');
 const { sportsFingerprint } = require('../bin/data-changed');
 const { SqliteStore, createStore } = require('../src/store');
-const { dumpSnapshot, restoreSnapshot } = require('../src/db-snapshot');
+const { dumpSnapshot, restoreSnapshot, analyzeDivergence } = require('../src/db-snapshot');
 const { syncDatabase } = require('../bin/db-snapshot');
 const { sampleLeagueData } = require('./fixtures');
 
@@ -438,6 +438,56 @@ test('il backup non sovrascrive quello precedente: usa un nome con timestamp', (
     const secondDay = initDatabase(second.backup).prepare('SELECT current_match_day FROM leagues WHERE id = ?').get('promozione-c');
     assert.equal(firstDay.current_match_day, 9);
     assert.equal(secondDay.current_match_day, 8);
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+});
+
+test('analyzeDivergence usa le chiavi naturali: gli id rigenerati non sono "DB più avanti"', () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'db-natural-'));
+  const dbPath = path.join(tempDir, 'calcio.sqlite');
+  const snapFile = path.join(tempDir, 'snapshot.jsonl');
+
+  try {
+    const db = initDatabase(dbPath);
+    importLeagueDocument(db, sampleLeagueData());
+    dumpSnapshot(db, snapFile);
+
+    // Simula un re-import: i gol vengono cancellati e reinseriti con id nuovi,
+    // esattamente ciò che succede quando un marcatore cambia.
+    const goal = db.prepare('SELECT * FROM goals LIMIT 1').get();
+    db.prepare('DELETE FROM goals').run();
+    db.prepare(`
+      INSERT INTO goals (match_id, team_id, player_raw, player_name, minute, half, is_penalty, is_own_goal, ordinal)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(goal.match_id, goal.team_id, goal.player_raw, goal.player_name,
+      goal.minute, goal.half, goal.is_penalty, goal.is_own_goal, goal.ordinal);
+
+    const newId = db.prepare('SELECT id FROM goals LIMIT 1').get().id;
+    assert.notEqual(newId, goal.id, 'il test deve davvero cambiare l\'id');
+
+    const divergence = analyzeDivergence(db, snapFile);
+    assert.deepEqual(divergence.dbOnly, {}, 'la stessa riga logica non è un dato esclusivo del DB');
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+});
+
+test('analyzeDivergence segnala una riga logica davvero assente dallo snapshot', () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'db-natural-miss-'));
+  const dbPath = path.join(tempDir, 'calcio.sqlite');
+  const snapFile = path.join(tempDir, 'snapshot.jsonl');
+
+  try {
+    const db = initDatabase(dbPath);
+    importLeagueDocument(db, sampleLeagueData());
+    dumpSnapshot(db, snapFile);
+
+    // Nuova squadra: slug assente dallo snapshot
+    db.prepare('INSERT INTO teams (name, slug, logo_url) VALUES (?, ?, ?)').run('Squadra Nuova', 'squadra_nuova', '');
+
+    const divergence = analyzeDivergence(db, snapFile);
+    assert.deepEqual(divergence.dbOnly.teams, ['squadra_nuova'], 'la chiave naturale deve finire nel report');
   } finally {
     fs.rmSync(tempDir, { recursive: true, force: true });
   }

@@ -118,20 +118,58 @@ function snapshotMatchesDatabase(db, filePath = DB_SNAPSHOT_PATH) {
 }
 
 /**
- * Confronta le chiavi primarie del database con quelle dello snapshot.
+ * Chiavi "naturali" per tabella: identificano una riga in modo stabile fra
+ * import diversi.
+ *
+ * Gli `id` AUTOINCREMENT non sono identità: ogni `db-import` che rigenera i
+ * gol assegna id nuovi alle stesse righe logiche, e confrontarli farebbe
+ * sembrare "più avanti" un DB che contiene solo gli stessi dati con id diversi.
+ * Dove lo schema ha un vincolo UNIQUE usiamo quello; altrimenti l'id.
+ */
+const NATURAL_KEYS = {
+  leagues: ['id'],
+  seasons: ['league_id', 'label'],
+  teams: ['slug'],
+  team_aliases: ['alias'],
+  matchdays: ['season_id', 'day_number'],
+  matches: ['source_key'],
+  goals: ['match_id', 'team_id', 'ordinal'],
+  standings_snapshots: ['season_id', 'matchday_number', 'team_id']
+};
+
+/**
+ * Chiave stabile di una riga, come stringa confrontabile fra DB e snapshot.
+ * @returns {string|null} null se la riga non ha le colonne necessarie
+ */
+function naturalKeyOf(table, row) {
+  const columns = NATURAL_KEYS[table];
+  if (!columns || !row) return null;
+
+  const parts = [];
+  for (const column of columns) {
+    const value = row[column];
+    if (value === undefined || value === null) return null;
+    parts.push(String(value));
+  }
+  return parts.join('|');
+}
+
+/**
+ * Confronta le righe del database con quelle dello snapshot usando le chiavi
+ * naturali.
  *
  * Serve a capire in che direzione va la divergenza prima di un `restore`:
  * `restoreSnapshot` svuota le tabelle, quindi ogni riga presente solo nel DB
  * andrebbe persa per sempre. `dbOnly` elenca proprio quelle righe.
  *
- * @returns {{ dbOnly: Object<string, Array<number|string>>, snapshotOnly: Object<string, Array<number|string>> }}
+ * @returns {{ dbOnly: Object<string, string[]>, snapshotOnly: Object<string, string[]> }}
  */
 function analyzeDivergence(db, filePath = DB_SNAPSHOT_PATH) {
   const dbOnly = {};
   const snapshotOnly = {};
   if (!fs.existsSync(filePath)) return { dbOnly, snapshotOnly };
 
-  // Chiavi primarie dello snapshot, raggruppate per tabella
+  // Chiavi naturali dello snapshot, raggruppate per tabella
   const snapshotKeys = new Map(SNAPSHOT_TABLES.map(t => [t, new Set()]));
   const raw = fs.readFileSync(filePath, 'utf-8');
   for (const line of raw.split('\n')) {
@@ -144,27 +182,28 @@ function analyzeDivergence(db, filePath = DB_SNAPSHOT_PATH) {
     }
     if (!parsed || parsed._type === 'header' || !parsed.table) continue;
     const keys = snapshotKeys.get(parsed.table);
-    if (keys && parsed.data && parsed.data.id !== undefined) {
-      keys.add(parsed.data.id);
-    }
+    const key = keys ? naturalKeyOf(parsed.table, parsed.data) : null;
+    if (keys && key) keys.add(key);
   }
 
   for (const table of SNAPSHOT_TABLES) {
     const keys = snapshotKeys.get(table);
     if (!keys) continue;
 
-    let dbIds = [];
+    let dbKeys = [];
     try {
-      dbIds = db.prepare(`SELECT id FROM ${table}`).all().map(row => row.id);
+      dbKeys = db.prepare(`SELECT * FROM ${table}`).all()
+        .map(row => naturalKeyOf(table, row))
+        .filter(key => key !== null);
     } catch (e) {
       continue;
     }
 
-    const missingInSnapshot = dbIds.filter(id => !keys.has(id));
+    const missingInSnapshot = dbKeys.filter(key => !keys.has(key));
     if (missingInSnapshot.length > 0) dbOnly[table] = missingInSnapshot;
 
-    const dbIdSet = new Set(dbIds);
-    const missingInDb = [...keys].filter(id => !dbIdSet.has(id));
+    const dbKeySet = new Set(dbKeys);
+    const missingInDb = [...keys].filter(key => !dbKeySet.has(key));
     if (missingInDb.length > 0) snapshotOnly[table] = missingInDb;
   }
 
@@ -237,6 +276,8 @@ function restoreSnapshot(db, filePath = DB_SNAPSHOT_PATH) {
 
 module.exports = {
   SNAPSHOT_TABLES,
+  NATURAL_KEYS,
+  naturalKeyOf,
   buildSnapshotBody,
   dumpSnapshot,
   snapshotMatchesDatabase,
