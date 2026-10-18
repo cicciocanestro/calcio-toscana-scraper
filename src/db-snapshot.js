@@ -29,8 +29,19 @@ function dumpSnapshot(db, filePath = DB_SNAPSHOT_PATH) {
   }
 
   const lines = [];
-  // Header con metadati
-  lines.push(JSON.stringify({ _type: 'header', version: 1, exported_at: new Date().toISOString() }));
+  // Header stabile: non cambiamo exported_at se i record del database sono identici,
+  // preservando un eventuale timestamp precedente per evitare commit fittizi.
+  let headerExportedAt = new Date().toISOString();
+  if (fs.existsSync(filePath)) {
+    try {
+      const firstLine = fs.readFileSync(filePath, 'utf-8').split('\n')[0];
+      const parsed = JSON.parse(firstLine);
+      if (parsed && parsed._type === 'header' && parsed.exported_at) {
+        headerExportedAt = parsed.exported_at;
+      }
+    } catch (e) {}
+  }
+  lines.push(JSON.stringify({ _type: 'header', version: 1, exported_at: headerExportedAt }));
 
   let totalRows = 0;
   for (const table of SNAPSHOT_TABLES) {
