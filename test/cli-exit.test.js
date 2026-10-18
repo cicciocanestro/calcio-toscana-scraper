@@ -1,7 +1,10 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const os = require('node:os');
+const path = require('node:path');
 
-const { summarizeScrapeOutcome, EXIT_REGRESSION } = require('../bin/cli');
+const { summarizeScrapeOutcome, writeReportIfRequested, EXIT_REGRESSION } = require('../bin/cli');
 
 /**
  * `summarizeScrapeOutcome` decide il codice di uscita di `scrape all`.
@@ -76,4 +79,54 @@ test('scrape all: errore e regressione insieme danno comunque 3', () => {
 
   assert.equal(outcome.regressions.length, 1);
   assert.equal(outcome.exitCode, EXIT_REGRESSION, 'la regressione non deve essere nascosta da un errore su un\'altra lega');
+});
+
+test('--report-file scrive un JSON leggibile dalla CI e distingue le leghe aggiornate', () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'scrape-report-'));
+  const reportFile = path.join(dir, 'scrape-report.json');
+
+  const fromCache = [{ name: 'Promozione C', cause: 'regression', reason: 'dati in regressione: classifica più corta' }];
+  const outcome = summarizeScrapeOutcome({ total: 3, fromCache, failed: [] });
+
+  try {
+    const written = writeReportIfRequested(reportFile, {
+      total: 3,
+      refreshed: outcome.refreshed,
+      regressions: outcome.regressions,
+      fromCache,
+      failed: [],
+      exitCode: outcome.exitCode
+    });
+
+    assert.equal(written, reportFile);
+    assert.ok(fs.existsSync(reportFile));
+
+    const report = JSON.parse(fs.readFileSync(reportFile, 'utf-8'));
+    assert.equal(report.total, 3);
+    assert.equal(report.refreshed, 2, 'la CI deve sapere che due leghe sono state aggiornate');
+    assert.equal(report.regressions.length, 1);
+    assert.equal(report.regressions[0].name, 'Promozione C');
+    assert.equal(report.exitCode, EXIT_REGRESSION);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('writeReportIfRequested non fa nulla senza percorso', () => {
+  assert.equal(writeReportIfRequested(undefined, { total: 0 }), null);
+  assert.equal(writeReportIfRequested('', { total: 0 }), null);
+});
+
+test('writeReportIfRequested segnala un errore di scrittura senza lanciare', () => {
+  // Percorso sotto una directory che non può esistere (un file al suo posto)
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'scrape-report-err-'));
+  const blockingFile = path.join(dir, 'bloccante');
+  fs.writeFileSync(blockingFile, 'x');
+  const target = path.join(blockingFile, 'sub', 'report.json');
+
+  try {
+    assert.equal(writeReportIfRequested(target, { total: 0 }), null, 'non deve lanciare');
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
 });

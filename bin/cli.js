@@ -5,6 +5,7 @@ const Table = require('cli-table3');
 const chalkModule = require('chalk');
 const chalk = chalkModule.default || chalkModule;
 const path = require('path');
+const fs = require('fs');
 const { LEAGUES, EXPORT_DIR, DB_PATH } = require('../src/config');
 const { CalendarScraper } = require('../src/scraper');
 const { exportToJson, exportToCsv, exportToIcs, exportSlug } = require('../src/exporters');
@@ -59,6 +60,31 @@ function summarizeScrapeOutcome({ total, fromCache = [], failed = [] }) {
   return { refreshed, regressions, exitCode };
 }
 
+/**
+ * Scrive su disco il report dell'esito di `scrape`, se richiesto.
+ *
+ * La CI lo usa per distinguere "nessun dato nuovo" da "alcune leghe aggiornate
+ * e una in regressione": nel secondo caso i dati buoni vanno committati e il
+ * job va fatto fallire alla fine, così GitHub notifica.
+ *
+ * @param {string|undefined} filePath
+ * @param {object} report
+ * @returns {string|null} percorso scritto, oppure null
+ */
+function writeReportIfRequested(filePath, report) {
+  if (!filePath) return null;
+  try {
+    const dir = path.dirname(filePath);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(filePath, JSON.stringify(report, null, 2) + '\n', 'utf-8');
+    return filePath;
+  } catch (err) {
+    // Un report non scritto non deve far fallire lo scraping
+    console.warn(chalk.yellow(`⚠ Impossibile scrivere il report in ${filePath}: ${err.message}`));
+    return null;
+  }
+}
+
 program
   .name('calcio-toscana')
   .description('Tool di scraping per i calendari e risultati di Promozione Girone C, Seconda Categoria Girone I e Terza Categoria Arezzo')
@@ -91,6 +117,7 @@ program
   .option('-r, --refresh', 'Forza il refresh ignorando la cache locale')
   .option('-i, --incremental', 'Scraping incrementale: scarica solo la giornata corrente, precedente e successiva')
   .option('--accept-regression', 'Accetta dati in calo (classifica più corta o meno partite giocate) invece di scartarli')
+  .option('--report-file <path>', 'Scrive un report JSON con l\'esito per campionato (usato dalla CI)')
   .action(async (league, options) => {
     try {
       const scraper = new CalendarScraper({
@@ -171,11 +198,24 @@ program
         }
 
         if (outcome.exitCode > 0) process.exitCode = outcome.exitCode;
+
+        // Report macchina-leggibile: la CI deve sapere quante leghe sono state
+        // davvero aggiornate, per poter committare i dati buoni anche quando una
+        // lega è in regressione (uscita 3) e poi far fallire il job.
+        writeReportIfRequested(options.reportFile, {
+          total: keys.length,
+          refreshed: outcome.refreshed,
+          regressions: outcome.regressions,
+          fromCache,
+          failed,
+          exitCode: outcome.exitCode
+        });
       } else {
         const key = getLeagueKey(league);
         console.log(chalk.bold.green(`\n⚽ Aggiornamento dati per: ${LEAGUES[key].name}\n`));
         const data = await scraper.scrapeLeague(key, scrapeOpts);
 
+        let exitCode = 0;
         if (data.isStale) {
           console.warn(chalk.yellow('\n⚠ Aggiornamento dal sito ufficiale non riuscito: sono stati usati i dati in cache.'));
           console.warn(chalk.gray(`  Motivo: ${data.staleReason || 'non registrato'}`));
@@ -183,13 +223,28 @@ program
             console.warn(chalk.red('\n✖ I dati scaricati sarebbero in regressione: la cache buona è stata conservata.'));
             console.warn(chalk.gray('  Se il calo è reale rilancia con --accept-regression.\n'));
             process.exitCode = EXIT_REGRESSION;
+            exitCode = EXIT_REGRESSION;
           } else {
             console.warn('');
             process.exitCode = 1;
+            exitCode = 1;
           }
         } else {
           console.log(chalk.bold.green('\n✔ Aggiornamento completato con successo!\n'));
         }
+
+        writeReportIfRequested(options.reportFile, {
+          total: 1,
+          refreshed: exitCode === 0 ? 1 : 0,
+          regressions: exitCode === EXIT_REGRESSION
+            ? [{ name: LEAGUES[key].name, reason: data.staleReason || 'dati in regressione' }]
+            : [],
+          fromCache: data.isStale
+            ? [{ name: LEAGUES[key].name, cause: data.staleCause || 'unknown', reason: data.staleReason || 'motivo non registrato' }]
+            : [],
+          failed: [],
+          exitCode
+        });
       }
     } catch (err) {
       console.error(chalk.red('\nErrore durante lo scraping:'), err.message);
@@ -598,4 +653,4 @@ if (require.main === module) {
   }
 }
 
-module.exports = { summarizeScrapeOutcome, EXIT_REGRESSION };
+module.exports = { summarizeScrapeOutcome, writeReportIfRequested, EXIT_REGRESSION };

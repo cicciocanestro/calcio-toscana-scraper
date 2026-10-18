@@ -77,25 +77,44 @@ jobs:
         run: |
           # Codici di uscita di `bin/cli.js scrape`: 0 = tutto aggiornato,
           # 1 = nessuna lega aggiornata, 3 = dati in regressione (scartati).
-          # La regressione va trattata a parte: NON è un blocco del WAF, quindi
-          # non deve far scattare il fallback remoto (che ha dati più vecchi),
-          # e deve comparire come warning visibile nell'interfaccia di GitHub.
+          # Con il 3 le leghe NON in regressione sono comunque aggiornate nei
+          # file: vanno committate (altrimenti i dati buoni si perdono al
+          # checkout successivo), ma il job deve fallire alla fine così GitHub
+          # notifica invece di lasciare solo un'annotazione.
+          REPORT_FILE="$RUNNER_TEMP/scrape-report.json"
+          rm -f "$REPORT_FILE"
+
           scrape_rc=0
           if [ "${{ inputs.use_cache }}" != "true" ]; then
             # 1. Sul runner Raspberry Pi l'IP residenziale di casa non viene bloccato
             #    dal WAF: lo scraping diretto impiega appena ~2 secondi in HTTP puro.
-            node bin/cli.js scrape all --refresh || scrape_rc=$?
+            node bin/cli.js scrape all --refresh --report-file "$REPORT_FILE" || scrape_rc=$?
           else
             scrape_rc=1
           fi
+
+          # Legge il report scritto dal CLI (refreshed = leghe davvero aggiornate)
+          refreshed=0
+          if [ -f "$REPORT_FILE" ]; then
+            refreshed=$(node -e "process.stdout.write(String(require(process.argv[1]).refreshed || 0))" "$REPORT_FILE")
+          fi
+          echo "Leghe aggiornate in questo giro: $refreshed"
+          echo "regression=false" >> "$GITHUB_OUTPUT"
 
           if [ "$scrape_rc" = "0" ]; then
             echo "aggiornato=true" >> "$GITHUB_OUTPUT"
             echo "✔ Dati aggiornati direttamente dal runner Raspberry Pi."
           elif [ "$scrape_rc" = "3" ]; then
-            echo "aggiornato=false" >> "$GITHUB_OUTPUT"
-            echo "::warning title=Regressione dati::Lo scraping ha restituito dati in calo (classifica più corta o meno partite con risultato). La cache buona è stata conservata e NON viene usato il fallback remoto. Se il calo è reale (es. partita annullata da Tuttocampo) rilancia a mano con: node bin/cli.js scrape all --refresh --accept-regression"
-            echo "⚠ Regressione sui dati: nessun commit, cache conservata."
+            # Regressione: nessun fallback remoto (avrebbe dati più vecchi),
+            # commit solo se qualche lega è stata aggiornata davvero.
+            echo "regression=true" >> "$GITHUB_OUTPUT"
+            if [ "$refreshed" != "0" ]; then
+              echo "aggiornato=true" >> "$GITHUB_OUTPUT"
+              echo "⚠ Regressione su alcune leghe: committo le $refreshed leghe aggiornate e faccio fallire il job."
+            else
+              echo "aggiornato=false" >> "$GITHUB_OUTPUT"
+              echo "⚠ Regressione su tutte le leghe: nessun dato nuovo da committare."
+            fi
           else
             # 2. Fallback su istanza remota (es. Render) se richiesto use_cache o in caso di errore
             extra=""
@@ -179,3 +198,26 @@ jobs:
           else
             echo "::warning::Richiesta di build Pages non riuscita (HTTP $code): il sito si aggiornerà al prossimo push."
           fi
+
+      # La regressione fa fallire il job DOPO aver committato le leghe sane:
+      # così GitHub notifica (il solo warning non genera notifiche) e i dati
+      # buoni non vanno persi al checkout successivo.
+      - name: Segnala la regressione sui dati
+        if: always() && steps.aggiorna.outputs.regression == 'true'
+        env:
+          REPORT_FILE: ${{ runner.temp }}/scrape-report.json
+        run: |
+          echo "::error title=Regressione dati::Alcune leghe hanno restituito dati in calo (classifica più corta o meno partite con risultato). La cache buona è stata conservata e le leghe sane sono state pubblicate. Se il calo è reale (es. partita annullata da Tuttocampo) rilancia a mano con: node bin/cli.js scrape all --refresh --accept-regression"
+
+          if [ -f "$REPORT_FILE" ]; then
+            node -e '
+              const report = require(process.argv[1]);
+              console.log("--- Dettaglio regressione ---");
+              for (const r of report.regressions || []) {
+                console.log(`• ${r.name}: ${r.reason}`);
+              }
+              console.log(`Leghe aggiornate: ${report.refreshed}/${report.total}`);
+            ' "$REPORT_FILE"
+          fi
+
+          exit 1
