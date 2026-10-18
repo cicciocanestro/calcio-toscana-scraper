@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 
-const { exportSlug, exportToJson, exportToCsv, exportToIcs, buildCsv, buildIcs } = require('../src/exporters');
+const { exportSlug, exportToJson, exportToCsv, exportToIcs, buildCsv, buildIcs, safeExternalUrl } = require('../src/exporters');
 const { sampleLeagueData } = require('./fixtures');
 
 function tmpFile(name) {
@@ -114,6 +114,32 @@ test('buildIcs produce un output deterministico per gli stessi dati (DTSTAMP sta
   const ics2 = buildIcs(data);
   assert.equal(ics1, ics2, 'due generazioni degli stessi dati devono produrre lo stesso identico output');
   assert.match(ics1, /DTSTAMP:20260920T150000Z/);
+});
+
+test('safeExternalUrl accetta solo http/https e scarta schemi pericolosi', () => {
+  assert.equal(safeExternalUrl('https://www.tuttocampo.it/Partita/1'), 'https://www.tuttocampo.it/Partita/1');
+  assert.equal(safeExternalUrl('http://esempio.it/x'), 'http://esempio.it/x');
+  assert.equal(safeExternalUrl('  https://esempio.it/a  '), 'https://esempio.it/a');
+
+  assert.equal(safeExternalUrl('javascript:alert(1)'), '', 'javascript: va scartato');
+  assert.equal(safeExternalUrl('JaVaScRiPt:alert(1)'), '', 'il controllo è case-insensitive');
+  assert.equal(safeExternalUrl('data:text/html,<script>'), '', 'data: va scartato');
+  assert.equal(safeExternalUrl('file:///etc/passwd'), '', 'file: va scartato');
+  assert.equal(safeExternalUrl(''), '');
+  assert.equal(safeExternalUrl(null), '');
+  assert.equal(safeExternalUrl(undefined), '');
+  assert.equal(safeExternalUrl('/percorso/relativo'), '', 'i relativi non sono link esterni');
+});
+
+test('buildIcs scarta un matchLink non https e non permette iniezioni di righe', () => {
+  const data = sampleLeagueData();
+  data.matchDays[0].matches[0].matchLink = 'javascript:alert(1)';
+  data.matchDays[1].matches[0].matchLink = 'https://esempio.it/p\r\nX-INJECTED:1';
+
+  const ics = buildIcs(data);
+
+  assert.doesNotMatch(ics, /javascript:/, 'lo schema pericoloso non deve finire nell\'ICS');
+  assert.doesNotMatch(ics, /X-INJECTED/, 'un URL con a capo non deve iniettare righe ICS');
 });
 
 test('buildIcs rispetta i limiti di riga della RFC 5545', () => {

@@ -19,6 +19,34 @@ function writeAtomic(filePath, content, encoding = 'utf-8') {
 const DEFAULT_MATCH_TIME = '15:30';
 
 /**
+ * Valida un URL esterno proveniente dallo scraping (es. `matchLink`).
+ *
+ * Restituisce la forma normalizzata solo per http/https: qualunque altro
+ * schema (`javascript:`, `data:`, ...) viene scartato. Serve sia per non
+ * mettere link pericolosi in pagina, sia per non iniettare righe ICS tramite
+ * un URL che contiene a capo.
+ *
+ * @returns {string} URL valido, oppure '' se non lo è
+ */
+function safeExternalUrl(url) {
+  const raw = String(url == null ? '' : url).trim();
+  if (!raw) return '';
+
+  // A capo e ritorni a capo romperebbero la struttura del file ICS.
+  if (/[\r\n]/.test(raw)) return '';
+
+  try {
+    const parsed = new URL(raw);
+    if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
+      return parsed.href;
+    }
+  } catch (e) {
+    // URL relativo o non parsabile
+  }
+  return '';
+}
+
+/**
  * Blocco VTIMEZONE per Europe/Rome: senza, i client più rigidi (Outlook)
  * interpretano `TZID=Europe/Rome` come ora locale del dispositivo.
  * Regole UE: ultima domenica di marzo e di ottobre.
@@ -339,8 +367,9 @@ function buildIcs(leagueData, options = {}) {
       } else {
         descParts.push(`Partita in programma alle ${m.time || DEFAULT_MATCH_TIME}`);
       }
-      if (m.matchLink) {
-        descParts.push(`Dettagli e formazioni: ${m.matchLink}`);
+      const matchLink = safeExternalUrl(m.matchLink);
+      if (matchLink) {
+        descParts.push(`Dettagli e formazioni: ${matchLink}`);
       }
 
       // DTSTAMP deterministico: usiamo la data della partita o lastUpdated del campionato
@@ -357,8 +386,8 @@ function buildIcs(leagueData, options = {}) {
       lines.push(`SUMMARY:${escapeIcsText(summary)}`);
       lines.push(`DESCRIPTION:${escapeIcsText(descParts.join('\n'))}`);
       lines.push(`LOCATION:${escapeIcsText('Campo sportivo ' + m.homeTeam)}`);
-      if (m.matchLink) {
-        lines.push(`URL:${m.matchLink}`);
+      if (matchLink) {
+        lines.push(`URL:${matchLink}`);
       }
       lines.push(`STATUS:${icsStatus(m)}`);
       lines.push('END:VEVENT');
@@ -391,6 +420,7 @@ module.exports = {
   foldIcsLines,
   icsStatus,
   formatIcsDateTime,
+  safeExternalUrl,
   ICS_TIMEZONE,
   DEFAULT_MATCH_TIME
 };
