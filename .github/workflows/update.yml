@@ -103,14 +103,15 @@ jobs:
             fi
           fi
 
-      - name: Rigenerazione export (CSV, ICS, JSON)
+      - name: Rigenerazione export (CSV, ICS)
         if: steps.aggiorna.outputs.aggiornato == 'true'
         run: |
           # 1. Aggiorna SQLite con i dati freschi e rigenera lo snapshot JSONL
           node bin/db-import.js
           node bin/db-snapshot.js dump
-          # 2. Rigenera gli export (CSV, ICS, JSON)
-          node bin/cli.js export all
+          # 2. Rigenera gli export (CSV, ICS)
+          node bin/cli.js export all --format csv
+          node bin/cli.js export all --format ics
 
       - name: Rigenerazione asset dashboard per GitHub Pages
         run: npm run build:pages

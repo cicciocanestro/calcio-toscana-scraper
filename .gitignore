@@ -17,3 +17,6 @@ data/db/*.sqlite
 data/db/*.sqlite-journal
 data/db/*.sqlite-wal
 data/db/*.sqlite-shm
+
+# Evita duplicazione tra data/cache e data/exports per i file JSON completi
+data/exports/*.json

@@ -98,7 +98,6 @@ class JsonStore extends BaseStore {
     if (this.exportDir) {
       exportToCsv(leagueData, path.join(this.exportDir, `${leagueConfig.id}.csv`));
       exportToIcs(leagueData, path.join(this.exportDir, `${leagueConfig.id}.ics`));
-      exportToJson(leagueData, path.join(this.exportDir, `${leagueConfig.id}.json`));
     }
     if (this.syncDb) {
       try {
@@ -198,7 +197,6 @@ class SqliteStore extends BaseStore {
       if (this.exportDir) {
         exportToCsv(leagueData, path.join(this.exportDir, `${leagueConfig.id}.csv`));
         exportToIcs(leagueData, path.join(this.exportDir, `${leagueConfig.id}.ics`));
-        exportToJson(leagueData, path.join(this.exportDir, `${leagueConfig.id}.json`));
       }
     }
 
