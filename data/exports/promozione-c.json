@@ -10,7 +10,7 @@
   "roundID": "TO.P.C",
   "currentMatchDay": 6,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-10-18T14:11:08.690Z",
+  "lastUpdated": "2026-10-18T15:09:47.722Z",
   "standings": [
     {
       "position": 1,
@@ -53,6 +53,19 @@
     },
     {
       "position": 4,
+      "team": "Pontassieve",
+      "points": 12,
+      "played": 6,
+      "won": 4,
+      "drawn": 0,
+      "lost": 2,
+      "goalsFor": 11,
+      "goalsAgainst": 3,
+      "goalDiff": 8,
+      "zone": "playoff"
+    },
+    {
+      "position": 5,
       "team": "Montagnano 1966",
       "points": 12,
       "played": 6,
@@ -65,7 +78,20 @@
       "zone": "playoff"
     },
     {
-      "position": 5,
+      "position": 6,
+      "team": "Affrico",
+      "points": 12,
+      "played": 6,
+      "won": 4,
+      "drawn": 0,
+      "lost": 2,
+      "goalsFor": 9,
+      "goalsAgainst": 2,
+      "goalDiff": 7,
+      "zone": "normal"
+    },
+    {
+      "position": 7,
       "team": "Nuova Foiano",
       "points": 11,
       "played": 6,
@@ -75,45 +101,19 @@
       "goalsFor": 12,
       "goalsAgainst": 5,
       "goalDiff": 7,
-      "zone": "playoff"
-    },
-    {
-      "position": 6,
-      "team": "Alberoro 1977",
-      "points": 11,
-      "played": 6,
-      "won": 3,
-      "drawn": 2,
-      "lost": 1,
-      "goalsFor": 9,
-      "goalsAgainst": 6,
-      "goalDiff": 3,
-      "zone": "normal"
-    },
-    {
-      "position": 7,
-      "team": "Pontassieve",
-      "points": 10,
-      "played": 6,
-      "won": 3,
-      "drawn": 1,
-      "lost": 2,
-      "goalsFor": 8,
-      "goalsAgainst": 3,
-      "goalDiff": 5,
       "zone": "normal"
     },
     {
       "position": 8,
-      "team": "Affrico",
+      "team": "Alberoro 1977",
       "points": 10,
       "played": 6,
       "won": 3,
       "drawn": 1,
       "lost": 2,
-      "goalsFor": 7,
-      "goalsAgainst": 2,
-      "goalDiff": 5,
+      "goalsFor": 9,
+      "goalsAgainst": 8,
+      "goalDiff": 1,
       "zone": "normal"
     },
     {
@@ -125,8 +125,8 @@
       "drawn": 1,
       "lost": 3,
       "goalsFor": 4,
-      "goalsAgainst": 7,
-      "goalDiff": -3,
+      "goalsAgainst": 8,
+      "goalDiff": -4,
       "zone": "normal"
     },
     {
@@ -163,39 +163,26 @@
       "won": 1,
       "drawn": 2,
       "lost": 3,
-      "goalsFor": 4,
+      "goalsFor": 5,
       "goalsAgainst": 9,
-      "goalDiff": -5,
+      "goalDiff": -4,
       "zone": "playout"
     },
     {
       "position": 13,
-      "team": "Ideal Club Incisa",
-      "points": 4,
-      "played": 6,
-      "won": 1,
-      "drawn": 1,
-      "lost": 4,
-      "goalsFor": 3,
-      "goalsAgainst": 9,
-      "goalDiff": -6,
-      "zone": "playout"
-    },
-    {
-      "position": 14,
       "team": "Centro Storico Lebowski",
       "points": 4,
       "played": 6,
       "won": 1,
       "drawn": 1,
       "lost": 4,
-      "goalsFor": 2,
-      "goalsAgainst": 9,
+      "goalsFor": 3,
+      "goalsAgainst": 10,
       "goalDiff": -7,
       "zone": "playout"
     },
     {
-      "position": 15,
+      "position": 14,
       "team": "Cubino",
       "points": 4,
       "played": 6,
@@ -208,16 +195,29 @@
       "zone": "playout"
     },
     {
-      "position": 16,
+      "position": 15,
       "team": "Settignanese",
       "points": 3,
       "played": 6,
       "won": 0,
       "drawn": 3,
       "lost": 3,
-      "goalsFor": 3,
-      "goalsAgainst": 9,
+      "goalsFor": 4,
+      "goalsAgainst": 10,
       "goalDiff": -6,
+      "zone": "playout"
+    },
+    {
+      "position": 16,
+      "team": "Ideal Club Incisa",
+      "points": 3,
+      "played": 6,
+      "won": 1,
+      "drawn": 0,
+      "lost": 5,
+      "goalsFor": 3,
+      "goalsAgainst": 12,
+      "goalDiff": -9,
       "zone": "retrocession"
     }
   ],
@@ -1077,7 +1077,7 @@
           "homeTeam": "Acquaviva",
           "awayTeam": "AG Dicomano",
           "homeScore": 2,
-          "awayScore": 0,
+          "awayScore": 1,
           "isPlayed": true,
           "status": "LIVE",
           "date": "2026-10-18",
@@ -1095,14 +1095,16 @@
         {
           "homeTeam": "Affrico",
           "awayTeam": "Alberoro 1977",
-          "homeScore": 0,
+          "homeScore": 2,
           "awayScore": 0,
           "isPlayed": true,
           "status": "LIVE",
           "date": "2026-10-18",
           "time": "15:30",
           "dateTime": "2026-10-18T15:30:00",
-          "homeScorers": [],
+          "homeScorers": [
+            "G. Tomeo (9' pt)"
+          ],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/935655.png?v=6",
@@ -1127,14 +1129,18 @@
         {
           "homeTeam": "Pontassieve",
           "awayTeam": "Ideal Club Incisa",
-          "homeScore": 0,
+          "homeScore": 3,
           "awayScore": 0,
           "isPlayed": true,
           "status": "LIVE",
           "date": "2026-10-18",
           "time": "15:30",
           "dateTime": "2026-10-18T15:30:00",
-          "homeScorers": [],
+          "homeScorers": [
+            "M. Privitera",
+            "G. Calosi",
+            "A. Cragno"
+          ],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750657.png?v=2",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/22740.png?v=1",
@@ -1159,18 +1165,20 @@
         {
           "homeTeam": "Settignanese",
           "awayTeam": "Centro Storico Lebowski",
-          "homeScore": 1,
-          "awayScore": 1,
+          "homeScore": 2,
+          "awayScore": 2,
           "isPlayed": true,
           "status": "LIVE",
           "date": "2026-10-18",
           "time": "15:30",
           "dateTime": "2026-10-18T15:30:00",
           "homeScorers": [
-            "A. Ciancaleoni"
+            "A. Ciancaleoni",
+            "A. Ciancaleoni (Rig.)"
           ],
           "awayScorers": [
-            "L. Calbi"
+            "L. Calbi",
+            "D. Giuntoli"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/62418.png?v=10",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932795.png?v=1",
