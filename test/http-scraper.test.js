@@ -134,6 +134,22 @@ test('scrapeLeague lancia un errore WAF su 403', async () => {
   assert.equal(fetchImpl.calls.length, 1);
 });
 
+test('HttpScrapeError non ritenta errori 404 (non retryable)', async () => {
+  const fetchImpl = fakeFetch(() => ({ status: 404, body: 'Not Found' }));
+  const scraper = new HttpScraper({ fetch: fetchImpl, retries: 3, retryDelayMs: 1 });
+
+  await assert.rejects(
+    () => scraper.scrapeLeague(LEAGUE),
+    (err) => {
+      assert.ok(err instanceof HttpScrapeError);
+      assert.equal(err.retryable, false);
+      return true;
+    }
+  );
+  // Con retryable = false non deve fare tutti i 3 tentativi
+  assert.equal(fetchImpl.calls.length, 1);
+});
+
 test('scrapeLeague riconosce una challenge WAF servita con status 200', async () => {
   const fetchImpl = fakeFetch(() => ({ status: 200, body: WAF_PAGE }));
   const scraper = new HttpScraper({ fetch: fetchImpl, retries: 2, retryDelayMs: 1 });

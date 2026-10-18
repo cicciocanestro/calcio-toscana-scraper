@@ -43,6 +43,8 @@ class HttpScrapeError extends Error {
     super(message);
     this.name = 'HttpScrapeError';
     this.waf = !!options.waf;
+    this.retryable = options.retryable !== undefined ? !!options.retryable : !this.waf;
+    this.status = options.status;
   }
 }
 
@@ -164,10 +166,13 @@ class HttpScraper {
         const body = await res.text();
 
         if (looksLikeWaf(res.status, res.headers, body)) {
-          throw new HttpScrapeError(`WAF: HTTP ${res.status} su ${url}`, { waf: true });
+          throw new HttpScrapeError(`WAF: HTTP ${res.status} su ${url}`, { waf: true, status: res.status });
         }
         if (!res.ok) {
-          throw new HttpScrapeError(`HTTP ${res.status} su ${url}`, { retryable: res.status >= 500 });
+          throw new HttpScrapeError(`HTTP ${res.status} su ${url}`, {
+            retryable: res.status >= 500,
+            status: res.status
+          });
         }
 
         return body;
