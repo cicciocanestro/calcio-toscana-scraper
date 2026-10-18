@@ -153,47 +153,21 @@ function setupEventListeners() {
   if (elBtnConfirmRefresh) {
     elBtnConfirmRefresh.addEventListener('click', async () => {
       if (isStaticEnvironment) {
-        const authConfig = await loadEncryptedAuth();
-        const isPinMode = Boolean(authConfig && authConfig.salt && authConfig.data);
         const inputVal = elInputRefreshToken ? elInputRefreshToken.value.trim() : '';
         const savedVal = getSavedToken();
-        const value = inputVal || savedVal;
+        const tokenToUse = inputVal || savedVal;
 
-        if (!value) {
+        if (!tokenToUse) {
           if (elTokenStatusMsg) {
             elTokenStatusMsg.className = 'token-status-msg error';
-            elTokenStatusMsg.textContent = isPinMode
-              ? '⚠️ Inserisci il PIN per procedere.'
-              : '⚠️ Inserisci la chiave per procedere.';
+            elTokenStatusMsg.textContent = '⚠️ Inserisci il token GitHub per procedere.';
           }
           if (elInputRefreshToken) elInputRefreshToken.focus();
           return;
         }
 
-        let tokenToUse = value;
-
-        if (isPinMode) {
-          try {
-            if (elTokenStatusMsg) {
-              elTokenStatusMsg.className = 'token-status-msg info';
-              elTokenStatusMsg.textContent = 'Verifica PIN in corso...';
-            }
-            tokenToUse = await decryptAuthToken(value, authConfig);
-          } catch (decryptErr) {
-            if (elTokenStatusMsg) {
-              elTokenStatusMsg.className = 'token-status-msg error';
-              elTokenStatusMsg.textContent = '❌ PIN errato. Riprova.';
-            }
-            if (elInputRefreshToken) {
-              elInputRefreshToken.value = '';
-              elInputRefreshToken.focus();
-            }
-            return;
-          }
-        }
-
         if (elCheckRememberToken && elCheckRememberToken.checked) {
-          saveToken(value);
+          saveToken(tokenToUse);
         }
 
         await triggerGitHubActionsWorkflow(tokenToUse);
@@ -340,55 +314,6 @@ function switchView(view) {
   else if (view === 'team') renderTeamSection();
 }
 
-let encryptedAuthPayload = null;
-
-async function loadEncryptedAuth() {
-  if (encryptedAuthPayload) return encryptedAuthPayload;
-  try {
-    const res = await fetch(`auth.json?t=${Date.now()}`);
-    if (res.ok) {
-      encryptedAuthPayload = await res.json();
-      return encryptedAuthPayload;
-    }
-  } catch (e) {}
-  return null;
-}
-
-async function decryptAuthToken(pin, payload) {
-  const hexToBytes = (h) => new Uint8Array(h.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
-  const salt = hexToBytes(payload.salt);
-  const iv = hexToBytes(payload.iv);
-  const tag = hexToBytes(payload.tag);
-  const ciphertext = hexToBytes(payload.data);
-  const combined = new Uint8Array(ciphertext.length + tag.length);
-  combined.set(ciphertext);
-  combined.set(tag, ciphertext.length);
-
-  const baseKey = await window.crypto.subtle.importKey(
-    'raw',
-    new TextEncoder().encode(String(pin).trim()),
-    'PBKDF2',
-    false,
-    ['deriveKey']
-  );
-
-  const key = await window.crypto.subtle.deriveKey(
-    { name: 'PBKDF2', salt, iterations: 100000, hash: 'SHA-256' },
-    baseKey,
-    { name: 'AES-GCM', length: 256 },
-    false,
-    ['decrypt']
-  );
-
-  const decrypted = await window.crypto.subtle.decrypt(
-    { name: 'AES-GCM', iv },
-    key,
-    combined
-  );
-
-  return new TextDecoder().decode(decrypted);
-}
-
 function getSavedToken() {
   try {
     return localStorage.getItem('calcio_dispatch_token') || '';
@@ -415,18 +340,14 @@ async function openRefreshConfirmModal() {
 
   if (isStaticEnvironment) {
     if (elRefreshTokenSection) elRefreshTokenSection.classList.remove('hidden');
-    const authConfig = await loadEncryptedAuth();
-    const isPinMode = Boolean(authConfig && authConfig.salt && authConfig.data);
 
     const label = document.getElementById('label-refresh-token');
     if (label) {
-      label.innerHTML = isPinMode
-        ? '<strong>Inserisci il tuo PIN di sblocco:</strong>'
-        : '<strong>Chiave di sicurezza (PIN / Token GitHub):</strong>';
+      label.innerHTML = '<strong>Token GitHub personale (Fine-grained PAT):</strong>';
     }
     if (elInputRefreshToken) {
-      elInputRefreshToken.placeholder = isPinMode ? 'Es. 1234' : 'Incolla il token (ghp_... o github_pat_...)';
-      elInputRefreshToken.maxLength = isPinMode ? 32 : 120;
+      elInputRefreshToken.placeholder = 'Incolla il token (github_pat_... o ghp_...)';
+      elInputRefreshToken.maxLength = 120;
     }
 
     const saved = getSavedToken();
@@ -435,18 +356,14 @@ async function openRefreshConfirmModal() {
       if (elBtnForgetToken) elBtnForgetToken.classList.remove('hidden');
       if (elTokenStatusMsg) {
         elTokenStatusMsg.className = 'token-status-msg success';
-        elTokenStatusMsg.textContent = isPinMode
-          ? '✔ PIN memorizzato su questo dispositivo. Pronto all\'avvio.'
-          : '✔ Dispositivo autorizzato (chiave salvata). Pronto all\'avvio.';
+        elTokenStatusMsg.textContent = '✔ Token memorizzato in locale su questo browser. Pronto all\'avvio.';
       }
     } else {
       if (elInputRefreshToken) elInputRefreshToken.value = '';
       if (elBtnForgetToken) elBtnForgetToken.classList.add('hidden');
       if (elTokenStatusMsg) {
         elTokenStatusMsg.className = 'token-status-msg info';
-        elTokenStatusMsg.textContent = isPinMode
-          ? 'Inserisci il tuo PIN per avviare il Raspberry Pi.'
-          : 'Inserisci il tuo PIN o token GitHub per avviare il Raspberry Pi.';
+        elTokenStatusMsg.textContent = 'Inserisci il tuo Personal Access Token GitHub per avviare il Raspberry Pi.';
       }
     }
   } else {

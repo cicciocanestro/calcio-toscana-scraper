@@ -50,8 +50,8 @@ Tool full-stack in Node.js (CommonJS, Node >=20, testato su Node 22/24) per web 
 1. **Scraping dall'IP di casa:**  
    Tuttocampo è protetto da AWS WAF, che blocca con `403` gli IP dei data center cloud (GitHub, Oracle, Google Cloud). L'IP residenziale domestico del Raspberry Pi non riceve blocchi WAF ed esegue lo scraping in modalità HTTP pura in pochissimi secondi senza browser.
 2. **Trigger automatico:** Cron schedulato la domenica alle 21:00 UTC e il lunedì alle 08:00 UTC.
-3. **Trigger manuale con PIN dal sito web:**  
-   Dalla dashboard su GitHub Pages, cliccando *"🔄 Aggiorna dal Web"* viene richiesto un **PIN a 4 cifre (`6619`)**. Il browser usa la **Web Crypto API (AES-256-GCM + PBKDF2)** per decifrare in memoria locale il token GitHub memorizzato in forma cifrata in `auth.json`, e lancia la chiamata `POST /actions/workflows/update.yml/dispatches` che attiva il Raspberry Pi.
+3. **Trigger manuale dal sito web (Personal Access Token):**  
+   Dalla dashboard su GitHub Pages, cliccando *"🔄 Aggiorna dal Web"* è possibile inserire il proprio Personal Access Token GitHub (raccomandato un Fine-Grained PAT con permessi minimi solo su questo repository). Il token viene gestito unicamente in memoria locale nel browser (e salvato su richiesta solo nel `localStorage` del dispositivo utente, mai committato o esposto pubblicamente), e lancia la chiamata `POST /actions/workflows/update.yml/dispatches` che attiva il Raspberry Pi.
 
 ---
 
@@ -78,16 +78,17 @@ Tool full-stack in Node.js (CommonJS, Node >=20, testato su Node 22/24) per web 
 9. **Timestamp non aggiornato su refresh manuale (`.github/workflows/update.yml`):**  
    `data-changed.js` saltava il commit se i risultati sportivi non cambiavano. Ora, se il workflow è avviato manualmente via `workflow_dispatch`, il commit con il timestamp aggiornato viene forzato e pubblicato sempre.
 
+10. **Sicurezza Token GitHub e dismissione archivio auth.json cifrato con PIN:**  
+    Rimosso il pattern insicuro di pubblicazione del token cifrato con un PIN a 4 cifre in `auth.json`. L'autorizzazione manuale via browser ora accetta direttamente il Personal Access Token inserito dall'utente e memorizzato unicamente nel `localStorage` del suo browser personale.
+
 ---
 
 ## 5. Nuove Funzionalità Aggiunte
 - **Scheda ⚽ Marcatori nella Dashboard:** Vista dedicata (`#view-scorers`) con classifica marcatori, gol totali, rigori e filtro squadra, funzionante sia su GitHub Pages (calcolata dai dati JSON escludendo gli autogol) sia via endpoint API SQLite `/api/leagues/:id/scorers`. Rimossa la funzionalità "Forma" come richiesto.
 - **Favicon Ufficiale:** Icona vettoriale `public/favicon.svg` (e `favicon.svg` in root) integrata nell'HTML.
-- **Modale Conferma Aggiornamento con PIN:**  
-  - Script CLI di configurazione: `node bin/set-pin.js [PIN] [TOKEN]`
-  - Cifratura simmetrica AES-256-GCM + PBKDF2 (100.000 iterazioni SHA-256).
-  - File di configurazione cifrato pubblico: `auth.json` / `public/auth.json`.
-  - PIN attivo: **`6619`**.
+- **Modale Conferma Aggiornamento Web (Client-side PAT):**  
+  - Permette di avviare il workflow `update.yml` invocando l'API ufficiale di GitHub Actions.
+  - Nessun segreto salvato nel repository: il token viene memorizzato unicamente nel `localStorage` del browser dell'utente (opzione "Ricorda su questo browser").
 - **Runner GitHub Actions Self-Hosted su Raspberry Pi 3:**  
   - Configurato con `actions-runner` linux-arm64 come servizio di avvio `actions.runner.*.service`.
   - Rimosso `actions/setup-node` ridondante dal runner self-hosted: l'esecuzione della CI sul Pi è scesa da ~6 minuti a **meno di 2 minuti totali**.
@@ -101,7 +102,6 @@ Tool full-stack in Node.js (CommonJS, Node >=20, testato su Node 22/24) per web 
 ├── .github/workflows/update.yml  # Workflow CI/CD: esegue su [self-hosted, linux]
 ├── bin/
 │   ├── cli.js                   # CLI principale (scrape, standings, scorers, results, next, export)
-│   ├── set-pin.js               # Utility per generare/aggiornare auth.json cifrato con PIN
 │   ├── db-import.js             # Importa i file data/cache/*.json nel DB SQLite
 │   ├── db-snapshot.js           # Dump (dump) e restore (restore) di data/db/snapshot.jsonl
 │   └── build-pages.js           # Sincronizza gli asset da public/ alla root del repo per Pages
@@ -116,11 +116,10 @@ Tool full-stack in Node.js (CommonJS, Node >=20, testato su Node 22/24) per web 
 │   ├── parser.js                # Parser HTML unificato (linkedom in Node, DOM nativo in browser)
 │   └── exporters.js             # Generatori CSV (BOM UTF-8), ICS (RFC 5545) e JSON
 ├── public/                      # Sorgente statica della dashboard web
-│   ├── index.html               # Markup con tab Marcatori e modale PIN
-│   ├── app.js                   # Logica client-side (render, decifratura PIN WebCrypto, polling)
+│   ├── index.html               # Markup con tab Marcatori e modale aggiornamento
+│   ├── app.js                   # Logica client-side (render, dispatch GitHub Actions, polling)
 │   ├── style.css                # Stile responsive
-│   ├── favicon.svg              # Favicon
-│   └── auth.json                # Payload cifrato del token GitHub (salt, iv, tag, data)
+│   └── favicon.svg              # Favicon
 ├── data/
 │   ├── cache/                   # JSON grezzi scrapati per campionato
 │   ├── exports/                 # Export pregenerati (.ics, .csv, .json)

@@ -269,16 +269,16 @@
           <span>Il Raspberry Pi scarica i dati freschi con l'IP di casa e pubblica il sito aggiornato.</span>
         </p>
 
-        <!-- Sezione autorizzazione token/PIN per GitHub Pages -->
+        <!-- Sezione autorizzazione token per GitHub Pages -->
         <div id="refresh-token-section" class="token-auth-section hidden">
           <label for="input-refresh-token" id="label-refresh-token" class="token-label">
-            <strong>Inserisci il tuo PIN di sblocco:</strong>
+            <strong>Token GitHub personale (Fine-grained PAT):</strong>
           </label>
-          <input type="password" id="input-refresh-token" class="form-input" placeholder="Es. 1234" autocomplete="current-password">
+          <input type="password" id="input-refresh-token" class="form-input" placeholder="Incolla il token (github_pat_... o ghp_...)" autocomplete="current-password">
           <div class="token-remember-row">
             <label class="checkbox-label">
               <input type="checkbox" id="check-remember-token" checked>
-              <span>Ricorda su questo dispositivo</span>
+              <span>Ricorda su questo browser (localStorage)</span>
             </label>
             <button type="button" id="btn-forget-token" class="btn-link hidden">Rimuovi</button>
           </div>

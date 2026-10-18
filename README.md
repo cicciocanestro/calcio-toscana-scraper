@@ -18,7 +18,7 @@ La fonte dati principale è [Tuttocampo.it](https://www.tuttocampo.it), con gest
 - 🏆 **Classifica Aggiornata**: Punti, partite giocate, vinte, nulle, perse, gol fatti/subiti, differenza reti ed evidenziazione delle zone (promozione diretta, playoff, playout, retrocessione).
 - ⚽ **Classifica Marcatori (Database & Dashboard)**: Tabella marcatori aggregata per girone con gol totali, rigori e filtro per squadra di appartenenza sia da riga di comando che su interfaccia web.
 - 🏟️ **Scheda Speciale CC Camucia**: Raggruppamento per weekend di tutte le partite in casa delle squadre del territorio (Cortona Camucia, Fratta, Fratticciola, Montecchio, Monsigliolo) militanti nei tre campionati diversi.
-- 🔐 **Aggiornamento Protetto da PIN**: Possibilità di avviare l'aggiornamento in tempo reale direttamente dal browser con un PIN facile a 4 cifre, memorizzabile sul proprio dispositivo e decifrato tramite Web Crypto API (AES-256-GCM).
+- 🔐 **Aggiornamento dal Web (Client-side PAT)**: Possibilità di avviare l'aggiornamento in tempo reale direttamente dal browser inserendo un Personal Access Token GitHub (salvato solo nel localStorage del proprio dispositivo, senza esporre credenziali nel repository).
 - 🍓 **Supporto Raspberry Pi 3 (Self-Hosted Runner)**: Scraping con IP residenziale di casa in ~2 secondi (zero blocchi WAF) e piena autonomia senza dipendere da servizi cloud a pagamento.
 - ⏭ **Prossimo Turno & Ultimi Risultati**: Visualizzazione istantanea delle partite del turno in programma e dei risultati dell'ultimo turno disputato.
 - 🔍 **Filtro Squadra**: Possibilità di filtrare il calendario per qualsiasi squadra (es. *Centro Storico Lebowski*, *Arezzo FA*, *Monterchiese*, ecc.).
@@ -167,7 +167,7 @@ Il WAF di Tuttocampo blocca gli IP dei data center dei runner standard di GitHub
                                      ▲
                                      │ push automatico dei dati aggiornati
                                      │
-                             GitHub Actions (Cron dom/lun o tasto web con PIN)
+                             GitHub Actions (Cron dom/lun o trigger manuale da web)
                                      ▲
                                      │ esegue il job direttamente a casa
                                      │
@@ -181,7 +181,7 @@ Il WAF di Tuttocampo blocca gli IP dei data center dei runner standard di GitHub
 
 1. **GitHub Pages** ospita il sito statico pubblico: è sempre attivo, veloce e non va mai in standby.
 2. **Raspberry Pi 3 (Runner di casa)**: esegue lo scraping con l'IP della linea domestica in appena ~2 secondi senza blocchi WAF, rigenera SQLite, gli export e pubblica su GitHub Pages.
-3. **Aggiornamento Web con PIN**: puoi avviare l'aggiornamento anche dal sito web inserendo il tuo PIN (es. `6619`), che decifra il token in memoria locale tramite Web Crypto API senza esporlo pubblicamente.
+3. **Aggiornamento Web con Personal Access Token**: puoi avviare l'aggiornamento anche dal sito web inserendo un Personal Access Token GitHub (consigliato Fine-grained PAT limitato ad `Actions: Read and write` su questo repo). Il token viene salvato unicamente nel tuo browser locale (`localStorage`).
 
 > 📖 **Guida completa per Raspberry Pi:** vedi **[RASPBERRY.md](./RASPBERRY.md)** per le istruzioni dettagliate su SSH, PM2, comandi da terminale e gestione del runner.
 
@@ -193,7 +193,6 @@ Il WAF di Tuttocampo blocca gli IP dei data center dei runner standard di GitHub
 scraping/
 ├── bin/
 │   ├── cli.js            # Interfaccia a riga di comando (CLI)
-│   ├── set-pin.js        # Configura il PIN cifrato per l'aggiornamento da web
 │   ├── db-import.js      # Popola SQLite partendo dai file cache JSON
 │   ├── db-snapshot.js    # Dump e restore dello snapshot JSONL per Git
 │   ├── build-pages.js    # Rigenera gli asset di root per GitHub Pages da public/

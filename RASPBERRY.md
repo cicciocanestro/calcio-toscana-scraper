@@ -127,7 +127,7 @@ pm2 start calcio-scraper
 ```
 
 ### 2. GitHub Actions Self-Hosted Runner
-È il demone che ascolta GitHub e fa partire lo scraping quando premi *"Aggiorna dal Web"* sul sito (con PIN `6619`) o durante il cron settimanale:
+È il demone che ascolta GitHub e fa partire lo scraping quando premi *"Aggiorna dal Web"* sul sito (autorizzato via token nel browser) o durante il cron settimanale:
 
 ```bash
 # Controlla lo stato del runner
