@@ -187,11 +187,26 @@
 
       const rawTime = text(row.querySelector('.match-time .hour, .match-time, .time'));
       let time = '';
-      const timeMatch = rawTime.match(/(\d{1,2})[:.](\d{2})/);
-      if (timeMatch) {
-        const hh = String(timeMatch[1]).padStart(2, '0');
-        const mm = String(timeMatch[2]).padStart(2, '0');
-        time = `${hh}:${mm}`;
+      // Una data (es. "Dom 20.09" o "20.09.2026") non deve essere scambiata per orario.
+      const hasDateIndicators = /(?:dom|lun|mar|mer|gio|ven|sab|\b20\d{2}\b)/i.test(rawTime)
+        || /^\d{1,2}[./](?:0[1-9]|1[0-2])(?:\.\d{2,4})?$/.test(rawTime.trim());
+
+      if (!hasDateIndicators) {
+        // Se c'è ':' è un orario chiaro (es. "15:30", "9:30").
+        // Se c'è '.', lo accettiamo solo se rientra nei range 00-23 e 00-59 e non è una data.
+        const timeMatch = rawTime.match(/\b([01]?\d|2[0-3])[:.]([0-5]\d)\b/);
+        if (timeMatch) {
+          const hh = String(timeMatch[1]).padStart(2, '0');
+          const mm = String(timeMatch[2]).padStart(2, '0');
+          // Se la separazione era col punto (es. "25.09" o "20.09"), verifichiamo che non sia un giorno.mese:
+          // nei campionati dilettantistici le partite sono sempre nei weekend tra le 09:00 e le 21:30.
+          // Inoltre i minuti sono quasi sempre quarti d'ora (:00, :15, :30, :45).
+          // Se rawTime è solo "NN.MM" con MM <= 12, è molto probabilmente una data (giorno.mese) e non un orario.
+          const isAmbiguousDate = /^\d{1,2}\.\d{1,2}$/.test(rawTime.trim()) && Number(timeMatch[2]) <= 12;
+          if (!isAmbiguousDate) {
+            time = `${hh}:${mm}`;
+          }
+        }
       }
 
       const homeEl = row.querySelector('td.team.home');

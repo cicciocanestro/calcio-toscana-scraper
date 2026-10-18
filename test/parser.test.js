@@ -104,6 +104,33 @@ test('parseMatchdayHtml normalizza orari speciali come posticipata, orari con pu
   assert.equal(day.matches[2].dateTime, '2026-09-20T15:45:00');
 });
 
+test('parseMatchdayHtml non scambia date con punto per orari (es. 25.09 o Dom 20.09)', () => {
+  const html = `<div id="match_day">1° Giornata</div>
+<div id="match_date">20|09|2026</div>
+<table class="table-results">
+  <tr class="date"><td>Domenica 20 settembre</td></tr>
+  <tr class="match">
+    <td class="team home"><a class="team-name">Squadra A</a></td>
+    <td class="match-time"><span class="hour">25.09</span></td>
+    <td class="team away"><a class="team-name">Squadra B</a></td>
+  </tr>
+  <tr class="match">
+    <td class="team home"><a class="team-name">Squadra C</a></td>
+    <td class="match-time"><span class="hour">Dom 20.09</span></td>
+    <td class="team away"><a class="team-name">Squadra D</a></td>
+  </tr>
+</table>`;
+
+  const day = parser.parseMatchdayHtml(html, 1);
+  // 25 non è un'ora valida (hh <= 23): non deve diventare time 25:09
+  assert.equal(day.matches[0].time, '');
+  assert.equal(day.matches[0].dateTime, '2026-09-20T15:30:00');
+
+  // Dom 20.09 è una data, non un orario: deve essere scartata
+  assert.equal(day.matches[1].time, '');
+  assert.equal(day.matches[1].dateTime, '2026-09-20T15:30:00');
+});
+
 test('parseMatchdayHtml gestisce il passaggio d\'anno fra dicembre e gennaio', () => {
   const html = `<div id="match_day">18° Giornata</div>
 <div id="match_date">28|12|2026 - 03|01|2027</div>
