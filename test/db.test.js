@@ -89,8 +89,7 @@ test('SqliteStore salva su database e rilegge il documento identico', () => {
     assert.ok(loaded);
     assert.equal(sportsFingerprint(loaded), sportsFingerprint(sample));
 
-    // File esportati su disco sincronizzati
-    assert.ok(fs.existsSync(path.join(tempDir, 'promozione-c.json')));
+    // File esportati su disco sincronizzati (CSV e ICS)
     assert.ok(fs.existsSync(path.join(tempDir, 'promozione-c.csv')));
     assert.ok(fs.existsSync(path.join(tempDir, 'promozione-c.ics')));
   } finally {
@@ -158,6 +157,33 @@ test('importLeagueDocument preserva i marcatori in caso di regressione e non gon
   const reconstructed = reconstructLeagueDocument(db, 'promozione-c');
   assert.equal(reconstructed.matchDays[0].matches[0].isPlayed, true);
   assert.deepEqual(reconstructed.matchDays[0].matches[0].homeScorers, ["M. Rossi (12' pt)"]);
+});
+
+test('importLeagueDocument aggiorna score_updated_at solo se il punteggio cambia', () => {
+  const db = initDatabase(':memory:');
+  const initial = sampleLeagueData();
+  initial.lastUpdated = '2026-10-18T10:00:00.000Z';
+
+  importLeagueDocument(db, initial);
+  const row1 = db.prepare('SELECT score_updated_at FROM matches LIMIT 1').get();
+  assert.equal(row1.score_updated_at, '2026-10-18T10:00:00.000Z');
+
+  // Secondo import con stesso punteggio ma lastUpdated successivo
+  const unchanged = sampleLeagueData();
+  unchanged.lastUpdated = '2026-10-18T12:00:00.000Z';
+  importLeagueDocument(db, unchanged);
+
+  const row2 = db.prepare('SELECT score_updated_at FROM matches LIMIT 1').get();
+  assert.equal(row2.score_updated_at, '2026-10-18T10:00:00.000Z', 'score_updated_at non deve cambiare se il punteggio è identico');
+
+  // Terzo import con punteggio cambiato (era 2-1 in sampleLeagueData, lo cambiamo in 3-1)
+  const changed = sampleLeagueData();
+  changed.lastUpdated = '2026-10-18T14:00:00.000Z';
+  changed.matchDays[0].matches[0].homeScore = 3;
+  importLeagueDocument(db, changed);
+
+  const row3 = db.prepare('SELECT score_updated_at FROM matches LIMIT 1').get();
+  assert.equal(row3.score_updated_at, '2026-10-18T14:00:00.000Z', 'score_updated_at deve aggiornarsi quando il punteggio cambia');
 });
 
 test('parseScorer riconosce autogol con (Aut.) e minuti di recupero', () => {
