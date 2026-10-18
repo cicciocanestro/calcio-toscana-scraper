@@ -5,14 +5,20 @@
  * Utilizzo:
  *   node bin/db-snapshot.js dump [--file percorso.jsonl]
  *   node bin/db-snapshot.js restore [--file percorso.jsonl]
- *   node bin/db-snapshot.js sync [--file percorso.jsonl]
+ *   node bin/db-snapshot.js sync [--file percorso.jsonl] [--force]
  *   node bin/db-snapshot.js status
  */
 const fs = require('fs');
 const path = require('path');
 const { DB_PATH, DB_SNAPSHOT_PATH } = require('../src/config');
 const { initDatabase } = require('../src/db');
-const { dumpSnapshot, restoreSnapshot, snapshotMatchesDatabase, SNAPSHOT_TABLES } = require('../src/db-snapshot');
+const {
+  dumpSnapshot,
+  restoreSnapshot,
+  snapshotMatchesDatabase,
+  analyzeDivergence,
+  SNAPSHOT_TABLES
+} = require('../src/db-snapshot');
 
 /**
  * Ultima scrittura del database, considerando anche i file WAL/SHM: con
@@ -29,18 +35,55 @@ function lastDatabaseWrite(dbPath) {
 }
 
 /**
- * Allinea il database locale allo snapshot versionato, ma solo se serve.
+ * Copia di sicurezza del database prima di una scrittura distruttiva.
+ * Usa `VACUUM INTO`, che produce un file consistente anche con WAL attivo;
+ * se non è disponibile ricade su una copia dei file.
  *
- * Il criterio è il contenuto: se il checksum nell'header dello snapshot
- * descrive già lo stato del database non si tocca nulla. Il confronto fra
- * date di modifica resta come fallback per gli snapshot vecchi, privi di
- * checksum (file generati da versioni precedenti di questo script).
+ * @returns {string} percorso del backup
+ */
+function backupDatabase(db, dbPath) {
+  const backupPath = `${dbPath}.bak`;
+  try {
+    fs.rmSync(backupPath, { force: true });
+    const escaped = backupPath.replace(/'/g, "''");
+    db.exec(`VACUUM INTO '${escaped}'`);
+    return backupPath;
+  } catch (e) {
+    fs.copyFileSync(dbPath, backupPath);
+    return backupPath;
+  }
+}
+
+/** Elenca in modo compatto le tabelle con righe esclusive, es. "goals (12), matches (3)". */
+function summarizeExclusiveRows(dbOnly) {
+  return Object.entries(dbOnly)
+    .map(([table, ids]) => `${table} (${ids.length})`)
+    .join(', ');
+}
+
+/**
+ * Allinea il database locale allo snapshot versionato, ma solo se serve e solo
+ * se non si perde nulla.
+ *
+ * Ordine dei controlli:
+ *  1. lo snapshot deve esistere;
+ *  2. se il database manca viene ricreato (non c'è nulla da perdere);
+ *  3. se il checksum coincide non si fa nulla;
+ *  4. se il database contiene righe che lo snapshot non ha, il DB è più avanti:
+ *     il ripristino le cancellerebbe, quindi si salta (serve `--force`);
+ *  5. altrimenti il DB è indietro: backup e ripristino.
  *
  * @param {string} [snapshotFile] - percorso dello snapshot JSONL
- * @param {string} [dbPath]       - percorso del database SQLite
- * @returns {{ restored: boolean, count?: number, reason?: string }}
+ * @param {object} [options]
+ * @param {string} [options.dbPath] - percorso del database SQLite
+ * @param {boolean} [options.force] - ripristina anche se il DB ha righe esclusive
+ * @returns {{ restored: boolean, skipped?: boolean, count?: number, reason: string,
+ *             backup?: string, dbOnly?: object }}
  */
-function syncDatabase(snapshotFile = DB_SNAPSHOT_PATH, dbPath = DB_PATH) {
+function syncDatabase(snapshotFile = DB_SNAPSHOT_PATH, options = {}) {
+  const dbPath = options.dbPath || DB_PATH;
+  const force = !!options.force;
+
   if (!fs.existsSync(snapshotFile)) {
     return { restored: false, reason: 'snapshot assente' };
   }
@@ -64,8 +107,34 @@ function syncDatabase(snapshotFile = DB_SNAPSHOT_PATH, dbPath = DB_PATH) {
     return { restored: false, reason: 'già allineato' };
   }
 
+  // Prima di distruggere dati: il DB ha righe che lo snapshot non contiene?
+  const divergence = analyzeDivergence(db, snapshotFile);
+  const exclusiveRows = Object.keys(divergence.dbOnly).length;
+
+  if (exclusiveRows > 0) {
+    if (!force) {
+      // Nessuna scrittura: il backup serve solo se si distrugge qualcosa.
+      return {
+        restored: false,
+        skipped: true,
+        reason: `database più avanti dello snapshot (${summarizeExclusiveRows(divergence.dbOnly)})`,
+        dbOnly: divergence.dbOnly
+      };
+    }
+    const backup = backupDatabase(db, dbPath);
+    const count = restoreSnapshot(db, snapshotFile);
+    return {
+      restored: true,
+      count,
+      reason: `contenuto diverso, ${exclusiveRows} tabelle con righe locali scartate (--force)`,
+      backup
+    };
+  }
+
+  // Nessuna riga esclusiva: il DB è solo indietro, il ripristino non perde nulla.
+  const backup = backupDatabase(db, dbPath);
   const count = restoreSnapshot(db, snapshotFile);
-  return { restored: true, count, reason: 'snapshot più recente' };
+  return { restored: true, count, reason: 'contenuto diverso (DB indietro rispetto allo snapshot)', backup };
 }
 
 function main() {
@@ -97,10 +166,20 @@ function main() {
     const count = restoreSnapshot(db, snapshotFile);
     console.log(`✔ [RESTORE] Ripristinati ${count} record da: ${snapshotFile}`);
   } else if (command === 'sync') {
-    const result = syncDatabase(snapshotFile);
+    const result = syncDatabase(snapshotFile, { force: args.includes('--force') });
+
     if (result.restored) {
       const detail = result.count ? ` (${result.count} record)` : '';
       console.log(`✔ [SYNC] Database allineato allo snapshot${detail} — ${result.reason}.`);
+      if (result.backup) console.log(`  Copia di sicurezza: ${result.backup}`);
+    } else if (result.skipped) {
+      console.warn(`⚠ [SYNC] Ripristino annullato: ${result.reason}.`);
+      console.warn('  Il database contiene dati che lo snapshot non ha (es. refresh dalla dashboard');
+      console.warn('  o db-import senza dump). Ripristinare li cancellerebbe.');
+      console.warn('  Scelte possibili:');
+      console.warn('   • esporta prima quello che c\'è:  npm run db:dump');
+      console.warn('   • oppure forza (backup automatico): npm run db:sync -- --force');
+      if (result.backup) console.warn(`  Copia del DB salvata in: ${result.backup}`);
     } else {
       console.log(`✔ [SYNC] Nessun ripristino necessario (${result.reason}).`);
     }
@@ -131,4 +210,4 @@ if (require.main === module) {
   main();
 }
 
-module.exports = { syncDatabase };
+module.exports = { syncDatabase, backupDatabase };

@@ -118,6 +118,60 @@ function snapshotMatchesDatabase(db, filePath = DB_SNAPSHOT_PATH) {
 }
 
 /**
+ * Confronta le chiavi primarie del database con quelle dello snapshot.
+ *
+ * Serve a capire in che direzione va la divergenza prima di un `restore`:
+ * `restoreSnapshot` svuota le tabelle, quindi ogni riga presente solo nel DB
+ * andrebbe persa per sempre. `dbOnly` elenca proprio quelle righe.
+ *
+ * @returns {{ dbOnly: Object<string, Array<number|string>>, snapshotOnly: Object<string, Array<number|string>> }}
+ */
+function analyzeDivergence(db, filePath = DB_SNAPSHOT_PATH) {
+  const dbOnly = {};
+  const snapshotOnly = {};
+  if (!fs.existsSync(filePath)) return { dbOnly, snapshotOnly };
+
+  // Chiavi primarie dello snapshot, raggruppate per tabella
+  const snapshotKeys = new Map(SNAPSHOT_TABLES.map(t => [t, new Set()]));
+  const raw = fs.readFileSync(filePath, 'utf-8');
+  for (const line of raw.split('\n')) {
+    if (!line.trim()) continue;
+    let parsed;
+    try {
+      parsed = JSON.parse(line);
+    } catch (e) {
+      continue;
+    }
+    if (!parsed || parsed._type === 'header' || !parsed.table) continue;
+    const keys = snapshotKeys.get(parsed.table);
+    if (keys && parsed.data && parsed.data.id !== undefined) {
+      keys.add(parsed.data.id);
+    }
+  }
+
+  for (const table of SNAPSHOT_TABLES) {
+    const keys = snapshotKeys.get(table);
+    if (!keys) continue;
+
+    let dbIds = [];
+    try {
+      dbIds = db.prepare(`SELECT id FROM ${table}`).all().map(row => row.id);
+    } catch (e) {
+      continue;
+    }
+
+    const missingInSnapshot = dbIds.filter(id => !keys.has(id));
+    if (missingInSnapshot.length > 0) dbOnly[table] = missingInSnapshot;
+
+    const dbIdSet = new Set(dbIds);
+    const missingInDb = [...keys].filter(id => !dbIdSet.has(id));
+    if (missingInDb.length > 0) snapshotOnly[table] = missingInDb;
+  }
+
+  return { dbOnly, snapshotOnly };
+}
+
+/**
  * Ripristina il database SQLite partendo da un file snapshot JSONL.
  *
  * @param {DatabaseSync} db - Istanza SQLite aperta e inizializzata con schema DDL
@@ -186,5 +240,6 @@ module.exports = {
   buildSnapshotBody,
   dumpSnapshot,
   snapshotMatchesDatabase,
+  analyzeDivergence,
   restoreSnapshot
 };

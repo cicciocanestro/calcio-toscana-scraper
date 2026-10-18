@@ -264,14 +264,14 @@ test('dumpSnapshot aggiorna exported_at solo se i dati nel dump sono effettivame
   }
 });
 
-test('syncDatabase ripristina solo quando il database è disallineato dallo snapshot', () => {
+test('syncDatabase riallinea il DB quando è indietro rispetto allo snapshot', () => {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'db-sync-test-'));
   const dbPath = path.join(tempDir, 'calcio.sqlite');
   const snapFile = path.join(tempDir, 'snapshot.jsonl');
 
   try {
     // 1. Snapshot assente: non c'è nulla da ripristinare
-    assert.deepEqual(syncDatabase(snapFile, dbPath), { restored: false, reason: 'snapshot assente' });
+    assert.deepEqual(syncDatabase(snapFile, { dbPath }), { restored: false, reason: 'snapshot assente' });
 
     // 2. Creo DB e snapshot allineati
     const db = initDatabase(dbPath);
@@ -279,28 +279,77 @@ test('syncDatabase ripristina solo quando il database è disallineato dallo snap
     dumpSnapshot(db, snapFile);
 
     // Il dump non deve far scattare un ripristino: il checksum combacia già.
-    assert.equal(syncDatabase(snapFile, dbPath).restored, false, 'dopo il dump DB e snapshot sono allineati');
-    assert.equal(syncDatabase(snapFile, dbPath).reason, 'contenuto identico');
+    assert.equal(syncDatabase(snapFile, { dbPath }).restored, false, 'dopo il dump DB e snapshot sono allineati');
+    assert.equal(syncDatabase(snapFile, { dbPath }).reason, 'contenuto identico');
 
-    // 3. Un `git pull` che cambia i dati rende il DB obsoleto anche se il mtime
-    //    non è affidabile: il criterio è il contenuto, non la data.
+    // 3. Un valore aggiornato nel DB (nessuna riga in più) lo rende "indietro":
+    //    il ripristino è sicuro perché non esistono righe esclusive.
     const db2 = initDatabase(dbPath);
     db2.prepare('UPDATE leagues SET name = ? WHERE id = ?').run('Nome Divergente', 'promozione-c');
-    const stale = syncDatabase(snapFile, dbPath);
-    assert.equal(stale.restored, true, 'con contenuto diverso il DB va ripristinato');
+    const stale = syncDatabase(snapFile, { dbPath });
+    assert.equal(stale.restored, true, 'con contenuto diverso e nessuna riga esclusiva il DB va ripristinato');
     assert.ok(stale.count > 0, 'deve restituire il numero di record ripristinati');
+    assert.match(stale.reason, /contenuto diverso/);
+    assert.ok(stale.backup && fs.existsSync(stale.backup), 'prima di sovrascrivere deve creare un backup');
 
     // 4. Ripetuto: ora il contenuto coincide di nuovo
-    assert.equal(syncDatabase(snapFile, dbPath).restored, false);
+    assert.equal(syncDatabase(snapFile, { dbPath }).restored, false);
 
     // 5. DB assente: viene ricreato dallo snapshot
     fs.rmSync(dbPath, { force: true });
     fs.rmSync(`${dbPath}-wal`, { force: true });
     fs.rmSync(`${dbPath}-shm`, { force: true });
-    const recreated = syncDatabase(snapFile, dbPath);
+    const recreated = syncDatabase(snapFile, { dbPath });
     assert.equal(recreated.restored, true);
     assert.equal(recreated.reason, 'database assente');
     assert.ok(fs.existsSync(dbPath), 'il database deve essere ricreato');
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+});
+
+test('syncDatabase non cancella un DB più avanti dello snapshot (senza --force)', () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'db-sync-ahead-'));
+  const dbPath = path.join(tempDir, 'calcio.sqlite');
+  const snapFile = path.join(tempDir, 'snapshot.jsonl');
+
+  try {
+    const db = initDatabase(dbPath);
+    importLeagueDocument(db, sampleLeagueData());
+    dumpSnapshot(db, snapFile);
+
+    // Riga presente solo nel DB: simula un refresh dalla dashboard (o un
+    // db-import) senza il `dump` successivo.
+    const row = db.prepare('SELECT * FROM standings_snapshots LIMIT 1').get();
+    db.prepare(`
+      INSERT INTO standings_snapshots (
+        season_id, matchday_number, team_id, position, points, played, won,
+        drawn, lost, goals_for, goals_against, goal_diff, zone, captured_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(row.season_id, 99, row.team_id, row.position, row.points, row.played,
+      row.won, row.drawn, row.lost, row.goals_for, row.goals_against,
+      row.goal_diff, row.zone, row.captured_at);
+
+    const before = db.prepare('SELECT COUNT(*) AS c FROM standings_snapshots').get().c;
+
+    // Senza --force: rifiuta e non tocca nulla
+    const skipped = syncDatabase(snapFile, { dbPath });
+    assert.equal(skipped.restored, false, 'non deve ripristinare un DB più avanti');
+    assert.equal(skipped.skipped, true);
+    assert.match(skipped.reason, /più avanti dello snapshot/);
+    assert.ok(skipped.dbOnly.standings_snapshots.length > 0, 'deve elencare le righe esclusive');
+
+    const after = initDatabase(dbPath).prepare('SELECT COUNT(*) AS c FROM standings_snapshots').get().c;
+    assert.equal(after, before, 'i dati del DB devono restare intatti');
+
+    // Con --force: ripristina, ma solo dopo aver salvato una copia
+    const forced = syncDatabase(snapFile, { dbPath, force: true });
+    assert.equal(forced.restored, true);
+    assert.ok(forced.backup && fs.existsSync(forced.backup), 'il backup deve esistere');
+    assert.match(forced.reason, /--force/);
+
+    const restored = initDatabase(dbPath).prepare('SELECT COUNT(*) AS c FROM standings_snapshots').get().c;
+    assert.ok(restored < before, 'con --force il DB torna allo snapshot');
   } finally {
     fs.rmSync(tempDir, { recursive: true, force: true });
   }

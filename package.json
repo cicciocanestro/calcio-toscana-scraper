@@ -20,7 +20,6 @@
     "export": "node bin/cli.js export all",
     "build:pages": "node bin/build-pages.js",
     "check:pages": "node bin/build-pages.js --check",
-    "pretest": "node bin/db-snapshot.js sync",
     "test": "node --test",
     "verify": "npm run check:pages && npm test",
     "sync": "node bin/db-snapshot.js sync && node bin/cli.js scrape all --refresh -i && node bin/db-import.js && node bin/db-snapshot.js dump && node bin/cli.js export all --format csv && node bin/cli.js export all --format ics && npm run build:pages && git add data/cache/ data/exports/ data/db/snapshot.jsonl && git commit -m \"chore(data): aggiornamento calendari e classifiche\" && git push origin main",
