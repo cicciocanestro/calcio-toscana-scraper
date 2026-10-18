@@ -50,6 +50,26 @@ function describeRegression(previousData, leagueData) {
   return null;
 }
 
+/**
+ * Classifica il motivo per cui si è ripiegati sulla cache, così CLI e CI
+ * possono reagire in modo diverso: una regressione sui dati richiede una
+ * decisione umana (`--accept-regression`), un WAF no.
+ *
+ * @returns {'regression'|'waf'|'network'|'unknown'}
+ */
+function describeStaleCause(message) {
+  const text = String(message || '').toLowerCase();
+  if (text.includes('regressione')) return 'regression';
+  if (text.includes('waf') || text.includes('challenge') || text.includes('403') || text.includes('202')) {
+    return 'waf';
+  }
+  if (text.includes('fetch') || text.includes('network') || text.includes('etimedout') ||
+      text.includes('econnrefused') || text.includes('timeout')) {
+    return 'network';
+  }
+  return 'unknown';
+}
+
 class CalendarScraper {
   constructor(options = {}) {
     // Nota: il browser NON viene cercato qui. findChrome() è lazy e viene
@@ -244,7 +264,15 @@ class CalendarScraper {
           `⚠ Aggiornamento di ${leagueConfig.name} non riuscito (${err.message}). ` +
           `Uso i dati in cache di ~${ageHours}h fa.`
         );
-        return { ...stale, isStale: true };
+        // `staleReason` distingue il fallback per motivi diversi (WAF, rete,
+        // regressione sui dati): senza, la CLI e la CI vedevano solo un
+        // generico "dati non aggiornati" e la regressione passava inosservata.
+        return {
+          ...stale,
+          isStale: true,
+          staleReason: err.message,
+          staleCause: describeStaleCause(err.message)
+        };
       }
       throw err;
     }
@@ -760,4 +788,4 @@ class CalendarScraper {
   }
 }
 
-module.exports = { CalendarScraper, PARSER_SOURCE, VALID_MODES, describeRegression };
+module.exports = { CalendarScraper, PARSER_SOURCE, VALID_MODES, describeRegression, describeStaleCause };

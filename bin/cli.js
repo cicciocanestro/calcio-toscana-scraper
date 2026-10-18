@@ -14,6 +14,51 @@ const { getTopScorers } = require('../src/db-sync');
 
 const program = new Command();
 
+/**
+ * Codice di uscita dedicato alla regressione sui dati: 0 = tutto aggiornato,
+ * 1 = nessun campionato aggiornato, 3 = dati in calo scartati.
+ *
+ * Serve alla CI per distinguere "bloccato dal WAF" (che ha senso ritentare o
+ * usare il fallback remoto) da "i dati sembrano calati" (che richiede una
+ * decisione umana con `--accept-regression`) e non va mai nascosto.
+ */
+const EXIT_REGRESSION = 3;
+
+/**
+ * Traduce l'esito di `scrape all` in numeri e codice di uscita, senza stampare
+ * nulla: è la parte che la CI deve poter verificare, quindi vive separata
+ * dall'azione del comando.
+ *
+ * Regole, in ordine di priorità:
+ *  - una lega in regressione -> uscita 3 (serve una decisione umana, e non deve
+ *    essere nascosta né da errori né da altre leghe aggiornate);
+ *  - una lega che lancia un errore -> uscita 1;
+ *  - solo fallback da cache (WAF/rete) e nessuna lega aggiornata -> uscita 1.
+ *
+ * @param {object} outcome
+ * @param {number} outcome.total     - numero di campionati previsti
+ * @param {Array}  outcome.fromCache - [{ name, cause, reason }]
+ * @param {Array}  outcome.failed    - [{ name, message }]
+ * @returns {{ refreshed: number, regressions: Array, exitCode: number }}
+ */
+function summarizeScrapeOutcome({ total, fromCache = [], failed = [] }) {
+  const refreshed = total - fromCache.length - failed.length;
+  const regressions = fromCache.filter(entry => entry.cause === 'regression');
+
+  // La regressione ha la precedenza su tutto: è l'unico caso in cui la CI non
+  // deve né tentare il fallback remoto né committare, ma solo avvisare.
+  let exitCode = 0;
+  if (regressions.length > 0) {
+    exitCode = EXIT_REGRESSION;
+  } else if (failed.length > 0) {
+    exitCode = 1;
+  } else if (fromCache.length > 0 && refreshed <= 0) {
+    exitCode = 1;
+  }
+
+  return { refreshed, regressions, exitCode };
+}
+
 program
   .name('calcio-toscana')
   .description('Tool di scraping per i calendari e risultati di Promozione Girone C, Seconda Categoria Girone I e Terza Categoria Arezzo')
@@ -71,12 +116,20 @@ program
         for (const key of keys) {
           try {
             const data = await scraper.scrapeLeague(key, scrapeOpts);
-            if (data.isStale) fromCache.push(LEAGUES[key].name);
+            if (data.isStale) {
+              fromCache.push({
+                name: LEAGUES[key].name,
+                cause: data.staleCause || 'unknown',
+                reason: data.staleReason || 'motivo non registrato'
+              });
+            }
           } catch (err) {
             failed.push({ name: LEAGUES[key].name, message: err.message });
             console.error(chalk.red(`✖ ${LEAGUES[key].name}: ${err.message}`));
           }
         }
+
+        const outcome = summarizeScrapeOutcome({ total: keys.length, fromCache, failed });
 
         if (failed.length > 0) {
           console.warn(chalk.red(`\n✖ Aggiornamento fallito per ${failed.length}/${keys.length} campionati:`));
@@ -85,31 +138,55 @@ program
           }
           console.warn(chalk.gray('  Gli altri campionati sono stati aggiornati regolarmente.'));
           console.warn(chalk.gray('  Se il calo dati è reale (es. partita annullata) rilancia con --accept-regression.\n'));
-          process.exitCode = 1;
         }
 
         if (fromCache.length === 0 && failed.length === 0) {
           console.log(chalk.bold.green(`\n✔ Tutti i campionati (${keys.length}) sono stati aggiornati dal sito ufficiale.\n`));
         } else if (fromCache.length > 0) {
-          const refreshed = keys.length - fromCache.length - failed.length;
+          const { refreshed, regressions } = outcome;
+          const others = fromCache.filter(f => f.cause !== 'regression');
+
           console.warn(chalk.yellow(
             `\n⚠ Aggiornamento dal sito ufficiale riuscito per ${refreshed}/${keys.length} campionati.`
           ));
-          console.warn(chalk.yellow(`  Dati non aggiornati (usata la cache locale): ${fromCache.join(', ')}`));
-          console.warn(chalk.gray('  Causa tipica: blocco anti-bot/WAF sugli IP datacenter (es. runner GitHub Actions).\n'));
+          console.warn(chalk.yellow(`  Dati non aggiornati (usata la cache locale): ${fromCache.map(f => f.name).join(', ')}`));
+          for (const f of fromCache) {
+            console.warn(chalk.gray(`   • ${f.name}: ${f.reason}`));
+          }
+          if (others.length > 0) {
+            console.warn(chalk.gray('  Causa tipica degli altri casi: blocco anti-bot/WAF sugli IP datacenter.'));
+          }
 
-          // Exit code non-zero solo se NESSUN campionato è stato aggiornato,
-          // così la CI può segnalare il problema senza perdere i dati in cache.
-          if (refreshed <= 0) process.exitCode = 1;
+          if (regressions.length > 0) {
+            // Una regressione non è un problema di rete: i dati sembrano calati
+            // e la cache è stata conservata. Va deciso un umano, quindi la CI
+            // deve accorgersene (exit code dedicato + warning).
+            console.warn(chalk.red(
+              `\n✖ Dati in regressione per ${regressions.length}/${keys.length} campionati ` +
+              '(la cache buona è stata conservata).'
+            ));
+            console.warn(chalk.gray('  Se il calo è reale (es. partita annullata da Tuttocampo) rilancia con:'));
+            console.warn(chalk.white('    node bin/cli.js scrape all --refresh --accept-regression'));
+          }
         }
+
+        if (outcome.exitCode > 0) process.exitCode = outcome.exitCode;
       } else {
         const key = getLeagueKey(league);
         console.log(chalk.bold.green(`\n⚽ Aggiornamento dati per: ${LEAGUES[key].name}\n`));
         const data = await scraper.scrapeLeague(key, scrapeOpts);
 
         if (data.isStale) {
-          console.warn(chalk.yellow('\n⚠ Aggiornamento dal sito ufficiale non riuscito: sono stati usati i dati in cache.\n'));
-          process.exitCode = 1;
+          console.warn(chalk.yellow('\n⚠ Aggiornamento dal sito ufficiale non riuscito: sono stati usati i dati in cache.'));
+          console.warn(chalk.gray(`  Motivo: ${data.staleReason || 'non registrato'}`));
+          if (data.staleCause === 'regression') {
+            console.warn(chalk.red('\n✖ I dati scaricati sarebbero in regressione: la cache buona è stata conservata.'));
+            console.warn(chalk.gray('  Se il calo è reale rilancia con --accept-regression.\n'));
+            process.exitCode = EXIT_REGRESSION;
+          } else {
+            console.warn('');
+            process.exitCode = 1;
+          }
         } else {
           console.log(chalk.bold.green('\n✔ Aggiornamento completato con successo!\n'));
         }
@@ -478,14 +555,17 @@ program
     startServer(port);
   });
 
-// Se nessun comando viene passato
-if (!process.argv.slice(2).length) {
+/**
+ * Messaggio di benvenuto stampato solo quando la CLI viene eseguita senza
+ * argomenti. Sta in una funzione (e non a livello di modulo) perché
+ * l'import del file da parte dei test non deve stampare nulla.
+ */
+function printWelcome() {
   console.log(chalk.bold.green('\n⚽ Benvenuto nel Tool di Scraping Calendari Calcio Toscana!'));
   console.log(chalk.white('Campionati supportati:'));
   console.log('  1. ' + chalk.cyan('promozione-c') + ' : Promozione Toscana - Girone C');
   console.log('  2. ' + chalk.cyan('seconda-i') + '    : Seconda Categoria Toscana - Girone I');
   console.log('  3. ' + chalk.cyan('terza-arezzo') + ' : Terza Categoria Arezzo - Girone Unico\n');
-
   console.log(chalk.bold('Esempi di utilizzo:'));
   console.log(chalk.gray('  # Visualizza il prossimo turno'));
   console.log('  node bin/cli.js next promozione-c');
@@ -508,4 +588,14 @@ if (!process.argv.slice(2).length) {
   program.help();
 }
 
-program.parse(process.argv);
+// Esegue la CLI solo quando il file è invocato direttamente: così i test
+// possono importare `summarizeScrapeOutcome` senza far partire il parser.
+if (require.main === module) {
+  if (!process.argv.slice(2).length) {
+    printWelcome();
+  } else {
+    program.parse(process.argv);
+  }
+}
+
+module.exports = { summarizeScrapeOutcome, EXIT_REGRESSION };

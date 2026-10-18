@@ -1,7 +1,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 
-const { CalendarScraper, describeRegression } = require('../src/scraper');
+const { CalendarScraper, describeRegression, describeStaleCause } = require('../src/scraper');
 const { HttpScrapeError } = require('../src/http-scraper');
 const { LEAGUES } = require('../src/config');
 const { sampleLeagueData } = require('./fixtures');
@@ -379,6 +379,44 @@ test('i dati in regressione vengono scartati e resta la cache buona', async () =
   assert.equal(calls.persisted.length, 0, 'i dati degradati non devono essere salvati');
   assert.equal(data.isStale, true, 'si ripiega sulla cache');
   assert.ok(data.standings.length > 0, 'i dati restituiti sono quelli buoni');
+});
+
+test('il fallback per regressione espone staleReason e staleCause', async () => {
+  const { scraper } = instrumentedScraper('http', () => {
+    const degraded = sampleLeagueData();
+    degraded.standings = []; // regressione: classifica più corta
+    return degraded;
+  });
+  scraper.getCachedLeague = () => ({ ...sampleLeagueData(), lastUpdated: '2026-09-30T10:00:00.000Z' });
+
+  const data = await scraper.scrapeLeague('promozione-c', { forceRefresh: true });
+
+  assert.equal(data.isStale, true);
+  assert.match(data.staleReason, /regressione/i, 'il motivo deve dire che è una regressione');
+  assert.equal(data.staleCause, 'regression', 'la causa deve essere classificata come regressione');
+});
+
+test('il fallback per WAF resta classificato come waf, non come regressione', async () => {
+  const { scraper } = instrumentedScraper('http', () => {
+    throw wafError();
+  });
+  scraper.getCachedLeague = () => ({ ...sampleLeagueData(), lastUpdated: '2026-09-30T10:00:00.000Z' });
+
+  const data = await scraper.scrapeLeague('promozione-c', { forceRefresh: true });
+
+  assert.equal(data.isStale, true);
+  assert.equal(data.staleCause, 'waf');
+  assert.match(data.staleReason, /WAF/i);
+});
+
+test('describeStaleCause riconosce regressione, WAF, rete e casi ignoti', () => {
+  assert.equal(describeStaleCause('dati in regressione per Promozione: classifica più corta'), 'regression');
+  assert.equal(describeStaleCause('WAF: HTTP 202 su https://x'), 'waf');
+  assert.equal(describeStaleCause('challenge WAF'), 'waf');
+  assert.equal(describeStaleCause('fetch failed'), 'network');
+  assert.equal(describeStaleCause('ETIMEDOUT'), 'network');
+  assert.equal(describeStaleCause('qualcosa di strano'), 'unknown');
+  assert.equal(describeStaleCause(undefined), 'unknown');
 });
 
 test('i dati sani vengono salvati normalmente', async () => {
