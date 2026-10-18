@@ -128,9 +128,31 @@ function getCurrentSeasonLabel(date = new Date()) {
   return `${prevYear}/${currentYearShort}`;
 }
 
+/**
+ * Ricava la stagione sportiva (es. "2026/27") partendo dalle partite effettive del campionato,
+ * oppure da una data specifica (fallback).
+ * Se il campionato ha partite (es. settembre 2026), la stagione viene ancorata alla data della partita
+ * anche se lastUpdated è a luglio dell'anno successivo (evitando di creare stagioni fantasma).
+ */
+function getSeasonFromLeagueData(leagueData) {
+  if (leagueData && Array.isArray(leagueData.matchDays)) {
+    for (const md of leagueData.matchDays) {
+      if (Array.isArray(md.matches)) {
+        for (const m of md.matches) {
+          if (m.date && /^\d{4}-\d{2}-\d{2}$/.test(m.date)) {
+            return getCurrentSeasonLabel(m.date);
+          }
+        }
+      }
+    }
+  }
+  return getCurrentSeasonLabel(leagueData?.lastUpdated || new Date());
+}
+
 module.exports = {
   findChrome,
   getCurrentSeasonLabel,
+  getSeasonFromLeagueData,
   ROOT_DIR,
   DATA_DIR,
   CACHE_DIR,

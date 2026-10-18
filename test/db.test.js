@@ -186,6 +186,35 @@ test('importLeagueDocument aggiorna score_updated_at solo se il punteggio cambia
   assert.equal(row3.score_updated_at, '2026-10-18T14:00:00.000Z', 'score_updated_at deve aggiornarsi quando il punteggio cambia');
 });
 
+test('getSeasonFromLeagueData ricava la stagione dalla prima data valida di partita anche d estate', () => {
+  const { getSeasonFromLeagueData } = require('../src/config');
+  // Simuliamo uno scrape del 15 luglio 2027 che contiene ancora le partite di settembre 2026
+  const data = sampleLeagueData();
+  data.lastUpdated = '2027-07-15T12:00:00.000Z';
+  data.matchDays[0].matches[0].date = '2026-09-13';
+
+  const season = getSeasonFromLeagueData(data);
+  assert.equal(season, '2026/27', 'deve ancorare la stagione alla data delle partite (2026/27) e non alla data estiva');
+});
+
+test('importLeagueDocument non aggiorna captured_at se la classifica è identica', () => {
+  const db = initDatabase(':memory:');
+  const initial = sampleLeagueData();
+  initial.lastUpdated = '2026-10-18T10:00:00.000Z';
+
+  importLeagueDocument(db, initial);
+  const row1 = db.prepare('SELECT captured_at FROM standings_snapshots LIMIT 1').get();
+  assert.equal(row1.captured_at, '2026-10-18T10:00:00.000Z');
+
+  // Re-import a parità di punti/partite
+  const unchanged = sampleLeagueData();
+  unchanged.lastUpdated = '2026-10-18T12:00:00.000Z';
+  importLeagueDocument(db, unchanged);
+
+  const row2 = db.prepare('SELECT captured_at FROM standings_snapshots LIMIT 1').get();
+  assert.equal(row2.captured_at, '2026-10-18T10:00:00.000Z', 'captured_at non deve cambiare se la classifica è identica');
+});
+
 test('parseScorer riconosce autogol con (Aut.) e minuti di recupero', () => {
   const aut = parseScorer("M. Rossi (Aut.) (15' pt)");
   assert.equal(aut.isOwnGoal, 1);

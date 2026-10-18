@@ -1,5 +1,5 @@
 const { exportSlug } = require('./exporters');
-const { getCurrentSeasonLabel } = require('./config');
+const { getCurrentSeasonLabel, getSeasonFromLeagueData } = require('./config');
 
 /**
  * Parsing di una stringa marcatore (es. "E. Focardi (27' pt)", "A. Rachidi (Rig.) (29' st)", "AUTOGOL (6' st)").
@@ -63,7 +63,7 @@ function upsertTeam(db, teamName, logoUrl = null) {
  * Inserisce o aggiorna un intero documento JSON di un campionato nel database relazionale.
  */
 function importLeagueDocument(db, leagueData, options = {}) {
-  const seasonLabel = options.seasonLabel || getCurrentSeasonLabel(leagueData.lastUpdated || new Date());
+  const seasonLabel = options.seasonLabel || getSeasonFromLeagueData(leagueData);
 
   db.exec('BEGIN TRANSACTION;');
   try {
@@ -84,7 +84,12 @@ function importLeagueDocument(db, leagueData, options = {}) {
         round_id = excluded.round_id,
         current_match_day = excluded.current_match_day,
         total_match_days = excluded.total_match_days,
-        last_updated = excluded.last_updated
+        last_updated = CASE
+          WHEN leagues.current_match_day IS NOT excluded.current_match_day
+            OR leagues.name IS NOT excluded.name
+            THEN excluded.last_updated
+          ELSE leagues.last_updated
+        END
     `).run(
       leagueData.id,
       leagueData.name,
@@ -145,7 +150,15 @@ function importLeagueDocument(db, leagueData, options = {}) {
           goals_against = excluded.goals_against,
           goal_diff = excluded.goal_diff,
           zone = excluded.zone,
-          captured_at = excluded.captured_at
+          captured_at = CASE
+            WHEN standings_snapshots.points IS NOT excluded.points
+              OR standings_snapshots.played IS NOT excluded.played
+              OR standings_snapshots.position IS NOT excluded.position
+              OR standings_snapshots.goals_for IS NOT excluded.goals_for
+              OR standings_snapshots.goals_against IS NOT excluded.goals_against
+              THEN excluded.captured_at
+            ELSE standings_snapshots.captured_at
+          END
       `).run(
         seasonId,
         dayNum,
@@ -323,11 +336,21 @@ function reconstructLeagueDocument(db, leagueId, seasonLabel = null) {
   const league = db.prepare('SELECT * FROM leagues WHERE id = ?').get(leagueId);
   if (!league) return null;
 
-  const targetSeason = seasonLabel || getCurrentSeasonLabel(league.last_updated || new Date());
-  let season = db.prepare('SELECT id FROM seasons WHERE league_id = ? AND label = ?').get(leagueId, targetSeason);
+  let season = null;
+  if (seasonLabel) {
+    season = db.prepare('SELECT id FROM seasons WHERE league_id = ? AND label = ?').get(leagueId, seasonLabel);
+  }
   if (!season) {
-    // Fallback sulla stagione più recente disponibile
-    season = db.prepare('SELECT id FROM seasons WHERE league_id = ? ORDER BY id DESC LIMIT 1').get(leagueId);
+    // Scegli la stagione con partite associate o la più recente
+    season = db.prepare(`
+      SELECT s.id
+      FROM seasons s
+      LEFT JOIN matches m ON m.season_id = s.id
+      WHERE s.league_id = ?
+      GROUP BY s.id
+      ORDER BY COUNT(m.id) DESC, s.id DESC
+      LIMIT 1
+    `).get(leagueId);
     if (!season) return null;
   }
   const seasonId = season.id;
