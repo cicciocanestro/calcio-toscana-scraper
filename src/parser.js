@@ -199,10 +199,10 @@
           const hh = String(timeMatch[1]).padStart(2, '0');
           const mm = String(timeMatch[2]).padStart(2, '0');
           // Se la separazione era col punto (es. "25.09" o "20.09"), verifichiamo che non sia un giorno.mese:
-          // nei campionati dilettantistici le partite sono sempre nei weekend tra le 09:00 e le 21:30.
-          // Inoltre i minuti sono quasi sempre quarti d'ora (:00, :15, :30, :45).
-          // Se rawTime è solo "NN.MM" con MM <= 12, è molto probabilmente una data (giorno.mese) e non un orario.
-          const isAmbiguousDate = /^\d{1,2}\.\d{1,2}$/.test(rawTime.trim()) && Number(timeMatch[2]) <= 12;
+          // Un mese 00 non esiste (quindi 15.00 e 16.00 sono orari validi, non date).
+          // Se rawTime è "NN.MM" con MM tra 01 e 12, è molto probabilmente una data (giorno.mese) e non un orario.
+          const mmNum = Number(timeMatch[2]);
+          const isAmbiguousDate = /^\d{1,2}\.\d{1,2}$/.test(rawTime.trim()) && mmNum >= 1 && mmNum <= 12;
           if (!isAmbiguousDate) {
             time = `${hh}:${mm}`;
           }
