@@ -99,11 +99,17 @@ node bin/cli.js scrape promozione-c --refresh -i
 
 # Scraping completo di tutte le 30-34 giornate:
 node bin/cli.js scrape all --refresh
+
+# Se Tuttocampo annulla davvero una partita, il controllo anti-regressione
+# scarta i dati nuovi: per confermare che il calo è reale usa il flag dedicato
+node bin/cli.js scrape all --refresh --accept-regression
 ```
+> 🛡️ `scrape all` non si ferma più alla prima lega che fallisce: riporta in fondo quali campionati non sono stati aggiornati ed esce con codice 1. Le altre leghe vengono comunque salvate.
 
 ### 📤 Esportare i Dati (ICS, CSV, JSON)
 ```bash
 # Esporta tutti i formati nella cartella data/exports/
+# (i .csv e .ics finiscono nel repo; i .json sono ridondanti rispetto a data/cache/ e restano ignorati da Git)
 node bin/cli.js export all
 
 # Esporta il file .ics per una squadra specifica:
@@ -215,8 +221,8 @@ scraping/
 │   ├── db/
 │   │   ├── snapshot.jsonl  # Snapshot testuale del database (tracciato da Git)
 │   │   └── calcio.sqlite   # Database SQLite locale (ignorato da Git)
-│   ├── cache/            # Cache JSON per campionato
-│   └── exports/          # File esportati (.csv, .ics, .json)
+│   ├── cache/            # Cache JSON per campionato (unica copia del JSON completo)
+│   └── exports/          # File esportati (.csv, .ics)
 ├── public/               # Sorgente della dashboard web (HTML, CSS, JS, favicon)
 ├── test/                 # Suite di test automatizzati (node:test)
 ├── RASPBERRY.md          # Guida completa all'uso e gestione su Raspberry Pi

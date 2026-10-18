@@ -81,6 +81,14 @@ Tool full-stack in Node.js (CommonJS, Node >=20, testato su Node 22/24) per web 
 10. **Sicurezza Token GitHub e dismissione archivio auth.json cifrato con PIN:**  
     Rimosso il pattern insicuro di pubblicazione del token cifrato con un PIN a 4 cifre in `auth.json`. L'autorizzazione manuale via browser ora accetta direttamente il Personal Access Token inserito dall'utente e memorizzato unicamente nel `localStorage` del suo browser personale.
 
+11. **Hardening di dashboard, API e CLI (sessione corrente):**
+    - **CSP nella dashboard:** `public/index.html` dichiara una `Content-Security-Policy` (`script-src 'self'`, `connect-src 'self' https://api.github.com`) perché il PAT vive nel `localStorage`.
+    - **Validazione `matchLink`:** `safeExternalUrl()` (in `src/exporters.js` e nel frontend) accetta solo `http/https` e rifiuta gli URL con a capo, impedendo sia link `javascript:` sia iniezioni di righe negli `.ics`.
+    - **Rate limit sulle API di lettura:** `/api/leagues`, `/api/leagues/:id` e `/api/leagues/:id/scorers` passano da `apiRateLimit` (default 300 richieste/minuto per IP, configurabile con `options.apiRateLimit`).
+    - **Errori per singola lega in `scrape all`:** un campionato che fallisce non interrompe più il giro; a fine run viene stampato l'elenco dei falliti ed esce con codice 1.
+    - **Flag `--accept-regression`** (o `ACCEPT_REGRESSION=1`): consente di accettare esplicitamente un calo reale dei dati (es. partita annullata) invece di scartarlo in silenzio.
+    - **Cache HTTP rispettata:** il frontend aggiunge `?t=Date.now()` e `cache: 'no-cache'` solo dopo un aggiornamento o durante il polling, così le richieste normali possono ricevere 304.
+
 ---
 
 ## 5. Nuove Funzionalità Aggiunte
@@ -122,11 +130,11 @@ Tool full-stack in Node.js (CommonJS, Node >=20, testato su Node 22/24) per web 
 │   └── favicon.svg              # Favicon
 ├── data/
 │   ├── cache/                   # JSON grezzi scrapati per campionato
-│   ├── exports/                 # Export pregenerati (.ics, .csv, .json)
+│   ├── exports/                 # Export pregenerati (.ics, .csv) — il JSON vive solo in cache/
 │   └── db/
 │       ├── calcio.sqlite        # Database SQLite locale (ignorato da git)
 │       └── snapshot.jsonl       # Snapshot testuale tracciato da Git
-├── test/                        # 135 unit test con node:test (100% passati)
+├── test/                        # 150 unit test con node:test (100% passati)
 ├── RASPBERRY.md                 # Guida operativa Raspberry Pi SSH e comandi
 ├── README.md                    # Documentazione generale aggiornata
 ├── HANDOVER.md                  # Questo documento per agenti AI
@@ -138,7 +146,7 @@ Tool full-stack in Node.js (CommonJS, Node >=20, testato su Node 22/24) per web 
 ## 7. Stato Corrente e Comandi Utili
 - **Telemetria Benchmark su Raspberry Pi 3:**  
   Scraping completo di 94 giornate testato empiricamente via SSH: durata ~18s, CPU picco 49% (media 18%), RAM picco 428 MB (476 MB sempre liberi su 905 MB), Swap 0 MB, temperatura 50–52°C. Anche in caso di fallback forzato su Chromium la RAM non supera i 553 MB e la temperatura resta sotto i 60°C.
-- **Suite di Test:** Eseguire `npm run verify` (verifica parità asset di root con `check:pages` ed esegue i 135 test con `node --test`). Attualmente **135/135 passati**.
+- **Suite di Test:** Eseguire `npm run verify` (verifica parità asset di root con `check:pages` ed esegue i test con `node --test`). Attualmente **150/150 passati**.
 - **Working Tree Git:** Pulito, allineato su `main` con il remote `origin/main`.
 - **Come avviare lo scraping da Raspberry via SSH:**
   ```bash
