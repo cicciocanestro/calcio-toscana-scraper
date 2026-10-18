@@ -25,7 +25,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:match-promozione-c-1-Acquaviva-RescoReggello@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20260913T153000
 DTEND;TZID=Europe/Rome:20260913T171500
 SUMMARY:Acquaviva vs Resco Reggello (0-1)
@@ -40,7 +40,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-1-AGDicomano-Affrico@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20260913T153000
 DTEND;TZID=Europe/Rome:20260913T171500
 SUMMARY:AG Dicomano vs Affrico (0-3)
@@ -55,7 +55,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-1-AudaceGalluzzo-Alberoro1977@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20260913T153000
 DTEND;TZID=Europe/Rome:20260913T171500
 SUMMARY:Audace Galluzzo vs Alberoro 1977 (1-2)
@@ -71,7 +71,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-1-Casentino-Sinalunghese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20260913T153000
 DTEND;TZID=Europe/Rome:20260913T171500
 SUMMARY:Casentino vs Sinalunghese (2-3)
@@ -88,7 +88,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-1-CentroStoricoLebowski-NuovaFoiano@calciotoscana.lo
  cal
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20260913T153000
 DTEND;TZID=Europe/Rome:20260913T171500
 SUMMARY:Centro Storico Lebowski vs Nuova Foiano (0-3)
@@ -104,7 +104,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-1-CortonaCamuciaCalcio-Settignanese@calciotoscana.lo
  cal
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20260913T153000
 DTEND;TZID=Europe/Rome:20260913T171500
 SUMMARY:Cortona Camucia Calcio vs Settignanese (1-1)
@@ -120,7 +120,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-1-Cubino-Pontassieve@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20260913T153000
 DTEND;TZID=Europe/Rome:20260913T171500
 SUMMARY:Cubino vs Pontassieve (0-4)
@@ -136,7 +136,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-1-Montagnano1966-IdealClubIncisa@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20260913T153000
 DTEND;TZID=Europe/Rome:20260913T171500
 SUMMARY:Montagnano 1966 vs Ideal Club Incisa (2-0)
@@ -152,7 +152,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-2-Affrico-Acquaviva@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20260920T153000
 DTEND;TZID=Europe/Rome:20260920T171500
 SUMMARY:Affrico vs Acquaviva (1-0)
@@ -168,7 +168,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-2-Alberoro1977-CentroStoricoLebowski@calciotoscana.l
  ocal
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20260920T153000
 DTEND;TZID=Europe/Rome:20260920T171500
 SUMMARY:Alberoro 1977 vs Centro Storico Lebowski (2-0)
@@ -184,7 +184,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-2-IdealClubIncisa-AudaceGalluzzo@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20260920T153000
 DTEND;TZID=Europe/Rome:20260920T171500
 SUMMARY:Ideal Club Incisa vs Audace Galluzzo (0-2)
@@ -200,7 +200,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-2-NuovaFoiano-Cubino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20260920T153000
 DTEND;TZID=Europe/Rome:20260920T171500
 SUMMARY:Nuova Foiano vs Cubino (4-1)
@@ -216,7 +216,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-2-Pontassieve-Casentino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20260920T153000
 DTEND;TZID=Europe/Rome:20260920T171500
 SUMMARY:Pontassieve vs Casentino (0-1)
@@ -232,7 +232,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-2-RescoReggello-CortonaCamuciaCalcio@calciotoscana.l
  ocal
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20260920T153000
 DTEND;TZID=Europe/Rome:20260920T171500
 SUMMARY:Resco Reggello vs Cortona Camucia Calcio (0-0)
@@ -247,7 +247,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-2-Settignanese-Montagnano1966@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20260920T153000
 DTEND;TZID=Europe/Rome:20260920T171500
 SUMMARY:Settignanese vs Montagnano 1966 (0-2)
@@ -263,7 +263,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-2-Sinalunghese-AGDicomano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20260920T153000
 DTEND;TZID=Europe/Rome:20260920T171500
 SUMMARY:Sinalunghese vs AG Dicomano (1-0)
@@ -279,7 +279,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-3-CortonaCamuciaCalcio-Montagnano1966@calciotoscana.
  local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20260926T153000
 DTEND;TZID=Europe/Rome:20260926T171500
 SUMMARY:Cortona Camucia Calcio vs Montagnano 1966 (0-3)
@@ -295,7 +295,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-3-Acquaviva-Settignanese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20260927T153000
 DTEND;TZID=Europe/Rome:20260927T171500
 SUMMARY:Acquaviva vs Settignanese (1-0)
@@ -310,7 +310,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-3-AGDicomano-RescoReggello@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20260927T153000
 DTEND;TZID=Europe/Rome:20260927T171500
 SUMMARY:AG Dicomano vs Resco Reggello (1-0)
@@ -325,7 +325,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-3-AudaceGalluzzo-NuovaFoiano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20260927T153000
 DTEND;TZID=Europe/Rome:20260927T171500
 SUMMARY:Audace Galluzzo vs Nuova Foiano (2-1)
@@ -341,7 +341,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-3-Casentino-Affrico@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20260927T153000
 DTEND;TZID=Europe/Rome:20260927T171500
 SUMMARY:Casentino vs Affrico (1-0)
@@ -357,7 +357,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-3-CentroStoricoLebowski-Pontassieve@calciotoscana.lo
  cal
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20260927T153000
 DTEND;TZID=Europe/Rome:20260927T171500
 SUMMARY:Centro Storico Lebowski vs Pontassieve (0-2)
@@ -373,7 +373,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-3-Cubino-Sinalunghese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20260927T153000
 DTEND;TZID=Europe/Rome:20260927T171500
 SUMMARY:Cubino vs Sinalunghese (1-2)
@@ -389,7 +389,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-3-IdealClubIncisa-Alberoro1977@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20260927T153000
 DTEND;TZID=Europe/Rome:20260927T171500
 SUMMARY:Ideal Club Incisa vs Alberoro 1977 (1-2)
@@ -405,7 +405,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-4-CortonaCamuciaCalcio-Acquaviva@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261003T153000
 DTEND;TZID=Europe/Rome:20261003T171500
 SUMMARY:Cortona Camucia Calcio vs Acquaviva (4-0)
@@ -421,7 +421,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-4-Affrico-CentroStoricoLebowski@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261004T153000
 DTEND;TZID=Europe/Rome:20261004T171500
 SUMMARY:Affrico vs Centro Storico Lebowski (0-1)
@@ -436,7 +436,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-4-Montagnano1966-AGDicomano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261004T153000
 DTEND;TZID=Europe/Rome:20261004T171500
 SUMMARY:Montagnano 1966 vs AG Dicomano (2-2)
@@ -452,7 +452,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-4-NuovaFoiano-IdealClubIncisa@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261004T153000
 DTEND;TZID=Europe/Rome:20261004T171500
 SUMMARY:Nuova Foiano vs Ideal Club Incisa (2-0)
@@ -468,7 +468,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-4-Pontassieve-Alberoro1977@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261004T153000
 DTEND;TZID=Europe/Rome:20261004T171500
 SUMMARY:Pontassieve vs Alberoro 1977 (2-1)
@@ -484,7 +484,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-4-RescoReggello-Cubino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261004T153000
 DTEND;TZID=Europe/Rome:20261004T171500
 SUMMARY:Resco Reggello vs Cubino (0-1)
@@ -499,7 +499,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-4-Settignanese-Casentino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261004T153000
 DTEND;TZID=Europe/Rome:20261004T171500
 SUMMARY:Settignanese vs Casentino (0-3)
@@ -515,7 +515,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-4-Sinalunghese-AudaceGalluzzo@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261004T153000
 DTEND;TZID=Europe/Rome:20261004T171500
 SUMMARY:Sinalunghese vs Audace Galluzzo (0-1)
@@ -530,7 +530,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-5-Acquaviva-Montagnano1966@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261010T153000
 DTEND;TZID=Europe/Rome:20261010T171500
 SUMMARY:Acquaviva vs Montagnano 1966 (1-1)
@@ -546,7 +546,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-5-AGDicomano-Settignanese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261011T153000
 DTEND;TZID=Europe/Rome:20261011T171500
 SUMMARY:AG Dicomano vs Settignanese (1-1)
@@ -562,7 +562,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-5-Alberoro1977-NuovaFoiano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261011T153000
 DTEND;TZID=Europe/Rome:20261011T171500
 SUMMARY:Alberoro 1977 vs Nuova Foiano (2-2)
@@ -578,7 +578,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-5-AudaceGalluzzo-Pontassieve@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261011T153000
 DTEND;TZID=Europe/Rome:20261011T171500
 SUMMARY:Audace Galluzzo vs Pontassieve (1-0)
@@ -593,7 +593,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-5-Casentino-RescoReggello@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261011T153000
 DTEND;TZID=Europe/Rome:20261011T171500
 SUMMARY:Casentino vs Resco Reggello (2-0)
@@ -609,7 +609,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-5-CentroStoricoLebowski-Sinalunghese@calciotoscana.l
  ocal
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261011T153000
 DTEND;TZID=Europe/Rome:20261011T171500
 SUMMARY:Centro Storico Lebowski vs Sinalunghese (0-1)
@@ -625,7 +625,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-5-Cubino-Affrico@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261011T153000
 DTEND;TZID=Europe/Rome:20261011T171500
 SUMMARY:Cubino vs Affrico (0-3)
@@ -641,7 +641,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-5-IdealClubIncisa-CortonaCamuciaCalcio@calciotoscana
  .local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261011T153000
 DTEND;TZID=Europe/Rome:20261011T171500
 SUMMARY:Ideal Club Incisa vs Cortona Camucia Calcio (2-1)
@@ -658,13 +658,13 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-6-Montagnano1966-Cubino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261017T153000
 DTEND;TZID=Europe/Rome:20261017T171500
-SUMMARY:Montagnano 1966 vs Cubino
-DESCRIPTION:6° Giornata - Promozione Toscana - Girone C\nPartita in progra
- mma alle 15:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/P
- romozione/GironeC/Partita/6.4/montagnano-1966-cubino
+SUMMARY:Montagnano 1966 vs Cubino (0-0)
+DESCRIPTION:6° Giornata - Promozione Toscana - Girone C\nRisultato finale:
+  Montagnano 1966 0 - 0 Cubino\nDettagli e formazioni: https://www.tuttocam
+ po.it/Toscana/Promozione/GironeC/Partita/6.4/montagnano-1966-cubino
 LOCATION:Campo sportivo Montagnano 1966
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/6.4/montag
  nano-1966-cubino
@@ -672,13 +672,13 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-6-Sinalunghese-NuovaFoiano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261017T153000
 DTEND;TZID=Europe/Rome:20261017T171500
-SUMMARY:Sinalunghese vs Nuova Foiano
-DESCRIPTION:6° Giornata - Promozione Toscana - Girone C\nPartita in progra
- mma alle 15:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/P
- romozione/GironeC/Partita/6.8/sinalunghese-nuova-foiano
+SUMMARY:Sinalunghese vs Nuova Foiano (0-0)
+DESCRIPTION:6° Giornata - Promozione Toscana - Girone C\nRisultato finale:
+  Sinalunghese 0 - 0 Nuova Foiano\nDettagli e formazioni: https://www.tutto
+ campo.it/Toscana/Promozione/GironeC/Partita/6.8/sinalunghese-nuova-foiano
 LOCATION:Campo sportivo Sinalunghese
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/6.8/sinalu
  nghese-nuova-foiano
@@ -686,13 +686,14 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-6-Acquaviva-AGDicomano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261018T153000
 DTEND;TZID=Europe/Rome:20261018T171500
-SUMMARY:Acquaviva vs AG Dicomano
-DESCRIPTION:6° Giornata - Promozione Toscana - Girone C\nPartita in progra
- mma alle 15:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/P
- romozione/GironeC/Partita/6.1/acquaviva-ag-dicomano
+SUMMARY:Acquaviva vs AG Dicomano (2-0)
+DESCRIPTION:6° Giornata - Promozione Toscana - Girone C\nRisultato finale:
+  Acquaviva 2 - 0 AG Dicomano\nMarcatori Acquaviva: L. Cacciamano (Rig.)\, 
+ C. Koffi\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/Promozi
+ one/GironeC/Partita/6.1/acquaviva-ag-dicomano
 LOCATION:Campo sportivo Acquaviva
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/6.1/acquav
  iva-ag-dicomano
@@ -700,13 +701,13 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-6-Affrico-Alberoro1977@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261018T153000
 DTEND;TZID=Europe/Rome:20261018T171500
-SUMMARY:Affrico vs Alberoro 1977
-DESCRIPTION:6° Giornata - Promozione Toscana - Girone C\nPartita in progra
- mma alle 15:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/P
- romozione/GironeC/Partita/6.2/affrico-alberoro-1977
+SUMMARY:Affrico vs Alberoro 1977 (0-0)
+DESCRIPTION:6° Giornata - Promozione Toscana - Girone C\nRisultato finale:
+  Affrico 0 - 0 Alberoro 1977\nDettagli e formazioni: https://www.tuttocamp
+ o.it/Toscana/Promozione/GironeC/Partita/6.2/affrico-alberoro-1977
 LOCATION:Campo sportivo Affrico
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/6.2/affric
  o-alberoro-1977
@@ -714,13 +715,14 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-6-CortonaCamuciaCalcio-Casentino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261018T153000
 DTEND;TZID=Europe/Rome:20261018T171500
-SUMMARY:Cortona Camucia Calcio vs Casentino
-DESCRIPTION:6° Giornata - Promozione Toscana - Girone C\nPartita in progra
- mma alle 15:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/P
- romozione/GironeC/Partita/6.3/cortona-camucia-calcio-casentino
+SUMMARY:Cortona Camucia Calcio vs Casentino (0-0)
+DESCRIPTION:6° Giornata - Promozione Toscana - Girone C\nRisultato finale:
+  Cortona Camucia Calcio 0 - 0 Casentino\nDettagli e formazioni: https://ww
+ w.tuttocampo.it/Toscana/Promozione/GironeC/Partita/6.3/cortona-camucia-cal
+ cio-casentino
 LOCATION:Campo sportivo Cortona Camucia Calcio
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/6.3/corton
  a-camucia-calcio-casentino
@@ -728,13 +730,14 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-6-Pontassieve-IdealClubIncisa@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261018T153000
 DTEND;TZID=Europe/Rome:20261018T171500
-SUMMARY:Pontassieve vs Ideal Club Incisa
-DESCRIPTION:6° Giornata - Promozione Toscana - Girone C\nPartita in progra
- mma alle 15:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/P
- romozione/GironeC/Partita/6.5/pontassieve-ideal-club-incisa
+SUMMARY:Pontassieve vs Ideal Club Incisa (0-0)
+DESCRIPTION:6° Giornata - Promozione Toscana - Girone C\nRisultato finale:
+  Pontassieve 0 - 0 Ideal Club Incisa\nDettagli e formazioni: https://www.t
+ uttocampo.it/Toscana/Promozione/GironeC/Partita/6.5/pontassieve-ideal-club
+ -incisa
 LOCATION:Campo sportivo Pontassieve
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/6.5/pontas
  sieve-ideal-club-incisa
@@ -742,13 +745,14 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-6-RescoReggello-AudaceGalluzzo@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261018T153000
 DTEND;TZID=Europe/Rome:20261018T171500
-SUMMARY:Resco Reggello vs Audace Galluzzo
-DESCRIPTION:6° Giornata - Promozione Toscana - Girone C\nPartita in progra
- mma alle 15:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/P
- romozione/GironeC/Partita/6.6/resco-reggello-audace-galluzzo
+SUMMARY:Resco Reggello vs Audace Galluzzo (0-0)
+DESCRIPTION:6° Giornata - Promozione Toscana - Girone C\nRisultato finale:
+  Resco Reggello 0 - 0 Audace Galluzzo\nDettagli e formazioni: https://www.
+ tuttocampo.it/Toscana/Promozione/GironeC/Partita/6.6/resco-reggello-audace
+ -galluzzo
 LOCATION:Campo sportivo Resco Reggello
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/6.6/resco-
  reggello-audace-galluzzo
@@ -757,13 +761,15 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-6-Settignanese-CentroStoricoLebowski@calciotoscana.l
  ocal
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261018T153000
 DTEND;TZID=Europe/Rome:20261018T171500
-SUMMARY:Settignanese vs Centro Storico Lebowski
-DESCRIPTION:6° Giornata - Promozione Toscana - Girone C\nPartita in progra
- mma alle 15:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/P
- romozione/GironeC/Partita/6.7/settignanese-centro-storico-lebowski
+SUMMARY:Settignanese vs Centro Storico Lebowski (1-1)
+DESCRIPTION:6° Giornata - Promozione Toscana - Girone C\nRisultato finale:
+  Settignanese 1 - 1 Centro Storico Lebowski\nMarcatori Settignanese: A. Ci
+ ancaleoni\nMarcatori Centro Storico Lebowski: L. Calbi\nDettagli e formazi
+ oni: https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/6.7/sett
+ ignanese-centro-storico-lebowski
 LOCATION:Campo sportivo Settignanese
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/6.7/settig
  nanese-centro-storico-lebowski
@@ -772,7 +778,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-7-AGDicomano-CortonaCamuciaCalcio@calciotoscana.loca
  l
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
 SUMMARY:AG Dicomano vs Cortona Camucia Calcio
@@ -786,7 +792,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-7-Alberoro1977-Sinalunghese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
 SUMMARY:Alberoro 1977 vs Sinalunghese
@@ -800,7 +806,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-7-AudaceGalluzzo-Affrico@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
 SUMMARY:Audace Galluzzo vs Affrico
@@ -814,7 +820,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-7-Casentino-Montagnano1966@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
 SUMMARY:Casentino vs Montagnano 1966
@@ -829,7 +835,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-7-CentroStoricoLebowski-RescoReggello@calciotoscana.
  local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
 SUMMARY:Centro Storico Lebowski vs Resco Reggello
@@ -843,7 +849,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-7-Cubino-Settignanese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
 SUMMARY:Cubino vs Settignanese
@@ -857,7 +863,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-7-IdealClubIncisa-Acquaviva@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
 SUMMARY:Ideal Club Incisa vs Acquaviva
@@ -871,7 +877,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-7-NuovaFoiano-Pontassieve@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
 SUMMARY:Nuova Foiano vs Pontassieve
@@ -885,7 +891,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-8-Acquaviva-Cubino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
 SUMMARY:Acquaviva vs Cubino
@@ -899,7 +905,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-8-Affrico-Pontassieve@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
 SUMMARY:Affrico vs Pontassieve
@@ -913,7 +919,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-8-AGDicomano-Casentino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
 SUMMARY:AG Dicomano vs Casentino
@@ -928,7 +934,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-8-CortonaCamuciaCalcio-CentroStoricoLebowski@calciot
  oscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
 SUMMARY:Cortona Camucia Calcio vs Centro Storico Lebowski
@@ -943,7 +949,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-8-Montagnano1966-AudaceGalluzzo@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
 SUMMARY:Montagnano 1966 vs Audace Galluzzo
@@ -957,7 +963,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-8-RescoReggello-NuovaFoiano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
 SUMMARY:Resco Reggello vs Nuova Foiano
@@ -971,7 +977,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-8-Settignanese-Alberoro1977@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
 SUMMARY:Settignanese vs Alberoro 1977
@@ -985,7 +991,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-8-Sinalunghese-IdealClubIncisa@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
 SUMMARY:Sinalunghese vs Ideal Club Incisa
@@ -999,7 +1005,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-9-Alberoro1977-RescoReggello@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
 SUMMARY:Alberoro 1977 vs Resco Reggello
@@ -1013,7 +1019,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-9-AudaceGalluzzo-Settignanese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
 SUMMARY:Audace Galluzzo vs Settignanese
@@ -1027,7 +1033,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-9-Casentino-Acquaviva@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
 SUMMARY:Casentino vs Acquaviva
@@ -1042,7 +1048,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-9-CentroStoricoLebowski-Montagnano1966@calciotoscana
  .local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
 SUMMARY:Centro Storico Lebowski vs Montagnano 1966
@@ -1056,7 +1062,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-9-Cubino-CortonaCamuciaCalcio@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
 SUMMARY:Cubino vs Cortona Camucia Calcio
@@ -1070,7 +1076,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-9-IdealClubIncisa-AGDicomano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
 SUMMARY:Ideal Club Incisa vs AG Dicomano
@@ -1084,7 +1090,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-9-NuovaFoiano-Affrico@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
 SUMMARY:Nuova Foiano vs Affrico
@@ -1098,7 +1104,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-9-Pontassieve-Sinalunghese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
 SUMMARY:Pontassieve vs Sinalunghese
@@ -1112,7 +1118,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-10-Acquaviva-AudaceGalluzzo@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
 SUMMARY:Acquaviva vs Audace Galluzzo
@@ -1126,7 +1132,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-10-Affrico-IdealClubIncisa@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
 SUMMARY:Affrico vs Ideal Club Incisa
@@ -1141,7 +1147,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-10-AGDicomano-CentroStoricoLebowski@calciotoscana.lo
  cal
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
 SUMMARY:AG Dicomano vs Centro Storico Lebowski
@@ -1155,7 +1161,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-10-Casentino-Cubino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
 SUMMARY:Casentino vs Cubino
@@ -1170,7 +1176,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-10-CortonaCamuciaCalcio-Alberoro1977@calciotoscana.l
  ocal
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
 SUMMARY:Cortona Camucia Calcio vs Alberoro 1977
@@ -1184,7 +1190,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-10-Montagnano1966-NuovaFoiano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
 SUMMARY:Montagnano 1966 vs Nuova Foiano
@@ -1198,7 +1204,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-10-RescoReggello-Sinalunghese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
 SUMMARY:Resco Reggello vs Sinalunghese
@@ -1212,7 +1218,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-10-Settignanese-Pontassieve@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
 SUMMARY:Settignanese vs Pontassieve
@@ -1226,7 +1232,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-11-Alberoro1977-Montagnano1966@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
 SUMMARY:Alberoro 1977 vs Montagnano 1966
@@ -1241,7 +1247,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-11-AudaceGalluzzo-CortonaCamuciaCalcio@calciotoscana
  .local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
 SUMMARY:Audace Galluzzo vs Cortona Camucia Calcio
@@ -1256,7 +1262,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-11-CentroStoricoLebowski-Acquaviva@calciotoscana.loc
  al
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
 SUMMARY:Centro Storico Lebowski vs Acquaviva
@@ -1270,7 +1276,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-11-Cubino-AGDicomano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
 SUMMARY:Cubino vs AG Dicomano
@@ -1284,7 +1290,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-11-IdealClubIncisa-Casentino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
 SUMMARY:Ideal Club Incisa vs Casentino
@@ -1298,7 +1304,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-11-NuovaFoiano-Settignanese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
 SUMMARY:Nuova Foiano vs Settignanese
@@ -1312,7 +1318,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-11-Pontassieve-RescoReggello@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
 SUMMARY:Pontassieve vs Resco Reggello
@@ -1326,7 +1332,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-11-Sinalunghese-Affrico@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
 SUMMARY:Sinalunghese vs Affrico
@@ -1340,7 +1346,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-12-Acquaviva-NuovaFoiano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261129T143000
 DTEND;TZID=Europe/Rome:20261129T161500
 SUMMARY:Acquaviva vs Nuova Foiano
@@ -1354,7 +1360,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-12-AGDicomano-Alberoro1977@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261129T143000
 DTEND;TZID=Europe/Rome:20261129T161500
 SUMMARY:AG Dicomano vs Alberoro 1977
@@ -1368,7 +1374,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-12-Casentino-AudaceGalluzzo@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261129T143000
 DTEND;TZID=Europe/Rome:20261129T161500
 SUMMARY:Casentino vs Audace Galluzzo
@@ -1383,7 +1389,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-12-CortonaCamuciaCalcio-Pontassieve@calciotoscana.lo
  cal
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261129T143000
 DTEND;TZID=Europe/Rome:20261129T161500
 SUMMARY:Cortona Camucia Calcio vs Pontassieve
@@ -1397,7 +1403,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-12-Cubino-CentroStoricoLebowski@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261129T143000
 DTEND;TZID=Europe/Rome:20261129T161500
 SUMMARY:Cubino vs Centro Storico Lebowski
@@ -1411,7 +1417,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-12-Montagnano1966-Sinalunghese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261129T143000
 DTEND;TZID=Europe/Rome:20261129T161500
 SUMMARY:Montagnano 1966 vs Sinalunghese
@@ -1425,7 +1431,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-12-RescoReggello-IdealClubIncisa@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261129T143000
 DTEND;TZID=Europe/Rome:20261129T161500
 SUMMARY:Resco Reggello vs Ideal Club Incisa
@@ -1439,7 +1445,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-12-Settignanese-Affrico@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261129T143000
 DTEND;TZID=Europe/Rome:20261129T161500
 SUMMARY:Settignanese vs Affrico
@@ -1453,7 +1459,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-13-Affrico-RescoReggello@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261206T143000
 DTEND;TZID=Europe/Rome:20261206T161500
 SUMMARY:Affrico vs Resco Reggello
@@ -1467,7 +1473,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-13-Alberoro1977-Acquaviva@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261206T143000
 DTEND;TZID=Europe/Rome:20261206T161500
 SUMMARY:Alberoro 1977 vs Acquaviva
@@ -1481,7 +1487,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-13-AudaceGalluzzo-AGDicomano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261206T143000
 DTEND;TZID=Europe/Rome:20261206T161500
 SUMMARY:Audace Galluzzo vs AG Dicomano
@@ -1496,7 +1502,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-13-CentroStoricoLebowski-Casentino@calciotoscana.loc
  al
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261206T143000
 DTEND;TZID=Europe/Rome:20261206T161500
 SUMMARY:Centro Storico Lebowski vs Casentino
@@ -1510,7 +1516,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-13-IdealClubIncisa-Cubino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261206T143000
 DTEND;TZID=Europe/Rome:20261206T161500
 SUMMARY:Ideal Club Incisa vs Cubino
@@ -1525,7 +1531,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-13-NuovaFoiano-CortonaCamuciaCalcio@calciotoscana.lo
  cal
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261206T143000
 DTEND;TZID=Europe/Rome:20261206T161500
 SUMMARY:Nuova Foiano vs Cortona Camucia Calcio
@@ -1539,7 +1545,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-13-Pontassieve-Montagnano1966@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261206T143000
 DTEND;TZID=Europe/Rome:20261206T161500
 SUMMARY:Pontassieve vs Montagnano 1966
@@ -1553,7 +1559,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-13-Sinalunghese-Settignanese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261206T143000
 DTEND;TZID=Europe/Rome:20261206T161500
 SUMMARY:Sinalunghese vs Settignanese
@@ -1567,7 +1573,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-14-Acquaviva-Sinalunghese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261213T143000
 DTEND;TZID=Europe/Rome:20261213T161500
 SUMMARY:Acquaviva vs Sinalunghese
@@ -1581,7 +1587,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-14-AGDicomano-Pontassieve@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261213T143000
 DTEND;TZID=Europe/Rome:20261213T161500
 SUMMARY:AG Dicomano vs Pontassieve
@@ -1595,7 +1601,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-14-Casentino-NuovaFoiano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261213T143000
 DTEND;TZID=Europe/Rome:20261213T161500
 SUMMARY:Casentino vs Nuova Foiano
@@ -1610,7 +1616,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-14-CentroStoricoLebowski-AudaceGalluzzo@calciotoscan
  a.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261213T143000
 DTEND;TZID=Europe/Rome:20261213T161500
 SUMMARY:Centro Storico Lebowski vs Audace Galluzzo
@@ -1624,7 +1630,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-14-CortonaCamuciaCalcio-Affrico@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261213T143000
 DTEND;TZID=Europe/Rome:20261213T161500
 SUMMARY:Cortona Camucia Calcio vs Affrico
@@ -1638,7 +1644,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-14-Cubino-Alberoro1977@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261213T143000
 DTEND;TZID=Europe/Rome:20261213T161500
 SUMMARY:Cubino vs Alberoro 1977
@@ -1652,7 +1658,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-14-Montagnano1966-RescoReggello@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261213T143000
 DTEND;TZID=Europe/Rome:20261213T161500
 SUMMARY:Montagnano 1966 vs Resco Reggello
@@ -1666,7 +1672,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-14-Settignanese-IdealClubIncisa@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261213T143000
 DTEND;TZID=Europe/Rome:20261213T161500
 SUMMARY:Settignanese vs Ideal Club Incisa
@@ -1680,7 +1686,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-15-Affrico-Montagnano1966@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261220T143000
 DTEND;TZID=Europe/Rome:20261220T161500
 SUMMARY:Affrico vs Montagnano 1966
@@ -1694,7 +1700,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-15-Alberoro1977-Casentino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261220T143000
 DTEND;TZID=Europe/Rome:20261220T161500
 SUMMARY:Alberoro 1977 vs Casentino
@@ -1708,7 +1714,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-15-AudaceGalluzzo-Cubino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261220T143000
 DTEND;TZID=Europe/Rome:20261220T161500
 SUMMARY:Audace Galluzzo vs Cubino
@@ -1723,7 +1729,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-15-IdealClubIncisa-CentroStoricoLebowski@calciotosca
  na.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261220T143000
 DTEND;TZID=Europe/Rome:20261220T161500
 SUMMARY:Ideal Club Incisa vs Centro Storico Lebowski
@@ -1737,7 +1743,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-15-NuovaFoiano-AGDicomano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261220T143000
 DTEND;TZID=Europe/Rome:20261220T161500
 SUMMARY:Nuova Foiano vs AG Dicomano
@@ -1751,7 +1757,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-15-Pontassieve-Acquaviva@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261220T143000
 DTEND;TZID=Europe/Rome:20261220T161500
 SUMMARY:Pontassieve vs Acquaviva
@@ -1765,7 +1771,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-15-RescoReggello-Settignanese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261220T143000
 DTEND;TZID=Europe/Rome:20261220T161500
 SUMMARY:Resco Reggello vs Settignanese
@@ -1780,7 +1786,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-15-Sinalunghese-CortonaCamuciaCalcio@calciotoscana.l
  ocal
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20261220T143000
 DTEND;TZID=Europe/Rome:20261220T161500
 SUMMARY:Sinalunghese vs Cortona Camucia Calcio
@@ -1794,7 +1800,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-16-Affrico-AGDicomano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270103T143000
 DTEND;TZID=Europe/Rome:20270103T161500
 SUMMARY:Affrico vs AG Dicomano
@@ -1808,7 +1814,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-16-Alberoro1977-AudaceGalluzzo@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270103T143000
 DTEND;TZID=Europe/Rome:20270103T161500
 SUMMARY:Alberoro 1977 vs Audace Galluzzo
@@ -1823,7 +1829,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-16-IdealClubIncisa-Montagnano1966@calciotoscana.loca
  l
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270103T143000
 DTEND;TZID=Europe/Rome:20270103T161500
 SUMMARY:Ideal Club Incisa vs Montagnano 1966
@@ -1838,7 +1844,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-16-NuovaFoiano-CentroStoricoLebowski@calciotoscana.l
  ocal
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270103T143000
 DTEND;TZID=Europe/Rome:20270103T161500
 SUMMARY:Nuova Foiano vs Centro Storico Lebowski
@@ -1852,7 +1858,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-16-Pontassieve-Cubino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270103T143000
 DTEND;TZID=Europe/Rome:20270103T161500
 SUMMARY:Pontassieve vs Cubino
@@ -1866,7 +1872,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-16-RescoReggello-Acquaviva@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270103T143000
 DTEND;TZID=Europe/Rome:20270103T161500
 SUMMARY:Resco Reggello vs Acquaviva
@@ -1881,7 +1887,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-16-Settignanese-CortonaCamuciaCalcio@calciotoscana.l
  ocal
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270103T143000
 DTEND;TZID=Europe/Rome:20270103T161500
 SUMMARY:Settignanese vs Cortona Camucia Calcio
@@ -1895,7 +1901,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-16-Sinalunghese-Casentino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270103T143000
 DTEND;TZID=Europe/Rome:20270103T161500
 SUMMARY:Sinalunghese vs Casentino
@@ -1909,7 +1915,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-17-Acquaviva-Affrico@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270110T143000
 DTEND;TZID=Europe/Rome:20270110T161500
 SUMMARY:Acquaviva vs Affrico
@@ -1923,7 +1929,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-17-AGDicomano-Sinalunghese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270110T143000
 DTEND;TZID=Europe/Rome:20270110T161500
 SUMMARY:AG Dicomano vs Sinalunghese
@@ -1938,7 +1944,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-17-AudaceGalluzzo-IdealClubIncisa@calciotoscana.loca
  l
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270110T143000
 DTEND;TZID=Europe/Rome:20270110T161500
 SUMMARY:Audace Galluzzo vs Ideal Club Incisa
@@ -1952,7 +1958,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-17-Casentino-Pontassieve@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270110T143000
 DTEND;TZID=Europe/Rome:20270110T161500
 SUMMARY:Casentino vs Pontassieve
@@ -1967,7 +1973,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-17-CentroStoricoLebowski-Alberoro1977@calciotoscana.
  local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270110T143000
 DTEND;TZID=Europe/Rome:20270110T161500
 SUMMARY:Centro Storico Lebowski vs Alberoro 1977
@@ -1982,7 +1988,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-17-CortonaCamuciaCalcio-RescoReggello@calciotoscana.
  local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270110T143000
 DTEND;TZID=Europe/Rome:20270110T161500
 SUMMARY:Cortona Camucia Calcio vs Resco Reggello
@@ -1996,7 +2002,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-17-Cubino-NuovaFoiano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270110T143000
 DTEND;TZID=Europe/Rome:20270110T161500
 SUMMARY:Cubino vs Nuova Foiano
@@ -2010,7 +2016,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-17-Montagnano1966-Settignanese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270110T143000
 DTEND;TZID=Europe/Rome:20270110T161500
 SUMMARY:Montagnano 1966 vs Settignanese
@@ -2024,7 +2030,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-18-Affrico-Casentino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270117T150000
 DTEND;TZID=Europe/Rome:20270117T164500
 SUMMARY:Affrico vs Casentino
@@ -2038,7 +2044,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-18-Alberoro1977-IdealClubIncisa@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270117T150000
 DTEND;TZID=Europe/Rome:20270117T164500
 SUMMARY:Alberoro 1977 vs Ideal Club Incisa
@@ -2053,7 +2059,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-18-Montagnano1966-CortonaCamuciaCalcio@calciotoscana
  .local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270117T150000
 DTEND;TZID=Europe/Rome:20270117T164500
 SUMMARY:Montagnano 1966 vs Cortona Camucia Calcio
@@ -2067,7 +2073,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-18-NuovaFoiano-AudaceGalluzzo@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270117T150000
 DTEND;TZID=Europe/Rome:20270117T164500
 SUMMARY:Nuova Foiano vs Audace Galluzzo
@@ -2082,7 +2088,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-18-Pontassieve-CentroStoricoLebowski@calciotoscana.l
  ocal
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270117T150000
 DTEND;TZID=Europe/Rome:20270117T164500
 SUMMARY:Pontassieve vs Centro Storico Lebowski
@@ -2096,7 +2102,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-18-RescoReggello-AGDicomano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270117T150000
 DTEND;TZID=Europe/Rome:20270117T164500
 SUMMARY:Resco Reggello vs AG Dicomano
@@ -2110,7 +2116,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-18-Settignanese-Acquaviva@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270117T150000
 DTEND;TZID=Europe/Rome:20270117T164500
 SUMMARY:Settignanese vs Acquaviva
@@ -2124,7 +2130,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-18-Sinalunghese-Cubino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270117T150000
 DTEND;TZID=Europe/Rome:20270117T164500
 SUMMARY:Sinalunghese vs Cubino
@@ -2139,7 +2145,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-19-Acquaviva-CortonaCamuciaCalcio@calciotoscana.loca
  l
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270124T150000
 DTEND;TZID=Europe/Rome:20270124T164500
 SUMMARY:Acquaviva vs Cortona Camucia Calcio
@@ -2153,7 +2159,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-19-AGDicomano-Montagnano1966@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270124T150000
 DTEND;TZID=Europe/Rome:20270124T164500
 SUMMARY:AG Dicomano vs Montagnano 1966
@@ -2167,7 +2173,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-19-Alberoro1977-Pontassieve@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270124T150000
 DTEND;TZID=Europe/Rome:20270124T164500
 SUMMARY:Alberoro 1977 vs Pontassieve
@@ -2181,7 +2187,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-19-AudaceGalluzzo-Sinalunghese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270124T150000
 DTEND;TZID=Europe/Rome:20270124T164500
 SUMMARY:Audace Galluzzo vs Sinalunghese
@@ -2195,7 +2201,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-19-Casentino-Settignanese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270124T150000
 DTEND;TZID=Europe/Rome:20270124T164500
 SUMMARY:Casentino vs Settignanese
@@ -2209,7 +2215,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-19-CentroStoricoLebowski-Affrico@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270124T150000
 DTEND;TZID=Europe/Rome:20270124T164500
 SUMMARY:Centro Storico Lebowski vs Affrico
@@ -2223,7 +2229,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-19-Cubino-RescoReggello@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270124T150000
 DTEND;TZID=Europe/Rome:20270124T164500
 SUMMARY:Cubino vs Resco Reggello
@@ -2237,7 +2243,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-19-IdealClubIncisa-NuovaFoiano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270124T150000
 DTEND;TZID=Europe/Rome:20270124T164500
 SUMMARY:Ideal Club Incisa vs Nuova Foiano
@@ -2251,7 +2257,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-20-Affrico-Cubino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270131T150000
 DTEND;TZID=Europe/Rome:20270131T164500
 SUMMARY:Affrico vs Cubino
@@ -2266,7 +2272,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-20-CortonaCamuciaCalcio-IdealClubIncisa@calciotoscan
  a.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270131T150000
 DTEND;TZID=Europe/Rome:20270131T164500
 SUMMARY:Cortona Camucia Calcio vs Ideal Club Incisa
@@ -2280,7 +2286,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-20-Montagnano1966-Acquaviva@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270131T150000
 DTEND;TZID=Europe/Rome:20270131T164500
 SUMMARY:Montagnano 1966 vs Acquaviva
@@ -2294,7 +2300,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-20-NuovaFoiano-Alberoro1977@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270131T150000
 DTEND;TZID=Europe/Rome:20270131T164500
 SUMMARY:Nuova Foiano vs Alberoro 1977
@@ -2308,7 +2314,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-20-Pontassieve-AudaceGalluzzo@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270131T150000
 DTEND;TZID=Europe/Rome:20270131T164500
 SUMMARY:Pontassieve vs Audace Galluzzo
@@ -2322,7 +2328,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-20-RescoReggello-Casentino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270131T150000
 DTEND;TZID=Europe/Rome:20270131T164500
 SUMMARY:Resco Reggello vs Casentino
@@ -2336,7 +2342,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-20-Settignanese-AGDicomano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270131T150000
 DTEND;TZID=Europe/Rome:20270131T164500
 SUMMARY:Settignanese vs AG Dicomano
@@ -2351,7 +2357,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-20-Sinalunghese-CentroStoricoLebowski@calciotoscana.
  local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270131T150000
 DTEND;TZID=Europe/Rome:20270131T164500
 SUMMARY:Sinalunghese vs Centro Storico Lebowski
@@ -2365,7 +2371,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-21-AGDicomano-Acquaviva@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270207T150000
 DTEND;TZID=Europe/Rome:20270207T164500
 SUMMARY:AG Dicomano vs Acquaviva
@@ -2379,7 +2385,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-21-Alberoro1977-Affrico@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270207T150000
 DTEND;TZID=Europe/Rome:20270207T164500
 SUMMARY:Alberoro 1977 vs Affrico
@@ -2393,7 +2399,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-21-AudaceGalluzzo-RescoReggello@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270207T150000
 DTEND;TZID=Europe/Rome:20270207T164500
 SUMMARY:Audace Galluzzo vs Resco Reggello
@@ -2408,7 +2414,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-21-Casentino-CortonaCamuciaCalcio@calciotoscana.loca
  l
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270207T150000
 DTEND;TZID=Europe/Rome:20270207T164500
 SUMMARY:Casentino vs Cortona Camucia Calcio
@@ -2423,7 +2429,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-21-CentroStoricoLebowski-Settignanese@calciotoscana.
  local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270207T150000
 DTEND;TZID=Europe/Rome:20270207T164500
 SUMMARY:Centro Storico Lebowski vs Settignanese
@@ -2437,7 +2443,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-21-Cubino-Montagnano1966@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270207T150000
 DTEND;TZID=Europe/Rome:20270207T164500
 SUMMARY:Cubino vs Montagnano 1966
@@ -2451,7 +2457,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-21-IdealClubIncisa-Pontassieve@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270207T150000
 DTEND;TZID=Europe/Rome:20270207T164500
 SUMMARY:Ideal Club Incisa vs Pontassieve
@@ -2465,7 +2471,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-21-NuovaFoiano-Sinalunghese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270207T150000
 DTEND;TZID=Europe/Rome:20270207T164500
 SUMMARY:Nuova Foiano vs Sinalunghese
@@ -2479,7 +2485,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-22-Acquaviva-IdealClubIncisa@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270214T150000
 DTEND;TZID=Europe/Rome:20270214T164500
 SUMMARY:Acquaviva vs Ideal Club Incisa
@@ -2493,7 +2499,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-22-Affrico-AudaceGalluzzo@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270214T150000
 DTEND;TZID=Europe/Rome:20270214T164500
 SUMMARY:Affrico vs Audace Galluzzo
@@ -2508,7 +2514,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-22-CortonaCamuciaCalcio-AGDicomano@calciotoscana.loc
  al
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270214T150000
 DTEND;TZID=Europe/Rome:20270214T164500
 SUMMARY:Cortona Camucia Calcio vs AG Dicomano
@@ -2522,7 +2528,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-22-Montagnano1966-Casentino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270214T150000
 DTEND;TZID=Europe/Rome:20270214T164500
 SUMMARY:Montagnano 1966 vs Casentino
@@ -2536,7 +2542,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-22-Pontassieve-NuovaFoiano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270214T150000
 DTEND;TZID=Europe/Rome:20270214T164500
 SUMMARY:Pontassieve vs Nuova Foiano
@@ -2551,7 +2557,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-22-RescoReggello-CentroStoricoLebowski@calciotoscana
  .local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270214T150000
 DTEND;TZID=Europe/Rome:20270214T164500
 SUMMARY:Resco Reggello vs Centro Storico Lebowski
@@ -2565,7 +2571,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-22-Settignanese-Cubino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270214T150000
 DTEND;TZID=Europe/Rome:20270214T164500
 SUMMARY:Settignanese vs Cubino
@@ -2579,7 +2585,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-22-Sinalunghese-Alberoro1977@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270214T150000
 DTEND;TZID=Europe/Rome:20270214T164500
 SUMMARY:Sinalunghese vs Alberoro 1977
@@ -2593,7 +2599,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-23-Alberoro1977-Settignanese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270221T150000
 DTEND;TZID=Europe/Rome:20270221T164500
 SUMMARY:Alberoro 1977 vs Settignanese
@@ -2607,7 +2613,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-23-AudaceGalluzzo-Montagnano1966@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270221T150000
 DTEND;TZID=Europe/Rome:20270221T164500
 SUMMARY:Audace Galluzzo vs Montagnano 1966
@@ -2621,7 +2627,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-23-Casentino-AGDicomano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270221T150000
 DTEND;TZID=Europe/Rome:20270221T164500
 SUMMARY:Casentino vs AG Dicomano
@@ -2636,7 +2642,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-23-CentroStoricoLebowski-CortonaCamuciaCalcio@calcio
  toscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270221T150000
 DTEND;TZID=Europe/Rome:20270221T164500
 SUMMARY:Centro Storico Lebowski vs Cortona Camucia Calcio
@@ -2651,7 +2657,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-23-Cubino-Acquaviva@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270221T150000
 DTEND;TZID=Europe/Rome:20270221T164500
 SUMMARY:Cubino vs Acquaviva
@@ -2665,7 +2671,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-23-IdealClubIncisa-Sinalunghese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270221T150000
 DTEND;TZID=Europe/Rome:20270221T164500
 SUMMARY:Ideal Club Incisa vs Sinalunghese
@@ -2679,7 +2685,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-23-NuovaFoiano-RescoReggello@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270221T150000
 DTEND;TZID=Europe/Rome:20270221T164500
 SUMMARY:Nuova Foiano vs Resco Reggello
@@ -2693,7 +2699,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-23-Pontassieve-Affrico@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270221T150000
 DTEND;TZID=Europe/Rome:20270221T164500
 SUMMARY:Pontassieve vs Affrico
@@ -2707,7 +2713,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-24-Acquaviva-Casentino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270228T150000
 DTEND;TZID=Europe/Rome:20270228T164500
 SUMMARY:Acquaviva vs Casentino
@@ -2721,7 +2727,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-24-Affrico-NuovaFoiano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270228T150000
 DTEND;TZID=Europe/Rome:20270228T164500
 SUMMARY:Affrico vs Nuova Foiano
@@ -2735,7 +2741,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-24-AGDicomano-IdealClubIncisa@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270228T150000
 DTEND;TZID=Europe/Rome:20270228T164500
 SUMMARY:AG Dicomano vs Ideal Club Incisa
@@ -2749,7 +2755,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-24-CortonaCamuciaCalcio-Cubino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270228T150000
 DTEND;TZID=Europe/Rome:20270228T164500
 SUMMARY:Cortona Camucia Calcio vs Cubino
@@ -2764,7 +2770,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-24-Montagnano1966-CentroStoricoLebowski@calciotoscan
  a.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270228T150000
 DTEND;TZID=Europe/Rome:20270228T164500
 SUMMARY:Montagnano 1966 vs Centro Storico Lebowski
@@ -2778,7 +2784,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-24-RescoReggello-Alberoro1977@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270228T150000
 DTEND;TZID=Europe/Rome:20270228T164500
 SUMMARY:Resco Reggello vs Alberoro 1977
@@ -2792,7 +2798,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-24-Settignanese-AudaceGalluzzo@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270228T150000
 DTEND;TZID=Europe/Rome:20270228T164500
 SUMMARY:Settignanese vs Audace Galluzzo
@@ -2806,7 +2812,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-24-Sinalunghese-Pontassieve@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270228T150000
 DTEND;TZID=Europe/Rome:20270228T164500
 SUMMARY:Sinalunghese vs Pontassieve
@@ -2821,7 +2827,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-25-Alberoro1977-CortonaCamuciaCalcio@calciotoscana.l
  ocal
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270307T150000
 DTEND;TZID=Europe/Rome:20270307T164500
 SUMMARY:Alberoro 1977 vs Cortona Camucia Calcio
@@ -2835,7 +2841,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-25-AudaceGalluzzo-Acquaviva@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270307T150000
 DTEND;TZID=Europe/Rome:20270307T164500
 SUMMARY:Audace Galluzzo vs Acquaviva
@@ -2850,7 +2856,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-25-CentroStoricoLebowski-AGDicomano@calciotoscana.lo
  cal
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270307T150000
 DTEND;TZID=Europe/Rome:20270307T164500
 SUMMARY:Centro Storico Lebowski vs AG Dicomano
@@ -2864,7 +2870,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-25-Cubino-Casentino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270307T150000
 DTEND;TZID=Europe/Rome:20270307T164500
 SUMMARY:Cubino vs Casentino
@@ -2878,7 +2884,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-25-IdealClubIncisa-Affrico@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270307T150000
 DTEND;TZID=Europe/Rome:20270307T164500
 SUMMARY:Ideal Club Incisa vs Affrico
@@ -2892,7 +2898,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-25-NuovaFoiano-Montagnano1966@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270307T150000
 DTEND;TZID=Europe/Rome:20270307T164500
 SUMMARY:Nuova Foiano vs Montagnano 1966
@@ -2906,7 +2912,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-25-Pontassieve-Settignanese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270307T150000
 DTEND;TZID=Europe/Rome:20270307T164500
 SUMMARY:Pontassieve vs Settignanese
@@ -2920,7 +2926,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-25-Sinalunghese-RescoReggello@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270307T150000
 DTEND;TZID=Europe/Rome:20270307T164500
 SUMMARY:Sinalunghese vs Resco Reggello
@@ -2935,7 +2941,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-26-Acquaviva-CentroStoricoLebowski@calciotoscana.loc
  al
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270314T150000
 DTEND;TZID=Europe/Rome:20270314T164500
 SUMMARY:Acquaviva vs Centro Storico Lebowski
@@ -2949,7 +2955,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-26-Affrico-Sinalunghese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270314T150000
 DTEND;TZID=Europe/Rome:20270314T164500
 SUMMARY:Affrico vs Sinalunghese
@@ -2963,7 +2969,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-26-AGDicomano-Cubino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270314T150000
 DTEND;TZID=Europe/Rome:20270314T164500
 SUMMARY:AG Dicomano vs Cubino
@@ -2977,7 +2983,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-26-Casentino-IdealClubIncisa@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270314T150000
 DTEND;TZID=Europe/Rome:20270314T164500
 SUMMARY:Casentino vs Ideal Club Incisa
@@ -2992,7 +2998,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-26-CortonaCamuciaCalcio-AudaceGalluzzo@calciotoscana
  .local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270314T150000
 DTEND;TZID=Europe/Rome:20270314T164500
 SUMMARY:Cortona Camucia Calcio vs Audace Galluzzo
@@ -3006,7 +3012,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-26-Montagnano1966-Alberoro1977@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270314T150000
 DTEND;TZID=Europe/Rome:20270314T164500
 SUMMARY:Montagnano 1966 vs Alberoro 1977
@@ -3020,7 +3026,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-26-RescoReggello-Pontassieve@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270314T150000
 DTEND;TZID=Europe/Rome:20270314T164500
 SUMMARY:Resco Reggello vs Pontassieve
@@ -3034,7 +3040,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-26-Settignanese-NuovaFoiano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270314T150000
 DTEND;TZID=Europe/Rome:20270314T164500
 SUMMARY:Settignanese vs Nuova Foiano
@@ -3048,7 +3054,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-27-Affrico-Settignanese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270404T153000
 DTEND;TZID=Europe/Rome:20270404T171500
 SUMMARY:Affrico vs Settignanese
@@ -3062,7 +3068,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-27-Alberoro1977-AGDicomano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270404T153000
 DTEND;TZID=Europe/Rome:20270404T171500
 SUMMARY:Alberoro 1977 vs AG Dicomano
@@ -3076,7 +3082,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-27-AudaceGalluzzo-Casentino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270404T153000
 DTEND;TZID=Europe/Rome:20270404T171500
 SUMMARY:Audace Galluzzo vs Casentino
@@ -3090,7 +3096,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-27-CentroStoricoLebowski-Cubino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270404T153000
 DTEND;TZID=Europe/Rome:20270404T171500
 SUMMARY:Centro Storico Lebowski vs Cubino
@@ -3104,7 +3110,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-27-IdealClubIncisa-RescoReggello@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270404T153000
 DTEND;TZID=Europe/Rome:20270404T171500
 SUMMARY:Ideal Club Incisa vs Resco Reggello
@@ -3118,7 +3124,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-27-NuovaFoiano-Acquaviva@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270404T153000
 DTEND;TZID=Europe/Rome:20270404T171500
 SUMMARY:Nuova Foiano vs Acquaviva
@@ -3133,7 +3139,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-27-Pontassieve-CortonaCamuciaCalcio@calciotoscana.lo
  cal
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270404T153000
 DTEND;TZID=Europe/Rome:20270404T171500
 SUMMARY:Pontassieve vs Cortona Camucia Calcio
@@ -3147,7 +3153,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-27-Sinalunghese-Montagnano1966@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270404T153000
 DTEND;TZID=Europe/Rome:20270404T171500
 SUMMARY:Sinalunghese vs Montagnano 1966
@@ -3161,7 +3167,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-28-Acquaviva-Alberoro1977@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270411T153000
 DTEND;TZID=Europe/Rome:20270411T171500
 SUMMARY:Acquaviva vs Alberoro 1977
@@ -3175,7 +3181,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-28-AGDicomano-AudaceGalluzzo@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270411T153000
 DTEND;TZID=Europe/Rome:20270411T171500
 SUMMARY:AG Dicomano vs Audace Galluzzo
@@ -3190,7 +3196,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-28-Casentino-CentroStoricoLebowski@calciotoscana.loc
  al
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270411T153000
 DTEND;TZID=Europe/Rome:20270411T171500
 SUMMARY:Casentino vs Centro Storico Lebowski
@@ -3205,7 +3211,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-28-CortonaCamuciaCalcio-NuovaFoiano@calciotoscana.lo
  cal
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270411T153000
 DTEND;TZID=Europe/Rome:20270411T171500
 SUMMARY:Cortona Camucia Calcio vs Nuova Foiano
@@ -3219,7 +3225,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-28-Cubino-IdealClubIncisa@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270411T153000
 DTEND;TZID=Europe/Rome:20270411T171500
 SUMMARY:Cubino vs Ideal Club Incisa
@@ -3233,7 +3239,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-28-Montagnano1966-Pontassieve@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270411T153000
 DTEND;TZID=Europe/Rome:20270411T171500
 SUMMARY:Montagnano 1966 vs Pontassieve
@@ -3247,7 +3253,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-28-RescoReggello-Affrico@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270411T153000
 DTEND;TZID=Europe/Rome:20270411T171500
 SUMMARY:Resco Reggello vs Affrico
@@ -3261,7 +3267,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-28-Settignanese-Sinalunghese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270411T153000
 DTEND;TZID=Europe/Rome:20270411T171500
 SUMMARY:Settignanese vs Sinalunghese
@@ -3275,7 +3281,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-29-Affrico-CortonaCamuciaCalcio@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270418T160000
 DTEND;TZID=Europe/Rome:20270418T174500
 SUMMARY:Affrico vs Cortona Camucia Calcio
@@ -3289,7 +3295,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-29-Alberoro1977-Cubino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270418T160000
 DTEND;TZID=Europe/Rome:20270418T174500
 SUMMARY:Alberoro 1977 vs Cubino
@@ -3304,7 +3310,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-29-AudaceGalluzzo-CentroStoricoLebowski@calciotoscan
  a.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270418T160000
 DTEND;TZID=Europe/Rome:20270418T174500
 SUMMARY:Audace Galluzzo vs Centro Storico Lebowski
@@ -3318,7 +3324,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-29-IdealClubIncisa-Settignanese@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270418T160000
 DTEND;TZID=Europe/Rome:20270418T174500
 SUMMARY:Ideal Club Incisa vs Settignanese
@@ -3332,7 +3338,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-29-NuovaFoiano-Casentino@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270418T160000
 DTEND;TZID=Europe/Rome:20270418T174500
 SUMMARY:Nuova Foiano vs Casentino
@@ -3346,7 +3352,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-29-Pontassieve-AGDicomano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270418T160000
 DTEND;TZID=Europe/Rome:20270418T174500
 SUMMARY:Pontassieve vs AG Dicomano
@@ -3360,7 +3366,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-29-RescoReggello-Montagnano1966@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270418T160000
 DTEND;TZID=Europe/Rome:20270418T174500
 SUMMARY:Resco Reggello vs Montagnano 1966
@@ -3374,7 +3380,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-29-Sinalunghese-Acquaviva@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270418T160000
 DTEND;TZID=Europe/Rome:20270418T174500
 SUMMARY:Sinalunghese vs Acquaviva
@@ -3388,7 +3394,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-30-Acquaviva-Pontassieve@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270425T160000
 DTEND;TZID=Europe/Rome:20270425T174500
 SUMMARY:Acquaviva vs Pontassieve
@@ -3402,7 +3408,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-30-AGDicomano-NuovaFoiano@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270425T160000
 DTEND;TZID=Europe/Rome:20270425T174500
 SUMMARY:AG Dicomano vs Nuova Foiano
@@ -3416,7 +3422,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-30-Casentino-Alberoro1977@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270425T160000
 DTEND;TZID=Europe/Rome:20270425T174500
 SUMMARY:Casentino vs Alberoro 1977
@@ -3431,7 +3437,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-30-CentroStoricoLebowski-IdealClubIncisa@calciotosca
  na.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270425T160000
 DTEND;TZID=Europe/Rome:20270425T174500
 SUMMARY:Centro Storico Lebowski vs Ideal Club Incisa
@@ -3446,7 +3452,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-30-CortonaCamuciaCalcio-Sinalunghese@calciotoscana.l
  ocal
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270425T160000
 DTEND;TZID=Europe/Rome:20270425T174500
 SUMMARY:Cortona Camucia Calcio vs Sinalunghese
@@ -3460,7 +3466,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-30-Cubino-AudaceGalluzzo@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270425T160000
 DTEND;TZID=Europe/Rome:20270425T174500
 SUMMARY:Cubino vs Audace Galluzzo
@@ -3474,7 +3480,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-30-Montagnano1966-Affrico@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270425T160000
 DTEND;TZID=Europe/Rome:20270425T174500
 SUMMARY:Montagnano 1966 vs Affrico
@@ -3488,7 +3494,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-30-Settignanese-RescoReggello@calciotoscana.local
-DTSTAMP:20261015T215839Z
+DTSTAMP:20261018T141215Z
 DTSTART;TZID=Europe/Rome:20270425T160000
 DTEND;TZID=Europe/Rome:20270425T174500
 SUMMARY:Settignanese vs Resco Reggello
