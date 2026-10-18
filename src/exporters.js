@@ -294,7 +294,9 @@ function buildIcs(leagueData, options = {}) {
     ? `${options.team} - ${leagueData.shortName || leagueData.name}`
     : `${leagueData.name} - Calendario`;
 
-  const nowIcs = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+  const defaultStamp = leagueData.lastUpdated
+    ? new Date(leagueData.lastUpdated).toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z'
+    : '20260901T000000Z';
 
   const lines = [
     'BEGIN:VCALENDAR',
@@ -341,9 +343,15 @@ function buildIcs(leagueData, options = {}) {
         descParts.push(`Dettagli e formazioni: ${m.matchLink}`);
       }
 
+      // DTSTAMP deterministico: usiamo la data della partita o lastUpdated del campionato
+      // per evitare che una build a parità di dati modifichi centinaia di righe nei diff git
+      const matchStamp = m.date
+        ? `${m.date.replace(/-/g, '')}T${(m.time || DEFAULT_MATCH_TIME).replace(/:/g, '')}00Z`
+        : defaultStamp;
+
       lines.push('BEGIN:VEVENT');
       lines.push(`UID:${uid}`);
-      lines.push(`DTSTAMP:${nowIcs}`);
+      lines.push(`DTSTAMP:${matchStamp}`);
       lines.push(times.dtStart);
       lines.push(times.dtEnd);
       lines.push(`SUMMARY:${escapeIcsText(summary)}`);

@@ -1295,7 +1295,9 @@ function icsStatus(m) {
 }
 
 function generateClientIcs(data, options = {}) {
-  const now = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+  const defaultStamp = data.lastUpdated
+    ? new Date(data.lastUpdated).toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z'
+    : '20260901T000000Z';
   const calName = options.team
     ? `${options.team} - ${data.shortName || data.name}`
     : `${data.name} - Calendario`;
@@ -1342,9 +1344,13 @@ function generateClientIcs(data, options = {}) {
         descParts.push(`Dettagli e formazioni: ${m.matchLink}`);
       }
 
+      const matchStamp = m.date
+        ? `${m.date.replace(/-/g, '')}T${(m.time || '15:30').replace(/:/g, '')}00Z`
+        : defaultStamp;
+
       lines.push('BEGIN:VEVENT');
       lines.push(`UID:${uid}`);
-      lines.push(`DTSTAMP:${now}`);
+      lines.push(`DTSTAMP:${matchStamp}`);
       lines.push(times.start);
       lines.push(times.end);
       lines.push(`SUMMARY:${escapeIcsText(summary)}`);

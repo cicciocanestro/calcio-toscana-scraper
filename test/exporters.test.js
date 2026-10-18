@@ -108,6 +108,14 @@ test('buildCsv restituisce la stringa con BOM senza scrivere nulla', () => {
   assert.equal(filtered.trim().split('\r\n').length, 2);
 });
 
+test('buildIcs produce un output deterministico per gli stessi dati (DTSTAMP stabile)', () => {
+  const data = sampleLeagueData();
+  const ics1 = buildIcs(data);
+  const ics2 = buildIcs(data);
+  assert.equal(ics1, ics2, 'due generazioni degli stessi dati devono produrre lo stesso identico output');
+  assert.match(ics1, /DTSTAMP:20260920T150000Z/);
+});
+
 test('buildIcs rispetta i limiti di riga della RFC 5545', () => {
   const ics = buildIcs(sampleLeagueData());
 
