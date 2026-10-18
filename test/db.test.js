@@ -215,6 +215,51 @@ test('importLeagueDocument non aggiorna captured_at se la classifica è identica
   assert.equal(row2.captured_at, '2026-10-18T10:00:00.000Z', 'captured_at non deve cambiare se la classifica è identica');
 });
 
+test('reconstructLeagueDocument sceglie la stagione is_current anche se ha meno partite', () => {
+  const db = initDatabase(':memory:');
+  const dOld = sampleLeagueData();
+  // Simula vecchia stagione con 2 partite
+  importLeagueDocument(db, dOld, { seasonLabel: '2025/26' });
+
+  // Simula nuova stagione is_current con 1 sola partita
+  const dNew = sampleLeagueData();
+  dNew.matchDays[0].matches = [dNew.matchDays[0].matches[0]];
+  importLeagueDocument(db, dNew, { seasonLabel: '2026/27' });
+
+  const reconstructed = reconstructLeagueDocument(db, 'promozione-c');
+  assert.equal(reconstructed.matchDays[0].matches.length, 1, 'deve ricostruire la stagione is_current (2026/27) e non la vecchia anche se ha meno partite');
+});
+
+test('dumpSnapshot aggiorna exported_at solo se i dati nel dump sono effettivamente cambiati', () => {
+  const db = initDatabase(':memory:');
+  const initial = sampleLeagueData();
+  importLeagueDocument(db, initial);
+
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dump-snapshot-exported-'));
+  const snapFile = path.join(tempDir, 'test-snap.jsonl');
+
+  try {
+    dumpSnapshot(db, snapFile);
+    const firstLine1 = fs.readFileSync(snapFile, 'utf-8').split('\n')[0];
+    const exp1 = JSON.parse(firstLine1).exported_at;
+
+    // Secondo dump a parità di dati nel DB
+    dumpSnapshot(db, snapFile);
+    const firstLine2 = fs.readFileSync(snapFile, 'utf-8').split('\n')[0];
+    const exp2 = JSON.parse(firstLine2).exported_at;
+    assert.equal(exp2, exp1, 'exported_at deve rimanere invariato se i dati non sono cambiati');
+
+    // Modifica dati nel DB
+    db.prepare('UPDATE leagues SET name = ? WHERE id = ?').run('Nuovo Nome', 'promozione-c');
+    dumpSnapshot(db, snapFile);
+    const firstLine3 = fs.readFileSync(snapFile, 'utf-8').split('\n')[0];
+    const exp3 = JSON.parse(firstLine3).exported_at;
+    assert.notEqual(exp3, exp1, 'exported_at deve aggiornarsi quando il database cambia');
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+});
+
 test('parseScorer riconosce autogol con (Aut.) e minuti di recupero', () => {
   const aut = parseScorer("M. Rossi (Aut.) (15' pt)");
   assert.equal(aut.isOwnGoal, 1);

@@ -341,14 +341,14 @@ function reconstructLeagueDocument(db, leagueId, seasonLabel = null) {
     season = db.prepare('SELECT id FROM seasons WHERE league_id = ? AND label = ?').get(leagueId, seasonLabel);
   }
   if (!season) {
-    // Scegli la stagione con partite associate o la più recente
+    // Scegli la stagione attiva corrente con partite, oppure la stagione con partite, oppure la più recente
     season = db.prepare(`
       SELECT s.id
       FROM seasons s
       LEFT JOIN matches m ON m.season_id = s.id
       WHERE s.league_id = ?
       GROUP BY s.id
-      ORDER BY COUNT(m.id) DESC, s.id DESC
+      ORDER BY (s.is_current = 1 AND COUNT(m.id) > 0) DESC, COUNT(m.id) DESC, s.id DESC
       LIMIT 1
     `).get(leagueId);
     if (!season) return null;
