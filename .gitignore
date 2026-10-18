@@ -20,3 +20,7 @@ data/db/*.sqlite-shm
 
 # Evita duplicazione tra data/cache e data/exports per i file JSON completi
 data/exports/*.json
+
+# File temporanei generati da scritture atomiche o processi interrotti
+*.tmp
+**/*.tmp
