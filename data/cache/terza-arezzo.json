@@ -10,19 +10,19 @@
   "roundID": "TO.3.A.AR",
   "currentMatchDay": 5,
   "totalMatchDays": 34,
-  "lastUpdated": "2026-10-18T15:15:14.431Z",
+  "lastUpdated": "2026-10-18T17:23:16.812Z",
   "standings": [
     {
       "position": 1,
       "team": "Badia a Roti Calcio",
-      "points": 15,
+      "points": 13,
       "played": 5,
-      "won": 5,
-      "drawn": 0,
+      "won": 4,
+      "drawn": 1,
       "lost": 0,
       "goalsFor": 14,
-      "goalsAgainst": 5,
-      "goalDiff": 9,
+      "goalsAgainst": 6,
+      "goalDiff": 8,
       "zone": "promotion"
     },
     {
@@ -33,8 +33,8 @@
       "won": 3,
       "drawn": 2,
       "lost": 0,
-      "goalsFor": 8,
-      "goalsAgainst": 3,
+      "goalsFor": 9,
+      "goalsAgainst": 4,
       "goalDiff": 5,
       "zone": "playoff"
     },
@@ -137,9 +137,9 @@
       "won": 2,
       "drawn": 1,
       "lost": 2,
-      "goalsFor": 8,
+      "goalsFor": 9,
       "goalsAgainst": 10,
-      "goalDiff": -2,
+      "goalDiff": -1,
       "zone": "normal"
     },
     {
@@ -163,8 +163,8 @@
       "won": 1,
       "drawn": 2,
       "lost": 2,
-      "goalsFor": 6,
-      "goalsAgainst": 9,
+      "goalsFor": 7,
+      "goalsAgainst": 10,
       "goalDiff": -3,
       "zone": "normal"
     },
@@ -203,8 +203,8 @@
       "drawn": 1,
       "lost": 3,
       "goalsFor": 5,
-      "goalsAgainst": 9,
-      "goalDiff": -4,
+      "goalsAgainst": 10,
+      "goalDiff": -5,
       "zone": "normal"
     },
     {
@@ -223,14 +223,14 @@
     {
       "position": 17,
       "team": "Colonna Indicatore",
-      "points": 1,
+      "points": 2,
       "played": 5,
       "won": 0,
-      "drawn": 1,
-      "lost": 4,
-      "goalsFor": 3,
+      "drawn": 2,
+      "lost": 3,
+      "goalsFor": 4,
       "goalsAgainst": 8,
-      "goalDiff": -5,
+      "goalDiff": -4,
       "zone": "normal"
     },
     {
@@ -1074,14 +1074,16 @@
         {
           "homeTeam": "Colonna Indicatore",
           "awayTeam": "Badia a Roti Calcio",
-          "homeScore": 0,
+          "homeScore": 1,
           "awayScore": 1,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-18",
           "time": "15:30",
           "dateTime": "2026-10-18T15:30:00",
-          "homeScorers": [],
+          "homeScorers": [
+            "J. Acquisti"
+          ],
           "awayScorers": [
             "G. Manalli"
           ],
@@ -1092,17 +1094,21 @@
         {
           "homeTeam": "Lorese Calcio",
           "awayTeam": "Montecchio",
-          "homeScore": 1,
-          "awayScore": 1,
+          "homeScore": 2,
+          "awayScore": 2,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-18",
           "time": "15:30",
           "dateTime": "2026-10-18T15:30:00",
           "homeScorers": [
-            "G. Cioncolini"
+            "G. Cioncolini",
+            "P. Pepi"
           ],
-          "awayScorers": [],
+          "awayScorers": [
+            "M. Fabbroni",
+            "E. Capaccioli"
+          ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1236838.png?v=2",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1285241.png?v=2",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/5.3/lorese-calcio-montecchio"
@@ -1113,14 +1119,18 @@
           "homeScore": 3,
           "awayScore": 1,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-18",
           "time": "15:30",
           "dateTime": "2026-10-18T15:30:00",
           "homeScorers": [
-            "C. Papi"
+            "C. Papi",
+            "M. Giulio",
+            "F. Niccolò"
           ],
-          "awayScorers": [],
+          "awayScorers": [
+            "T. Tanganelli"
+          ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1318775.png?v=1",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917640.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/5.4/pian-di-sc-monsigliolo"
@@ -1128,10 +1138,10 @@
         {
           "homeTeam": "San Marco La Sella",
           "awayTeam": "Atletico Valdambra",
-          "homeScore": 4,
+          "homeScore": 5,
           "awayScore": 2,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-18",
           "time": "15:30",
           "dateTime": "2026-10-18T15:30:00",
@@ -1139,9 +1149,13 @@
             "B. Tangara",
             "L. Giovacchini",
             "B. Tangara",
-            "R. Statti"
+            "R. Statti",
+            "M. Francini"
           ],
-          "awayScorers": [],
+          "awayScorers": [
+            "E. Testi",
+            "G. Destro"
+          ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/205253.png?v=1",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/68384.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/5.5/san-marco-la-sella-atletico-valdambra"
@@ -1152,7 +1166,7 @@
           "homeScore": 1,
           "awayScore": 2,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-18",
           "time": "15:30",
           "dateTime": "2026-10-18T15:30:00",
@@ -1173,7 +1187,7 @@
           "homeScore": 1,
           "awayScore": 1,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-18",
           "time": "15:30",
           "dateTime": "2026-10-18T15:30:00",

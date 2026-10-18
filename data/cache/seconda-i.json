@@ -10,7 +10,7 @@
   "roundID": "TO.2.I",
   "currentMatchDay": 5,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-10-18T15:15:07.052Z",
+  "lastUpdated": "2026-10-18T17:23:08.115Z",
   "standings": [
     {
       "position": 1,
@@ -53,6 +53,19 @@
     },
     {
       "position": 4,
+      "team": "Marino Mercato Subbiano",
+      "points": 8,
+      "played": 5,
+      "won": 2,
+      "drawn": 2,
+      "lost": 1,
+      "goalsFor": 3,
+      "goalsAgainst": 2,
+      "goalDiff": 1,
+      "zone": "playoff"
+    },
+    {
+      "position": 5,
       "team": "Poppi",
       "points": 8,
       "played": 5,
@@ -65,19 +78,6 @@
       "zone": "playoff"
     },
     {
-      "position": 5,
-      "team": "Marino Mercato Subbiano",
-      "points": 8,
-      "played": 5,
-      "won": 2,
-      "drawn": 2,
-      "lost": 1,
-      "goalsFor": 2,
-      "goalsAgainst": 2,
-      "goalDiff": 0,
-      "zone": "playoff"
-    },
-    {
       "position": 6,
       "team": "Valdichiana Calcio",
       "points": 7,
@@ -86,8 +86,8 @@
       "drawn": 4,
       "lost": 0,
       "goalsFor": 6,
-      "goalsAgainst": 4,
-      "goalDiff": 2,
+      "goalsAgainst": 5,
+      "goalDiff": 1,
       "zone": "normal"
     },
     {
@@ -176,8 +176,8 @@
       "won": 1,
       "drawn": 2,
       "lost": 2,
-      "goalsFor": 7,
-      "goalsAgainst": 10,
+      "goalsFor": 8,
+      "goalsAgainst": 11,
       "goalDiff": -3,
       "zone": "playout"
     },
@@ -189,8 +189,8 @@
       "won": 1,
       "drawn": 2,
       "lost": 2,
-      "goalsFor": 5,
-      "goalsAgainst": 9,
+      "goalsFor": 6,
+      "goalsAgainst": 10,
       "goalDiff": -4,
       "zone": "playout"
     },
@@ -883,15 +883,20 @@
         {
           "homeTeam": "Arno Castiglioni Laterina",
           "awayTeam": "Pieve al Toppo",
-          "homeScore": 1,
-          "awayScore": 0,
+          "homeScore": 2,
+          "awayScore": 1,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-18",
           "time": "15:30",
           "dateTime": "2026-10-18T15:30:00",
-          "homeScorers": [],
-          "awayScorers": [],
+          "homeScorers": [
+            "E. Sergio (22' pt)",
+            "P. Brogi (50' st)"
+          ],
+          "awayScorers": [
+            "J. Biondi (31' st)"
+          ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932216.png?v=1",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/5.1/arno-castiglioni-laterina-pieve-al-toppo"
@@ -902,7 +907,7 @@
           "homeScore": 1,
           "awayScore": 2,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-18",
           "time": "15:30",
           "dateTime": "2026-10-18T15:30:00",
@@ -923,7 +928,7 @@
           "homeScore": 3,
           "awayScore": 0,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-18",
           "time": "15:30",
           "dateTime": "2026-10-18T15:30:00",
@@ -943,13 +948,14 @@
           "homeScore": 0,
           "awayScore": 2,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-18",
           "time": "15:30",
           "dateTime": "2026-10-18T15:30:00",
           "homeScorers": [],
           "awayScorers": [
-            "J. Krasniki"
+            "J. Krasniki",
+            "P. Dumbrava"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/930655.png?v=1",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
@@ -961,7 +967,7 @@
           "homeScore": 2,
           "awayScore": 1,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-18",
           "time": "15:30",
           "dateTime": "2026-10-18T15:30:00",
@@ -982,7 +988,7 @@
           "homeScore": 1,
           "awayScore": 0,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-18",
           "time": "15:30",
           "dateTime": "2026-10-18T15:30:00",
@@ -1000,7 +1006,7 @@
           "homeScore": 0,
           "awayScore": 0,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-18",
           "time": "15:30",
           "dateTime": "2026-10-18T15:30:00",
@@ -1014,13 +1020,16 @@
           "homeTeam": "Valdichiana Calcio",
           "awayTeam": "Marino Mercato Subbiano",
           "homeScore": 2,
-          "awayScore": 0,
+          "awayScore": 1,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-18",
           "time": "15:30",
           "dateTime": "2026-10-18T15:30:00",
-          "homeScorers": [],
+          "homeScorers": [
+            "M. Tacchini",
+            "L. Paolucci"
+          ],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",

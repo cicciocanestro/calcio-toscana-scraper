@@ -26,7 +26,7 @@ END:VTIMEZONE
 BEGIN:VEVENT
 UID:match-seconda-i-1-Pratovecchio-MarinoMercatoSubbiano@calciotoscana.loca
  l
-DTSTAMP:20261018T151528Z
+DTSTAMP:20260919T153000Z
 DTSTART;TZID=Europe/Rome:20260919T153000
 DTEND;TZID=Europe/Rome:20260919T171500
 SUMMARY:Pratovecchio vs Marino Mercato Subbiano (0-1)
@@ -43,7 +43,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-1-FortisArezzo-ArnoCastiglioniLaterina@calciotoscana.lo
  cal
-DTSTAMP:20261018T151528Z
+DTSTAMP:20260920T153000Z
 DTSTART;TZID=Europe/Rome:20260920T153000
 DTEND;TZID=Europe/Rome:20260920T171500
 SUMMARY:Fortis Arezzo vs Arno Castiglioni Laterina (2-1)
@@ -59,7 +59,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-1-FrattaSantaCaterina-Fratticciola@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20260920T153000Z
 DTSTART;TZID=Europe/Rome:20260920T153000
 DTEND;TZID=Europe/Rome:20260920T171500
 SUMMARY:Fratta Santa Caterina vs Fratticciola (1-0)
@@ -74,7 +74,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-1-Guazzino-ArezzoFA@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20260920T153000Z
 DTSTART;TZID=Europe/Rome:20260920T153000
 DTEND;TZID=Europe/Rome:20260920T171500
 SUMMARY:Guazzino vs Arezzo FA (0-2)
@@ -89,7 +89,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-1-Poppi-CalcioPestello@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20260920T153000Z
 DTSTART;TZID=Europe/Rome:20260920T153000
 DTEND;TZID=Europe/Rome:20260920T171500
 SUMMARY:Poppi vs Calcio Pestello (1-0)
@@ -104,7 +104,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-1-Rassina-FulgorCastelfranco@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20260920T153000Z
 DTSTART;TZID=Europe/Rome:20260920T153000
 DTEND;TZID=Europe/Rome:20260920T171500
 SUMMARY:Rassina vs Fulgor Castelfranco (2-1)
@@ -120,7 +120,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-1-VaggioPiandisc1932-Bucine@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20260920T153000Z
 DTSTART;TZID=Europe/Rome:20260920T153000
 DTEND;TZID=Europe/Rome:20260920T171500
 SUMMARY:Vaggio Piandiscò 1932 vs Bucine (2-0)
@@ -136,7 +136,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-1-ValdichianaCalcio-PievealToppo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20260920T153000Z
 DTSTART;TZID=Europe/Rome:20260920T153000
 DTEND;TZID=Europe/Rome:20260920T171500
 SUMMARY:Valdichiana Calcio vs Pieve al Toppo (1-1)
@@ -152,7 +152,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-2-MarinoMercatoSubbiano-Poppi@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20260926T153000Z
 DTSTART;TZID=Europe/Rome:20260926T153000
 DTEND;TZID=Europe/Rome:20260926T171500
 SUMMARY:Marino Mercato Subbiano vs Poppi (0-0)
@@ -167,7 +167,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-2-ArezzoFA-FrattaSantaCaterina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20260926T190000Z
 DTSTART;TZID=Europe/Rome:20260926T190000
 DTEND;TZID=Europe/Rome:20260926T204500
 SUMMARY:Arezzo FA vs Fratta Santa Caterina (2-1)
@@ -184,7 +184,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-2-ArnoCastiglioniLaterina-ValdichianaCalcio@calciotosca
  na.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20260927T153000Z
 DTSTART;TZID=Europe/Rome:20260927T153000
 DTEND;TZID=Europe/Rome:20260927T171500
 SUMMARY:Arno Castiglioni Laterina vs Valdichiana Calcio (2-2)
@@ -201,7 +201,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-2-Bucine-Guazzino@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20260927T153000Z
 DTSTART;TZID=Europe/Rome:20260927T153000
 DTEND;TZID=Europe/Rome:20260927T171500
 SUMMARY:Bucine vs Guazzino (1-0)
@@ -216,7 +216,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-2-CalcioPestello-VaggioPiandisc1932@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20260927T153000Z
 DTSTART;TZID=Europe/Rome:20260927T153000
 DTEND;TZID=Europe/Rome:20260927T171500
 SUMMARY:Calcio Pestello vs Vaggio Piandiscò 1932 (2-4)
@@ -234,7 +234,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-2-Fratticciola-FortisArezzo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20260927T153000Z
 DTSTART;TZID=Europe/Rome:20260927T153000
 DTEND;TZID=Europe/Rome:20260927T171500
 SUMMARY:Fratticciola vs Fortis Arezzo (0-1)
@@ -249,7 +249,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-2-FulgorCastelfranco-Pratovecchio@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20260927T153000Z
 DTSTART;TZID=Europe/Rome:20260927T153000
 DTEND;TZID=Europe/Rome:20260927T171500
 SUMMARY:Fulgor Castelfranco vs Pratovecchio (0-0)
@@ -264,7 +264,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-2-PievealToppo-Rassina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20260927T153000Z
 DTSTART;TZID=Europe/Rome:20260927T153000
 DTEND;TZID=Europe/Rome:20260927T171500
 SUMMARY:Pieve al Toppo vs Rassina (3-2)
@@ -281,7 +281,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-3-FortisArezzo-PievealToppo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261004T153000Z
 DTSTART;TZID=Europe/Rome:20261004T153000
 DTEND;TZID=Europe/Rome:20261004T171500
 SUMMARY:Fortis Arezzo vs Pieve al Toppo (1-1)
@@ -298,7 +298,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-3-Fratticciola-ArnoCastiglioniLaterina@calciotoscana.lo
  cal
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261004T153000Z
 DTSTART;TZID=Europe/Rome:20261004T153000
 DTEND;TZID=Europe/Rome:20261004T171500
 SUMMARY:Fratticciola vs Arno Castiglioni Laterina (4-1)
@@ -315,7 +315,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-3-Guazzino-FrattaSantaCaterina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261004T153000Z
 DTSTART;TZID=Europe/Rome:20261004T153000
 DTEND;TZID=Europe/Rome:20261004T171500
 SUMMARY:Guazzino vs Fratta Santa Caterina (1-0)
@@ -330,7 +330,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-3-Poppi-Bucine@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261004T153000Z
 DTSTART;TZID=Europe/Rome:20261004T153000
 DTEND;TZID=Europe/Rome:20261004T171500
 SUMMARY:Poppi vs Bucine (2-1)
@@ -345,7 +345,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-3-Pratovecchio-CalcioPestello@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261004T153000Z
 DTSTART;TZID=Europe/Rome:20261004T153000
 DTEND;TZID=Europe/Rome:20261004T171500
 SUMMARY:Pratovecchio vs Calcio Pestello (1-0)
@@ -360,7 +360,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-3-Rassina-MarinoMercatoSubbiano@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261004T153000Z
 DTSTART;TZID=Europe/Rome:20261004T153000
 DTEND;TZID=Europe/Rome:20261004T171500
 SUMMARY:Rassina vs Marino Mercato Subbiano (0-0)
@@ -375,7 +375,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-3-VaggioPiandisc1932-ArezzoFA@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261004T153000Z
 DTSTART;TZID=Europe/Rome:20261004T153000
 DTEND;TZID=Europe/Rome:20261004T171500
 SUMMARY:Vaggio Piandiscò 1932 vs Arezzo FA (1-1)
@@ -392,7 +392,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-3-ValdichianaCalcio-FulgorCastelfranco@calciotoscana.lo
  cal
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261004T153000Z
 DTSTART;TZID=Europe/Rome:20261004T153000
 DTEND;TZID=Europe/Rome:20261004T171500
 SUMMARY:Valdichiana Calcio vs Fulgor Castelfranco (1-1)
@@ -408,7 +408,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-4-PievealToppo-Fratticciola@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261010T153000Z
 DTSTART;TZID=Europe/Rome:20261010T153000
 DTEND;TZID=Europe/Rome:20261010T171500
 SUMMARY:Pieve al Toppo vs Fratticciola (0-4)
@@ -424,7 +424,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-4-ArezzoFA-Pratovecchio@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261011T153000Z
 DTSTART;TZID=Europe/Rome:20261011T153000
 DTEND;TZID=Europe/Rome:20261011T171500
 SUMMARY:Arezzo FA vs Pratovecchio (2-1)
@@ -440,7 +440,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-4-Bucine-Rassina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261011T153000Z
 DTSTART;TZID=Europe/Rome:20261011T153000
 DTEND;TZID=Europe/Rome:20261011T171500
 SUMMARY:Bucine vs Rassina (2-1)
@@ -455,7 +455,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-4-CalcioPestello-ValdichianaCalcio@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261011T153000Z
 DTSTART;TZID=Europe/Rome:20261011T153000
 DTEND;TZID=Europe/Rome:20261011T171500
 SUMMARY:Calcio Pestello vs Valdichiana Calcio (0-0)
@@ -470,7 +470,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-4-FrattaSantaCaterina-Poppi@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261011T153000Z
 DTSTART;TZID=Europe/Rome:20261011T153000
 DTEND;TZID=Europe/Rome:20261011T171500
 SUMMARY:Fratta Santa Caterina vs Poppi (1-1)
@@ -487,7 +487,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-4-FulgorCastelfranco-ArnoCastiglioniLaterina@calciotosc
  ana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261011T153000Z
 DTSTART;TZID=Europe/Rome:20261011T153000
 DTEND;TZID=Europe/Rome:20261011T171500
 SUMMARY:Fulgor Castelfranco vs Arno Castiglioni Laterina (2-2)
@@ -504,7 +504,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-4-Guazzino-VaggioPiandisc1932@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261011T153000Z
 DTSTART;TZID=Europe/Rome:20261011T153000
 DTEND;TZID=Europe/Rome:20261011T171500
 SUMMARY:Guazzino vs Vaggio Piandiscò 1932 (0-1)
@@ -521,7 +521,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-4-MarinoMercatoSubbiano-FortisArezzo@calciotoscana.loca
  l
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261011T153000Z
 DTSTART;TZID=Europe/Rome:20261011T153000
 DTEND;TZID=Europe/Rome:20261011T171500
 SUMMARY:Marino Mercato Subbiano vs Fortis Arezzo (1-0)
@@ -538,14 +538,16 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-5-ArnoCastiglioniLaterina-PievealToppo@calciotoscana.lo
  cal
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261018T153000Z
 DTSTART;TZID=Europe/Rome:20261018T153000
 DTEND;TZID=Europe/Rome:20261018T171500
-SUMMARY:Arno Castiglioni Laterina vs Pieve al Toppo (1-0)
+SUMMARY:Arno Castiglioni Laterina vs Pieve al Toppo (2-1)
 DESCRIPTION:5° Giornata - Seconda Categoria Toscana - Girone I\nRisultato 
- finale: Arno Castiglioni Laterina 1 - 0 Pieve al Toppo\nDettagli e formazi
- oni: https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/5.
- 1/arno-castiglioni-laterina-pieve-al-toppo
+ finale: Arno Castiglioni Laterina 2 - 1 Pieve al Toppo\nMarcatori Arno Cas
+ tiglioni Laterina: E. Sergio (22' pt)\, P. Brogi (50' st)\nMarcatori Pieve
+  al Toppo: J. Biondi (31' st)\nDettagli e formazioni: https://www.tuttocam
+ po.it/Toscana/SecondaCategoria/GironeI/Partita/5.1/arno-castiglioni-lateri
+ na-pieve-al-toppo
 LOCATION:Campo sportivo Arno Castiglioni Laterina
 URL:https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/5.1/
  arno-castiglioni-laterina-pieve-al-toppo
@@ -553,7 +555,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-5-FortisArezzo-FulgorCastelfranco@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261018T153000Z
 DTSTART;TZID=Europe/Rome:20261018T153000
 DTEND;TZID=Europe/Rome:20261018T171500
 SUMMARY:Fortis Arezzo vs Fulgor Castelfranco (1-2)
@@ -569,7 +571,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-5-Fratticciola-Guazzino@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261018T153000Z
 DTSTART;TZID=Europe/Rome:20261018T153000
 DTEND;TZID=Europe/Rome:20261018T171500
 SUMMARY:Fratticciola vs Guazzino (3-0)
@@ -584,14 +586,14 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-5-Poppi-ArezzoFA@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261018T153000Z
 DTSTART;TZID=Europe/Rome:20261018T153000
 DTEND;TZID=Europe/Rome:20261018T171500
 SUMMARY:Poppi vs Arezzo FA (0-2)
 DESCRIPTION:5° Giornata - Seconda Categoria Toscana - Girone I\nRisultato 
- finale: Poppi 0 - 2 Arezzo FA\nMarcatori Arezzo FA: J. Krasniki\nDettagli 
- e formazioni: https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/P
- artita/5.5/poppi-arezzo-fa
+ finale: Poppi 0 - 2 Arezzo FA\nMarcatori Arezzo FA: J. Krasniki\, P. Dumbr
+ ava\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/SecondaCateg
+ oria/GironeI/Partita/5.5/poppi-arezzo-fa
 LOCATION:Campo sportivo Poppi
 URL:https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/5.5/
  poppi-arezzo-fa
@@ -599,7 +601,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-5-Pratovecchio-Bucine@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261018T153000Z
 DTSTART;TZID=Europe/Rome:20261018T153000
 DTEND;TZID=Europe/Rome:20261018T171500
 SUMMARY:Pratovecchio vs Bucine (2-1)
@@ -615,7 +617,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-5-Rassina-CalcioPestello@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261018T153000Z
 DTSTART;TZID=Europe/Rome:20261018T153000
 DTEND;TZID=Europe/Rome:20261018T171500
 SUMMARY:Rassina vs Calcio Pestello (1-0)
@@ -631,7 +633,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-5-VaggioPiandisc1932-FrattaSantaCaterina@calciotoscana.
  local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261018T153000Z
 DTSTART;TZID=Europe/Rome:20261018T153000
 DTEND;TZID=Europe/Rome:20261018T171500
 SUMMARY:Vaggio Piandiscò 1932 vs Fratta Santa Caterina (0-0)
@@ -647,14 +649,15 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-5-ValdichianaCalcio-MarinoMercatoSubbiano@calciotoscana
  .local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261018T153000Z
 DTSTART;TZID=Europe/Rome:20261018T153000
 DTEND;TZID=Europe/Rome:20261018T171500
-SUMMARY:Valdichiana Calcio vs Marino Mercato Subbiano (2-0)
+SUMMARY:Valdichiana Calcio vs Marino Mercato Subbiano (2-1)
 DESCRIPTION:5° Giornata - Seconda Categoria Toscana - Girone I\nRisultato 
- finale: Valdichiana Calcio 2 - 0 Marino Mercato Subbiano\nDettagli e forma
- zioni: https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/
- 5.4/valdichiana-calcio-marino-mercato-subbiano
+ finale: Valdichiana Calcio 2 - 1 Marino Mercato Subbiano\nMarcatori Valdic
+ hiana Calcio: M. Tacchini\, L. Paolucci\nDettagli e formazioni: https://ww
+ w.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/5.4/valdichiana-c
+ alcio-marino-mercato-subbiano
 LOCATION:Campo sportivo Valdichiana Calcio
 URL:https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/5.4/
  valdichiana-calcio-marino-mercato-subbiano
@@ -662,7 +665,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-6-ArezzoFA-ValdichianaCalcio@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261025T143000Z
 DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
 SUMMARY:Arezzo FA vs Valdichiana Calcio
@@ -676,7 +679,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-6-Bucine-FortisArezzo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261025T143000Z
 DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
 SUMMARY:Bucine vs Fortis Arezzo
@@ -691,7 +694,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-6-CalcioPestello-ArnoCastiglioniLaterina@calciotoscana.
  local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261025T143000Z
 DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
 SUMMARY:Calcio Pestello vs Arno Castiglioni Laterina
@@ -706,7 +709,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-6-FrattaSantaCaterina-Rassina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261025T143000Z
 DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
 SUMMARY:Fratta Santa Caterina vs Rassina
@@ -720,7 +723,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-6-FulgorCastelfranco-Fratticciola@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261025T143000Z
 DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
 SUMMARY:Fulgor Castelfranco vs Fratticciola
@@ -735,7 +738,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-6-Guazzino-Pratovecchio@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261025T143000Z
 DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
 SUMMARY:Guazzino vs Pratovecchio
@@ -750,7 +753,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-6-MarinoMercatoSubbiano-PievealToppo@calciotoscana.loca
  l
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261025T143000Z
 DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
 SUMMARY:Marino Mercato Subbiano vs Pieve al Toppo
@@ -765,7 +768,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-6-VaggioPiandisc1932-Poppi@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261025T143000Z
 DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
 SUMMARY:Vaggio Piandiscò 1932 vs Poppi
@@ -780,7 +783,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-7-ArnoCastiglioniLaterina-MarinoMercatoSubbiano@calciot
  oscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261101T143000Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
 SUMMARY:Arno Castiglioni Laterina vs Marino Mercato Subbiano
@@ -795,7 +798,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-7-FortisArezzo-CalcioPestello@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261101T143000Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
 SUMMARY:Fortis Arezzo vs Calcio Pestello
@@ -809,7 +812,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-7-Fratticciola-VaggioPiandisc1932@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261101T143000Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
 SUMMARY:Fratticciola vs Vaggio Piandiscò 1932
@@ -824,7 +827,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-7-PievealToppo-FulgorCastelfranco@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261101T143000Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
 SUMMARY:Pieve al Toppo vs Fulgor Castelfranco
@@ -839,7 +842,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-7-Poppi-Guazzino@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261101T143000Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
 SUMMARY:Poppi vs Guazzino
@@ -853,7 +856,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-7-Pratovecchio-FrattaSantaCaterina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261101T143000Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
 SUMMARY:Pratovecchio vs Fratta Santa Caterina
@@ -868,7 +871,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-7-Rassina-ArezzoFA@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261101T143000Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
 SUMMARY:Rassina vs Arezzo FA
@@ -882,7 +885,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-7-ValdichianaCalcio-Bucine@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261101T143000Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
 SUMMARY:Valdichiana Calcio vs Bucine
@@ -896,7 +899,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-8-ArezzoFA-ArnoCastiglioniLaterina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261108T143000Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
 SUMMARY:Arezzo FA vs Arno Castiglioni Laterina
@@ -911,7 +914,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-8-Bucine-PievealToppo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261108T143000Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
 SUMMARY:Bucine vs Pieve al Toppo
@@ -925,7 +928,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-8-CalcioPestello-FulgorCastelfranco@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261108T143000Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
 SUMMARY:Calcio Pestello vs Fulgor Castelfranco
@@ -940,7 +943,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-8-FrattaSantaCaterina-FortisArezzo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261108T143000Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
 SUMMARY:Fratta Santa Caterina vs Fortis Arezzo
@@ -955,7 +958,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-8-Guazzino-ValdichianaCalcio@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261108T143000Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
 SUMMARY:Guazzino vs Valdichiana Calcio
@@ -970,7 +973,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-8-MarinoMercatoSubbiano-Fratticciola@calciotoscana.loca
  l
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261108T143000Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
 SUMMARY:Marino Mercato Subbiano vs Fratticciola
@@ -985,7 +988,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-8-Poppi-Pratovecchio@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261108T143000Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
 SUMMARY:Poppi vs Pratovecchio
@@ -999,7 +1002,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-8-VaggioPiandisc1932-Rassina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261108T143000Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
 SUMMARY:Vaggio Piandiscò 1932 vs Rassina
@@ -1013,7 +1016,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-9-ArnoCastiglioniLaterina-Bucine@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261115T143000Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
 SUMMARY:Arno Castiglioni Laterina vs Bucine
@@ -1028,7 +1031,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-9-FortisArezzo-ArezzoFA@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261115T143000Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
 SUMMARY:Fortis Arezzo vs Arezzo FA
@@ -1042,7 +1045,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-9-Fratticciola-Poppi@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261115T143000Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
 SUMMARY:Fratticciola vs Poppi
@@ -1057,7 +1060,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-9-FulgorCastelfranco-MarinoMercatoSubbiano@calciotoscan
  a.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261115T143000Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
 SUMMARY:Fulgor Castelfranco vs Marino Mercato Subbiano
@@ -1072,7 +1075,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-9-PievealToppo-CalcioPestello@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261115T143000Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
 SUMMARY:Pieve al Toppo vs Calcio Pestello
@@ -1086,7 +1089,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-9-Pratovecchio-VaggioPiandisc1932@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261115T143000Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
 SUMMARY:Pratovecchio vs Vaggio Piandiscò 1932
@@ -1101,7 +1104,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-9-Rassina-Guazzino@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261115T143000Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
 SUMMARY:Rassina vs Guazzino
@@ -1116,7 +1119,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-9-ValdichianaCalcio-FrattaSantaCaterina@calciotoscana.l
  ocal
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261115T143000Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
 SUMMARY:Valdichiana Calcio vs Fratta Santa Caterina
@@ -1131,7 +1134,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-10-ArezzoFA-FulgorCastelfranco@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
 SUMMARY:Arezzo FA vs Fulgor Castelfranco
@@ -1145,7 +1148,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-10-Bucine-MarinoMercatoSubbiano@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
 SUMMARY:Bucine vs Marino Mercato Subbiano
@@ -1160,7 +1163,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-10-CalcioPestello-Fratticciola@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
 SUMMARY:Calcio Pestello vs Fratticciola
@@ -1174,7 +1177,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-10-FrattaSantaCaterina-PievealToppo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
 SUMMARY:Fratta Santa Caterina vs Pieve al Toppo
@@ -1189,7 +1192,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-10-Guazzino-ArnoCastiglioniLaterina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
 SUMMARY:Guazzino vs Arno Castiglioni Laterina
@@ -1204,7 +1207,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-10-Poppi-ValdichianaCalcio@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
 SUMMARY:Poppi vs Valdichiana Calcio
@@ -1218,7 +1221,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-10-Pratovecchio-Rassina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
 SUMMARY:Pratovecchio vs Rassina
@@ -1232,7 +1235,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-10-VaggioPiandisc1932-FortisArezzo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
 SUMMARY:Vaggio Piandiscò 1932 vs Fortis Arezzo
@@ -1248,7 +1251,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-11-ArnoCastiglioniLaterina-FrattaSantaCaterina@calcioto
  scana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261129T143000Z
 DTSTART;TZID=Europe/Rome:20261129T143000
 DTEND;TZID=Europe/Rome:20261129T161500
 SUMMARY:Arno Castiglioni Laterina vs Fratta Santa Caterina
@@ -1263,7 +1266,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-11-FortisArezzo-Guazzino@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261129T143000Z
 DTSTART;TZID=Europe/Rome:20261129T143000
 DTEND;TZID=Europe/Rome:20261129T161500
 SUMMARY:Fortis Arezzo vs Guazzino
@@ -1277,7 +1280,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-11-Fratticciola-Pratovecchio@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261129T143000Z
 DTSTART;TZID=Europe/Rome:20261129T143000
 DTEND;TZID=Europe/Rome:20261129T161500
 SUMMARY:Fratticciola vs Pratovecchio
@@ -1291,7 +1294,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-11-FulgorCastelfranco-Bucine@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261129T143000Z
 DTSTART;TZID=Europe/Rome:20261129T143000
 DTEND;TZID=Europe/Rome:20261129T161500
 SUMMARY:Fulgor Castelfranco vs Bucine
@@ -1306,7 +1309,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-11-MarinoMercatoSubbiano-CalcioPestello@calciotoscana.l
  ocal
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261129T143000Z
 DTSTART;TZID=Europe/Rome:20261129T143000
 DTEND;TZID=Europe/Rome:20261129T161500
 SUMMARY:Marino Mercato Subbiano vs Calcio Pestello
@@ -1321,7 +1324,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-11-PievealToppo-ArezzoFA@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261129T143000Z
 DTSTART;TZID=Europe/Rome:20261129T143000
 DTEND;TZID=Europe/Rome:20261129T161500
 SUMMARY:Pieve al Toppo vs Arezzo FA
@@ -1335,7 +1338,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-11-Rassina-Poppi@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261129T143000Z
 DTSTART;TZID=Europe/Rome:20261129T143000
 DTEND;TZID=Europe/Rome:20261129T161500
 SUMMARY:Rassina vs Poppi
@@ -1350,7 +1353,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-11-ValdichianaCalcio-VaggioPiandisc1932@calciotoscana.l
  ocal
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261129T143000Z
 DTSTART;TZID=Europe/Rome:20261129T143000
 DTEND;TZID=Europe/Rome:20261129T161500
 SUMMARY:Valdichiana Calcio vs Vaggio Piandiscò 1932
@@ -1365,7 +1368,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-12-ArezzoFA-CalcioPestello@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261206T143000Z
 DTSTART;TZID=Europe/Rome:20261206T143000
 DTEND;TZID=Europe/Rome:20261206T161500
 SUMMARY:Arezzo FA vs Calcio Pestello
@@ -1379,7 +1382,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-12-Bucine-Fratticciola@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261206T143000Z
 DTSTART;TZID=Europe/Rome:20261206T143000
 DTEND;TZID=Europe/Rome:20261206T161500
 SUMMARY:Bucine vs Fratticciola
@@ -1394,7 +1397,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-12-FrattaSantaCaterina-MarinoMercatoSubbiano@calciotosc
  ana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261206T143000Z
 DTSTART;TZID=Europe/Rome:20261206T143000
 DTEND;TZID=Europe/Rome:20261206T161500
 SUMMARY:Fratta Santa Caterina vs Marino Mercato Subbiano
@@ -1409,7 +1412,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-12-Guazzino-FulgorCastelfranco@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261206T143000Z
 DTSTART;TZID=Europe/Rome:20261206T143000
 DTEND;TZID=Europe/Rome:20261206T161500
 SUMMARY:Guazzino vs Fulgor Castelfranco
@@ -1423,7 +1426,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-12-Poppi-ArnoCastiglioniLaterina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261206T143000Z
 DTSTART;TZID=Europe/Rome:20261206T143000
 DTEND;TZID=Europe/Rome:20261206T161500
 SUMMARY:Poppi vs Arno Castiglioni Laterina
@@ -1438,7 +1441,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-12-Pratovecchio-FortisArezzo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261206T143000Z
 DTSTART;TZID=Europe/Rome:20261206T143000
 DTEND;TZID=Europe/Rome:20261206T161500
 SUMMARY:Pratovecchio vs Fortis Arezzo
@@ -1452,7 +1455,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-12-Rassina-ValdichianaCalcio@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261206T143000Z
 DTSTART;TZID=Europe/Rome:20261206T143000
 DTEND;TZID=Europe/Rome:20261206T161500
 SUMMARY:Rassina vs Valdichiana Calcio
@@ -1466,7 +1469,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-12-VaggioPiandisc1932-PievealToppo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261206T143000Z
 DTSTART;TZID=Europe/Rome:20261206T143000
 DTEND;TZID=Europe/Rome:20261206T161500
 SUMMARY:Vaggio Piandiscò 1932 vs Pieve al Toppo
@@ -1482,7 +1485,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-13-ArnoCastiglioniLaterina-VaggioPiandisc1932@calciotos
  cana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261213T143000Z
 DTSTART;TZID=Europe/Rome:20261213T143000
 DTEND;TZID=Europe/Rome:20261213T161500
 SUMMARY:Arno Castiglioni Laterina vs Vaggio Piandiscò 1932
@@ -1497,7 +1500,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-13-CalcioPestello-Bucine@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261213T143000Z
 DTSTART;TZID=Europe/Rome:20261213T143000
 DTEND;TZID=Europe/Rome:20261213T161500
 SUMMARY:Calcio Pestello vs Bucine
@@ -1511,7 +1514,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-13-FortisArezzo-Poppi@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261213T143000Z
 DTSTART;TZID=Europe/Rome:20261213T143000
 DTEND;TZID=Europe/Rome:20261213T161500
 SUMMARY:Fortis Arezzo vs Poppi
@@ -1525,7 +1528,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-13-Fratticciola-Rassina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261213T143000Z
 DTSTART;TZID=Europe/Rome:20261213T143000
 DTEND;TZID=Europe/Rome:20261213T161500
 SUMMARY:Fratticciola vs Rassina
@@ -1540,7 +1543,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-13-FulgorCastelfranco-FrattaSantaCaterina@calciotoscana
  .local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261213T143000Z
 DTSTART;TZID=Europe/Rome:20261213T143000
 DTEND;TZID=Europe/Rome:20261213T161500
 SUMMARY:Fulgor Castelfranco vs Fratta Santa Caterina
@@ -1555,7 +1558,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-13-MarinoMercatoSubbiano-ArezzoFA@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261213T143000Z
 DTSTART;TZID=Europe/Rome:20261213T143000
 DTEND;TZID=Europe/Rome:20261213T161500
 SUMMARY:Marino Mercato Subbiano vs Arezzo FA
@@ -1570,7 +1573,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-13-PievealToppo-Guazzino@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261213T143000Z
 DTSTART;TZID=Europe/Rome:20261213T143000
 DTEND;TZID=Europe/Rome:20261213T161500
 SUMMARY:Pieve al Toppo vs Guazzino
@@ -1584,7 +1587,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-13-ValdichianaCalcio-Pratovecchio@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261213T143000Z
 DTSTART;TZID=Europe/Rome:20261213T143000
 DTEND;TZID=Europe/Rome:20261213T161500
 SUMMARY:Valdichiana Calcio vs Pratovecchio
@@ -1599,7 +1602,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-14-ArezzoFA-Fratticciola@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261220T143000Z
 DTSTART;TZID=Europe/Rome:20261220T143000
 DTEND;TZID=Europe/Rome:20261220T161500
 SUMMARY:Arezzo FA vs Fratticciola
@@ -1613,7 +1616,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-14-FrattaSantaCaterina-Bucine@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261220T143000Z
 DTSTART;TZID=Europe/Rome:20261220T143000
 DTEND;TZID=Europe/Rome:20261220T161500
 SUMMARY:Fratta Santa Caterina vs Bucine
@@ -1627,7 +1630,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-14-Guazzino-CalcioPestello@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261220T143000Z
 DTSTART;TZID=Europe/Rome:20261220T143000
 DTEND;TZID=Europe/Rome:20261220T161500
 SUMMARY:Guazzino vs Calcio Pestello
@@ -1641,7 +1644,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-14-Poppi-FulgorCastelfranco@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261220T143000Z
 DTSTART;TZID=Europe/Rome:20261220T143000
 DTEND;TZID=Europe/Rome:20261220T161500
 SUMMARY:Poppi vs Fulgor Castelfranco
@@ -1655,7 +1658,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-14-Pratovecchio-PievealToppo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261220T143000Z
 DTSTART;TZID=Europe/Rome:20261220T143000
 DTEND;TZID=Europe/Rome:20261220T161500
 SUMMARY:Pratovecchio vs Pieve al Toppo
@@ -1669,7 +1672,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-14-Rassina-ArnoCastiglioniLaterina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261220T143000Z
 DTSTART;TZID=Europe/Rome:20261220T143000
 DTEND;TZID=Europe/Rome:20261220T161500
 SUMMARY:Rassina vs Arno Castiglioni Laterina
@@ -1685,7 +1688,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-14-VaggioPiandisc1932-MarinoMercatoSubbiano@calciotosca
  na.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261220T143000Z
 DTSTART;TZID=Europe/Rome:20261220T143000
 DTEND;TZID=Europe/Rome:20261220T161500
 SUMMARY:Vaggio Piandiscò 1932 vs Marino Mercato Subbiano
@@ -1700,7 +1703,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-14-ValdichianaCalcio-FortisArezzo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20261220T143000Z
 DTSTART;TZID=Europe/Rome:20261220T143000
 DTEND;TZID=Europe/Rome:20261220T161500
 SUMMARY:Valdichiana Calcio vs Fortis Arezzo
@@ -1716,7 +1719,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-15-ArnoCastiglioniLaterina-Pratovecchio@calciotoscana.l
  ocal
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270103T143000Z
 DTSTART;TZID=Europe/Rome:20270103T143000
 DTEND;TZID=Europe/Rome:20270103T161500
 SUMMARY:Arno Castiglioni Laterina vs Pratovecchio
@@ -1731,7 +1734,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-15-Bucine-ArezzoFA@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270103T143000Z
 DTSTART;TZID=Europe/Rome:20270103T143000
 DTEND;TZID=Europe/Rome:20270103T161500
 SUMMARY:Bucine vs Arezzo FA
@@ -1746,7 +1749,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-15-CalcioPestello-FrattaSantaCaterina@calciotoscana.loc
  al
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270103T143000Z
 DTSTART;TZID=Europe/Rome:20270103T143000
 DTEND;TZID=Europe/Rome:20270103T161500
 SUMMARY:Calcio Pestello vs Fratta Santa Caterina
@@ -1761,7 +1764,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-15-FortisArezzo-Rassina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270103T143000Z
 DTSTART;TZID=Europe/Rome:20270103T143000
 DTEND;TZID=Europe/Rome:20270103T161500
 SUMMARY:Fortis Arezzo vs Rassina
@@ -1775,7 +1778,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-15-Fratticciola-ValdichianaCalcio@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270103T143000Z
 DTSTART;TZID=Europe/Rome:20270103T143000
 DTEND;TZID=Europe/Rome:20270103T161500
 SUMMARY:Fratticciola vs Valdichiana Calcio
@@ -1791,7 +1794,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-15-FulgorCastelfranco-VaggioPiandisc1932@calciotoscana.
  local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270103T143000Z
 DTSTART;TZID=Europe/Rome:20270103T143000
 DTEND;TZID=Europe/Rome:20270103T161500
 SUMMARY:Fulgor Castelfranco vs Vaggio Piandiscò 1932
@@ -1806,7 +1809,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-15-MarinoMercatoSubbiano-Guazzino@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270103T143000Z
 DTSTART;TZID=Europe/Rome:20270103T143000
 DTEND;TZID=Europe/Rome:20270103T161500
 SUMMARY:Marino Mercato Subbiano vs Guazzino
@@ -1821,7 +1824,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-15-PievealToppo-Poppi@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270103T143000Z
 DTSTART;TZID=Europe/Rome:20270103T143000
 DTEND;TZID=Europe/Rome:20270103T161500
 SUMMARY:Pieve al Toppo vs Poppi
@@ -1835,7 +1838,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-16-ArezzoFA-Guazzino@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270110T143000Z
 DTSTART;TZID=Europe/Rome:20270110T143000
 DTEND;TZID=Europe/Rome:20270110T161500
 SUMMARY:Arezzo FA vs Guazzino
@@ -1850,7 +1853,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-16-ArnoCastiglioniLaterina-FortisArezzo@calciotoscana.l
  ocal
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270110T143000Z
 DTSTART;TZID=Europe/Rome:20270110T143000
 DTEND;TZID=Europe/Rome:20270110T161500
 SUMMARY:Arno Castiglioni Laterina vs Fortis Arezzo
@@ -1865,7 +1868,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-16-Bucine-VaggioPiandisc1932@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270110T143000Z
 DTSTART;TZID=Europe/Rome:20270110T143000
 DTEND;TZID=Europe/Rome:20270110T161500
 SUMMARY:Bucine vs Vaggio Piandiscò 1932
@@ -1879,7 +1882,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-16-CalcioPestello-Poppi@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270110T143000Z
 DTSTART;TZID=Europe/Rome:20270110T143000
 DTEND;TZID=Europe/Rome:20270110T161500
 SUMMARY:Calcio Pestello vs Poppi
@@ -1893,7 +1896,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-16-Fratticciola-FrattaSantaCaterina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270110T143000Z
 DTSTART;TZID=Europe/Rome:20270110T143000
 DTEND;TZID=Europe/Rome:20270110T161500
 SUMMARY:Fratticciola vs Fratta Santa Caterina
@@ -1908,7 +1911,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-16-FulgorCastelfranco-Rassina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270110T143000Z
 DTSTART;TZID=Europe/Rome:20270110T143000
 DTEND;TZID=Europe/Rome:20270110T161500
 SUMMARY:Fulgor Castelfranco vs Rassina
@@ -1923,7 +1926,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-16-MarinoMercatoSubbiano-Pratovecchio@calciotoscana.loc
  al
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270110T143000Z
 DTSTART;TZID=Europe/Rome:20270110T143000
 DTEND;TZID=Europe/Rome:20270110T161500
 SUMMARY:Marino Mercato Subbiano vs Pratovecchio
@@ -1938,7 +1941,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-16-PievealToppo-ValdichianaCalcio@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270110T143000Z
 DTSTART;TZID=Europe/Rome:20270110T143000
 DTEND;TZID=Europe/Rome:20270110T161500
 SUMMARY:Pieve al Toppo vs Valdichiana Calcio
@@ -1953,7 +1956,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-17-FortisArezzo-Fratticciola@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270117T150000Z
 DTSTART;TZID=Europe/Rome:20270117T150000
 DTEND;TZID=Europe/Rome:20270117T164500
 SUMMARY:Fortis Arezzo vs Fratticciola
@@ -1967,7 +1970,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-17-FrattaSantaCaterina-ArezzoFA@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270117T150000Z
 DTSTART;TZID=Europe/Rome:20270117T150000
 DTEND;TZID=Europe/Rome:20270117T164500
 SUMMARY:Fratta Santa Caterina vs Arezzo FA
@@ -1982,7 +1985,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-17-Guazzino-Bucine@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270117T150000Z
 DTSTART;TZID=Europe/Rome:20270117T150000
 DTEND;TZID=Europe/Rome:20270117T164500
 SUMMARY:Guazzino vs Bucine
@@ -1996,7 +1999,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-17-Poppi-MarinoMercatoSubbiano@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270117T150000Z
 DTSTART;TZID=Europe/Rome:20270117T150000
 DTEND;TZID=Europe/Rome:20270117T164500
 SUMMARY:Poppi vs Marino Mercato Subbiano
@@ -2010,7 +2013,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-17-Pratovecchio-FulgorCastelfranco@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270117T150000Z
 DTSTART;TZID=Europe/Rome:20270117T150000
 DTEND;TZID=Europe/Rome:20270117T164500
 SUMMARY:Pratovecchio vs Fulgor Castelfranco
@@ -2025,7 +2028,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-17-Rassina-PievealToppo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270117T150000Z
 DTSTART;TZID=Europe/Rome:20270117T150000
 DTEND;TZID=Europe/Rome:20270117T164500
 SUMMARY:Rassina vs Pieve al Toppo
@@ -2040,7 +2043,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-17-VaggioPiandisc1932-CalcioPestello@calciotoscana.loca
  l
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270117T150000Z
 DTSTART;TZID=Europe/Rome:20270117T150000
 DTEND;TZID=Europe/Rome:20270117T164500
 SUMMARY:Vaggio Piandiscò 1932 vs Calcio Pestello
@@ -2056,7 +2059,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-17-ValdichianaCalcio-ArnoCastiglioniLaterina@calciotosc
  ana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270117T150000Z
 DTSTART;TZID=Europe/Rome:20270117T150000
 DTEND;TZID=Europe/Rome:20270117T164500
 SUMMARY:Valdichiana Calcio vs Arno Castiglioni Laterina
@@ -2071,7 +2074,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-18-ArezzoFA-VaggioPiandisc1932@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270124T150000Z
 DTSTART;TZID=Europe/Rome:20270124T150000
 DTEND;TZID=Europe/Rome:20270124T164500
 SUMMARY:Arezzo FA vs Vaggio Piandiscò 1932
@@ -2087,7 +2090,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-18-ArnoCastiglioniLaterina-Fratticciola@calciotoscana.l
  ocal
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270124T150000Z
 DTSTART;TZID=Europe/Rome:20270124T150000
 DTEND;TZID=Europe/Rome:20270124T164500
 SUMMARY:Arno Castiglioni Laterina vs Fratticciola
@@ -2102,7 +2105,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-18-Bucine-Poppi@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270124T150000Z
 DTSTART;TZID=Europe/Rome:20270124T150000
 DTEND;TZID=Europe/Rome:20270124T164500
 SUMMARY:Bucine vs Poppi
@@ -2116,7 +2119,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-18-CalcioPestello-Pratovecchio@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270124T150000Z
 DTSTART;TZID=Europe/Rome:20270124T150000
 DTEND;TZID=Europe/Rome:20270124T164500
 SUMMARY:Calcio Pestello vs Pratovecchio
@@ -2130,7 +2133,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-18-FrattaSantaCaterina-Guazzino@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270124T150000Z
 DTSTART;TZID=Europe/Rome:20270124T150000
 DTEND;TZID=Europe/Rome:20270124T164500
 SUMMARY:Fratta Santa Caterina vs Guazzino
@@ -2146,7 +2149,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-18-FulgorCastelfranco-ValdichianaCalcio@calciotoscana.l
  ocal
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270124T150000Z
 DTSTART;TZID=Europe/Rome:20270124T150000
 DTEND;TZID=Europe/Rome:20270124T164500
 SUMMARY:Fulgor Castelfranco vs Valdichiana Calcio
@@ -2161,7 +2164,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-18-MarinoMercatoSubbiano-Rassina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270124T150000Z
 DTSTART;TZID=Europe/Rome:20270124T150000
 DTEND;TZID=Europe/Rome:20270124T164500
 SUMMARY:Marino Mercato Subbiano vs Rassina
@@ -2176,7 +2179,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-18-PievealToppo-FortisArezzo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270124T150000Z
 DTSTART;TZID=Europe/Rome:20270124T150000
 DTEND;TZID=Europe/Rome:20270124T164500
 SUMMARY:Pieve al Toppo vs Fortis Arezzo
@@ -2191,7 +2194,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-19-ArnoCastiglioniLaterina-FulgorCastelfranco@calciotos
  cana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270131T150000Z
 DTSTART;TZID=Europe/Rome:20270131T150000
 DTEND;TZID=Europe/Rome:20270131T164500
 SUMMARY:Arno Castiglioni Laterina vs Fulgor Castelfranco
@@ -2207,7 +2210,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-19-FortisArezzo-MarinoMercatoSubbiano@calciotoscana.loc
  al
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270131T150000Z
 DTSTART;TZID=Europe/Rome:20270131T150000
 DTEND;TZID=Europe/Rome:20270131T164500
 SUMMARY:Fortis Arezzo vs Marino Mercato Subbiano
@@ -2222,7 +2225,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-19-Fratticciola-PievealToppo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270131T150000Z
 DTSTART;TZID=Europe/Rome:20270131T150000
 DTEND;TZID=Europe/Rome:20270131T164500
 SUMMARY:Fratticciola vs Pieve al Toppo
@@ -2236,7 +2239,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-19-Poppi-FrattaSantaCaterina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270131T150000Z
 DTSTART;TZID=Europe/Rome:20270131T150000
 DTEND;TZID=Europe/Rome:20270131T164500
 SUMMARY:Poppi vs Fratta Santa Caterina
@@ -2250,7 +2253,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-19-Pratovecchio-ArezzoFA@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270131T150000Z
 DTSTART;TZID=Europe/Rome:20270131T150000
 DTEND;TZID=Europe/Rome:20270131T164500
 SUMMARY:Pratovecchio vs Arezzo FA
@@ -2264,7 +2267,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-19-Rassina-Bucine@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270131T150000Z
 DTSTART;TZID=Europe/Rome:20270131T150000
 DTEND;TZID=Europe/Rome:20270131T164500
 SUMMARY:Rassina vs Bucine
@@ -2278,7 +2281,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-19-VaggioPiandisc1932-Guazzino@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270131T150000Z
 DTSTART;TZID=Europe/Rome:20270131T150000
 DTEND;TZID=Europe/Rome:20270131T164500
 SUMMARY:Vaggio Piandiscò 1932 vs Guazzino
@@ -2292,7 +2295,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-19-ValdichianaCalcio-CalcioPestello@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270131T150000Z
 DTSTART;TZID=Europe/Rome:20270131T150000
 DTEND;TZID=Europe/Rome:20270131T164500
 SUMMARY:Valdichiana Calcio vs Calcio Pestello
@@ -2307,7 +2310,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-20-ArezzoFA-Poppi@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270207T150000Z
 DTSTART;TZID=Europe/Rome:20270207T150000
 DTEND;TZID=Europe/Rome:20270207T164500
 SUMMARY:Arezzo FA vs Poppi
@@ -2321,7 +2324,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-20-Bucine-Pratovecchio@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270207T150000Z
 DTSTART;TZID=Europe/Rome:20270207T150000
 DTEND;TZID=Europe/Rome:20270207T164500
 SUMMARY:Bucine vs Pratovecchio
@@ -2335,7 +2338,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-20-CalcioPestello-Rassina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270207T150000Z
 DTSTART;TZID=Europe/Rome:20270207T150000
 DTEND;TZID=Europe/Rome:20270207T164500
 SUMMARY:Calcio Pestello vs Rassina
@@ -2350,7 +2353,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-20-FrattaSantaCaterina-VaggioPiandisc1932@calciotoscana
  .local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270207T150000Z
 DTSTART;TZID=Europe/Rome:20270207T150000
 DTEND;TZID=Europe/Rome:20270207T164500
 SUMMARY:Fratta Santa Caterina vs Vaggio Piandiscò 1932
@@ -2365,7 +2368,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-20-FulgorCastelfranco-FortisArezzo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270207T150000Z
 DTSTART;TZID=Europe/Rome:20270207T150000
 DTEND;TZID=Europe/Rome:20270207T164500
 SUMMARY:Fulgor Castelfranco vs Fortis Arezzo
@@ -2380,7 +2383,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-20-Guazzino-Fratticciola@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270207T150000Z
 DTSTART;TZID=Europe/Rome:20270207T150000
 DTEND;TZID=Europe/Rome:20270207T164500
 SUMMARY:Guazzino vs Fratticciola
@@ -2395,7 +2398,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-20-MarinoMercatoSubbiano-ValdichianaCalcio@calciotoscan
  a.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270207T150000Z
 DTSTART;TZID=Europe/Rome:20270207T150000
 DTEND;TZID=Europe/Rome:20270207T164500
 SUMMARY:Marino Mercato Subbiano vs Valdichiana Calcio
@@ -2411,7 +2414,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-20-PievealToppo-ArnoCastiglioniLaterina@calciotoscana.l
  ocal
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270207T150000Z
 DTSTART;TZID=Europe/Rome:20270207T150000
 DTEND;TZID=Europe/Rome:20270207T164500
 SUMMARY:Pieve al Toppo vs Arno Castiglioni Laterina
@@ -2427,7 +2430,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-21-ArnoCastiglioniLaterina-CalcioPestello@calciotoscana
  .local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270214T150000Z
 DTSTART;TZID=Europe/Rome:20270214T150000
 DTEND;TZID=Europe/Rome:20270214T164500
 SUMMARY:Arno Castiglioni Laterina vs Calcio Pestello
@@ -2442,7 +2445,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-21-FortisArezzo-Bucine@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270214T150000Z
 DTSTART;TZID=Europe/Rome:20270214T150000
 DTEND;TZID=Europe/Rome:20270214T164500
 SUMMARY:Fortis Arezzo vs Bucine
@@ -2456,7 +2459,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-21-Fratticciola-FulgorCastelfranco@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270214T150000Z
 DTSTART;TZID=Europe/Rome:20270214T150000
 DTEND;TZID=Europe/Rome:20270214T164500
 SUMMARY:Fratticciola vs Fulgor Castelfranco
@@ -2472,7 +2475,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-21-PievealToppo-MarinoMercatoSubbiano@calciotoscana.loc
  al
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270214T150000Z
 DTSTART;TZID=Europe/Rome:20270214T150000
 DTEND;TZID=Europe/Rome:20270214T164500
 SUMMARY:Pieve al Toppo vs Marino Mercato Subbiano
@@ -2487,7 +2490,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-21-Poppi-VaggioPiandisc1932@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270214T150000Z
 DTSTART;TZID=Europe/Rome:20270214T150000
 DTEND;TZID=Europe/Rome:20270214T164500
 SUMMARY:Poppi vs Vaggio Piandiscò 1932
@@ -2501,7 +2504,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-21-Pratovecchio-Guazzino@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270214T150000Z
 DTSTART;TZID=Europe/Rome:20270214T150000
 DTEND;TZID=Europe/Rome:20270214T164500
 SUMMARY:Pratovecchio vs Guazzino
@@ -2515,7 +2518,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-21-Rassina-FrattaSantaCaterina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270214T150000Z
 DTSTART;TZID=Europe/Rome:20270214T150000
 DTEND;TZID=Europe/Rome:20270214T164500
 SUMMARY:Rassina vs Fratta Santa Caterina
@@ -2529,7 +2532,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-21-ValdichianaCalcio-ArezzoFA@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270214T150000Z
 DTSTART;TZID=Europe/Rome:20270214T150000
 DTEND;TZID=Europe/Rome:20270214T164500
 SUMMARY:Valdichiana Calcio vs Arezzo FA
@@ -2543,7 +2546,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-22-ArezzoFA-Rassina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270221T150000Z
 DTSTART;TZID=Europe/Rome:20270221T150000
 DTEND;TZID=Europe/Rome:20270221T164500
 SUMMARY:Arezzo FA vs Rassina
@@ -2557,7 +2560,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-22-Bucine-ValdichianaCalcio@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270221T150000Z
 DTSTART;TZID=Europe/Rome:20270221T150000
 DTEND;TZID=Europe/Rome:20270221T164500
 SUMMARY:Bucine vs Valdichiana Calcio
@@ -2571,7 +2574,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-22-CalcioPestello-FortisArezzo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270221T150000Z
 DTSTART;TZID=Europe/Rome:20270221T150000
 DTEND;TZID=Europe/Rome:20270221T164500
 SUMMARY:Calcio Pestello vs Fortis Arezzo
@@ -2585,7 +2588,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-22-FrattaSantaCaterina-Pratovecchio@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270221T150000Z
 DTSTART;TZID=Europe/Rome:20270221T150000
 DTEND;TZID=Europe/Rome:20270221T164500
 SUMMARY:Fratta Santa Caterina vs Pratovecchio
@@ -2600,7 +2603,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-22-FulgorCastelfranco-PievealToppo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270221T150000Z
 DTSTART;TZID=Europe/Rome:20270221T150000
 DTEND;TZID=Europe/Rome:20270221T164500
 SUMMARY:Fulgor Castelfranco vs Pieve al Toppo
@@ -2615,7 +2618,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-22-Guazzino-Poppi@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270221T150000Z
 DTSTART;TZID=Europe/Rome:20270221T150000
 DTEND;TZID=Europe/Rome:20270221T164500
 SUMMARY:Guazzino vs Poppi
@@ -2630,7 +2633,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-22-MarinoMercatoSubbiano-ArnoCastiglioniLaterina@calcio
  toscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270221T150000Z
 DTSTART;TZID=Europe/Rome:20270221T150000
 DTEND;TZID=Europe/Rome:20270221T164500
 SUMMARY:Marino Mercato Subbiano vs Arno Castiglioni Laterina
@@ -2645,7 +2648,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-22-VaggioPiandisc1932-Fratticciola@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270221T150000Z
 DTSTART;TZID=Europe/Rome:20270221T150000
 DTEND;TZID=Europe/Rome:20270221T164500
 SUMMARY:Vaggio Piandiscò 1932 vs Fratticciola
@@ -2660,7 +2663,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-23-ArnoCastiglioniLaterina-ArezzoFA@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270228T150000Z
 DTSTART;TZID=Europe/Rome:20270228T150000
 DTEND;TZID=Europe/Rome:20270228T164500
 SUMMARY:Arno Castiglioni Laterina vs Arezzo FA
@@ -2675,7 +2678,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-23-FortisArezzo-FrattaSantaCaterina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270228T150000Z
 DTSTART;TZID=Europe/Rome:20270228T150000
 DTEND;TZID=Europe/Rome:20270228T164500
 SUMMARY:Fortis Arezzo vs Fratta Santa Caterina
@@ -2691,7 +2694,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-23-Fratticciola-MarinoMercatoSubbiano@calciotoscana.loc
  al
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270228T150000Z
 DTSTART;TZID=Europe/Rome:20270228T150000
 DTEND;TZID=Europe/Rome:20270228T164500
 SUMMARY:Fratticciola vs Marino Mercato Subbiano
@@ -2707,7 +2710,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-23-FulgorCastelfranco-CalcioPestello@calciotoscana.loca
  l
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270228T150000Z
 DTSTART;TZID=Europe/Rome:20270228T150000
 DTEND;TZID=Europe/Rome:20270228T164500
 SUMMARY:Fulgor Castelfranco vs Calcio Pestello
@@ -2722,7 +2725,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-23-PievealToppo-Bucine@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270228T150000Z
 DTSTART;TZID=Europe/Rome:20270228T150000
 DTEND;TZID=Europe/Rome:20270228T164500
 SUMMARY:Pieve al Toppo vs Bucine
@@ -2736,7 +2739,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-23-Pratovecchio-Poppi@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270228T150000Z
 DTSTART;TZID=Europe/Rome:20270228T150000
 DTEND;TZID=Europe/Rome:20270228T164500
 SUMMARY:Pratovecchio vs Poppi
@@ -2750,7 +2753,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-23-Rassina-VaggioPiandisc1932@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270228T150000Z
 DTSTART;TZID=Europe/Rome:20270228T150000
 DTEND;TZID=Europe/Rome:20270228T164500
 SUMMARY:Rassina vs Vaggio Piandiscò 1932
@@ -2764,7 +2767,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-23-ValdichianaCalcio-Guazzino@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270228T150000Z
 DTSTART;TZID=Europe/Rome:20270228T150000
 DTEND;TZID=Europe/Rome:20270228T164500
 SUMMARY:Valdichiana Calcio vs Guazzino
@@ -2778,7 +2781,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-24-ArezzoFA-FortisArezzo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270307T150000Z
 DTSTART;TZID=Europe/Rome:20270307T150000
 DTEND;TZID=Europe/Rome:20270307T164500
 SUMMARY:Arezzo FA vs Fortis Arezzo
@@ -2792,7 +2795,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-24-Bucine-ArnoCastiglioniLaterina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270307T150000Z
 DTSTART;TZID=Europe/Rome:20270307T150000
 DTEND;TZID=Europe/Rome:20270307T164500
 SUMMARY:Bucine vs Arno Castiglioni Laterina
@@ -2807,7 +2810,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-24-CalcioPestello-PievealToppo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270307T150000Z
 DTSTART;TZID=Europe/Rome:20270307T150000
 DTEND;TZID=Europe/Rome:20270307T164500
 SUMMARY:Calcio Pestello vs Pieve al Toppo
@@ -2823,7 +2826,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-24-FrattaSantaCaterina-ValdichianaCalcio@calciotoscana.
  local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270307T150000Z
 DTSTART;TZID=Europe/Rome:20270307T150000
 DTEND;TZID=Europe/Rome:20270307T164500
 SUMMARY:Fratta Santa Caterina vs Valdichiana Calcio
@@ -2838,7 +2841,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-24-Guazzino-Rassina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270307T150000Z
 DTSTART;TZID=Europe/Rome:20270307T150000
 DTEND;TZID=Europe/Rome:20270307T164500
 SUMMARY:Guazzino vs Rassina
@@ -2853,7 +2856,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-24-MarinoMercatoSubbiano-FulgorCastelfranco@calciotosca
  na.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270307T150000Z
 DTSTART;TZID=Europe/Rome:20270307T150000
 DTEND;TZID=Europe/Rome:20270307T164500
 SUMMARY:Marino Mercato Subbiano vs Fulgor Castelfranco
@@ -2868,7 +2871,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-24-Poppi-Fratticciola@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270307T150000Z
 DTSTART;TZID=Europe/Rome:20270307T150000
 DTEND;TZID=Europe/Rome:20270307T164500
 SUMMARY:Poppi vs Fratticciola
@@ -2882,7 +2885,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-24-VaggioPiandisc1932-Pratovecchio@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270307T150000Z
 DTSTART;TZID=Europe/Rome:20270307T150000
 DTEND;TZID=Europe/Rome:20270307T164500
 SUMMARY:Vaggio Piandiscò 1932 vs Pratovecchio
@@ -2897,7 +2900,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-25-ArnoCastiglioniLaterina-Guazzino@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270314T150000Z
 DTSTART;TZID=Europe/Rome:20270314T150000
 DTEND;TZID=Europe/Rome:20270314T164500
 SUMMARY:Arno Castiglioni Laterina vs Guazzino
@@ -2912,7 +2915,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-25-FortisArezzo-VaggioPiandisc1932@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270314T150000Z
 DTSTART;TZID=Europe/Rome:20270314T150000
 DTEND;TZID=Europe/Rome:20270314T164500
 SUMMARY:Fortis Arezzo vs Vaggio Piandiscò 1932
@@ -2927,7 +2930,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-25-Fratticciola-CalcioPestello@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270314T150000Z
 DTSTART;TZID=Europe/Rome:20270314T150000
 DTEND;TZID=Europe/Rome:20270314T164500
 SUMMARY:Fratticciola vs Calcio Pestello
@@ -2941,7 +2944,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-25-FulgorCastelfranco-ArezzoFA@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270314T150000Z
 DTSTART;TZID=Europe/Rome:20270314T150000
 DTEND;TZID=Europe/Rome:20270314T164500
 SUMMARY:Fulgor Castelfranco vs Arezzo FA
@@ -2955,7 +2958,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-25-MarinoMercatoSubbiano-Bucine@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270314T150000Z
 DTSTART;TZID=Europe/Rome:20270314T150000
 DTEND;TZID=Europe/Rome:20270314T164500
 SUMMARY:Marino Mercato Subbiano vs Bucine
@@ -2970,7 +2973,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-25-PievealToppo-FrattaSantaCaterina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270314T150000Z
 DTSTART;TZID=Europe/Rome:20270314T150000
 DTEND;TZID=Europe/Rome:20270314T164500
 SUMMARY:Pieve al Toppo vs Fratta Santa Caterina
@@ -2985,7 +2988,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-25-Rassina-Pratovecchio@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270314T150000Z
 DTSTART;TZID=Europe/Rome:20270314T150000
 DTEND;TZID=Europe/Rome:20270314T164500
 SUMMARY:Rassina vs Pratovecchio
@@ -2999,7 +3002,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-25-ValdichianaCalcio-Poppi@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270314T150000Z
 DTSTART;TZID=Europe/Rome:20270314T150000
 DTEND;TZID=Europe/Rome:20270314T164500
 SUMMARY:Valdichiana Calcio vs Poppi
@@ -3013,7 +3016,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-26-ArezzoFA-PievealToppo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270404T153000Z
 DTSTART;TZID=Europe/Rome:20270404T153000
 DTEND;TZID=Europe/Rome:20270404T171500
 SUMMARY:Arezzo FA vs Pieve al Toppo
@@ -3027,7 +3030,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-26-Bucine-FulgorCastelfranco@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270404T153000Z
 DTSTART;TZID=Europe/Rome:20270404T153000
 DTEND;TZID=Europe/Rome:20270404T171500
 SUMMARY:Bucine vs Fulgor Castelfranco
@@ -3042,7 +3045,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-26-CalcioPestello-MarinoMercatoSubbiano@calciotoscana.l
  ocal
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270404T153000Z
 DTSTART;TZID=Europe/Rome:20270404T153000
 DTEND;TZID=Europe/Rome:20270404T171500
 SUMMARY:Calcio Pestello vs Marino Mercato Subbiano
@@ -3058,7 +3061,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-26-FrattaSantaCaterina-ArnoCastiglioniLaterina@calcioto
  scana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270404T153000Z
 DTSTART;TZID=Europe/Rome:20270404T153000
 DTEND;TZID=Europe/Rome:20270404T171500
 SUMMARY:Fratta Santa Caterina vs Arno Castiglioni Laterina
@@ -3073,7 +3076,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-26-Guazzino-FortisArezzo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270404T153000Z
 DTSTART;TZID=Europe/Rome:20270404T153000
 DTEND;TZID=Europe/Rome:20270404T171500
 SUMMARY:Guazzino vs Fortis Arezzo
@@ -3087,7 +3090,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-26-Poppi-Rassina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270404T153000Z
 DTSTART;TZID=Europe/Rome:20270404T153000
 DTEND;TZID=Europe/Rome:20270404T171500
 SUMMARY:Poppi vs Rassina
@@ -3101,7 +3104,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-26-Pratovecchio-Fratticciola@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270404T153000Z
 DTSTART;TZID=Europe/Rome:20270404T153000
 DTEND;TZID=Europe/Rome:20270404T171500
 SUMMARY:Pratovecchio vs Fratticciola
@@ -3116,7 +3119,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-26-VaggioPiandisc1932-ValdichianaCalcio@calciotoscana.l
  ocal
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270404T153000Z
 DTSTART;TZID=Europe/Rome:20270404T153000
 DTEND;TZID=Europe/Rome:20270404T171500
 SUMMARY:Vaggio Piandiscò 1932 vs Valdichiana Calcio
@@ -3131,7 +3134,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-27-ArnoCastiglioniLaterina-Poppi@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270411T153000Z
 DTSTART;TZID=Europe/Rome:20270411T153000
 DTEND;TZID=Europe/Rome:20270411T171500
 SUMMARY:Arno Castiglioni Laterina vs Poppi
@@ -3146,7 +3149,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-27-CalcioPestello-ArezzoFA@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270411T153000Z
 DTSTART;TZID=Europe/Rome:20270411T153000
 DTEND;TZID=Europe/Rome:20270411T171500
 SUMMARY:Calcio Pestello vs Arezzo FA
@@ -3160,7 +3163,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-27-FortisArezzo-Pratovecchio@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270411T153000Z
 DTSTART;TZID=Europe/Rome:20270411T153000
 DTEND;TZID=Europe/Rome:20270411T171500
 SUMMARY:Fortis Arezzo vs Pratovecchio
@@ -3174,7 +3177,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-27-Fratticciola-Bucine@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270411T153000Z
 DTSTART;TZID=Europe/Rome:20270411T153000
 DTEND;TZID=Europe/Rome:20270411T171500
 SUMMARY:Fratticciola vs Bucine
@@ -3188,7 +3191,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-27-FulgorCastelfranco-Guazzino@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270411T153000Z
 DTSTART;TZID=Europe/Rome:20270411T153000
 DTEND;TZID=Europe/Rome:20270411T171500
 SUMMARY:Fulgor Castelfranco vs Guazzino
@@ -3203,7 +3206,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-27-MarinoMercatoSubbiano-FrattaSantaCaterina@calciotosc
  ana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270411T153000Z
 DTSTART;TZID=Europe/Rome:20270411T153000
 DTEND;TZID=Europe/Rome:20270411T171500
 SUMMARY:Marino Mercato Subbiano vs Fratta Santa Caterina
@@ -3218,7 +3221,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-27-PievealToppo-VaggioPiandisc1932@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270411T153000Z
 DTSTART;TZID=Europe/Rome:20270411T153000
 DTEND;TZID=Europe/Rome:20270411T171500
 SUMMARY:Pieve al Toppo vs Vaggio Piandiscò 1932
@@ -3233,7 +3236,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-27-ValdichianaCalcio-Rassina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270411T153000Z
 DTSTART;TZID=Europe/Rome:20270411T153000
 DTEND;TZID=Europe/Rome:20270411T171500
 SUMMARY:Valdichiana Calcio vs Rassina
@@ -3247,7 +3250,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-28-ArezzoFA-MarinoMercatoSubbiano@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270418T160000Z
 DTSTART;TZID=Europe/Rome:20270418T160000
 DTEND;TZID=Europe/Rome:20270418T174500
 SUMMARY:Arezzo FA vs Marino Mercato Subbiano
@@ -3262,7 +3265,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-28-Bucine-CalcioPestello@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270418T160000Z
 DTSTART;TZID=Europe/Rome:20270418T160000
 DTEND;TZID=Europe/Rome:20270418T174500
 SUMMARY:Bucine vs Calcio Pestello
@@ -3277,7 +3280,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-28-FrattaSantaCaterina-FulgorCastelfranco@calciotoscana
  .local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270418T160000Z
 DTSTART;TZID=Europe/Rome:20270418T160000
 DTEND;TZID=Europe/Rome:20270418T174500
 SUMMARY:Fratta Santa Caterina vs Fulgor Castelfranco
@@ -3292,7 +3295,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-28-Guazzino-PievealToppo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270418T160000Z
 DTSTART;TZID=Europe/Rome:20270418T160000
 DTEND;TZID=Europe/Rome:20270418T174500
 SUMMARY:Guazzino vs Pieve al Toppo
@@ -3306,7 +3309,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-28-Poppi-FortisArezzo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270418T160000Z
 DTSTART;TZID=Europe/Rome:20270418T160000
 DTEND;TZID=Europe/Rome:20270418T174500
 SUMMARY:Poppi vs Fortis Arezzo
@@ -3320,7 +3323,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-28-Pratovecchio-ValdichianaCalcio@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270418T160000Z
 DTSTART;TZID=Europe/Rome:20270418T160000
 DTEND;TZID=Europe/Rome:20270418T174500
 SUMMARY:Pratovecchio vs Valdichiana Calcio
@@ -3335,7 +3338,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-28-Rassina-Fratticciola@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270418T160000Z
 DTSTART;TZID=Europe/Rome:20270418T160000
 DTEND;TZID=Europe/Rome:20270418T174500
 SUMMARY:Rassina vs Fratticciola
@@ -3350,7 +3353,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-28-VaggioPiandisc1932-ArnoCastiglioniLaterina@calciotos
  cana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270418T160000Z
 DTSTART;TZID=Europe/Rome:20270418T160000
 DTEND;TZID=Europe/Rome:20270418T174500
 SUMMARY:Vaggio Piandiscò 1932 vs Arno Castiglioni Laterina
@@ -3365,7 +3368,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-29-ArnoCastiglioniLaterina-Rassina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270425T160000Z
 DTSTART;TZID=Europe/Rome:20270425T160000
 DTEND;TZID=Europe/Rome:20270425T174500
 SUMMARY:Arno Castiglioni Laterina vs Rassina
@@ -3380,7 +3383,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-29-Bucine-FrattaSantaCaterina@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270425T160000Z
 DTSTART;TZID=Europe/Rome:20270425T160000
 DTEND;TZID=Europe/Rome:20270425T174500
 SUMMARY:Bucine vs Fratta Santa Caterina
@@ -3394,7 +3397,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-29-CalcioPestello-Guazzino@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270425T160000Z
 DTSTART;TZID=Europe/Rome:20270425T160000
 DTEND;TZID=Europe/Rome:20270425T174500
 SUMMARY:Calcio Pestello vs Guazzino
@@ -3408,7 +3411,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-29-FortisArezzo-ValdichianaCalcio@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270425T160000Z
 DTSTART;TZID=Europe/Rome:20270425T160000
 DTEND;TZID=Europe/Rome:20270425T174500
 SUMMARY:Fortis Arezzo vs Valdichiana Calcio
@@ -3423,7 +3426,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-29-Fratticciola-ArezzoFA@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270425T160000Z
 DTSTART;TZID=Europe/Rome:20270425T160000
 DTEND;TZID=Europe/Rome:20270425T174500
 SUMMARY:Fratticciola vs Arezzo FA
@@ -3437,7 +3440,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-29-FulgorCastelfranco-Poppi@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270425T160000Z
 DTSTART;TZID=Europe/Rome:20270425T160000
 DTEND;TZID=Europe/Rome:20270425T174500
 SUMMARY:Fulgor Castelfranco vs Poppi
@@ -3452,7 +3455,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-29-MarinoMercatoSubbiano-VaggioPiandisc1932@calciotosca
  na.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270425T160000Z
 DTSTART;TZID=Europe/Rome:20270425T160000
 DTEND;TZID=Europe/Rome:20270425T174500
 SUMMARY:Marino Mercato Subbiano vs Vaggio Piandiscò 1932
@@ -3467,7 +3470,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-29-PievealToppo-Pratovecchio@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270425T160000Z
 DTSTART;TZID=Europe/Rome:20270425T160000
 DTEND;TZID=Europe/Rome:20270425T174500
 SUMMARY:Pieve al Toppo vs Pratovecchio
@@ -3481,7 +3484,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-30-ArezzoFA-Bucine@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270502T160000Z
 DTSTART;TZID=Europe/Rome:20270502T160000
 DTEND;TZID=Europe/Rome:20270502T174500
 SUMMARY:Arezzo FA vs Bucine
@@ -3496,7 +3499,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-30-FrattaSantaCaterina-CalcioPestello@calciotoscana.loc
  al
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270502T160000Z
 DTSTART;TZID=Europe/Rome:20270502T160000
 DTEND;TZID=Europe/Rome:20270502T174500
 SUMMARY:Fratta Santa Caterina vs Calcio Pestello
@@ -3511,7 +3514,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-30-Guazzino-MarinoMercatoSubbiano@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270502T160000Z
 DTSTART;TZID=Europe/Rome:20270502T160000
 DTEND;TZID=Europe/Rome:20270502T174500
 SUMMARY:Guazzino vs Marino Mercato Subbiano
@@ -3526,7 +3529,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-30-Poppi-PievealToppo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270502T160000Z
 DTSTART;TZID=Europe/Rome:20270502T160000
 DTEND;TZID=Europe/Rome:20270502T174500
 SUMMARY:Poppi vs Pieve al Toppo
@@ -3541,7 +3544,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-30-Pratovecchio-ArnoCastiglioniLaterina@calciotoscana.l
  ocal
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270502T160000Z
 DTSTART;TZID=Europe/Rome:20270502T160000
 DTEND;TZID=Europe/Rome:20270502T174500
 SUMMARY:Pratovecchio vs Arno Castiglioni Laterina
@@ -3556,7 +3559,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-30-Rassina-FortisArezzo@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270502T160000Z
 DTSTART;TZID=Europe/Rome:20270502T160000
 DTEND;TZID=Europe/Rome:20270502T174500
 SUMMARY:Rassina vs Fortis Arezzo
@@ -3571,7 +3574,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-30-VaggioPiandisc1932-FulgorCastelfranco@calciotoscana.
  local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270502T160000Z
 DTSTART;TZID=Europe/Rome:20270502T160000
 DTEND;TZID=Europe/Rome:20270502T174500
 SUMMARY:Vaggio Piandiscò 1932 vs Fulgor Castelfranco
@@ -3586,7 +3589,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-seconda-i-30-ValdichianaCalcio-Fratticciola@calciotoscana.local
-DTSTAMP:20261018T151528Z
+DTSTAMP:20270502T160000Z
 DTSTART;TZID=Europe/Rome:20270502T160000
 DTEND;TZID=Europe/Rome:20270502T174500
 SUMMARY:Valdichiana Calcio vs Fratticciola

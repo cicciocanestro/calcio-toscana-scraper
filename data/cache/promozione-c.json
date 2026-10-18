@@ -10,7 +10,7 @@
   "roundID": "TO.P.C",
   "currentMatchDay": 6,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-10-18T15:15:01.332Z",
+  "lastUpdated": "2026-10-18T17:22:14.429Z",
   "standings": [
     {
       "position": 1,
@@ -1079,15 +1079,17 @@
           "homeScore": 2,
           "awayScore": 1,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-18",
           "time": "15:30",
           "dateTime": "2026-10-18T15:30:00",
           "homeScorers": [
-            "L. Cacciamano (Rig.)",
-            "C. Koffi"
+            "L. Cacciamano (Rig.) (10' pt)",
+            "C. Koffi (32' pt)"
           ],
-          "awayScorers": [],
+          "awayScorers": [
+            "S. Nardoni (1' st)"
+          ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1007117.png?v=2",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1028179.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/6.1/acquaviva-ag-dicomano"
@@ -1098,12 +1100,13 @@
           "homeScore": 2,
           "awayScore": 0,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-18",
           "time": "15:30",
           "dateTime": "2026-10-18T15:30:00",
           "homeScorers": [
-            "G. Tomeo (9' pt)"
+            "G. Tomeo (5' pt)",
+            "G. Tomeo (35' st)"
           ],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
@@ -1116,7 +1119,7 @@
           "homeScore": 0,
           "awayScore": 0,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-18",
           "time": "15:30",
           "dateTime": "2026-10-18T15:30:00",
@@ -1132,15 +1135,15 @@
           "homeScore": 4,
           "awayScore": 0,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-18",
           "time": "15:30",
           "dateTime": "2026-10-18T15:30:00",
           "homeScorers": [
-            "M. Privitera",
-            "G. Calosi",
-            "A. Cragno",
-            "M. Fantechi"
+            "M. Privitera (3' st)",
+            "G. Calosi (10' st)",
+            "A. Cragno (18' st)",
+            "M. Fantechi (38' st)"
           ],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750657.png?v=2",
@@ -1153,7 +1156,7 @@
           "homeScore": 0,
           "awayScore": 0,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-18",
           "time": "15:30",
           "dateTime": "2026-10-18T15:30:00",
@@ -1169,7 +1172,7 @@
           "homeScore": 2,
           "awayScore": 2,
           "isPlayed": true,
-          "status": "LIVE",
+          "status": "FINISHED",
           "date": "2026-10-18",
           "time": "15:30",
           "dateTime": "2026-10-18T15:30:00",
@@ -1178,8 +1181,8 @@
             "A. Ciancaleoni (Rig.)"
           ],
           "awayScorers": [
-            "L. Calbi",
-            "D. Giuntoli"
+            "L. Calbi (35' pt)",
+            "D. Giuntoli (20' st)"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/62418.png?v=10",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/932795.png?v=1",
