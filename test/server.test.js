@@ -317,7 +317,12 @@ test('con cache scaduta la risposta è immediata e parte l\'aggiornamento in bac
     const base = `http://127.0.0.1:${server.address().port}`;
     const res = await fetch(`${base}/api/leagues/promozione-c`);
     assert.equal(res.status, 200);
-    assert.equal((await res.json()).isStale, true, 'la prima risposta usa la cache scaduta');
+    const payload = await res.json();
+    assert.equal(payload.id, 'promozione-c', 'la prima risposta usa la cache scaduta');
+    // I campi di servizio non devono uscire dall'API (contengono il motivo
+    // grezzo del fallback, percorsi del filesystem compresi).
+    assert.equal(payload.isStale, undefined, 'isStale non deve trapelare');
+    assert.equal(payload.staleReason, undefined, 'staleReason non deve trapelare');
 
     // Lascia partire la promise di revalidation in background
     await new Promise(resolve => setImmediate(resolve));
@@ -518,6 +523,37 @@ test('anche /api/leagues è protetto dal rate limit', async () => {
     assert.equal(second.status, 200);
     assert.equal(third.status, 429, 'oltre la soglia /api/leagues deve rispondere 429');
     assert.equal(third.headers.get('retry-after'), '60');
+  } finally {
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
+test('GET /api/leagues/:id non espone i campi di servizio del fallback', async () => {
+  const scraper = fakeScraper();
+  // Simula il fallback su cache dopo un errore reale (percorso del runner incluso)
+  scraper.scrapeLeague = async (id, opts = {}) => ({
+    ...sampleLeagueData(),
+    id,
+    isStale: !opts.forceRefresh,
+    staleReason: 'ENOENT: /home/pi/actions-runner/_work/calcio-toscana-scraper/...',
+    staleCause: 'unknown'
+  });
+
+  const app = createServer({ autoRevalidate: false, scraper });
+  const server = app.listen(0);
+  await new Promise(resolve => server.once('listening', resolve));
+  const base = `http://127.0.0.1:${server.address().port}`;
+
+  try {
+    const res = await fetch(`${base}/api/leagues/promozione-c`);
+    assert.equal(res.status, 200);
+    const body = await res.json();
+
+    assert.equal(body.id, 'promozione-c');
+    assert.equal(body.isStale, undefined, 'isStale è di servizio e non deve uscire');
+    assert.equal(body.staleReason, undefined, 'staleReason non deve uscire');
+    assert.equal(body.staleCause, undefined);
+    assert.doesNotMatch(JSON.stringify(body), /actions-runner/, 'nessun percorso interno nell\'API');
   } finally {
     await new Promise(resolve => server.close(resolve));
   }

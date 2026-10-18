@@ -112,10 +112,31 @@ function createTeamMatcher(leagueData, rawTeam) {
 }
 
 /**
+ * Campi di servizio che restano interni al processo: dicono se si è ripiegati
+ * sulla cache e perché. Non devono mai uscire né nelle API né negli export,
+ * perché `staleReason` contiene il messaggio d'errore grezzo (percorsi del
+ * filesystem compresi, es. `/home/pi/actions-runner/...`).
+ */
+const INTERNAL_FIELDS = ['isStale', 'staleReason', 'staleCause'];
+
+/**
+ * Rimuove i campi interni da un documento di campionato.
+ * Restituisce un nuovo oggetto, l'originale non viene modificato.
+ */
+function stripInternalFields(leagueData) {
+  if (!leagueData || typeof leagueData !== 'object') return leagueData;
+  const clean = { ...leagueData };
+  for (const field of INTERNAL_FIELDS) {
+    delete clean[field];
+  }
+  return clean;
+}
+
+/**
  * Restituisce una copia di leagueData eventuale filtrata per squadra.
  */
 function filterLeagueData(leagueData, options = {}) {
-  const { isStale, ...cleanData } = leagueData || {};
+  const cleanData = stripInternalFields(leagueData) || {};
   if (!options.team) return cleanData;
   const matchesTeam = createTeamMatcher(cleanData, options.team);
   return {
@@ -404,6 +425,8 @@ function exportToIcs(leagueData, outputPath, options = {}) {
 }
 
 module.exports = {
+  stripInternalFields,
+  INTERNAL_FIELDS,
   exportSlug,
   createTeamMatcher,
   filterLeagueData,

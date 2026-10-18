@@ -2,7 +2,7 @@ const express = require('express');
 const crypto = require('crypto');
 const { LEAGUES, CACHE_DIR, EXPORT_DIR, PUBLIC_DIR, DB_PATH } = require('./config');
 const { CalendarScraper } = require('./scraper');
-const { exportSlug, filterLeagueData, buildCsv, buildIcs } = require('./exporters');
+const { exportSlug, filterLeagueData, buildCsv, buildIcs, stripInternalFields } = require('./exporters');
 const { resolveConfig, describeConfig, dispatchWorkflow } = require('./github-dispatch');
 const { initDatabase } = require('./db');
 const { getTopScorers } = require('./db-sync');
@@ -257,7 +257,7 @@ function createServer(options = {}) {
       const refresh = req.query.refresh === 'true';
       if (refresh) {
         const data = await scraper.scrapeLeague(id, { forceRefresh: true });
-        return res.json(data);
+        return res.json(stripInternalFields(data));
       }
 
       const cache = scraper.getCacheStatus(id);
@@ -266,11 +266,11 @@ function createServer(options = {}) {
         if (cache.isStale && autoRevalidate) {
           revalidate(id);
         }
-        return res.json(data);
+        return res.json(stripInternalFields(data));
       }
 
       const data = await scraper.scrapeLeague(id);
-      res.json(data);
+      res.json(stripInternalFields(data));
     } catch (err) {
       console.error(`Errore caricamento ${id}:`, err);
       res.status(500).json({ error: err.message });
@@ -337,7 +337,13 @@ function createServer(options = {}) {
 
       if (sync) {
         const results = await task;
-        return res.json({ success: true, message: 'Tutti i campionati sono stati aggiornati con successo', data: results });
+        // `isStale`/`staleReason`/`staleCause` servono solo internamente:
+        // il motivo grezzo può contenere percorsi del filesystem.
+        const publicResults = {};
+        for (const [key, value] of Object.entries(results)) {
+          publicResults[key] = stripInternalFields(value);
+        }
+        return res.json({ success: true, message: 'Tutti i campionati sono stati aggiornati con successo', data: publicResults });
       }
 
       // 202 Accepted: avvisiamo il client che l'operazione è in corso
@@ -366,7 +372,7 @@ function createServer(options = {}) {
       if (sync) {
         const data = await task;
         if (data && !data.isStale) requestGitHubPublish(`aggiornamento manuale di ${id}`);
-        return res.json({ success: true, message: 'Dati aggiornati con successo', data });
+        return res.json({ success: true, message: 'Dati aggiornati con successo', data: stripInternalFields(data) });
       }
 
       // In background: la pubblicazione parte solo se lo scraping è riuscito

@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 
-const { exportSlug, exportToJson, exportToCsv, exportToIcs, buildCsv, buildIcs, safeExternalUrl } = require('../src/exporters');
+const { exportSlug, exportToJson, exportToCsv, exportToIcs, buildCsv, buildIcs, safeExternalUrl, filterLeagueData } = require('../src/exporters');
 const { sampleLeagueData } = require('./fixtures');
 
 function tmpFile(name) {
@@ -114,6 +114,43 @@ test('buildIcs produce un output deterministico per gli stessi dati (DTSTAMP sta
   const ics2 = buildIcs(data);
   assert.equal(ics1, ics2, 'due generazioni degli stessi dati devono produrre lo stesso identico output');
   assert.match(ics1, /DTSTAMP:20260920T150000Z/);
+});
+
+test('filterLeagueData elimina i campi interni (isStale, staleReason, staleCause)', () => {
+  const data = sampleLeagueData();
+  data.isStale = true;
+  data.staleReason = 'ENOENT: /home/pi/actions-runner/_work/...';
+  data.staleCause = 'unknown';
+
+  const filtered = filterLeagueData(data);
+  assert.equal(filtered.isStale, undefined);
+  assert.equal(filtered.staleReason, undefined, 'il motivo grezzo non deve finire nell\'export');
+  assert.equal(filtered.staleCause, undefined);
+  assert.equal(filtered.id, data.id, 'il resto del documento resta intatto');
+
+  // Nessuna traccia del percorso del runner nella serializzazione
+  assert.doesNotMatch(JSON.stringify(filtered), /actions-runner/);
+
+  // Anche con il filtro squadra i campi restano fuori
+  const byTeam = filterLeagueData(data, { team: 'Centro Storico Lebowski' });
+  assert.equal(byTeam.staleReason, undefined);
+
+  // L'oggetto originale non viene mutato
+  assert.equal(data.staleReason, 'ENOENT: /home/pi/actions-runner/_work/...');
+});
+
+test('exportToJson non scrive i campi interni su disco', () => {
+  const data = sampleLeagueData();
+  data.isStale = true;
+  data.staleReason = 'errore con /home/pi/percorso/privato';
+  data.staleCause = 'waf';
+
+  const out = tmpFile('clean.json');
+  exportToJson(data, out);
+
+  const written = fs.readFileSync(out, 'utf-8');
+  assert.doesNotMatch(written, /staleReason|staleCause|isStale/);
+  assert.doesNotMatch(written, /percorso\/privato/);
 });
 
 test('safeExternalUrl accetta solo http/https e scarta schemi pericolosi', () => {
