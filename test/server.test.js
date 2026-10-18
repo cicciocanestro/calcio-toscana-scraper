@@ -585,3 +585,57 @@ test('GET /api/leagues/:id/scorers restituisce la classifica marcatori', async (
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+test('un errore interno risponde 500 con messaggio generico, senza dettagli del filesystem', async () => {
+  const scraper = fakeScraper({
+    status: { exists: false, isStale: false, ageMs: null, lastUpdated: null }
+  });
+  // Nessuna cache: l'errore arriva al handler, che non deve esporlo
+  scraper.getCachedLeague = () => null;
+  scraper.scrapeLeague = async () => {
+    throw new Error('ENOENT: no such file or directory, open \'/home/pi/actions-runner/_work/calcio/secret.tmp\'');
+  };
+
+  const app = createServer({ autoRevalidate: false, scraper });
+  const server = app.listen(0);
+  await new Promise(resolve => server.once('listening', resolve));
+  const base = `http://127.0.0.1:${server.address().port}`;
+
+  try {
+    const res = await fetch(`${base}/api/leagues/promozione-c`);
+    assert.equal(res.status, 500);
+
+    const body = await res.json();
+    assert.equal(body.error, 'Errore interno del server. Riprova fra poco.');
+    assert.doesNotMatch(JSON.stringify(body), /actions-runner/, 'nessun percorso interno nella risposta');
+    assert.doesNotMatch(JSON.stringify(body), /ENOENT/, 'nessun dettaglio del filesystem nella risposta');
+  } finally {
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
+test('un errore nel calcolo dei marcatori risponde 500 con messaggio generico', async () => {
+  // DB "rotto": la query dei marcatori fallisce con un messaggio interno
+  const brokenDb = {
+    prepare() {
+      throw new Error('SQLITE_ERROR: no such table: main.goals (file /home/pi/calcio.sqlite)');
+    }
+  };
+
+  const app = createServer({ autoRevalidate: false, scraper: fakeScraper(), db: brokenDb });
+  const server = app.listen(0);
+  await new Promise(resolve => server.once('listening', resolve));
+  const base = `http://127.0.0.1:${server.address().port}`;
+
+  try {
+    const res = await fetch(`${base}/api/leagues/promozione-c/scorers?limit=5`);
+    assert.equal(res.status, 500);
+
+    const body = await res.json();
+    assert.equal(body.error, 'Errore interno del server. Riprova fra poco.');
+    assert.doesNotMatch(JSON.stringify(body), /SQLITE_ERROR/);
+    assert.doesNotMatch(JSON.stringify(body), /home\/pi/);
+  } finally {
+    await new Promise(resolve => server.close(resolve));
+  }
+});

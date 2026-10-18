@@ -75,6 +75,23 @@ function normalizeTeamParam(value) {
 }
 
 /**
+ * Risposta per un errore interno: il dettaglio resta nei log del server, al
+ * client va un messaggio generico.
+ *
+ * `err.message` può contenere percorsi del filesystem (es. `/home/pi/...`),
+ * URL interni o messaggi di SQLite: sono informazioni utili a chi gestisce
+ * l'istanza, non a chi la chiama.
+ *
+ * @param {import('express').Response} res
+ * @param {string} context - descrizione per il log, es. "Errore caricamento lega X"
+ * @param {Error} err
+ */
+function sendInternalError(res, context, err) {
+  console.error(`[SERVER] ${context}:`, err);
+  return res.status(500).json({ error: 'Errore interno del server. Riprova fra poco.' });
+}
+
+/**
  * Crea l'applicazione Express.
  *
  * @param {object} options
@@ -272,14 +289,12 @@ function createServer(options = {}) {
       const data = await scraper.scrapeLeague(id);
       res.json(stripInternalFields(data));
     } catch (err) {
-      console.error(`Errore caricamento ${id}:`, err);
-      res.status(500).json({ error: err.message });
+      sendInternalError(res, `Errore caricamento ${id}`, err);
     }
   });
 
   // Classifica marcatori aggregata dal database relazionale
-  app.get('/api/leagues/:id/scorers', apiRateLimit, (req, res) => {
-    const id = req.params.id;
+  app.get('/api/leagues/:id/scorers', apiRateLimit, (req, res) => {    const id = req.params.id;
     if (!LEAGUES[id]) {
       return res.status(404).json({ error: `Campionato '${id}' non trovato` });
     }
@@ -292,8 +307,7 @@ function createServer(options = {}) {
       const scorers = getTopScorers(getDb(), id, limit);
       res.json({ leagueId: id, scorers });
     } catch (err) {
-      console.error(`Errore caricamento marcatori per ${id}:`, err);
-      res.status(500).json({ error: err.message });
+      sendInternalError(res, `Errore caricamento marcatori per ${id}`, err);
     }
   });
 
@@ -353,8 +367,7 @@ function createServer(options = {}) {
         inProgress: true
       });
     } catch (err) {
-      console.error('Errore aggiornamento globale campionati:', err);
-      res.status(500).json({ error: err.message });
+      sendInternalError(res, 'Errore aggiornamento globale campionati', err);
     }
   });
 
@@ -389,8 +402,7 @@ function createServer(options = {}) {
         inProgress: true
       });
     } catch (err) {
-      console.error(`Errore aggiornamento ${id}:`, err);
-      res.status(500).json({ error: err.message });
+      sendInternalError(res, `Errore aggiornamento ${id}`, err);
     }
   });
 
@@ -433,8 +445,7 @@ function createServer(options = {}) {
       res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
       return res.send(formats[format].body);
     } catch (err) {
-      console.error('Errore export:', err);
-      res.status(500).json({ error: err.message });
+      sendInternalError(res, 'Errore export', err);
     }
   });
 
