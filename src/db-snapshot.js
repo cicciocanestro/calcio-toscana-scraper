@@ -28,32 +28,43 @@ function dumpSnapshot(db, filePath = DB_SNAPSHOT_PATH) {
     fs.mkdirSync(dir, { recursive: true });
   }
 
-  const lines = [];
-  // Header stabile: non cambiamo exported_at se i record del database sono identici,
-  // preservando un eventuale timestamp precedente per evitare commit fittizi.
-  let headerExportedAt = new Date().toISOString();
-  if (fs.existsSync(filePath)) {
-    try {
-      const firstLine = fs.readFileSync(filePath, 'utf-8').split('\n')[0];
-      const parsed = JSON.parse(firstLine);
-      if (parsed && parsed._type === 'header' && parsed.exported_at) {
-        headerExportedAt = parsed.exported_at;
-      }
-    } catch (e) {}
-  }
-  lines.push(JSON.stringify({ _type: 'header', version: 1, exported_at: headerExportedAt }));
-
+  const dataLines = [];
   let totalRows = 0;
   for (const table of SNAPSHOT_TABLES) {
     const rows = db.prepare(`SELECT * FROM ${table} ORDER BY rowid ASC`).all();
     for (const row of rows) {
-      lines.push(JSON.stringify({ table, data: row }));
+      dataLines.push(JSON.stringify({ table, data: row }));
       totalRows++;
     }
   }
 
+  const currentBody = dataLines.join('\n');
+  let headerExportedAt = new Date().toISOString();
+
+  if (fs.existsSync(filePath)) {
+    try {
+      const existingContent = fs.readFileSync(filePath, 'utf-8');
+      const firstNewline = existingContent.indexOf('\n');
+      if (firstNewline !== -1) {
+        const firstLine = existingContent.slice(0, firstNewline);
+        const existingBody = existingContent.slice(firstNewline + 1).replace(/\n$/, '');
+        // Se il corpo dei dati (tabelle e righe) è identico al byte a quello già salvato,
+        // preserviamo il vecchio exported_at dell'header per evitare diff fittizi in Git.
+        if (existingBody === currentBody) {
+          const parsed = JSON.parse(firstLine);
+          if (parsed && parsed._type === 'header' && parsed.exported_at) {
+            headerExportedAt = parsed.exported_at;
+          }
+        }
+      }
+    } catch (e) {}
+  }
+
+  const headerLine = JSON.stringify({ _type: 'header', version: 1, exported_at: headerExportedAt });
+  const fullContent = `${headerLine}\n${currentBody}${currentBody.length > 0 ? '\n' : ''}`;
+
   const tmpPath = `${filePath}.${process.pid}.${Date.now()}.tmp`;
-  fs.writeFileSync(tmpPath, lines.join('\n') + '\n', 'utf-8');
+  fs.writeFileSync(tmpPath, fullContent, 'utf-8');
   fs.renameSync(tmpPath, filePath);
   return totalRows;
 }
