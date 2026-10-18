@@ -1,6 +1,6 @@
 const express = require('express');
 const crypto = require('crypto');
-const { LEAGUES, DATA_DIR, PUBLIC_DIR, DB_PATH } = require('./config');
+const { LEAGUES, CACHE_DIR, EXPORT_DIR, PUBLIC_DIR, DB_PATH } = require('./config');
 const { CalendarScraper } = require('./scraper');
 const { exportSlug, filterLeagueData, buildCsv, buildIcs } = require('./exporters');
 const { resolveConfig, describeConfig, dispatchWorkflow } = require('./github-dispatch');
@@ -184,7 +184,10 @@ function createServer(options = {}) {
 
   // I dati (cache JSON + export ICS/CSV/JSON) restano raggiungibili dalla
   // dashboard statica su GitHub Pages tramite gli stessi percorsi relativi.
-  app.use('/data', express.static(DATA_DIR));
+  // Serviamo miratamente solo cache ed exports: la cartella data/db/ (calcio.sqlite,
+  // snapshot.jsonl) NON deve essere esposta pubblicamente.
+  app.use('/data/cache', express.static(CACHE_DIR));
+  app.use('/data/exports', express.static(EXPORT_DIR));
 
   // Health check leggero (usato da Render): non legge né interpreta la cache,
   // a differenza di /api/leagues che deve parsare i JSON di tutti i campionati.
@@ -274,7 +277,10 @@ function createServer(options = {}) {
     }
 
     try {
-      const limit = Math.min(100, Math.max(1, parseInt(req.query.limit || '20', 10)));
+      const parsedLimit = parseInt(req.query.limit, 10);
+      const limit = Number.isFinite(parsedLimit)
+        ? Math.min(100, Math.max(1, parsedLimit))
+        : 20;
       const scorers = getTopScorers(getDb(), id, limit);
       res.json({ leagueId: id, scorers });
     } catch (err) {

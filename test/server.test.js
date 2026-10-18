@@ -57,7 +57,7 @@ test('i file interni del progetto NON sono esposti staticamente', withServer(asy
   }
 }));
 
-test('i dati di cache ed export restano raggiungibili sotto /data', withServer(async (base) => {
+test('i dati di cache ed export restano raggiungibili sotto /data, mentre data/db resta protetta', withServer(async (base) => {
   const cache = await fetch(`${base}/data/cache/promozione-c.json`);
   assert.equal(cache.status, 200);
   const payload = await cache.json();
@@ -67,6 +67,12 @@ test('i dati di cache ed export restano raggiungibili sotto /data', withServer(a
   const ics = await fetch(`${base}/data/exports/promozione-c.ics`);
   assert.equal(ics.status, 200);
   assert.match(await ics.text(), /BEGIN:VCALENDAR/);
+
+  const db = await fetch(`${base}/data/db/calcio.sqlite`);
+  assert.equal(db.status, 404, 'calcio.sqlite non deve essere accessibile');
+
+  const snapshot = await fetch(`${base}/data/db/snapshot.jsonl`);
+  assert.equal(snapshot.status, 404, 'snapshot.jsonl non deve essere accessibile');
 }));
 
 test('GET /api/leagues riporta stato cache e metadati', withServer(async (base) => {
@@ -499,7 +505,7 @@ test('GET /api/leagues/:id/scorers restituisce la classifica marcatori', async (
   await new Promise(resolve => server.once('listening', resolve));
   const base = `http://127.0.0.1:${server.address().port}`;
 
-  try {
+    try {
     const res = await fetch(`${base}/api/leagues/promozione-c/scorers?limit=5`);
     assert.equal(res.status, 200);
     const body = await res.json();
@@ -510,6 +516,11 @@ test('GET /api/leagues/:id/scorers restituisce la classifica marcatori', async (
       assert.ok(body.scorers[0].player);
       assert.ok(body.scorers[0].goals >= 0);
     }
+
+    const invalidLimitRes = await fetch(`${base}/api/leagues/promozione-c/scorers?limit=abc`);
+    assert.equal(invalidLimitRes.status, 200, 'un limit non numerico non deve provocare errore 500');
+    const invalidBody = await invalidLimitRes.json();
+    assert.ok(Array.isArray(invalidBody.scorers));
   } finally {
     await new Promise(resolve => server.close(resolve));
   }
