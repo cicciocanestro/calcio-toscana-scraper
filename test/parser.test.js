@@ -66,8 +66,42 @@ test('parseMatchdayHtml estrae giornata, date, risultati e marcatori', () => {
   // Partita rinviata
   assert.equal(postponed.status, 'POSTPONED');
   assert.equal(postponed.isPlayed, false);
+  assert.equal(postponed.time, '');
   // Senza orario valido si usa l'orario di default, 15:30
   assert.equal(postponed.dateTime, '2026-09-20T15:30:00');
+});
+
+test('parseMatchdayHtml normalizza orari speciali come posticipata, orari con punto e a cifra singola', () => {
+  const html = `<div id="match_day">1° Giornata</div>
+<div id="match_date">20|09|2026</div>
+<table class="table-results">
+  <tr class="date"><td>Domenica 20 settembre</td></tr>
+  <tr class="match">
+    <td class="team home"><a class="team-name">Squadra A</a></td>
+    <td class="match-time"><span class="hour">15:30 (posticipata)</span></td>
+    <td class="team away"><a class="team-name">Squadra B</a></td>
+  </tr>
+  <tr class="match">
+    <td class="team home"><a class="team-name">Squadra C</a></td>
+    <td class="match-time"><span class="hour">9:30</span></td>
+    <td class="team away"><a class="team-name">Squadra D</a></td>
+  </tr>
+  <tr class="match">
+    <td class="team home"><a class="team-name">Squadra E</a></td>
+    <td class="match-time"><span class="hour">15.45</span></td>
+    <td class="team away"><a class="team-name">Squadra F</a></td>
+  </tr>
+</table>`;
+
+  const day = parser.parseMatchdayHtml(html, 1);
+  assert.equal(day.matches[0].time, '15:30');
+  assert.equal(day.matches[0].dateTime, '2026-09-20T15:30:00');
+
+  assert.equal(day.matches[1].time, '09:30');
+  assert.equal(day.matches[1].dateTime, '2026-09-20T09:30:00');
+
+  assert.equal(day.matches[2].time, '15:45');
+  assert.equal(day.matches[2].dateTime, '2026-09-20T15:45:00');
 });
 
 test('parseMatchdayHtml gestisce il passaggio d\'anno fra dicembre e gennaio', () => {

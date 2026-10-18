@@ -185,7 +185,14 @@
 
       if (!row.classList || !row.classList.contains('match')) continue;
 
-      const time = text(row.querySelector('.match-time .hour, .match-time, .time'));
+      const rawTime = text(row.querySelector('.match-time .hour, .match-time, .time'));
+      let time = '';
+      const timeMatch = rawTime.match(/(\d{1,2})[:.](\d{2})/);
+      if (timeMatch) {
+        const hh = String(timeMatch[1]).padStart(2, '0');
+        const mm = String(timeMatch[2]).padStart(2, '0');
+        time = `${hh}:${mm}`;
+      }
 
       const homeEl = row.querySelector('td.team.home');
       const awayEl = row.querySelector('td.team.away');
@@ -201,7 +208,7 @@
 
       const rowText = text(row).toLowerCase();
       const isLive = row.classList.contains('live');
-      const isPostponed = rowText.includes('rinviata') || rowText.includes('sospesa');
+      const isPostponed = rowText.includes('rinviata') || rowText.includes('sospesa') || rawTime.toLowerCase().includes('rinviata');
 
       let status = 'SCHEDULED';
       if (isLive) status = 'LIVE';
@@ -222,7 +229,7 @@
         : rawMatchLink;
 
       let dateTime = '';
-      if (currentDate && time.includes(':')) {
+      if (currentDate && time) {
         dateTime = `${currentDate}T${time}:00`;
       } else if (currentDate) {
         dateTime = `${currentDate}T${DEFAULT_MATCH_TIME}:00`;
