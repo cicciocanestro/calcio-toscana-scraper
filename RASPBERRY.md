@@ -128,7 +128,7 @@ npm run db:sync      # ripristina solo se serve
 pm2 restart calcio-scraper
 ```
 
-> ⚠️ **Il sync non sovrascrive mai un DB più avanti dello snapshot.** Se sul Pi hai premuto "Aggiorna dal Web" (o fatto `db:import` senza `dump`), il database contiene classifiche e marcatori che lo snapshot non ha — oppure valori più recenti sulle stesse righe: in entrambi i casi il comando si ferma con un avviso (indicando le tabelle o i "valori locali più recenti"). Le due strade:
+> ⚠️ **Il sync non sovrascrive mai un DB più avanti dello snapshot.** Se sul Pi hai premuto "Aggiorna dal Web" (o fatto `db:import` senza `dump`), il database contiene classifiche e marcatori che lo snapshot non ha — oppure timestamp dei dati più recenti sulle stesse righe: in entrambi i casi il comando si ferma con un avviso (indicando le tabelle o i "valori locali più recenti"). Il confronto è sul contenuto, non sulle date dei file: aprire SQLite riscrive `-wal` e `-shm`, quindi un criterio sui mtime segnalerebbe il DB come "più recente" a ogni comando. Le due strade:
 >
 > ```bash
 > npm run db:dump                 # esporta prima quello che c'è nel DB

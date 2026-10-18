@@ -153,7 +153,7 @@ npm run db:import
 
 > ✅ `db:sync` è agganciato a `npm run sync` come primo passo. Dopo un `git pull` puoi anche lanciarlo da solo; non fa nulla quando il contenuto combacia già (confronto tramite checksum nell'header dello snapshot, non sulla data dei file).
 >
-> 🛡️ **Non distrugge dati**: il ripristino viene **annullato** se il database contiene righe che lo snapshot non ha, oppure se il file del DB è stato scritto dopo lo snapshot (valori locali più recenti: tipico di un refresh dalla dashboard o di un `db:import` senza `dump`). In quel caso il comando indica cosa fare. Per forzarlo serve `npm run db:sync -- --force`, che prima salva una copia: il primo backup è `data/db/calcio.sqlite.bak`, i successivi hanno un nome con timestamp e non sovrascrivono i precedenti.
+> 🛡️ **Non distrugge dati**: il ripristino viene **annullato** se il database contiene righe che lo snapshot non ha, oppure se porta timestamp dei dati più recenti (`last_updated`, `captured_at`, `score_updated_at`) — tipico di un refresh dalla dashboard o di un `db:import` senza `dump`. Il confronto è sul contenuto, non sulle date dei file: aprire SQLite riscrive `-wal`/`-shm`, quindi un criterio sui mtime darebbe falsi allarmi a ogni comando. Per forzare serve `npm run db:sync -- --force`, che prima salva una copia: il primo backup è `data/db/calcio.sqlite.bak`, i successivi hanno un nome con timestamp e non sovrascrivono i precedenti.
 >
 > ℹ️ `npm test` **non** tocca il database: l'allineamento è volutamente fuori dai test.
 
