@@ -1,6 +1,20 @@
 const fs = require('fs');
 const path = require('path');
 
+/**
+ * Scrive un file su disco in modo atomico (scrive su .tmp e poi fa rename),
+ * evitando che un'interruzione di corrente o un crash corrompano o tronchino il file.
+ */
+function writeAtomic(filePath, content, encoding = 'utf-8') {
+  const dir = path.dirname(filePath);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+  const tmpPath = `${filePath}.${process.pid}.${Date.now()}.tmp`;
+  fs.writeFileSync(tmpPath, content, encoding);
+  fs.renameSync(tmpPath, filePath);
+}
+
 /** Orario usato quando la partita non ne indica uno (coerente col parser). */
 const DEFAULT_MATCH_TIME = '15:30';
 
@@ -95,12 +109,8 @@ function filterLeagueData(leagueData, options = {}) {
  * Esporta i dati completi in formato JSON
  */
 function exportToJson(leagueData, outputPath, options = {}) {
-  const dir = path.dirname(outputPath);
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
   const payload = filterLeagueData(leagueData, options);
-  fs.writeFileSync(outputPath, JSON.stringify(payload, null, 2), 'utf-8');
+  writeAtomic(outputPath, JSON.stringify(payload, null, 2), 'utf-8');
   return outputPath;
 }
 
@@ -172,11 +182,7 @@ function buildCsv(leagueData, options = {}) {
  * Esporta tutte le partite in un file CSV compatibile con Excel (con UTF-8 BOM)
  */
 function exportToCsv(leagueData, outputPath, options = {}) {
-  const dir = path.dirname(outputPath);
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
-  fs.writeFileSync(outputPath, buildCsv(leagueData, options), 'utf-8');
+  writeAtomic(outputPath, buildCsv(leagueData, options), 'utf-8');
   return outputPath;
 }
 
@@ -360,11 +366,7 @@ function buildIcs(leagueData, options = {}) {
  * Genera un calendario standard .ics per Google Calendar / Apple Calendar
  */
 function exportToIcs(leagueData, outputPath, options = {}) {
-  const dir = path.dirname(outputPath);
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
-  fs.writeFileSync(outputPath, buildIcs(leagueData, options), 'utf-8');
+  writeAtomic(outputPath, buildIcs(leagueData, options), 'utf-8');
   return outputPath;
 }
 

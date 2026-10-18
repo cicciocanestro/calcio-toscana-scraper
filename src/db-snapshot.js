@@ -41,7 +41,9 @@ function dumpSnapshot(db, filePath = DB_SNAPSHOT_PATH) {
     }
   }
 
-  fs.writeFileSync(filePath, lines.join('\n') + '\n', 'utf-8');
+  const tmpPath = `${filePath}.${process.pid}.${Date.now()}.tmp`;
+  fs.writeFileSync(tmpPath, lines.join('\n') + '\n', 'utf-8');
+  fs.renameSync(tmpPath, filePath);
   return totalRows;
 }
 
