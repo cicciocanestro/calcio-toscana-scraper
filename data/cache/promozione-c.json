@@ -10,7 +10,7 @@
   "roundID": "TO.P.C",
   "currentMatchDay": 6,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-10-18T15:11:15.925Z",
+  "lastUpdated": "2026-10-18T15:15:01.332Z",
   "standings": [
     {
       "position": 1,
@@ -59,9 +59,9 @@
       "won": 4,
       "drawn": 0,
       "lost": 2,
-      "goalsFor": 11,
+      "goalsFor": 12,
       "goalsAgainst": 3,
-      "goalDiff": 8,
+      "goalDiff": 9,
       "zone": "playoff"
     },
     {
@@ -216,8 +216,8 @@
       "drawn": 0,
       "lost": 5,
       "goalsFor": 3,
-      "goalsAgainst": 12,
-      "goalDiff": -9,
+      "goalsAgainst": 13,
+      "goalDiff": -10,
       "zone": "retrocession"
     }
   ],
@@ -1129,7 +1129,7 @@
         {
           "homeTeam": "Pontassieve",
           "awayTeam": "Ideal Club Incisa",
-          "homeScore": 3,
+          "homeScore": 4,
           "awayScore": 0,
           "isPlayed": true,
           "status": "LIVE",
@@ -1139,7 +1139,8 @@
           "homeScorers": [
             "M. Privitera",
             "G. Calosi",
-            "A. Cragno"
+            "A. Cragno",
+            "M. Fantechi"
           ],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750657.png?v=2",
