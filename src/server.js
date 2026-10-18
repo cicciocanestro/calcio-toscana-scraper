@@ -155,6 +155,14 @@ function createServer(options = {}) {
 
   app.use(express.json());
 
+  // Rate limit per le API pubbliche di lettura: /api/leagues parsa i JSON di
+  // tutti i campionati a ogni richiesta, quindi senza limite una raffica
+  // costringe il Pi a leggere e interpretare la cache in continuazione.
+  // La soglia è volutamente larga: la dashboard fa polling e non deve rompersi.
+  const apiRateLimit = createRateLimiter(
+    options.apiRateLimit || { windowMs: 60 * 1000, max: 300 }
+  );
+
   // Aggiornamento forzato protetto da token condiviso (opzionale).
   // Se REFRESH_TOKEN non è impostato il comportamento resta quello di prima,
   // così lo sviluppo locale e i deploy esistenti continuano a funzionare.
@@ -210,7 +218,7 @@ function createServer(options = {}) {
   });
 
   // Lista campionati supportati, stato cache e aggiornamenti in corso
-  app.get('/api/leagues', (req, res) => {
+  app.get('/api/leagues', apiRateLimit, (req, res) => {
     const list = Object.keys(LEAGUES).map(key => {
       const cfg = LEAGUES[key];
       const cache = scraper.getCacheStatus(key);
@@ -239,7 +247,7 @@ function createServer(options = {}) {
   // Dati completi di un campionato.
   // Default: risposta immediata dalla cache (anche scaduta) + aggiornamento in
   // background. Con ?refresh=true si attende lo scraping dal sito sorgente.
-  app.get('/api/leagues/:id', guardForcedRefresh, async (req, res) => {
+  app.get('/api/leagues/:id', apiRateLimit, guardForcedRefresh, async (req, res) => {
     const id = req.params.id;
     if (!LEAGUES[id]) {
       return res.status(404).json({ error: `Campionato '${id}' non trovato` });
@@ -270,7 +278,7 @@ function createServer(options = {}) {
   });
 
   // Classifica marcatori aggregata dal database relazionale
-  app.get('/api/leagues/:id/scorers', (req, res) => {
+  app.get('/api/leagues/:id/scorers', apiRateLimit, (req, res) => {
     const id = req.params.id;
     if (!LEAGUES[id]) {
       return res.status(404).json({ error: `Campionato '${id}' non trovato` });

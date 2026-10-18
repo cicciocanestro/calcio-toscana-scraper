@@ -499,13 +499,37 @@ test('l\'export è protetto dal rate limit', async () => {
   }
 });
 
+test('anche /api/leagues è protetto dal rate limit', async () => {
+  const app = createServer({
+    autoRevalidate: false,
+    scraper: fakeScraper(),
+    apiRateLimit: { windowMs: 60000, max: 2 }
+  });
+  const server = app.listen(0);
+  await new Promise(resolve => server.once('listening', resolve));
+  const base = `http://127.0.0.1:${server.address().port}`;
+
+  try {
+    const first = await fetch(`${base}/api/leagues`);
+    const second = await fetch(`${base}/api/leagues`);
+    const third = await fetch(`${base}/api/leagues`);
+
+    assert.equal(first.status, 200);
+    assert.equal(second.status, 200);
+    assert.equal(third.status, 429, 'oltre la soglia /api/leagues deve rispondere 429');
+    assert.equal(third.headers.get('retry-after'), '60');
+  } finally {
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
 test('GET /api/leagues/:id/scorers restituisce la classifica marcatori', async () => {
   const app = createServer({ autoRevalidate: false, scraper: fakeScraper() });
   const server = app.listen(0);
   await new Promise(resolve => server.once('listening', resolve));
   const base = `http://127.0.0.1:${server.address().port}`;
 
-    try {
+  try {
     const res = await fetch(`${base}/api/leagues/promozione-c/scorers?limit=5`);
     assert.equal(res.status, 200);
     const body = await res.json();
