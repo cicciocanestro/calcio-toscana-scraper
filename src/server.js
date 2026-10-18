@@ -294,7 +294,8 @@ function createServer(options = {}) {
   });
 
   // Classifica marcatori aggregata dal database relazionale
-  app.get('/api/leagues/:id/scorers', apiRateLimit, (req, res) => {    const id = req.params.id;
+  app.get('/api/leagues/:id/scorers', apiRateLimit, (req, res) => {
+    const id = req.params.id;
     if (!LEAGUES[id]) {
       return res.status(404).json({ error: `Campionato '${id}' non trovato` });
     }
