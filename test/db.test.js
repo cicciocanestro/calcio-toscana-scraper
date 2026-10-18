@@ -9,6 +9,7 @@ const { importLeagueDocument, reconstructLeagueDocument, parseScorer } = require
 const { sportsFingerprint } = require('../bin/data-changed');
 const { SqliteStore, createStore } = require('../src/store');
 const { dumpSnapshot, restoreSnapshot } = require('../src/db-snapshot');
+const { syncDatabase } = require('../bin/db-snapshot');
 const { sampleLeagueData } = require('./fixtures');
 
 test('SQLite database contiene le tabelle e i vincoli corretti', () => {
@@ -258,6 +259,48 @@ test('dumpSnapshot aggiorna exported_at solo se i dati nel dump sono effettivame
     const firstLine3 = fs.readFileSync(snapFile, 'utf-8').split('\n')[0];
     const exp3 = JSON.parse(firstLine3).exported_at;
     assert.notEqual(exp3, exp1, 'exported_at deve aggiornarsi quando il database cambia');
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+});
+
+test('syncDatabase ripristina solo quando il database è disallineato dallo snapshot', () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'db-sync-test-'));
+  const dbPath = path.join(tempDir, 'calcio.sqlite');
+  const snapFile = path.join(tempDir, 'snapshot.jsonl');
+
+  try {
+    // 1. Snapshot assente: non c'è nulla da ripristinare
+    assert.deepEqual(syncDatabase(snapFile, dbPath), { restored: false, reason: 'snapshot assente' });
+
+    // 2. Creo DB e snapshot allineati
+    const db = initDatabase(dbPath);
+    importLeagueDocument(db, sampleLeagueData());
+    dumpSnapshot(db, snapFile);
+
+    // Il dump non deve far scattare un ripristino: il checksum combacia già.
+    assert.equal(syncDatabase(snapFile, dbPath).restored, false, 'dopo il dump DB e snapshot sono allineati');
+    assert.equal(syncDatabase(snapFile, dbPath).reason, 'contenuto identico');
+
+    // 3. Un `git pull` che cambia i dati rende il DB obsoleto anche se il mtime
+    //    non è affidabile: il criterio è il contenuto, non la data.
+    const db2 = initDatabase(dbPath);
+    db2.prepare('UPDATE leagues SET name = ? WHERE id = ?').run('Nome Divergente', 'promozione-c');
+    const stale = syncDatabase(snapFile, dbPath);
+    assert.equal(stale.restored, true, 'con contenuto diverso il DB va ripristinato');
+    assert.ok(stale.count > 0, 'deve restituire il numero di record ripristinati');
+
+    // 4. Ripetuto: ora il contenuto coincide di nuovo
+    assert.equal(syncDatabase(snapFile, dbPath).restored, false);
+
+    // 5. DB assente: viene ricreato dallo snapshot
+    fs.rmSync(dbPath, { force: true });
+    fs.rmSync(`${dbPath}-wal`, { force: true });
+    fs.rmSync(`${dbPath}-shm`, { force: true });
+    const recreated = syncDatabase(snapFile, dbPath);
+    assert.equal(recreated.restored, true);
+    assert.equal(recreated.reason, 'database assente');
+    assert.ok(fs.existsSync(dbPath), 'il database deve essere ricreato');
   } finally {
     fs.rmSync(tempDir, { recursive: true, force: true });
   }

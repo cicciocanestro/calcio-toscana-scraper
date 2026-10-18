@@ -1,6 +1,7 @@
 const fs = require('fs');
 const readline = require('readline');
 const path = require('path');
+const crypto = require('crypto');
 const { DB_SNAPSHOT_PATH } = require('./config');
 
 const SNAPSHOT_TABLES = [
@@ -13,6 +14,30 @@ const SNAPSHOT_TABLES = [
   'goals',
   'standings_snapshots'
 ];
+
+/**
+ * Costruisce il corpo dello snapshot leggendo tutte le tabelle in ordine stabile.
+ *
+ * @param {DatabaseSync} db
+ * @returns {{ body: string, totalRows: number }}
+ */
+function buildSnapshotBody(db) {
+  const dataLines = [];
+  let totalRows = 0;
+  for (const table of SNAPSHOT_TABLES) {
+    const rows = db.prepare(`SELECT * FROM ${table} ORDER BY rowid ASC`).all();
+    for (const row of rows) {
+      dataLines.push(JSON.stringify({ table, data: row }));
+      totalRows++;
+    }
+  }
+  return { body: dataLines.join('\n'), totalRows };
+}
+
+/** Impronta del contenuto, usata per capire se DB e snapshot coincidono. */
+function checksumOf(text) {
+  return crypto.createHash('sha1').update(text, 'utf-8').digest('hex');
+}
 
 /**
  * Esporta tutte le tabelle del database in un file JSON Lines ordinato e stabile.
@@ -28,17 +53,7 @@ function dumpSnapshot(db, filePath = DB_SNAPSHOT_PATH) {
     fs.mkdirSync(dir, { recursive: true });
   }
 
-  const dataLines = [];
-  let totalRows = 0;
-  for (const table of SNAPSHOT_TABLES) {
-    const rows = db.prepare(`SELECT * FROM ${table} ORDER BY rowid ASC`).all();
-    for (const row of rows) {
-      dataLines.push(JSON.stringify({ table, data: row }));
-      totalRows++;
-    }
-  }
-
-  const currentBody = dataLines.join('\n');
+  const { body: currentBody, totalRows } = buildSnapshotBody(db);
   let headerExportedAt = new Date().toISOString();
 
   if (fs.existsSync(filePath)) {
@@ -60,13 +75,46 @@ function dumpSnapshot(db, filePath = DB_SNAPSHOT_PATH) {
     } catch (e) {}
   }
 
-  const headerLine = JSON.stringify({ _type: 'header', version: 1, exported_at: headerExportedAt });
+  const headerLine = JSON.stringify({
+    _type: 'header',
+    version: 1,
+    exported_at: headerExportedAt,
+    rows: totalRows,
+    checksum: checksumOf(currentBody)
+  });
   const fullContent = `${headerLine}\n${currentBody}${currentBody.length > 0 ? '\n' : ''}`;
 
   const tmpPath = `${filePath}.${process.pid}.${Date.now()}.tmp`;
   fs.writeFileSync(tmpPath, fullContent, 'utf-8');
   fs.renameSync(tmpPath, filePath);
   return totalRows;
+}
+
+/**
+ * Dice se lo snapshot su disco descrive esattamente il contenuto del database.
+ *
+ * Confronta il checksum salvato nell'header con quello calcolato adesso sul DB:
+ * è il criterio affidabile per capire se serve un ripristino dopo un `git pull`.
+ *
+ * @returns {boolean|null} true/false, oppure null se lo snapshot non ha checksum
+ *                         (file creato da una versione precedente)
+ */
+function snapshotMatchesDatabase(db, filePath = DB_SNAPSHOT_PATH) {
+  if (!fs.existsSync(filePath)) return null;
+
+  try {
+    const content = fs.readFileSync(filePath, 'utf-8');
+    const firstNewline = content.indexOf('\n');
+    if (firstNewline === -1) return null;
+
+    const header = JSON.parse(content.slice(0, firstNewline));
+    if (!header || header._type !== 'header' || !header.checksum) return null;
+
+    const { body } = buildSnapshotBody(db);
+    return checksumOf(body) === header.checksum;
+  } catch (e) {
+    return null;
+  }
 }
 
 /**
@@ -135,6 +183,8 @@ function restoreSnapshot(db, filePath = DB_SNAPSHOT_PATH) {
 
 module.exports = {
   SNAPSHOT_TABLES,
+  buildSnapshotBody,
   dumpSnapshot,
+  snapshotMatchesDatabase,
   restoreSnapshot
 };
