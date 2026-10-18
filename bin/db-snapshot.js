@@ -16,23 +16,10 @@ const {
   dumpSnapshot,
   restoreSnapshot,
   snapshotMatchesDatabase,
+  compareFreshness,
   analyzeDivergence,
   SNAPSHOT_TABLES
 } = require('../src/db-snapshot');
-
-/**
- * Ultima scrittura del database, considerando anche i file WAL/SHM: con
- * `journal_mode=WAL` le modifiche passano da `calcio.sqlite-wal`, quindi il
- * solo mtime del file principale non basta a dire se il DB è aggiornato.
- */
-function lastDatabaseWrite(dbPath) {
-  let latest = 0;
-  for (const suffix of ['', '-wal', '-shm']) {
-    const file = `${dbPath}${suffix}`;
-    if (fs.existsSync(file)) latest = Math.max(latest, fs.statSync(file).mtimeMs);
-  }
-  return latest;
-}
 
 /**
  * Copia di sicurezza del database prima di una scrittura distruttiva.
@@ -77,8 +64,8 @@ function summarizeExclusiveRows(dbOnly) {
  *  3. se il checksum coincide non si fa nulla;
  *  4. se il database contiene righe che lo snapshot non ha, il DB è più avanti:
  *     il ripristino le cancellerebbe, quindi si salta (serve `--force`);
- *  5. se il file del DB è stato scritto dopo lo snapshot, le differenze sono
- *     valori locali più recenti: si salta (serve `--force`);
+ *  5. se il DB porta timestamp dei dati più recenti dello snapshot, le
+ *     differenze sono valori locali più nuovi: si salta (serve `--force`);
  *  6. altrimenti il DB è indietro: backup e ripristino.
  *
  * @param {string} [snapshotFile] - percorso dello snapshot JSONL
@@ -109,12 +96,6 @@ function syncDatabase(snapshotFile = DB_SNAPSHOT_PATH, options = {}) {
     return { restored: false, reason: 'contenuto identico' };
   }
 
-  // Snapshot senza checksum (formato precedente): si torna al confronto fra date,
-  // considerando anche WAL/SHM perché con WAL le scritture finiscono lì.
-  if (sameContent === null && fs.statSync(snapshotFile).mtimeMs <= lastDatabaseWrite(dbPath)) {
-    return { restored: false, reason: 'già allineato' };
-  }
-
   // Prima di distruggere dati: il DB ha righe che lo snapshot non contiene?
   const divergence = analyzeDivergence(db, snapshotFile);
   const exclusiveRows = Object.keys(divergence.dbOnly).length;
@@ -139,15 +120,21 @@ function syncDatabase(snapshotFile = DB_SNAPSHOT_PATH, options = {}) {
     };
   }
 
-  // Nessuna riga esclusiva: le differenze sono solo di valori. Se il file del
-  // database è stato scritto DOPO lo snapshot, quei valori sono più recenti di
-  // quelli versionati (es. refresh dalla dashboard, db-import senza dump) e il
-  // ripristino li riporterebbe indietro.
-  if (!force && lastDatabaseWrite(dbPath) > fs.statSync(snapshotFile).mtimeMs) {
+  // Nessuna riga esclusiva: le differenze sono solo di valori. Se il DB porta
+  // timestamp dei dati più recenti di quelli versionati (ultima classifica,
+  // ultimo punteggio, ultimo aggiornamento), il ripristino riporterebbe
+  // indietro quei valori: si salta.
+  //
+  // Il confronto è sul contenuto, non sulle date dei file: aprire la connessione
+  // SQLite riscrive `-wal` e `-shm`, quindi un criterio basato sui mtime
+  // segnalerebbe "DB più recente" a ogni comando.
+  const freshness = compareFreshness(db, snapshotFile);
+
+  if (!force && freshness.dbAhead) {
     return {
       restored: false,
       skipped: true,
-      reason: 'valori locali più recenti dello snapshot'
+      reason: `valori locali più recenti dello snapshot (DB ${freshness.dbLatest} vs snapshot ${freshness.snapshotLatest})`
     };
   }
 

@@ -91,15 +91,12 @@ function dumpSnapshot(db, filePath = DB_SNAPSHOT_PATH) {
 }
 
 /**
- * Dice se lo snapshot su disco descrive esattamente il contenuto del database.
+ * Legge il corpo dello snapshot da disco, senza header.
  *
- * Confronta il checksum salvato nell'header con quello calcolato adesso sul DB:
- * è il criterio affidabile per capire se serve un ripristino dopo un `git pull`.
- *
- * @returns {boolean|null} true/false, oppure null se lo snapshot non ha checksum
- *                         (file creato da una versione precedente)
+ * @returns {string|null} contenuto del corpo, oppure null se il file non è
+ *                        leggibile o non ha l'header previsto
  */
-function snapshotMatchesDatabase(db, filePath = DB_SNAPSHOT_PATH) {
+function readSnapshotBody(filePath = DB_SNAPSHOT_PATH) {
   if (!fs.existsSync(filePath)) return null;
 
   try {
@@ -108,13 +105,110 @@ function snapshotMatchesDatabase(db, filePath = DB_SNAPSHOT_PATH) {
     if (firstNewline === -1) return null;
 
     const header = JSON.parse(content.slice(0, firstNewline));
-    if (!header || header._type !== 'header' || !header.checksum) return null;
+    if (!header || header._type !== 'header') return null;
 
-    const { body } = buildSnapshotBody(db);
-    return checksumOf(body) === header.checksum;
+    return content.slice(firstNewline + 1).replace(/\n$/, '');
   } catch (e) {
     return null;
   }
+}
+
+/**
+ * Dice se lo snapshot su disco descrive esattamente il contenuto del database.
+ *
+ * Confronta il CORPO effettivamente presente su disco con quello ricostruito
+ * dal DB: non si fida del checksum dichiarato nell'header, così un file
+ * modificato a mano o frutto di un merge (corpo cambiato, header vecchio) non
+ * risulta "identico" per errore.
+ *
+ * @returns {boolean|null} true/false, oppure null se il file non è leggibile
+ */
+function snapshotMatchesDatabase(db, filePath = DB_SNAPSHOT_PATH) {
+  const fileBody = readSnapshotBody(filePath);
+  if (fileBody === null) return null;
+
+  try {
+    const { body } = buildSnapshotBody(db);
+    return checksumOf(body) === checksumOf(fileBody);
+  } catch (e) {
+    return null;
+  }
+}
+
+/**
+ * Colonne che registrano *quando* il dato è stato osservato: il valore più
+ * recente dice se un database è più avanti di uno snapshot.
+ */
+const FRESHNESS_COLUMNS = {
+  leagues: 'last_updated',
+  standings_snapshots: 'captured_at',
+  matches: 'score_updated_at'
+};
+
+/**
+ * Timestamp più recente presente in un elenco di righe dello snapshot.
+ *
+ * Le date sono ISO 8601 in UTC, quindi il confronto lessicografico coincide
+ * con quello cronologico.
+ *
+ * @param {Array<{table: string, data: object}>} entries
+ * @returns {string|null}
+ */
+function latestTimestamp(entries) {
+  let latest = null;
+
+  for (const entry of entries) {
+    const column = entry && entry.table ? FRESHNESS_COLUMNS[entry.table] : null;
+    if (!column || !entry.data) continue;
+
+    const value = entry.data[column];
+    if (typeof value !== 'string' || value.length === 0) continue;
+    if (latest === null || value > latest) latest = value;
+  }
+
+  return latest;
+}
+
+/** Righe del corpo dello snapshot, già parsate. */
+function parseSnapshotBody(body) {
+  const entries = [];
+  for (const line of String(body || '').split('\n')) {
+    if (!line.trim()) continue;
+    try {
+      const parsed = JSON.parse(line);
+      if (parsed && parsed._type !== 'header' && parsed.table) entries.push(parsed);
+    } catch (e) {
+      // Riga illeggibile: la ignoriamo, come fa il resto del modulo
+    }
+  }
+  return entries;
+}
+
+/**
+ * Confronta "quanto è avanti" il database rispetto allo snapshot, guardando i
+ * timestamp dei dati (ultima classifica, ultimo punteggio, ultimo aggiornamento
+ * del campionato).
+ *
+ * Questo è il criterio giusto per capire se un ripristino riporterebbe indietro
+ * qualcosa: le date dei file non servono, perché aprire la connessione SQLite
+ * riscrive comunque `-wal` e `-shm` e renderebbe il DB "più recente" a ogni
+ * comando.
+ *
+ * @returns {{ dbLatest: string|null, snapshotLatest: string|null, dbAhead: boolean }}
+ */
+function compareFreshness(db, filePath = DB_SNAPSHOT_PATH) {
+  const fileBody = readSnapshotBody(filePath);
+  if (fileBody === null) {
+    return { dbLatest: null, snapshotLatest: null, dbAhead: false };
+  }
+
+  const { body } = buildSnapshotBody(db);
+  const dbLatest = latestTimestamp(parseSnapshotBody(body));
+  const snapshotLatest = latestTimestamp(parseSnapshotBody(fileBody));
+
+  const dbAhead = dbLatest !== null && (snapshotLatest === null || dbLatest > snapshotLatest);
+
+  return { dbLatest, snapshotLatest, dbAhead };
 }
 
 /**
@@ -281,6 +375,9 @@ module.exports = {
   buildSnapshotBody,
   dumpSnapshot,
   snapshotMatchesDatabase,
+  readSnapshotBody,
+  compareFreshness,
+  latestTimestamp,
   analyzeDivergence,
   restoreSnapshot
 };

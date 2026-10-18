@@ -8,8 +8,14 @@ const { initDatabase } = require('../src/db');
 const { importLeagueDocument, reconstructLeagueDocument, parseScorer } = require('../src/db-sync');
 const { sportsFingerprint } = require('../bin/data-changed');
 const { SqliteStore, createStore } = require('../src/store');
-const { dumpSnapshot, restoreSnapshot, analyzeDivergence } = require('../src/db-snapshot');
-const { syncDatabase } = require('../bin/db-snapshot');
+const {
+  dumpSnapshot,
+  restoreSnapshot,
+  analyzeDivergence,
+  snapshotMatchesDatabase,
+  compareFreshness
+} = require('../src/db-snapshot');
+const { syncDatabase, lastDatabaseWrite } = require('../bin/db-snapshot');
 const { sampleLeagueData } = require('./fixtures');
 
 test('SQLite database contiene le tabelle e i vincoli corretti', () => {
@@ -381,29 +387,29 @@ test('syncDatabase non ripristina valori locali più recenti dello snapshot (sen
     dumpSnapshot(db, snapFile);
 
     // Scrittura locale DOPO il dump (es. refresh dalla dashboard, db-import
-    // senza dump): nessuna riga nuova, cambia solo un valore.
-    db.prepare('UPDATE leagues SET current_match_day = ? WHERE id = ?').run(7, 'promozione-c');
+    // senza dump): il DB porta un timestamp dei dati più recente.
+    db.prepare('UPDATE leagues SET last_updated = ? WHERE id = ?').run('2027-06-01T00:00:00.000Z', 'promozione-c');
 
     const skipped = syncDatabase(snapFile, { dbPath });
     assert.equal(skipped.restored, false, 'i valori più recenti non vanno sovrascritti');
     assert.equal(skipped.skipped, true);
     assert.match(skipped.reason, /valori locali più recenti/);
 
-    const currentDay = initDatabase(dbPath).prepare('SELECT current_match_day FROM leagues WHERE id = ?').get('promozione-c');
-    assert.equal(currentDay.current_match_day, 7, 'il valore locale deve sopravvivere');
+    const lastUpdated = initDatabase(dbPath).prepare('SELECT last_updated FROM leagues WHERE id = ?').get('promozione-c');
+    assert.equal(lastUpdated.last_updated, '2027-06-01T00:00:00.000Z', 'il valore locale deve sopravvivere');
 
     // Con --force si torna allo snapshot, ma il backup conserva il valore locale
     const forced = syncDatabase(snapFile, { dbPath, force: true });
     assert.equal(forced.restored, true);
     assert.ok(forced.backup && fs.existsSync(forced.backup));
 
-    const restoredDay = initDatabase(dbPath).prepare('SELECT current_match_day FROM leagues WHERE id = ?').get('promozione-c');
-    assert.notEqual(restoredDay.current_match_day, 7, 'con --force torna il valore dello snapshot');
+    const restored = initDatabase(dbPath).prepare('SELECT last_updated FROM leagues WHERE id = ?').get('promozione-c');
+    assert.notEqual(restored.last_updated, '2027-06-01T00:00:00.000Z', 'con --force torna il valore dello snapshot');
 
     // Il backup è interrogabile e contiene il valore locale
     const backupDb = initDatabase(forced.backup);
-    const backupDay = backupDb.prepare('SELECT current_match_day FROM leagues WHERE id = ?').get('promozione-c');
-    assert.equal(backupDay.current_match_day, 7, 'il backup deve contenere i dati scartati');
+    const backupRow = backupDb.prepare('SELECT last_updated FROM leagues WHERE id = ?').get('promozione-c');
+    assert.equal(backupRow.last_updated, '2027-06-01T00:00:00.000Z', 'il backup deve contenere i dati scartati');
   } finally {
     fs.rmSync(tempDir, { recursive: true, force: true });
   }
@@ -488,6 +494,112 @@ test('analyzeDivergence segnala una riga logica davvero assente dallo snapshot',
 
     const divergence = analyzeDivergence(db, snapFile);
     assert.deepEqual(divergence.dbOnly.teams, ['squadra_nuova'], 'la chiave naturale deve finire nel report');
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+});
+
+test('syncDatabase non viene ingannato dall\'apertura del DB (nessuna euristica sui mtime)', () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'db-sync-open-'));
+  const dbPath = path.join(tempDir, 'calcio.sqlite');
+  const snapFile = path.join(tempDir, 'snapshot.jsonl');
+
+  try {
+    // 1. DB e snapshot allineati, poi chiusura pulita della connessione
+    const db = initDatabase(dbPath);
+    importLeagueDocument(db, sampleLeagueData());
+    dumpSnapshot(db, snapFile);
+    db.close();
+
+    // 2. `git pull` porta uno snapshot diverso e più recente dei dati locali
+    const snapshotText = fs.readFileSync(snapFile, 'utf-8').replace(
+      /"(last_updated|captured_at|score_updated_at)":\s*"[^"]*"/g,
+      '"$1":"2027-09-09T10:00:00.000Z"'
+    );
+    fs.writeFileSync(snapFile, snapshotText, 'utf-8');
+
+    // 3. Un altro processo (server, test, CLI) ha già aperto il DB: l'apertura
+    //    riscrive `-wal` e `-shm`, che risultano quindi "adesso".
+    const previous = initDatabase(dbPath);
+
+    // 4. Il criterio è il contenuto: i timestamp del DB sono più vecchi dello
+    //    snapshot, quindi il DB è indietro e va ripristinato, anche se i file
+    //    `-wal`/`-shm` sono stati toccati un istante fa.
+    const result = syncDatabase(snapFile, { dbPath });
+
+    assert.equal(result.restored, true, 'il DB è indietro: deve ripristinare');
+    assert.equal(result.skipped, undefined);
+    assert.match(result.reason, /contenuto diverso/);
+
+    const lastUpdated = initDatabase(dbPath).prepare('SELECT last_updated FROM leagues WHERE id = ?').get('promozione-c');
+    assert.equal(lastUpdated.last_updated, '2027-09-09T10:00:00.000Z', 'i dati dello snapshot devono essere applicati');
+    previous.close();
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+});
+
+test('compareFreshness confronta i timestamp dei dati, non le date dei file', () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'db-freshness-'));
+  const dbPath = path.join(tempDir, 'calcio.sqlite');
+  const snapFile = path.join(tempDir, 'snapshot.jsonl');
+
+  try {
+    const db = initDatabase(dbPath);
+    importLeagueDocument(db, sampleLeagueData());
+    dumpSnapshot(db, snapFile);
+
+    // Allineati: nessuno è avanti
+    const aligned = compareFreshness(db, snapFile);
+    assert.equal(aligned.dbAhead, false);
+    assert.equal(aligned.dbLatest, aligned.snapshotLatest);
+
+    // Il DB riceve un dato osservato più tardi: è avanti
+    db.prepare('UPDATE matches SET score_updated_at = ? WHERE id = (SELECT MIN(id) FROM matches)')
+      .run('2027-05-05T10:00:00.000Z');
+    const ahead = compareFreshness(db, snapFile);
+    assert.equal(ahead.dbAhead, true, 'un punteggio più recente rende il DB avanti');
+    assert.equal(ahead.dbLatest, '2027-05-05T10:00:00.000Z');
+
+    // Se lo snapshot ha timestamp più recenti, il DB è indietro
+    const snapshotText = fs.readFileSync(snapFile, 'utf-8').replace(
+      /"(last_updated|captured_at|score_updated_at)":\s*"[^"]*"/g,
+      '"$1":"2027-09-09T10:00:00.000Z"'
+    );
+    fs.writeFileSync(snapFile, snapshotText, 'utf-8');
+    const behind = compareFreshness(db, snapFile);
+    assert.equal(behind.dbAhead, false, 'con lo snapshot più recente il DB è indietro');
+    assert.equal(behind.snapshotLatest, '2027-09-09T10:00:00.000Z');
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+});
+
+test('snapshotMatchesDatabase confronta il corpo su disco, non il checksum dichiarato', () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'db-snap-body-'));
+  const dbPath = path.join(tempDir, 'calcio.sqlite');
+  const snapFile = path.join(tempDir, 'snapshot.jsonl');
+
+  try {
+    const db = initDatabase(dbPath);
+    importLeagueDocument(db, sampleLeagueData());
+    dumpSnapshot(db, snapFile);
+
+    assert.equal(snapshotMatchesDatabase(db, snapFile), true, 'appena scritto deve combaciare');
+
+    // Modifica del corpo lasciando intatto l'header (come un merge o una modifica a mano):
+    // il checksum nell'header descrive ancora il DB, ma il file non è più lo stesso.
+    const content = fs.readFileSync(snapFile, 'utf-8');
+    const firstNewline = content.indexOf('\n');
+    const header = content.slice(0, firstNewline);
+    const body = content.slice(firstNewline + 1);
+    fs.writeFileSync(snapFile, header + '\n' + body.replace('Promozione Toscana - Girone C', 'Nome Alterato'), 'utf-8');
+
+    assert.equal(
+      snapshotMatchesDatabase(db, snapFile),
+      false,
+      'un corpo diverso non deve risultare identico solo perché l\'header non è stato aggiornato'
+    );
   } finally {
     fs.rmSync(tempDir, { recursive: true, force: true });
   }
