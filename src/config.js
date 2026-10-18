@@ -109,8 +109,28 @@ const LEAGUES = {
   }
 };
 
+/**
+ * Determina la stagione sportiva (es. "2026/27") a partire da una data.
+ * Le stagioni calcistiche partono convenzionalmente il 1° luglio (o agosto) e terminano a giugno.
+ * Da luglio a dicembre appartiene all'anno corrente / anno+1.
+ * Da gennaio a giugno appartiene all'anno precedente / anno corrente.
+ */
+function getCurrentSeasonLabel(date = new Date()) {
+  const d = date instanceof Date ? date : new Date(date);
+  const year = d.getFullYear();
+  const month = d.getMonth() + 1; // 1-12
+  if (month >= 7) {
+    const nextYearShort = String((year + 1) % 100).padStart(2, '0');
+    return `${year}/${nextYearShort}`;
+  }
+  const prevYear = year - 1;
+  const currentYearShort = String(year % 100).padStart(2, '0');
+  return `${prevYear}/${currentYearShort}`;
+}
+
 module.exports = {
   findChrome,
+  getCurrentSeasonLabel,
   ROOT_DIR,
   DATA_DIR,
   CACHE_DIR,

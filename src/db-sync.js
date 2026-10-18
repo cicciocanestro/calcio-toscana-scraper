@@ -1,4 +1,5 @@
 const { exportSlug } = require('./exporters');
+const { getCurrentSeasonLabel } = require('./config');
 
 /**
  * Parsing di una stringa marcatore (es. "E. Focardi (27' pt)", "A. Rachidi (Rig.) (29' st)", "AUTOGOL (6' st)").
@@ -62,7 +63,7 @@ function upsertTeam(db, teamName, logoUrl = null) {
  * Inserisce o aggiorna un intero documento JSON di un campionato nel database relazionale.
  */
 function importLeagueDocument(db, leagueData, options = {}) {
-  const seasonLabel = options.seasonLabel || '2026/27';
+  const seasonLabel = options.seasonLabel || getCurrentSeasonLabel(leagueData.lastUpdated || new Date());
 
   db.exec('BEGIN TRANSACTION;');
   try {
@@ -201,7 +202,9 @@ function importLeagueDocument(db, leagueData, options = {}) {
         date_time = COALESCE(excluded.date_time, matches.date_time),
         match_link = excluded.match_link,
         score_updated_at = CASE
-          WHEN excluded.is_played = 1 THEN COALESCE(excluded.score_updated_at, matches.score_updated_at)
+          -- Aggiorna score_updated_at solo se il punteggio è effettivamente cambiato rispetto a prima
+          WHEN excluded.is_played = 1 AND (matches.home_score IS NOT excluded.home_score OR matches.away_score IS NOT excluded.away_score OR matches.score_updated_at IS NULL)
+            THEN COALESCE(excluded.score_updated_at, matches.score_updated_at)
           ELSE matches.score_updated_at
         END
     `);
@@ -316,12 +319,17 @@ function importLeagueDocument(db, leagueData, options = {}) {
 /**
  * Ricostruisce l'esatto documento JSON del campionato a partire dal database relazionale.
  */
-function reconstructLeagueDocument(db, leagueId, seasonLabel = '2026/27') {
+function reconstructLeagueDocument(db, leagueId, seasonLabel = null) {
   const league = db.prepare('SELECT * FROM leagues WHERE id = ?').get(leagueId);
   if (!league) return null;
 
-  const season = db.prepare('SELECT id FROM seasons WHERE league_id = ? AND label = ?').get(leagueId, seasonLabel);
-  if (!season) return null;
+  const targetSeason = seasonLabel || getCurrentSeasonLabel(league.last_updated || new Date());
+  let season = db.prepare('SELECT id FROM seasons WHERE league_id = ? AND label = ?').get(leagueId, targetSeason);
+  if (!season) {
+    // Fallback sulla stagione più recente disponibile
+    season = db.prepare('SELECT id FROM seasons WHERE league_id = ? ORDER BY id DESC LIMIT 1').get(leagueId);
+    if (!season) return null;
+  }
   const seasonId = season.id;
 
   // 1. Classifica più recente
