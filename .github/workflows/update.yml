@@ -75,11 +75,27 @@ jobs:
           RENDER_URL: ${{ vars.RENDER_URL || 'https://calcio-toscana-scraper.onrender.com' }}
           REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
         run: |
-          # 1. Sul runner Raspberry Pi l'IP residenziale di casa non viene bloccato dal WAF:
-          # lo scraping diretto impiega appena ~2 secondi in HTTP puro.
-          if [ "${{ inputs.use_cache }}" != "true" ] && node bin/cli.js scrape all --refresh; then
+          # Codici di uscita di `bin/cli.js scrape`: 0 = tutto aggiornato,
+          # 1 = nessuna lega aggiornata, 3 = dati in regressione (scartati).
+          # La regressione va trattata a parte: NON è un blocco del WAF, quindi
+          # non deve far scattare il fallback remoto (che ha dati più vecchi),
+          # e deve comparire come warning visibile nell'interfaccia di GitHub.
+          scrape_rc=0
+          if [ "${{ inputs.use_cache }}" != "true" ]; then
+            # 1. Sul runner Raspberry Pi l'IP residenziale di casa non viene bloccato
+            #    dal WAF: lo scraping diretto impiega appena ~2 secondi in HTTP puro.
+            node bin/cli.js scrape all --refresh || scrape_rc=$?
+          else
+            scrape_rc=1
+          fi
+
+          if [ "$scrape_rc" = "0" ]; then
             echo "aggiornato=true" >> "$GITHUB_OUTPUT"
             echo "✔ Dati aggiornati direttamente dal runner Raspberry Pi."
+          elif [ "$scrape_rc" = "3" ]; then
+            echo "aggiornato=false" >> "$GITHUB_OUTPUT"
+            echo "::warning title=Regressione dati::Lo scraping ha restituito dati in calo (classifica più corta o meno partite con risultato). La cache buona è stata conservata e NON viene usato il fallback remoto. Se il calo è reale (es. partita annullata da Tuttocampo) rilancia a mano con: node bin/cli.js scrape all --refresh --accept-regression"
+            echo "⚠ Regressione sui dati: nessun commit, cache conservata."
           else
             # 2. Fallback su istanza remota (es. Render) se richiesto use_cache o in caso di errore
             extra=""
