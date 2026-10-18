@@ -10,7 +10,7 @@
   "roundID": "TO.2.I",
   "currentMatchDay": 5,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-10-18T17:23:08.115Z",
+  "lastUpdated": "2026-10-18T22:25:18.229Z",
   "standings": [
     {
       "position": 1,
@@ -1030,7 +1030,9 @@
             "M. Tacchini",
             "L. Paolucci"
           ],
-          "awayScorers": [],
+          "awayScorers": [
+            "M. Terrazzi"
+          ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/51030.png?v=1",
           "matchLink": "https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/5.4/valdichiana-calcio-marino-mercato-subbiano"

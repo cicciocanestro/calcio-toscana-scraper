@@ -1,4 +1,4 @@
-{"_type":"header","version":1,"exported_at":"2026-10-18T17:23:20.178Z","rows":1369,"checksum":"1cca4c1386c4e1f1c6012478e5102ae3ff41e24b"}
+{"_type":"header","version":1,"exported_at":"2026-10-18T22:25:39.751Z","rows":1370,"checksum":"d62d12dcf65fd64ff3249263852a249d7916bf94"}
 {"table":"leagues","data":{"id":"promozione-c","name":"Promozione Toscana - Girone C","short_name":"Promozione C","category":"Promozione","girone":"Girone C","region":"Toscana","province":"","url":"https://www.tuttocampo.it/Toscana/Promozione/GironeC/Risultati","round_id":"TO.P.C","current_match_day":6,"total_match_days":30,"last_updated":"2026-10-18T15:15:01.332Z"}}
 {"table":"leagues","data":{"id":"seconda-i","name":"Seconda Categoria Toscana - Girone I","short_name":"Seconda Cat. I","category":"Seconda Categoria","girone":"Girone I","region":"Toscana","province":"","url":"https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Risultati","round_id":"TO.2.I","current_match_day":5,"total_match_days":30,"last_updated":"2026-10-18T15:15:07.052Z"}}
 {"table":"leagues","data":{"id":"terza-arezzo","name":"Terza Categoria Arezzo - Girone Unico","short_name":"Terza Cat. Arezzo","category":"Terza Categoria","girone":"Girone Unico","region":"Toscana","province":"Arezzo","url":"https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Risultati","round_id":"TO.3.A.AR","current_match_day":5,"total_match_days":34,"last_updated":"2026-10-18T15:15:14.431Z"}}
@@ -1249,8 +1249,6 @@
 {"table":"goals","data":{"id":346,"match_id":273,"team_id":24,"player_raw":"J. Biondi (31' st)","player_name":"J. Biondi","minute":"31","half":"st","is_penalty":0,"is_own_goal":0,"ordinal":3}}
 {"table":"goals","data":{"id":347,"match_id":276,"team_id":18,"player_raw":"J. Krasniki","player_name":"J. Krasniki","minute":null,"half":null,"is_penalty":0,"is_own_goal":0,"ordinal":1}}
 {"table":"goals","data":{"id":348,"match_id":276,"team_id":18,"player_raw":"P. Dumbrava","player_name":"P. Dumbrava","minute":null,"half":null,"is_penalty":0,"is_own_goal":0,"ordinal":2}}
-{"table":"goals","data":{"id":349,"match_id":280,"team_id":25,"player_raw":"M. Tacchini","player_name":"M. Tacchini","minute":null,"half":null,"is_penalty":0,"is_own_goal":0,"ordinal":1}}
-{"table":"goals","data":{"id":350,"match_id":280,"team_id":25,"player_raw":"L. Paolucci","player_name":"L. Paolucci","minute":null,"half":null,"is_penalty":0,"is_own_goal":0,"ordinal":2}}
 {"table":"goals","data":{"id":351,"match_id":518,"team_id":49,"player_raw":"J. Acquisti","player_name":"J. Acquisti","minute":null,"half":null,"is_penalty":0,"is_own_goal":0,"ordinal":1}}
 {"table":"goals","data":{"id":352,"match_id":518,"team_id":33,"player_raw":"G. Manalli","player_name":"G. Manalli","minute":null,"half":null,"is_penalty":0,"is_own_goal":0,"ordinal":2}}
 {"table":"goals","data":{"id":353,"match_id":519,"team_id":34,"player_raw":"G. Cioncolini","player_name":"G. Cioncolini","minute":null,"half":null,"is_penalty":0,"is_own_goal":0,"ordinal":1}}
@@ -1268,6 +1266,9 @@
 {"table":"goals","data":{"id":365,"match_id":522,"team_id":48,"player_raw":"M. Francini","player_name":"M. Francini","minute":null,"half":null,"is_penalty":0,"is_own_goal":0,"ordinal":5}}
 {"table":"goals","data":{"id":366,"match_id":522,"team_id":45,"player_raw":"E. Testi","player_name":"E. Testi","minute":null,"half":null,"is_penalty":0,"is_own_goal":0,"ordinal":6}}
 {"table":"goals","data":{"id":367,"match_id":522,"team_id":45,"player_raw":"G. Destro","player_name":"G. Destro","minute":null,"half":null,"is_penalty":0,"is_own_goal":0,"ordinal":7}}
+{"table":"goals","data":{"id":368,"match_id":280,"team_id":25,"player_raw":"M. Tacchini","player_name":"M. Tacchini","minute":null,"half":null,"is_penalty":0,"is_own_goal":0,"ordinal":1}}
+{"table":"goals","data":{"id":369,"match_id":280,"team_id":25,"player_raw":"L. Paolucci","player_name":"L. Paolucci","minute":null,"half":null,"is_penalty":0,"is_own_goal":0,"ordinal":2}}
+{"table":"goals","data":{"id":370,"match_id":280,"team_id":20,"player_raw":"M. Terrazzi","player_name":"M. Terrazzi","minute":null,"half":null,"is_penalty":0,"is_own_goal":0,"ordinal":3}}
 {"table":"standings_snapshots","data":{"id":1,"season_id":1,"matchday_number":5,"team_id":1,"position":1,"points":12,"played":5,"won":4,"drawn":0,"lost":1,"goals_for":9,"goals_against":3,"goal_diff":6,"zone":"promotion","captured_at":"2026-10-12T20:23:25.447Z"}}
 {"table":"standings_snapshots","data":{"id":2,"season_id":1,"matchday_number":5,"team_id":2,"position":2,"points":12,"played":5,"won":4,"drawn":0,"lost":1,"goals_for":7,"goals_against":3,"goal_diff":4,"zone":"playoff","captured_at":"2026-10-12T20:23:25.447Z"}}
 {"table":"standings_snapshots","data":{"id":3,"season_id":1,"matchday_number":5,"team_id":3,"position":3,"points":12,"played":5,"won":4,"drawn":0,"lost":1,"goals_for":7,"goals_against":4,"goal_diff":3,"zone":"playoff","captured_at":"2026-10-12T20:23:25.447Z"}}
