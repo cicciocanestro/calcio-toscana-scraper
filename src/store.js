@@ -107,6 +107,7 @@ class JsonStore extends BaseStore {
         }
         importLeagueDocument(this._db, leagueData);
       } catch (err) {
+        console.warn(`[STORE] Errore sincronizzazione SQLite per ${leagueConfig.id}:`, err.message);
         // Non blocca il salvataggio dei file statici
       }
     }

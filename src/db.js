@@ -167,6 +167,10 @@ function initDatabase(dbPath = DB_PATH, options = {}) {
 
   const db = new DatabaseSync(dbPath);
   db.exec('PRAGMA foreign_keys = ON;');
+  db.exec('PRAGMA busy_timeout = 5000;');
+  if (!isMemory) {
+    db.exec('PRAGMA journal_mode = WAL;');
+  }
   db.exec(SCHEMA_SQL);
 
   if (isNew && autoRestore && !isMemory && fs.existsSync(DB_SNAPSHOT_PATH)) {
