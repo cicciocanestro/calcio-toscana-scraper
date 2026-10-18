@@ -1515,18 +1515,16 @@ function escapeHtml(str) {
  * I dati arrivano dallo scraping di un sito terzo: un `matchLink` costruito
  * male (o manipolato) con schema `javascript:` diventerebbe eseguibile al
  * click. Accettiamo solo http/https, restituendo '' per tutto il resto.
+ *
+ * Stessa logica di `safeExternalUrl` in src/exporters.js: controllo a
+ * espressione regolare per non dipendere dal costruttore `URL`.
  */
 function safeExternalUrl(url) {
   const raw = String(url == null ? '' : url).trim();
   if (!raw) return '';
 
-  try {
-    const parsed = new URL(raw);
-    if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
-      return parsed.href;
-    }
-  } catch (e) {
-    // URL relativo o non parsabile: non è un link esterno affidabile
-  }
-  return '';
+  // Un URL con a capo inietterebbe righe nel file .ics generato lato browser.
+  if (/[\r\n]/.test(raw)) return '';
+
+  return /^https?:\/\//i.test(raw) ? raw : '';
 }

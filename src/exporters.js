@@ -21,10 +21,14 @@ const DEFAULT_MATCH_TIME = '15:30';
 /**
  * Valida un URL esterno proveniente dallo scraping (es. `matchLink`).
  *
- * Restituisce la forma normalizzata solo per http/https: qualunque altro
- * schema (`javascript:`, `data:`, ...) viene scartato. Serve sia per non
+ * Accetta solo http/https: qualunque altro schema (`javascript:`, `data:`,
+ * `file:`, ...) e qualunque URL relativo viene scartato. Serve sia per non
  * mettere link pericolosi in pagina, sia per non iniettare righe ICS tramite
  * un URL che contiene a capo.
+ *
+ * Il controllo è volutamente a espressione regolare e non con `new URL()`:
+ * deve funzionare identico nel browser e in Node, senza dipendere dalla
+ * disponibilità del costruttore `URL`.
  *
  * @returns {string} URL valido, oppure '' se non lo è
  */
@@ -35,15 +39,7 @@ function safeExternalUrl(url) {
   // A capo e ritorni a capo romperebbero la struttura del file ICS.
   if (/[\r\n]/.test(raw)) return '';
 
-  try {
-    const parsed = new URL(raw);
-    if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
-      return parsed.href;
-    }
-  } catch (e) {
-    // URL relativo o non parsabile
-  }
-  return '';
+  return /^https?:\/\//i.test(raw) ? raw : '';
 }
 
 /**

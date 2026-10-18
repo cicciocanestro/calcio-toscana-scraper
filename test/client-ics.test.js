@@ -117,3 +117,26 @@ test('il calendario del browser usa lo stesso default orario dell\'export', () =
   assert.match(logical1500, /DTSTART;TZID=Europe\/Rome:20261003T150000/);
   assert.match(logical1500, /DTEND;TZID=Europe\/Rome:20261003T164500/);
 });
+
+test('safeExternalUrl nel browser scarta schemi pericolosi e URL con a capo', () => {
+  const ctx = loadApp();
+  const valid = ctx.safeExternalUrl('https://www.tuttocampo.it/Partita/1');
+
+  assert.equal(typeof ctx.safeExternalUrl, 'function', 'la funzione deve essere disponibile nel browser');
+  assert.equal(valid, 'https://www.tuttocampo.it/Partita/1');
+  assert.equal(ctx.safeExternalUrl('javascript:alert(1)'), '');
+  assert.equal(ctx.safeExternalUrl('data:text/html,<b>'), '');
+  assert.equal(ctx.safeExternalUrl('/relativo'), '');
+  assert.equal(ctx.safeExternalUrl('https://esempio.it/x\r\nX-INJECT:1'), '', 'i a capo vanno rifiutati');
+  assert.equal(ctx.safeExternalUrl(''), '');
+  assert.equal(ctx.safeExternalUrl(null), '');
+});
+
+test('il .ics del browser non contiene un matchLink con schema pericoloso', () => {
+  const ctx = loadApp();
+  const data = sampleData();
+  data.matchDays[0].matches[0].matchLink = 'javascript:alert(1)';
+
+  const ics = ctx.generateClientIcs(data);
+  assert.doesNotMatch(ics, /javascript:/);
+});
