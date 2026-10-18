@@ -5,6 +5,25 @@ let leagueData = null;
 let selectedDay = null;
 let currentView = 'calendar';
 
+// Quando è true la lettura dei dati bypassa la cache HTTP (parametro `?t=` e
+// `cache: 'no-cache'`). Serve solo subito dopo un aggiornamento, quando il
+// contenuto può essere cambiato ma i proxy potrebbero ancora servire la copia
+// vecchia. Fuori da questi casi il fetch resta condizionale, così il browser
+// può rispondere 304 e risparmiare banda.
+let bypassHttpCache = false;
+
+/** URL con cache-busting solo quando serve davvero (post-refresh/polling). */
+function cacheBustUrl(url) {
+  if (!bypassHttpCache) return url;
+  const sep = url.includes('?') ? '&' : '?';
+  return `${url}${sep}t=${Date.now()}`;
+}
+
+/** Opzioni di fetch coerenti con il bypass della cache. */
+function cacheBustOptions(extra = {}) {
+  return bypassHttpCache ? { ...extra, cache: 'no-cache' } : extra;
+}
+
 // Scheda "CC Camucia": partite in casa delle squadre del territorio, che
 // militano in tre campionati diversi. La corrispondenza è parziale e in
 // minuscolo, così regge anche se il sito cambia leggermente la denominazione.
@@ -77,8 +96,9 @@ function detectEnvironment() {
     return;
   }
 
-  // Se siamo altrove (localhost o Render), verifichiamo se l'API risponde
-  fetch('/api/leagues', { cache: 'no-cache' })
+  // Se siamo altrove (localhost o Render), verifichiamo se l'API risponde.
+  // Qui non serve bypassare la cache: è solo un probe di disponibilità.
+  fetch('/api/leagues')
     .then(r => {
       if (!r.ok) setupStaticMode();
     })
@@ -440,12 +460,21 @@ function pollForPagesUpdate() {
   let attempts = 0;
   const maxAttempts = 18; // 18 tentativi da 10s = 3 minuti
 
+  // Dopo un aggiornamento il contenuto è cambiato: il bypass della cache HTTP
+  // serve finché il polling non trova i dati nuovi (o esaurisce i tentativi).
+  bypassHttpCache = true;
+
+  const stopPolling = () => {
+    clearInterval(timer);
+    bypassHttpCache = false;
+  };
+
   const timer = setInterval(async () => {
     attempts++;
     try {
       const testData = await fetchLeagueData(currentLeague);
       if (testData && testData.lastUpdated && testData.lastUpdated !== initialUpdated) {
-        clearInterval(timer);
+        stopPolling();
         leagueData = testData;
         renderHeaderInfo();
         populateDaySelector();
@@ -457,7 +486,7 @@ function pollForPagesUpdate() {
     } catch (e) {}
 
     if (attempts >= maxAttempts) {
-      clearInterval(timer);
+      stopPolling();
     }
   }, 10000);
 }
@@ -499,26 +528,33 @@ async function refreshAllLeagues() {
     // Se l'aggiornamento è stato accettato in background (status 202 o inProgress),
     // effettuiamo polling periodico su /api/leagues per monitorare il completamento
     const maxPollAttempts = 40; // max ~2 minuti (40 * 3s)
-    for (let i = 0; i < maxPollAttempts; i++) {
-      await new Promise(resolve => setTimeout(resolve, 3000));
+    // Durante il polling (e la ricarica finale) i dati devono essere freschi:
+    // forziamo il bypass della cache HTTP solo per questa finestra.
+    bypassHttpCache = true;
+    try {
+      for (let i = 0; i < maxPollAttempts; i++) {
+        await new Promise(resolve => setTimeout(resolve, 3000));
 
-      try {
-        const checkResp = await fetch(`/api/leagues?t=${Date.now()}`, { cache: 'no-cache' });
-        if (checkResp.ok) {
-          const leagues = await checkResp.json();
-          const target = leagues.find(l => l.id === currentLeague);
-          // Terminato se non è più in corso di revalidation e i dati sono stati aggiornati
-          if (target && !target.isRevalidating && (!initialLastUpdated || target.lastUpdated !== initialLastUpdated)) {
-            break;
+        try {
+          const checkResp = await fetch(cacheBustUrl('/api/leagues'), cacheBustOptions());
+          if (checkResp.ok) {
+            const leagues = await checkResp.json();
+            const target = leagues.find(l => l.id === currentLeague);
+            // Terminato se non è più in corso di revalidation e i dati sono stati aggiornati
+            if (target && !target.isRevalidating && (!initialLastUpdated || target.lastUpdated !== initialLastUpdated)) {
+              break;
+            }
           }
+        } catch (pollErr) {
+          // Ignora errori temporanei di rete durante il poll
         }
-      } catch (pollErr) {
-        // Ignora errori temporanei di rete durante il poll
       }
-    }
 
-    // Ricarica la lega corrente con i dati aggiornati
-    await loadLeague(currentLeague, false);
+      // Ricarica la lega corrente con i dati aggiornati
+      await loadLeague(currentLeague, false);
+    } finally {
+      bypassHttpCache = false;
+    }
   } catch (err) {
     showError('Impossibile aggiornare i campionati: ' + (err.message || 'Errore di connessione col backend'));
     showLoading(false);
@@ -533,7 +569,10 @@ async function fetchLeagueData(leagueId) {
   // 1. API backend (saltata su GitHub Pages o in modalità statica per non generare 404 in console)
   if (!isStaticEnvironment) {
     try {
-      const resp = await fetch(`/api/leagues/${leagueId}?t=${Date.now()}`, { cache: 'no-cache' });
+      const resp = await fetch(
+        cacheBustUrl(`/api/leagues/${leagueId}`),
+        cacheBustOptions()
+      );
       if (resp.ok) {
         const res = await resp.json();
         return res.data ? res.data : res;
@@ -547,15 +586,14 @@ async function fetchLeagueData(leagueId) {
   }
 
   // 2. Cache statica
-  const t = Date.now();
   const possiblePaths = [
-    `data/cache/${leagueId}.json?t=${t}`,
-    `./data/cache/${leagueId}.json?t=${t}`,
-    `../data/cache/${leagueId}.json?t=${t}`
+    cacheBustUrl(`data/cache/${leagueId}.json`),
+    cacheBustUrl(`./data/cache/${leagueId}.json`),
+    cacheBustUrl(`../data/cache/${leagueId}.json`)
   ];
   for (const p of possiblePaths) {
     try {
-      const r = await fetch(p, { cache: 'no-cache' });
+      const r = await fetch(p, cacheBustOptions());
       if (r && r.ok) {
         const res = await r.json();
         return res.data ? res.data : res;
@@ -976,6 +1014,9 @@ function createMatchCard(m, day) {
 
   const dateStr = m.date || day?.dayDate || '';
   const timeStr = m.time || '15:30';
+  // Solo http/https: un matchLink con schema diverso (es. javascript:) non va
+  // mai reso cliccabile.
+  const matchLink = safeExternalUrl(m.matchLink);
 
   card.innerHTML = `
     <div class="match-card-header">
@@ -993,9 +1034,9 @@ function createMatchCard(m, day) {
       </div>
     </div>
     ${scorersHtml}
-    ${m.matchLink ? `
+    ${matchLink ? `
       <div class="match-card-footer">
-        <a href="${escapeHtml(m.matchLink)}" target="_blank" rel="noopener" class="link-info">Dettagli partita ↗</a>
+        <a href="${escapeHtml(matchLink)}" target="_blank" rel="noopener noreferrer" class="link-info">Dettagli partita ↗</a>
       </div>
     ` : ''}
   `;
@@ -1340,8 +1381,9 @@ function generateClientIcs(data, options = {}) {
       } else {
         descParts.push(`Partita in programma alle ${m.time || '15:30'}`);
       }
-      if (m.matchLink) {
-        descParts.push(`Dettagli e formazioni: ${m.matchLink}`);
+      const matchLink = safeExternalUrl(m.matchLink);
+      if (matchLink) {
+        descParts.push(`Dettagli e formazioni: ${matchLink}`);
       }
 
       const matchStamp = m.date
@@ -1356,7 +1398,7 @@ function generateClientIcs(data, options = {}) {
       lines.push(`SUMMARY:${escapeIcsText(summary)}`);
       lines.push(`DESCRIPTION:${escapeIcsText(descParts.join('\n'))}`);
       lines.push(`LOCATION:${escapeIcsText('Campo sportivo ' + m.homeTeam)}`);
-      if (m.matchLink) lines.push(`URL:${m.matchLink}`);
+      if (matchLink) lines.push(`URL:${matchLink}`);
       lines.push(`STATUS:${icsStatus(m)}`);
       lines.push('END:VEVENT');
     }
@@ -1465,4 +1507,26 @@ function escapeHtml(str) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
+}
+
+/**
+ * Valida un URL esterno prima di metterlo in un `href` o in un file .ics.
+ *
+ * I dati arrivano dallo scraping di un sito terzo: un `matchLink` costruito
+ * male (o manipolato) con schema `javascript:` diventerebbe eseguibile al
+ * click. Accettiamo solo http/https, restituendo '' per tutto il resto.
+ */
+function safeExternalUrl(url) {
+  const raw = String(url == null ? '' : url).trim();
+  if (!raw) return '';
+
+  try {
+    const parsed = new URL(raw);
+    if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
+      return parsed.href;
+    }
+  } catch (e) {
+    // URL relativo o non parsabile: non è un link esterno affidabile
+  }
+  return '';
 }

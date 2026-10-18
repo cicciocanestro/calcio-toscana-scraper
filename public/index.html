@@ -3,6 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--
+    Content-Security-Policy: la dashboard salva il Personal Access Token GitHub
+    nel localStorage, quindi limitiamo origini di script e connessioni ai soli
+    domini necessari (stesso sito + API GitHub per il dispatch del workflow).
+    `style-src` mantiene 'unsafe-inline' perché i font di Google e gli stili
+    della UI usano attributi inline; `script-src` NON lo concede.
+    `frame-ancestors` è volutamente assente: in un meta tag viene ignorato dai
+    browser (andrebbe inviato come header HTTP dal server).
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.github.com; base-uri 'none'; form-action 'none'; object-src 'none'">
+
   <title>Calcio Toscana - Calendari e Classifiche</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="style.css?v=2">
