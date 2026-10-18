@@ -401,3 +401,50 @@ test('i dati sani vengono salvati normalmente', async () => {
   assert.equal(growth.calls.persisted.length, 1, 'i dati sani devono essere salvati');
   assert.equal(data.isStale, undefined);
 });
+
+test('acceptRegression salva i dati anche quando sono in calo', async () => {
+  const degraded = () => {
+    const data = sampleLeagueData();
+    data.standings = []; // classifica più corta: normalmente verrebbe scartata
+    return data;
+  };
+
+  // Senza il flag la regressione blocca il salvataggio
+  const strict = instrumentedScraper('http', degraded);
+  strict.scraper.getCachedLeague = () => ({ ...sampleLeagueData(), lastUpdated: '2026-09-30T10:00:00.000Z' });
+  await strict.scraper.scrapeLeague('promozione-c', { forceRefresh: true });
+  assert.equal(strict.calls.persisted.length, 0, 'senza flag i dati in regressione non vengono salvati');
+
+  // Con acceptRegression il calo viene accettato esplicitamente
+  const loose = instrumentedScraper('http', degraded);
+  loose.scraper.getCachedLeague = () => ({ ...sampleLeagueData(), lastUpdated: '2026-09-30T10:00:00.000Z' });
+  const data = await loose.scraper.scrapeLeague('promozione-c', {
+    forceRefresh: true,
+    acceptRegression: true
+  });
+
+  assert.equal(loose.calls.persisted.length, 1, 'con acceptRegression i dati vengono salvati');
+  assert.equal(data.isStale, undefined, 'non si ripiega sulla cache');
+  assert.equal(data.standings.length, 0, 'vengono restituiti i dati nuovi, non quelli in cache');
+});
+
+test('ACCEPT_REGRESSION=1 nell ambiente equivale al flag --accept-regression', async () => {
+  const previous = process.env.ACCEPT_REGRESSION;
+  process.env.ACCEPT_REGRESSION = '1';
+
+  try {
+    const degraded = () => {
+      const data = sampleLeagueData();
+      data.standings = [];
+      return data;
+    };
+    const { scraper, calls } = instrumentedScraper('http', degraded);
+    scraper.getCachedLeague = () => ({ ...sampleLeagueData(), lastUpdated: '2026-09-30T10:00:00.000Z' });
+
+    await scraper.scrapeLeague('promozione-c', { forceRefresh: true });
+    assert.equal(calls.persisted.length, 1, 'la variabile d\'ambiente deve abilitare l\'accettazione');
+  } finally {
+    if (previous === undefined) delete process.env.ACCEPT_REGRESSION;
+    else process.env.ACCEPT_REGRESSION = previous;
+  }
+});

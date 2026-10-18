@@ -273,7 +273,21 @@ class CalendarScraper {
 
     const regression = describeRegression(previousData, leagueData);
     if (regression) {
-      throw new Error(`dati in regressione per ${leagueConfig.name}: ${regression}`);
+      // La regressione è quasi sempre un parsing degradato: il default è non
+      // sovrascrivere la cache buona. Con `acceptRegression` (o
+      // ACCEPT_REGRESSION=1) l'operatore conferma che il calo è reale — per
+      // esempio una partita annullata da Tuttocampo — e i dati passano.
+      const accepted = options.acceptRegression !== undefined
+        ? !!options.acceptRegression
+        : /^(1|true|yes)$/i.test(String(process.env.ACCEPT_REGRESSION || ''));
+
+      if (!accepted) {
+        throw new Error(`dati in regressione per ${leagueConfig.name}: ${regression}`);
+      }
+      this.onProgress(
+        `⚠ Regressione accettata per ${leagueConfig.name} (${regression}): ` +
+        'i dati nuovi sostituiscono la cache.'
+      );
     }
 
     this.persistLeagueData(leagueConfig, leagueData);

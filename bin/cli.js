@@ -45,6 +45,7 @@ program
   .description('Scarica o aggiorna i dati dei campionati (promozione-c, seconda-i, terza-arezzo o all)')
   .option('-r, --refresh', 'Forza il refresh ignorando la cache locale')
   .option('-i, --incremental', 'Scraping incrementale: scarica solo la giornata corrente, precedente e successiva')
+  .option('--accept-regression', 'Accetta dati in calo (classifica più corta o meno partite giocate) invece di scartarli')
   .action(async (league, options) => {
     try {
       const scraper = new CalendarScraper({
@@ -53,7 +54,8 @@ program
 
       const scrapeOpts = {
         forceRefresh: !!options.refresh,
-        incremental: !!options.incremental
+        incremental: !!options.incremental,
+        acceptRegression: !!options.acceptRegression
       };
 
       if (league === 'all') {
@@ -61,16 +63,35 @@ program
 
         const keys = Object.keys(LEAGUES);
         const fromCache = [];
+        const failed = [];
 
+        // Un campionato che fallisce non deve fermare gli altri: senza questo
+        // try/catch un errore su una singola lega (es. WAF o regressione)
+        // interrompeva il giro e lasciava gli altri campionati non aggiornati.
         for (const key of keys) {
-          const data = await scraper.scrapeLeague(key, scrapeOpts);
-          if (data.isStale) fromCache.push(LEAGUES[key].name);
+          try {
+            const data = await scraper.scrapeLeague(key, scrapeOpts);
+            if (data.isStale) fromCache.push(LEAGUES[key].name);
+          } catch (err) {
+            failed.push({ name: LEAGUES[key].name, message: err.message });
+            console.error(chalk.red(`✖ ${LEAGUES[key].name}: ${err.message}`));
+          }
         }
 
-        if (fromCache.length === 0) {
+        if (failed.length > 0) {
+          console.warn(chalk.red(`\n✖ Aggiornamento fallito per ${failed.length}/${keys.length} campionati:`));
+          for (const f of failed) {
+            console.warn(chalk.red(`  - ${f.name}: ${f.message}`));
+          }
+          console.warn(chalk.gray('  Gli altri campionati sono stati aggiornati regolarmente.'));
+          console.warn(chalk.gray('  Se il calo dati è reale (es. partita annullata) rilancia con --accept-regression.\n'));
+          process.exitCode = 1;
+        }
+
+        if (fromCache.length === 0 && failed.length === 0) {
           console.log(chalk.bold.green(`\n✔ Tutti i campionati (${keys.length}) sono stati aggiornati dal sito ufficiale.\n`));
-        } else {
-          const refreshed = keys.length - fromCache.length;
+        } else if (fromCache.length > 0) {
+          const refreshed = keys.length - fromCache.length - failed.length;
           console.warn(chalk.yellow(
             `\n⚠ Aggiornamento dal sito ufficiale riuscito per ${refreshed}/${keys.length} campionati.`
           ));
@@ -79,7 +100,7 @@ program
 
           // Exit code non-zero solo se NESSUN campionato è stato aggiornato,
           // così la CI può segnalare il problema senza perdere i dati in cache.
-          if (refreshed === 0) process.exitCode = 1;
+          if (refreshed <= 0) process.exitCode = 1;
         }
       } else {
         const key = getLeagueKey(league);
