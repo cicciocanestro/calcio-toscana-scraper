@@ -18,6 +18,8 @@ data/db/*.sqlite-journal
 data/db/*.sqlite-wal
 data/db/*.sqlite-shm
 data/db/*.sqlite.bak
+# backup con timestamp (es. calcio.sqlite.2026-10-19T00-30-00-000Z.bak)
+data/db/*.sqlite.*.bak
 
 # Evita duplicazione tra data/cache e data/exports per i file JSON completi
 data/exports/*.json

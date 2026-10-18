@@ -282,12 +282,15 @@ test('syncDatabase riallinea il DB quando è indietro rispetto allo snapshot', (
     assert.equal(syncDatabase(snapFile, { dbPath }).restored, false, 'dopo il dump DB e snapshot sono allineati');
     assert.equal(syncDatabase(snapFile, { dbPath }).reason, 'contenuto identico');
 
-    // 3. Un valore aggiornato nel DB (nessuna riga in più) lo rende "indietro":
-    //    il ripristino è sicuro perché non esistono righe esclusive.
+    // 3. Simula un `git pull` che porta dati nuovi: lo snapshot viene
+    //    riscritto DOPO l'ultima scrittura del DB, quindi il DB è indietro.
     const db2 = initDatabase(dbPath);
     db2.prepare('UPDATE leagues SET name = ? WHERE id = ?').run('Nome Divergente', 'promozione-c');
+    const afterPull = new Date(Date.now() + 5000);
+    fs.utimesSync(snapFile, afterPull, afterPull);
+
     const stale = syncDatabase(snapFile, { dbPath });
-    assert.equal(stale.restored, true, 'con contenuto diverso e nessuna riga esclusiva il DB va ripristinato');
+    assert.equal(stale.restored, true, 'con il DB indietro e nessuna riga esclusiva va ripristinato');
     assert.ok(stale.count > 0, 'deve restituire il numero di record ripristinati');
     assert.match(stale.reason, /contenuto diverso/);
     assert.ok(stale.backup && fs.existsSync(stale.backup), 'prima di sovrascrivere deve creare un backup');
@@ -365,4 +368,77 @@ test('parseScorer riconosce autogol con (Aut.) e minuti di recupero', () => {
   const injury = parseScorer("L. Bianchi (45+2' pt)");
   assert.equal(injury.minute, '45+2');
   assert.equal(injury.half, 'pt');
+});
+
+test('syncDatabase non ripristina valori locali più recenti dello snapshot (senza --force)', () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'db-sync-values-'));
+  const dbPath = path.join(tempDir, 'calcio.sqlite');
+  const snapFile = path.join(tempDir, 'snapshot.jsonl');
+
+  try {
+    const db = initDatabase(dbPath);
+    importLeagueDocument(db, sampleLeagueData());
+    dumpSnapshot(db, snapFile);
+
+    // Scrittura locale DOPO il dump (es. refresh dalla dashboard, db-import
+    // senza dump): nessuna riga nuova, cambia solo un valore.
+    db.prepare('UPDATE leagues SET current_match_day = ? WHERE id = ?').run(7, 'promozione-c');
+
+    const skipped = syncDatabase(snapFile, { dbPath });
+    assert.equal(skipped.restored, false, 'i valori più recenti non vanno sovrascritti');
+    assert.equal(skipped.skipped, true);
+    assert.match(skipped.reason, /valori locali più recenti/);
+
+    const currentDay = initDatabase(dbPath).prepare('SELECT current_match_day FROM leagues WHERE id = ?').get('promozione-c');
+    assert.equal(currentDay.current_match_day, 7, 'il valore locale deve sopravvivere');
+
+    // Con --force si torna allo snapshot, ma il backup conserva il valore locale
+    const forced = syncDatabase(snapFile, { dbPath, force: true });
+    assert.equal(forced.restored, true);
+    assert.ok(forced.backup && fs.existsSync(forced.backup));
+
+    const restoredDay = initDatabase(dbPath).prepare('SELECT current_match_day FROM leagues WHERE id = ?').get('promozione-c');
+    assert.notEqual(restoredDay.current_match_day, 7, 'con --force torna il valore dello snapshot');
+
+    // Il backup è interrogabile e contiene il valore locale
+    const backupDb = initDatabase(forced.backup);
+    const backupDay = backupDb.prepare('SELECT current_match_day FROM leagues WHERE id = ?').get('promozione-c');
+    assert.equal(backupDay.current_match_day, 7, 'il backup deve contenere i dati scartati');
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+});
+
+test('il backup non sovrascrive quello precedente: usa un nome con timestamp', () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'db-sync-backup-'));
+  const dbPath = path.join(tempDir, 'calcio.sqlite');
+  const snapFile = path.join(tempDir, 'snapshot.jsonl');
+
+  try {
+    const db = initDatabase(dbPath);
+    importLeagueDocument(db, sampleLeagueData());
+    dumpSnapshot(db, snapFile);
+
+    // Primo ripristino forzato
+    db.prepare('UPDATE leagues SET current_match_day = ? WHERE id = ?').run(9, 'promozione-c');
+    const first = syncDatabase(snapFile, { dbPath, force: true });
+    assert.ok(first.backup);
+    assert.match(first.backup, /\.bak$/);
+
+    // Secondo ripristino forzato: il backup precedente deve restare
+    db.prepare('UPDATE leagues SET current_match_day = ? WHERE id = ?').run(8, 'promozione-c');
+    const second = syncDatabase(snapFile, { dbPath, force: true });
+    assert.ok(second.backup);
+    assert.notEqual(second.backup, first.backup, 'il secondo backup deve avere un nome diverso');
+    assert.ok(fs.existsSync(first.backup), 'il primo backup non deve essere cancellato');
+    assert.ok(fs.existsSync(second.backup));
+
+    // Entrambi conservano il valore che avevano al momento del salvataggio
+    const firstDay = initDatabase(first.backup).prepare('SELECT current_match_day FROM leagues WHERE id = ?').get('promozione-c');
+    const secondDay = initDatabase(second.backup).prepare('SELECT current_match_day FROM leagues WHERE id = ?').get('promozione-c');
+    assert.equal(firstDay.current_match_day, 9);
+    assert.equal(secondDay.current_match_day, 8);
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
 });

@@ -55,16 +55,31 @@ function describeRegression(previousData, leagueData) {
  * possono reagire in modo diverso: una regressione sui dati richiede una
  * decisione umana (`--accept-regression`), un WAF no.
  *
+ * Il criterio principale è il **tipo** dell'errore (`err.code`, `err.waf`,
+ * `err.status`); il testo del messaggio serve solo come ultima risorsa, e con
+ * confini di parola per non scambiare "riga 4032" o "giornata 2026" per un
+ * errore HTTP 403/202.
+ *
+ * @param {Error|string} [error]
  * @returns {'regression'|'waf'|'network'|'unknown'}
  */
-function describeStaleCause(message) {
-  const text = String(message || '').toLowerCase();
-  if (text.includes('regressione')) return 'regression';
-  if (text.includes('waf') || text.includes('challenge') || text.includes('403') || text.includes('202')) {
-    return 'waf';
+function describeStaleCause(error) {
+  if (error && typeof error === 'object') {
+    if (error.code === 'REGRESSION') return 'regression';
+    if (error.waf === true || error.code === 'WAF') return 'waf';
+    if (error.code === 'NETWORK') return 'network';
+
+    if (typeof error.status === 'number') {
+      if (error.status === 403 || error.status === 429) return 'waf';
+      if (error.status >= 500) return 'network';
+    }
   }
-  if (text.includes('fetch') || text.includes('network') || text.includes('etimedout') ||
-      text.includes('econnrefused') || text.includes('timeout')) {
+
+  const message = String(typeof error === 'string' ? error : (error && error.message) || '');
+
+  if (/\bregressione\b/i.test(message)) return 'regression';
+  if (/\bwaf\b|\bchallenge\b|\bhttp (?:202|403|429)\b/i.test(message)) return 'waf';
+  if (/\bfetch failed\b|\bnetwork\b|\betimedout\b|\beconnrefused\b|\btimeout\b/i.test(message)) {
     return 'network';
   }
   return 'unknown';
@@ -271,7 +286,7 @@ class CalendarScraper {
           ...stale,
           isStale: true,
           staleReason: err.message,
-          staleCause: describeStaleCause(err.message)
+          staleCause: describeStaleCause(err)
         };
       }
       throw err;
@@ -310,7 +325,12 @@ class CalendarScraper {
         : /^(1|true|yes)$/i.test(String(process.env.ACCEPT_REGRESSION || ''));
 
       if (!accepted) {
-        throw new Error(`dati in regressione per ${leagueConfig.name}: ${regression}`);
+        const error = new Error(`dati in regressione per ${leagueConfig.name}: ${regression}`);
+        // Errore tipizzato: CLI, CI e diagnostica classificano il caso dal
+        // `code`, senza dover interpretare il testo del messaggio.
+        error.code = 'REGRESSION';
+        error.regression = regression;
+        throw error;
       }
       this.onProgress(
         `⚠ Regressione accettata per ${leagueConfig.name} (${regression}): ` +

@@ -486,3 +486,48 @@ test('ACCEPT_REGRESSION=1 nell ambiente equivale al flag --accept-regression', a
     else process.env.ACCEPT_REGRESSION = previous;
   }
 });
+
+test('describeStaleCause usa il tipo dell\'errore, non le sottostringhe', () => {
+  // Errori tipizzati: la classificazione non dipende dal testo
+  const regression = Object.assign(new Error('qualcosa è andato storto'), { code: 'REGRESSION' });
+  assert.equal(describeStaleCause(regression), 'regression');
+
+  const waf = Object.assign(new Error('errore generico'), { code: 'WAF' });
+  assert.equal(describeStaleCause(waf), 'waf');
+
+  const serverError = Object.assign(new Error('errore'), { status: 503 });
+  assert.equal(describeStaleCause(serverError), 'network');
+
+  const forbidden = Object.assign(new Error('errore'), { status: 403 });
+  assert.equal(describeStaleCause(forbidden), 'waf');
+
+  // Falsi positivi che la vecchia euristica sbagliava: "202" e "403" dentro
+  // numeri più lunghi o frasi innocue non sono errori HTTP.
+  assert.equal(describeStaleCause('classifica non trovata per giornata 2026'), 'unknown');
+  assert.equal(describeStaleCause('HTML inatteso alla riga 4032'), 'unknown');
+
+  // Il testo resta come ultima risorsa, ma con confini di parola
+  assert.equal(describeStaleCause('WAF: HTTP 202 su https://x'), 'waf');
+  assert.equal(describeStaleCause('dati in regressione: classifica più corta'), 'regression');
+});
+
+test('la regressione produce un errore con code REGRESSION', async () => {
+  const { scraper } = instrumentedScraper('http', () => {
+    const degraded = sampleLeagueData();
+    degraded.standings = [];
+    return degraded;
+  });
+  // Chiamiamo il percorso live passando i dati precedenti: senza cache il
+  // fallback non maschera l'errore, che arriva integro al chiamante.
+  await assert.rejects(
+    () => scraper.scrapeLeagueLive(
+      { id: 'promozione-c', name: 'Promozione Toscana - Girone C' },
+      { previousData: sampleLeagueData() }
+    ),
+    (err) => {
+      assert.equal(err.code, 'REGRESSION', 'il tipo dell\'errore deve essere esplicito');
+      assert.match(err.regression, /classifica più corta/);
+      return true;
+    }
+  );
+});

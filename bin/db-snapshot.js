@@ -39,12 +39,18 @@ function lastDatabaseWrite(dbPath) {
  * Usa `VACUUM INTO`, che produce un file consistente anche con WAL attivo;
  * se non è disponibile ricade su una copia dei file.
  *
+ * Il primo backup occupa `calcio.sqlite.bak`; se esiste già, il nuovo prende un
+ * nome con timestamp. Così un ripristino successivo non sovrascrive l'unica
+ * copia di sicurezza disponibile.
+ *
  * @returns {string} percorso del backup
  */
 function backupDatabase(db, dbPath) {
-  const backupPath = `${dbPath}.bak`;
+  const basePath = `${dbPath}.bak`;
+  const stamp = new Date().toISOString().replace(/[:.]/g, '-');
+  const backupPath = fs.existsSync(basePath) ? `${dbPath}.${stamp}.bak` : basePath;
+
   try {
-    fs.rmSync(backupPath, { force: true });
     const escaped = backupPath.replace(/'/g, "''");
     db.exec(`VACUUM INTO '${escaped}'`);
     return backupPath;
@@ -71,7 +77,9 @@ function summarizeExclusiveRows(dbOnly) {
  *  3. se il checksum coincide non si fa nulla;
  *  4. se il database contiene righe che lo snapshot non ha, il DB è più avanti:
  *     il ripristino le cancellerebbe, quindi si salta (serve `--force`);
- *  5. altrimenti il DB è indietro: backup e ripristino.
+ *  5. se il file del DB è stato scritto dopo lo snapshot, le differenze sono
+ *     valori locali più recenti: si salta (serve `--force`);
+ *  6. altrimenti il DB è indietro: backup e ripristino.
  *
  * @param {string} [snapshotFile] - percorso dello snapshot JSONL
  * @param {object} [options]
@@ -131,7 +139,19 @@ function syncDatabase(snapshotFile = DB_SNAPSHOT_PATH, options = {}) {
     };
   }
 
-  // Nessuna riga esclusiva: il DB è solo indietro, il ripristino non perde nulla.
+  // Nessuna riga esclusiva: le differenze sono solo di valori. Se il file del
+  // database è stato scritto DOPO lo snapshot, quei valori sono più recenti di
+  // quelli versionati (es. refresh dalla dashboard, db-import senza dump) e il
+  // ripristino li riporterebbe indietro.
+  if (!force && lastDatabaseWrite(dbPath) > fs.statSync(snapshotFile).mtimeMs) {
+    return {
+      restored: false,
+      skipped: true,
+      reason: 'valori locali più recenti dello snapshot'
+    };
+  }
+
+  // Il DB è indietro: il ripristino non perde nulla.
   const backup = backupDatabase(db, dbPath);
   const count = restoreSnapshot(db, snapshotFile);
   return { restored: true, count, reason: 'contenuto diverso (DB indietro rispetto allo snapshot)', backup };

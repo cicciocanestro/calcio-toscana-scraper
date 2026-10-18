@@ -45,6 +45,8 @@ class HttpScrapeError extends Error {
     this.waf = !!options.waf;
     this.retryable = options.retryable !== undefined ? !!options.retryable : !this.waf;
     this.status = options.status;
+    // Tipo esplicito, così chi consuma l'errore non deve leggere il messaggio.
+    this.code = this.waf ? 'WAF' : (options.code || 'HTTP');
   }
 }
 
