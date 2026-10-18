@@ -94,7 +94,13 @@ Se esegui lo scraping manualmente da SSH e desideri pubblicare subito i nuovi ca
 npm run sync
 ```
 
-`npm run sync` esegue in sequenza: `db:sync` (allinea SQLite se il contenuto è diverso dallo snapshot) → scraping incrementale → `db:import` → `db:dump` → export CSV/ICS → `build:pages` → commit → push.
+`npm run sync` esegue in sequenza: `db:sync` (allinea SQLite se serve, senza mai cancellare righe presenti solo nel DB) → scraping incrementale → `db:import` → `db:dump` → export CSV/ICS → `build:pages` → commit → push.
+
+> 🧭 **Se lo scraping trova dati in calo** (classifica più corta o meno partite con risultato) il comando si ferma senza committare e ti indica il motivo. Se il calo è reale — per esempio Tuttocampo ha annullato una partita — rilancia con:
+>
+> ```bash
+> node bin/cli.js scrape all --refresh --accept-regression
+> ```
 
 Se preferisci il controllo manuale passo per passo:
 
@@ -122,7 +128,14 @@ npm run db:sync      # ripristina solo se serve
 pm2 restart calcio-scraper
 ```
 
-Lo stesso allineamento è agganciato a `npm test` tramite il hook `pretest`, quindi non serve ricordarselo.
+> ⚠️ **Il sync non sovrascrive mai un DB più avanti dello snapshot.** Se sul Pi hai premuto "Aggiorna dal Web" (o fatto `db:import` senza `dump`), il database contiene classifiche e marcatori che lo snapshot non ha: in quel caso il comando si ferma con un avviso ed elenca le tabelle coinvolte. Le due strade:
+>
+> ```bash
+> npm run db:dump                 # esporta prima quello che c'è nel DB
+> npm run db:sync -- --force      # oppure forza (backup automatico in calcio.sqlite.bak)
+> ```
+>
+> `npm test` **non** tocca il database: l'allineamento non è più agganciato ai test.
 
 ---
 

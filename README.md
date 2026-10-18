@@ -125,10 +125,12 @@ node bin/cli.js export terza-arezzo --team "Monterchiese" --format ics
 I dati relazionali vivono in `data/db/calcio.sqlite` e vengono salvati in formato testuale diffabile su Git tramite lo snapshot JSON Lines (`data/db/snapshot.jsonl`):
 
 ```bash
-# Allinea SQLite allo snapshot: ripristina SOLO se il contenuto è diverso
-# (dopo un git pull, prima di un test o di uno scraping)
+# Allinea SQLite allo snapshot: ripristina SOLO se il DB è indietro
+# e non contiene righe che lo snapshot non ha (altrimenti si ferma e avvisa)
 npm run db:sync
 # oppure: node bin/db-snapshot.js sync
+# forzare (salva prima un backup in calcio.sqlite.bak):
+# npm run db:sync -- --force
 
 # Stato del database e conteggio record per tabella
 npm run db:status
@@ -147,7 +149,11 @@ npm run db:import
 # oppure: node bin/db-import.js
 ```
 
-> ✅ `db:sync` è agganciato automaticamente: `npm run sync` lo esegue come primo passo e `npm test` lo esegue come `pretest`. Dopo un `git pull` il database locale si riallinea da solo, senza ripristini inutili quando il contenuto combacia già (il confronto è un checksum nell'header dello snapshot, non la data dei file).
+> ✅ `db:sync` è agganciato a `npm run sync` come primo passo. Dopo un `git pull` puoi anche lanciarlo da solo; non fa nulla quando il contenuto combacia già (confronto tramite checksum nell'header dello snapshot, non sulla data dei file).
+>
+> 🛡️ **Non distrugge dati**: se il database contiene righe che lo snapshot non ha (tipico dopo un refresh dalla dashboard o un `db:import` senza `dump`), il ripristino viene **annullato** e viene indicato cosa fare. Per forzarlo serve `npm run db:sync -- --force`, che prima salva sempre una copia in `data/db/calcio.sqlite.bak`.
+>
+> ℹ️ `npm test` **non** tocca il database: l'allineamento è volutamente fuori dai test.
 
 ---
 

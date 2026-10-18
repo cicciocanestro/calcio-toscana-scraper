@@ -87,6 +87,7 @@ Tool full-stack in Node.js (CommonJS, Node >=20, testato su Node 22/24) per web 
     - **Rate limit sulle API di lettura:** `/api/leagues`, `/api/leagues/:id` e `/api/leagues/:id/scorers` passano da `apiRateLimit` (default 300 richieste/minuto per IP, configurabile con `options.apiRateLimit`).
     - **Errori per singola lega in `scrape all`:** un campionato che fallisce non interrompe più il giro; a fine run viene stampato l'elenco dei falliti ed esce con codice 1.
     - **Flag `--accept-regression`** (o `ACCEPT_REGRESSION=1`): consente di accettare esplicitamente un calo reale dei dati (es. partita annullata) invece di scartarlo in silenzio.
+    - **Regressione non più silenziosa:** `scrapeLeague` arricchisce il fallback con `staleReason` (messaggio originale) e `staleCause` (`regression` | `waf` | `network` | `unknown`). La CLI stampa il motivo per ogni lega e, in caso di regressione, esce con **codice 3** (`EXIT_REGRESSION`) anche se altre leghe sono state aggiornate; il workflow intercetta il 3, emette un `::warning` con il comando da usare, non tenta il fallback remoto e non committa. La decisione del codice di uscita è isolata in `summarizeScrapeOutcome` (esportata da `bin/cli.js`) e coperta da test.
     - **Cache HTTP rispettata:** il frontend aggiunge `?t=Date.now()` e `cache: 'no-cache'` solo dopo un aggiornamento o durante il polling, così le richieste normali possono ricevere 304.
 
 ---
@@ -146,9 +147,9 @@ Tool full-stack in Node.js (CommonJS, Node >=20, testato su Node 22/24) per web 
 ## 7. Stato Corrente e Comandi Utili
 - **Telemetria Benchmark su Raspberry Pi 3:**  
   Scraping completo di 94 giornate testato empiricamente via SSH: durata ~18s, CPU picco 49% (media 18%), RAM picco 428 MB (476 MB sempre liberi su 905 MB), Swap 0 MB, temperatura 50–52°C. Anche in caso di fallback forzato su Chromium la RAM non supera i 553 MB e la temperatura resta sotto i 60°C.
-- **Suite di Test:** Eseguire `npm run verify` (verifica parità asset di root con `check:pages` ed esegue i test con `node --test`). Attualmente **150/150 passati**.
+- **Suite di Test:** Eseguire `npm run verify` (verifica parità asset di root con `check:pages` ed esegue i test con `node --test`). Attualmente **163/163 passati**.
 - **Working Tree Git:** Pulito, allineato su `main` con il remote `origin/main`.
-- **Allineamento DB dopo un pull:** `npm run db:sync` (`node bin/db-snapshot.js sync`) ripristina `calcio.sqlite` dallo snapshot **solo se il contenuto è diverso**, confrontando il `checksum` scritto nell'header del JSONL (fallback sul mtime per gli snapshot vecchi, privi di checksum). È agganciato a `npm run sync` (primo passo) e a `npm test` (`pretest`), quindi non va ricordato a mano. Il DB è gitignored: senza questo passo, dopo un pull che porta dati nuovi il test di parità DB↔cache fallisce.
+- **Allineamento DB dopo un pull:** `npm run db:sync` (`node bin/db-snapshot.js sync`) ripristina `calcio.sqlite` dallo snapshot **solo se il DB è indietro**, confrontando il `checksum` scritto nell'header del JSONL (fallback sul mtime per gli snapshot privi di checksum). **Non distrugge dati**: se il DB contiene righe assenti dallo snapshot (refresh dalla dashboard, `db:import` senza `dump`) il ripristino viene annullato con un avviso che elenca le tabelle; `--force` lo esegue dopo aver salvato `calcio.sqlite.bak`. È il primo passo di `npm run sync`; **non** è agganciato a `npm test`, che non deve modificare il DB (l'auto-restore di `initDatabase` copre il caso del file assente, come in CI).
 - **Come avviare lo scraping da Raspberry via SSH:**
   ```bash
   cd ~/calcio-toscana-scraper
