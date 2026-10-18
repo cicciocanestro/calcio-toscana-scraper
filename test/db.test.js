@@ -403,6 +403,11 @@ test('syncDatabase non ripristina valori locali più recenti dello snapshot (sen
     assert.equal(forced.restored, true);
     assert.ok(forced.backup && fs.existsSync(forced.backup));
 
+    // Il messaggio deve dire che sono stati SCARTATI valori locali più recenti,
+    // non che il DB era indietro (era avanti e il ripristino è stato forzato).
+    assert.match(forced.reason, /valori locali più recenti scartati/);
+    assert.doesNotMatch(forced.reason, /DB indietro/);
+
     const restored = initDatabase(dbPath).prepare('SELECT last_updated FROM leagues WHERE id = ?').get('promozione-c');
     assert.notEqual(restored.last_updated, '2027-06-01T00:00:00.000Z', 'con --force torna il valore dello snapshot');
 

@@ -138,6 +138,19 @@ function syncDatabase(snapshotFile = DB_SNAPSHOT_PATH, options = {}) {
     };
   }
 
+  // `--force` su un DB che era avanti: dirlo esplicitamente, altrimenti il
+  // messaggio farebbe credere che il database fosse indietro.
+  if (force && freshness.dbAhead) {
+    const backup = backupDatabase(db, dbPath);
+    const count = restoreSnapshot(db, snapshotFile);
+    return {
+      restored: true,
+      count,
+      reason: `valori locali più recenti scartati (DB ${freshness.dbLatest} vs snapshot ${freshness.snapshotLatest}, --force)`,
+      backup
+    };
+  }
+
   // Il DB è indietro: il ripristino non perde nulla.
   const backup = backupDatabase(db, dbPath);
   const count = restoreSnapshot(db, snapshotFile);
