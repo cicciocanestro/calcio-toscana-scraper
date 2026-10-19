@@ -94,7 +94,7 @@ Se esegui lo scraping manualmente da SSH e desideri pubblicare subito i nuovi ca
 npm run sync
 ```
 
-`npm run sync` esegue in sequenza: `db:sync` (allinea SQLite se serve, senza mai cancellare righe presenti solo nel DB) → scraping incrementale → `db:import` → `db:dump` → export CSV/ICS → `build:pages` → commit → push.
+`npm run sync` esegue in sequenza: `git pull --ff-only` (si allinea al remote) → `db:sync` (allinea SQLite se serve, senza mai cancellare righe presenti solo nel DB) → scraping incrementale → `db:import` → `db:dump` → export CSV/ICS → `build:pages` → commit → push.
 
 > 🧭 **Se lo scraping trova dati in calo** (classifica più corta o meno partite con risultato) il comando si ferma senza committare e ti indica il motivo. Se il calo è reale — per esempio Tuttocampo ha annullato una partita — rilancia con:
 >
@@ -102,9 +102,39 @@ npm run sync
 > node bin/cli.js scrape all --refresh --accept-regression
 > ```
 
+### Perché il push a volte viene rifiutato
+
+Sul Pi ci sono **due copie del repository**:
+
+| Percorso | A cosa serve |
+| --- | --- |
+| `~/calcio-toscana-scraper` | la tua copia, quella da cui lanci `npm run sync` |
+| `~/actions-runner/_work/calcio-toscana-scraper/calcio-toscana-scraper` | la copia di lavoro del runner GitHub Actions |
+
+Quando il cron del workflow pubblica i dati, il commit lo fa la copia del **runner**: la tua resta indietro. Se poi lanci `npm run sync` senza allinearti, il commit locale si appoggia a una base vecchia e GitHub rifiuta il push:
+
+```
+! [rejected]  main -> main (fetch first)
+error: failed to push some refs
+```
+
+Da adesso `npm run sync` fa `git pull --ff-only` come primo passo, quindi il caso non si presenta più. Se capita lo stesso (per esempio perché il cron è partito **durante** i tuoi 2 minuti di scraping), recupera così — i dati appena scaricati vincono e finiscono sopra il commit del bot:
+
+```bash
+cd ~/calcio-toscana-scraper
+git fetch origin
+git log --oneline -2 origin/main     # cosa è arrivato
+git reset --soft origin/main         # HEAD al remoto, i file sul disco restano i tuoi
+git commit -m "chore(data): aggiornamento calendari e classifiche"
+git push origin main
+```
+
+Se invece vuoi **scartare** il tuo commit e tenere quello del bot: `git reset --hard origin/main`.
+
 Se preferisci il controllo manuale passo per passo:
 
 ```bash
+git pull --ff-only origin main && \
 node bin/db-snapshot.js sync && \
 node bin/cli.js scrape all --refresh && \
 npm run db:import && \

@@ -154,8 +154,11 @@ jobs:
       - name: Commit e Push dei dati aggiornati
         id: commit
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          # Identità SOLO per questo repository: sul runner self-hosted il job gira
+          # con lo stesso utente di sistema del proprietario, quindi un
+          # `--global` riscriverebbe la sua configurazione git su tutto il Pi.
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
           # Se l'utente ha premuto manualmente il tasto "Aggiorna dal Web" (workflow_dispatch),
           # committiamo sempre per aggiornare la data e confermare la sincronizzazione su GitHub Pages.
