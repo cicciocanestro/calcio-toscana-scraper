@@ -762,10 +762,11 @@ UID:match-terza-arezzo-6-AtleticoValdambra-Tuscar@calciotoscana.local
 DTSTAMP:20261025T150000Z
 DTSTART;TZID=Europe/Rome:20261025T150000
 DTEND;TZID=Europe/Rome:20261025T164500
-SUMMARY:Atletico Valdambra vs Tuscar
-DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 15:00\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/6.1/atletico-valdambra-tuscar
+SUMMARY:Atletico Valdambra vs Tuscar (0-2)
+DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Atletico Valdambra 0 - 2 Tuscar\nMarcatori Tuscar: M. Paradiso\, 
+ M. Falah\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/TerzaCa
+ tegoria/GironeAArezzo/Partita/6.1/atletico-valdambra-tuscar
 LOCATION:Campo sportivo Atletico Valdambra
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  6.1/atletico-valdambra-tuscar
@@ -776,11 +777,11 @@ UID:match-terza-arezzo-6-BadiaaRotiCalcio-LoreseCalcio@calciotoscana.local
 DTSTAMP:20261025T150000Z
 DTSTART;TZID=Europe/Rome:20261025T150000
 DTEND;TZID=Europe/Rome:20261025T164500
-SUMMARY:Badia a Roti Calcio vs Lorese Calcio
-DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 15:00\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/6.2/badia-a-roti-calcio-lorese
- -calcio
+SUMMARY:Badia a Roti Calcio vs Lorese Calcio (0-1)
+DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Badia a Roti Calcio 0 - 1 Lorese Calcio\nMarcatori Lorese Calcio:
+  F. Brancato\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/Ter
+ zaCategoria/GironeAArezzo/Partita/6.2/badia-a-roti-calcio-lorese-calcio
 LOCATION:Campo sportivo Badia a Roti Calcio
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  6.2/badia-a-roti-calcio-lorese-calcio
@@ -791,11 +792,11 @@ UID:match-terza-arezzo-6-Faellese-SanMarcoLaSella@calciotoscana.local
 DTSTAMP:20261025T150000Z
 DTSTART;TZID=Europe/Rome:20261025T150000
 DTEND;TZID=Europe/Rome:20261025T164500
-SUMMARY:Faellese vs San Marco La Sella
-DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 15:00\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/6.3/faellese-san-marco-la-sell
- a
+SUMMARY:Faellese vs San Marco La Sella (1-0)
+DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Faellese 1 - 0 San Marco La Sella\nMarcatori Faellese: F. Focardi
+ \nDettagli e formazioni: https://www.tuttocampo.it/Toscana/TerzaCategoria/
+ GironeAArezzo/Partita/6.3/faellese-san-marco-la-sella
 LOCATION:Campo sportivo Faellese
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  6.3/faellese-san-marco-la-sella
@@ -806,10 +807,11 @@ UID:match-terza-arezzo-6-Montecchio-PianDiSc@calciotoscana.local
 DTSTAMP:20261025T150000Z
 DTSTART;TZID=Europe/Rome:20261025T150000
 DTEND;TZID=Europe/Rome:20261025T164500
-SUMMARY:Montecchio vs Pian Di Scò
-DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 15:00\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/6.4/montecchio-pian-di-sc
+SUMMARY:Montecchio vs Pian Di Scò (0-1)
+DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Montecchio 0 - 1 Pian Di Scò\nMarcatori Pian Di Scò: C. Papi\nD
+ ettagli e formazioni: https://www.tuttocampo.it/Toscana/TerzaCategoria/Gir
+ oneAArezzo/Partita/6.4/montecchio-pian-di-sc
 LOCATION:Campo sportivo Montecchio
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  6.4/montecchio-pian-di-sc
@@ -820,10 +822,12 @@ UID:match-terza-arezzo-6-Monterchiese-Monsigliolo@calciotoscana.local
 DTSTAMP:20261025T150000Z
 DTSTART;TZID=Europe/Rome:20261025T150000
 DTEND;TZID=Europe/Rome:20261025T164500
-SUMMARY:Monterchiese vs Monsigliolo
-DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 15:00\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/6.5/monterchiese-monsigliolo
+SUMMARY:Monterchiese vs Monsigliolo (2-0)
+DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Monterchiese 2 - 0 Monsigliolo\nMarcatori Monterchiese: N. Terzi 
+ (37' pt)\, N. Terzi (20' st)\nDettagli e formazioni: https://www.tuttocamp
+ o.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/6.5/monterchiese-monsigl
+ iolo
 LOCATION:Campo sportivo Monterchiese
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  6.5/monterchiese-monsigliolo
@@ -834,10 +838,12 @@ UID:match-terza-arezzo-6-Pietraia-Tregozzano@calciotoscana.local
 DTSTAMP:20261025T150000Z
 DTSTART;TZID=Europe/Rome:20261025T150000
 DTEND;TZID=Europe/Rome:20261025T164500
-SUMMARY:Pietraia vs Tregozzano
-DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 15:00\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/6.6/pietraia-tregozzano
+SUMMARY:Pietraia vs Tregozzano (5-3)
+DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Pietraia 5 - 3 Tregozzano\nMarcatori Pietraia: S. Pica\, S. Pica\
+ , G. Pici\, S. Pica\, L. Criscuolo\nMarcatori Tregozzano: M. Virgillo\, K.
+  Maloku\, K. Maloku\nDettagli e formazioni: https://www.tuttocampo.it/Tosc
+ ana/TerzaCategoria/GironeAArezzo/Partita/6.6/pietraia-tregozzano
 LOCATION:Campo sportivo Pietraia
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  6.6/pietraia-tregozzano
@@ -848,11 +854,12 @@ UID:match-terza-arezzo-6-Sangiustinese-VirtusArezzo@calciotoscana.local
 DTSTAMP:20261025T150000Z
 DTSTART;TZID=Europe/Rome:20261025T150000
 DTEND;TZID=Europe/Rome:20261025T164500
-SUMMARY:Sangiustinese vs Virtus Arezzo
-DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 15:00\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/6.8/sangiustinese-virtus-arezz
- o
+SUMMARY:Sangiustinese vs Virtus Arezzo (4-0)
+DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Sangiustinese 4 - 0 Virtus Arezzo\nMarcatori Sangiustinese: R. Ca
+ stellucci\, A. Cucuccio\, M. Ermini\, R. Castellucci\nDettagli e formazion
+ i: https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
+ 6.8/sangiustinese-virtus-arezzo
 LOCATION:Campo sportivo Sangiustinese
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  6.8/sangiustinese-virtus-arezzo
@@ -863,10 +870,13 @@ UID:match-terza-arezzo-6-Terontola-BadiaAgnano@calciotoscana.local
 DTSTAMP:20261025T150000Z
 DTSTART;TZID=Europe/Rome:20261025T150000
 DTEND;TZID=Europe/Rome:20261025T164500
-SUMMARY:Terontola vs Badia Agnano
-DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 15:00\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/6.9/terontola-badia-agnano
+SUMMARY:Terontola vs Badia Agnano (4-3)
+DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Terontola 4 - 3 Badia Agnano\nMarcatori Terontola: M. Laterza\, A
+ . Baldassarri\, M. Laterza\, E. Dyla (Rig.)\nMarcatori Badia Agnano: L. Er
+ pici (Rig.)\, L. Erpici (Rig.)\, F. Pistocchi\nDettagli e formazioni: http
+ s://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/6.9/ter
+ ontola-badia-agnano
 LOCATION:Campo sportivo Terontola
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  6.9/terontola-badia-agnano
