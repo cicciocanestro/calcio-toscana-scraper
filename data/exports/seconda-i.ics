@@ -669,10 +669,12 @@ UID:match-seconda-i-6-ArezzoFA-ValdichianaCalcio@calciotoscana.local
 DTSTAMP:20261025T143000Z
 DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
-SUMMARY:Arezzo FA vs Valdichiana Calcio
-DESCRIPTION:6° Giornata - Seconda Categoria Toscana - Girone I\nPartita in
-  programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/To
- scana/SecondaCategoria/GironeI/Partita/6.1/arezzo-fa-valdichiana-calcio
+SUMMARY:Arezzo FA vs Valdichiana Calcio (1-3)
+DESCRIPTION:6° Giornata - Seconda Categoria Toscana - Girone I\nRisultato 
+ finale: Arezzo FA 1 - 3 Valdichiana Calcio\nMarcatori Arezzo FA: J. Krasni
+ ki\nMarcatori Valdichiana Calcio: G. Bonci (Rig.)\, T. Valdambrini\, L. Pa
+ olucci\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/SecondaCa
+ tegoria/GironeI/Partita/6.1/arezzo-fa-valdichiana-calcio
 LOCATION:Campo sportivo Arezzo FA
 URL:https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/6.1/
  arezzo-fa-valdichiana-calcio
@@ -683,10 +685,11 @@ UID:match-seconda-i-6-Bucine-FortisArezzo@calciotoscana.local
 DTSTAMP:20261025T143000Z
 DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
-SUMMARY:Bucine vs Fortis Arezzo
-DESCRIPTION:6° Giornata - Seconda Categoria Toscana - Girone I\nPartita in
-  programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/To
- scana/SecondaCategoria/GironeI/Partita/6.2/bucine-fortis-arezzo
+SUMMARY:Bucine vs Fortis Arezzo (0-1)
+DESCRIPTION:6° Giornata - Seconda Categoria Toscana - Girone I\nRisultato 
+ finale: Bucine 0 - 1 Fortis Arezzo\nMarcatori Fortis Arezzo: L. Raiola\nDe
+ ttagli e formazioni: https://www.tuttocampo.it/Toscana/SecondaCategoria/Gi
+ roneI/Partita/6.2/bucine-fortis-arezzo
 LOCATION:Campo sportivo Bucine
 URL:https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/6.2/
  bucine-fortis-arezzo
@@ -698,11 +701,13 @@ UID:match-seconda-i-6-CalcioPestello-ArnoCastiglioniLaterina@calciotoscana.
 DTSTAMP:20261025T143000Z
 DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
-SUMMARY:Calcio Pestello vs Arno Castiglioni Laterina
-DESCRIPTION:6° Giornata - Seconda Categoria Toscana - Girone I\nPartita in
-  programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/To
- scana/SecondaCategoria/GironeI/Partita/6.3/calcio-pestello-arno-castiglion
- i-laterina
+SUMMARY:Calcio Pestello vs Arno Castiglioni Laterina (2-3)
+DESCRIPTION:6° Giornata - Seconda Categoria Toscana - Girone I\nRisultato 
+ finale: Calcio Pestello 2 - 3 Arno Castiglioni Laterina\nMarcatori Calcio 
+ Pestello: P. Valentini\nMarcatori Arno Castiglioni Laterina: P. Chiatti (R
+ ig.)\, C. Pancioni\, P. Brogi\nDettagli e formazioni: https://www.tuttocam
+ po.it/Toscana/SecondaCategoria/GironeI/Partita/6.3/calcio-pestello-arno-ca
+ stiglioni-laterina
 LOCATION:Campo sportivo Calcio Pestello
 URL:https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/6.3/
  calcio-pestello-arno-castiglioni-laterina
@@ -713,10 +718,13 @@ UID:match-seconda-i-6-FrattaSantaCaterina-Rassina@calciotoscana.local
 DTSTAMP:20261025T143000Z
 DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
-SUMMARY:Fratta Santa Caterina vs Rassina
-DESCRIPTION:6° Giornata - Seconda Categoria Toscana - Girone I\nPartita in
-  programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/To
- scana/SecondaCategoria/GironeI/Partita/6.4/fratta-santa-caterina-rassina
+SUMMARY:Fratta Santa Caterina vs Rassina (1-3)
+DESCRIPTION:6° Giornata - Seconda Categoria Toscana - Girone I\nRisultato 
+ finale: Fratta Santa Caterina 1 - 3 Rassina\nMarcatori Fratta Santa Cateri
+ na: E. Bertocci (32' st)\nMarcatori Rassina: A. La Ferla (25' st)\, A. La 
+ Ferla (30' st)\, N. Giannelli (35' st)\nDettagli e formazioni: https://www
+ .tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/6.4/fratta-santa-c
+ aterina-rassina
 LOCATION:Campo sportivo Fratta Santa Caterina
 URL:https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/6.4/
  fratta-santa-caterina-rassina
@@ -727,11 +735,12 @@ UID:match-seconda-i-6-FulgorCastelfranco-Fratticciola@calciotoscana.local
 DTSTAMP:20261025T143000Z
 DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
-SUMMARY:Fulgor Castelfranco vs Fratticciola
-DESCRIPTION:6° Giornata - Seconda Categoria Toscana - Girone I\nPartita in
-  programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/To
- scana/SecondaCategoria/GironeI/Partita/6.5/fulgor-castelfranco-fratticciol
- a
+SUMMARY:Fulgor Castelfranco vs Fratticciola (0-2)
+DESCRIPTION:6° Giornata - Seconda Categoria Toscana - Girone I\nRisultato 
+ finale: Fulgor Castelfranco 0 - 2 Fratticciola\nMarcatori Fratticciola: A.
+  Anderini\, A. Anderini\nDettagli e formazioni: https://www.tuttocampo.it/
+ Toscana/SecondaCategoria/GironeI/Partita/6.5/fulgor-castelfranco-fratticci
+ ola
 LOCATION:Campo sportivo Fulgor Castelfranco
 URL:https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/6.5/
  fulgor-castelfranco-fratticciola
@@ -742,10 +751,11 @@ UID:match-seconda-i-6-Guazzino-Pratovecchio@calciotoscana.local
 DTSTAMP:20261025T143000Z
 DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
-SUMMARY:Guazzino vs Pratovecchio
-DESCRIPTION:6° Giornata - Seconda Categoria Toscana - Girone I\nPartita in
-  programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/To
- scana/SecondaCategoria/GironeI/Partita/6.6/guazzino-pratovecchio
+SUMMARY:Guazzino vs Pratovecchio (0-0)
+DESCRIPTION:6° Giornata - Seconda Categoria Toscana - Girone I\nRisultato 
+ finale: Guazzino 0 - 0 Pratovecchio\nDettagli e formazioni: https://www.tu
+ ttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/6.6/guazzino-pratovec
+ chio
 LOCATION:Campo sportivo Guazzino
 URL:https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/6.6/
  guazzino-pratovecchio
@@ -757,11 +767,12 @@ UID:match-seconda-i-6-MarinoMercatoSubbiano-PievealToppo@calciotoscana.loca
 DTSTAMP:20261025T143000Z
 DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
-SUMMARY:Marino Mercato Subbiano vs Pieve al Toppo
-DESCRIPTION:6° Giornata - Seconda Categoria Toscana - Girone I\nPartita in
-  programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/To
- scana/SecondaCategoria/GironeI/Partita/6.7/marino-mercato-subbiano-pieve-a
- l-toppo
+SUMMARY:Marino Mercato Subbiano vs Pieve al Toppo (1-0)
+DESCRIPTION:6° Giornata - Seconda Categoria Toscana - Girone I\nRisultato 
+ finale: Marino Mercato Subbiano 1 - 0 Pieve al Toppo\nMarcatori Marino Mer
+ cato Subbiano: M. Fadda\nDettagli e formazioni: https://www.tuttocampo.it/
+ Toscana/SecondaCategoria/GironeI/Partita/6.7/marino-mercato-subbiano-pieve
+ -al-toppo
 LOCATION:Campo sportivo Marino Mercato Subbiano
 URL:https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/6.7/
  marino-mercato-subbiano-pieve-al-toppo
@@ -772,10 +783,13 @@ UID:match-seconda-i-6-VaggioPiandisc1932-Poppi@calciotoscana.local
 DTSTAMP:20261025T143000Z
 DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
-SUMMARY:Vaggio Piandiscò 1932 vs Poppi
-DESCRIPTION:6° Giornata - Seconda Categoria Toscana - Girone I\nPartita in
-  programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/To
- scana/SecondaCategoria/GironeI/Partita/6.8/vaggio-piandisc-1932-poppi
+SUMMARY:Vaggio Piandiscò 1932 vs Poppi (3-1)
+DESCRIPTION:6° Giornata - Seconda Categoria Toscana - Girone I\nRisultato 
+ finale: Vaggio Piandiscò 1932 3 - 1 Poppi\nMarcatori Vaggio Piandiscò 19
+ 32: L. Penco (37' pt)\, N. Fabbrini (Rig.) (45' pt)\, A. Renzi (35' st)\nM
+ arcatori Poppi: N. Corazzesi (Rig.) (41' pt)\nDettagli e formazioni: https
+ ://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/6.8/vaggio-p
+ iandisc-1932-poppi
 LOCATION:Campo sportivo Vaggio Piandiscò 1932
 URL:https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/6.8/
  vaggio-piandisc-1932-poppi
