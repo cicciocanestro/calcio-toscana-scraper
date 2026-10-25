@@ -8,9 +8,9 @@
   "province": "",
   "url": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Risultati",
   "roundID": "TO.P.C",
-  "currentMatchDay": 6,
+  "currentMatchDay": 7,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-10-22T18:30:18.742Z",
+  "lastUpdated": "2026-10-25T09:26:58.199Z",
   "standings": [
     {
       "position": 1,
@@ -92,19 +92,6 @@
     },
     {
       "position": 7,
-      "team": "Nuova Foiano",
-      "points": 11,
-      "played": 6,
-      "won": 3,
-      "drawn": 2,
-      "lost": 1,
-      "goalsFor": 12,
-      "goalsAgainst": 5,
-      "goalDiff": 7,
-      "zone": "normal"
-    },
-    {
-      "position": 8,
       "team": "Alberoro 1977",
       "points": 10,
       "played": 6,
@@ -117,7 +104,33 @@
       "zone": "normal"
     },
     {
+      "position": 8,
+      "team": "Nuova Foiano",
+      "points": 8,
+      "played": 6,
+      "won": 2,
+      "drawn": 2,
+      "lost": 2,
+      "goalsFor": 9,
+      "goalsAgainst": 6,
+      "goalDiff": 3,
+      "zone": "normal"
+    },
+    {
       "position": 9,
+      "team": "Centro Storico Lebowski",
+      "points": 7,
+      "played": 6,
+      "won": 2,
+      "drawn": 1,
+      "lost": 3,
+      "goalsFor": 4,
+      "goalsAgainst": 7,
+      "goalDiff": -3,
+      "zone": "normal"
+    },
+    {
+      "position": 10,
       "team": "Acquaviva",
       "points": 7,
       "played": 6,
@@ -130,7 +143,7 @@
       "zone": "normal"
     },
     {
-      "position": 10,
+      "position": 11,
       "team": "Cortona Camucia Calcio",
       "points": 6,
       "played": 6,
@@ -143,7 +156,7 @@
       "zone": "normal"
     },
     {
-      "position": 11,
+      "position": 12,
       "team": "Resco Reggello",
       "points": 5,
       "played": 6,
@@ -153,10 +166,10 @@
       "goalsFor": 1,
       "goalsAgainst": 4,
       "goalDiff": -3,
-      "zone": "normal"
+      "zone": "playout"
     },
     {
-      "position": 12,
+      "position": 13,
       "team": "AG Dicomano",
       "points": 5,
       "played": 6,
@@ -166,19 +179,6 @@
       "goalsFor": 5,
       "goalsAgainst": 9,
       "goalDiff": -4,
-      "zone": "playout"
-    },
-    {
-      "position": 13,
-      "team": "Centro Storico Lebowski",
-      "points": 4,
-      "played": 6,
-      "won": 1,
-      "drawn": 1,
-      "lost": 4,
-      "goalsFor": 3,
-      "goalsAgainst": 10,
-      "goalDiff": -7,
       "zone": "playout"
     },
     {
@@ -312,14 +312,16 @@
         {
           "homeTeam": "Centro Storico Lebowski",
           "awayTeam": "Nuova Foiano",
-          "homeScore": 0,
-          "awayScore": 3,
+          "homeScore": 1,
+          "awayScore": 0,
           "isPlayed": true,
           "status": "FINISHED",
           "date": "2026-09-13",
           "time": "15:30",
           "dateTime": "2026-09-13T15:30:00",
-          "homeScorers": [],
+          "homeScorers": [
+            "G. Vangi"
+          ],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/932795.png?v=1",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/18630.png?v=1",

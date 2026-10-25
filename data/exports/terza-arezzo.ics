@@ -742,13 +742,29 @@ URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
 STATUS:TENTATIVE
 END:VEVENT
 BEGIN:VEVENT
+UID:match-terza-arezzo-6-SanLeolino-ColonnaIndicatore@calciotoscana.local
+DTSTAMP:20261024T150000Z
+DTSTART;TZID=Europe/Rome:20261024T150000
+DTEND;TZID=Europe/Rome:20261024T164500
+SUMMARY:San Leolino vs Colonna Indicatore (0-4)
+DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: San Leolino 0 - 4 Colonna Indicatore\nMarcatori Colonna Indicator
+ e: J. Acquisti\, J. Acquisti\, T. Lapini\, G. Di Palma (44' pt)\nDettagli 
+ e formazioni: https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArez
+ zo/Partita/6.7/san-leolino-colonna-indicatore
+LOCATION:Campo sportivo San Leolino
+URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
+ 6.7/san-leolino-colonna-indicatore
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 UID:match-terza-arezzo-6-AtleticoValdambra-Tuscar@calciotoscana.local
-DTSTAMP:20261025T143000Z
-DTSTART;TZID=Europe/Rome:20261025T143000
-DTEND;TZID=Europe/Rome:20261025T161500
+DTSTAMP:20261025T150000Z
+DTSTART;TZID=Europe/Rome:20261025T150000
+DTEND;TZID=Europe/Rome:20261025T164500
 SUMMARY:Atletico Valdambra vs Tuscar
 DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
+ n programma alle 15:00\nDettagli e formazioni: https://www.tuttocampo.it/T
  oscana/TerzaCategoria/GironeAArezzo/Partita/6.1/atletico-valdambra-tuscar
 LOCATION:Campo sportivo Atletico Valdambra
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
@@ -757,12 +773,12 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-terza-arezzo-6-BadiaaRotiCalcio-LoreseCalcio@calciotoscana.local
-DTSTAMP:20261025T143000Z
-DTSTART;TZID=Europe/Rome:20261025T143000
-DTEND;TZID=Europe/Rome:20261025T161500
+DTSTAMP:20261025T150000Z
+DTSTART;TZID=Europe/Rome:20261025T150000
+DTEND;TZID=Europe/Rome:20261025T164500
 SUMMARY:Badia a Roti Calcio vs Lorese Calcio
 DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
+ n programma alle 15:00\nDettagli e formazioni: https://www.tuttocampo.it/T
  oscana/TerzaCategoria/GironeAArezzo/Partita/6.2/badia-a-roti-calcio-lorese
  -calcio
 LOCATION:Campo sportivo Badia a Roti Calcio
@@ -772,12 +788,12 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-terza-arezzo-6-Faellese-SanMarcoLaSella@calciotoscana.local
-DTSTAMP:20261025T143000Z
-DTSTART;TZID=Europe/Rome:20261025T143000
-DTEND;TZID=Europe/Rome:20261025T161500
+DTSTAMP:20261025T150000Z
+DTSTART;TZID=Europe/Rome:20261025T150000
+DTEND;TZID=Europe/Rome:20261025T164500
 SUMMARY:Faellese vs San Marco La Sella
 DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
+ n programma alle 15:00\nDettagli e formazioni: https://www.tuttocampo.it/T
  oscana/TerzaCategoria/GironeAArezzo/Partita/6.3/faellese-san-marco-la-sell
  a
 LOCATION:Campo sportivo Faellese
@@ -787,12 +803,12 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-terza-arezzo-6-Montecchio-PianDiSc@calciotoscana.local
-DTSTAMP:20261025T143000Z
-DTSTART;TZID=Europe/Rome:20261025T143000
-DTEND;TZID=Europe/Rome:20261025T161500
+DTSTAMP:20261025T150000Z
+DTSTART;TZID=Europe/Rome:20261025T150000
+DTEND;TZID=Europe/Rome:20261025T164500
 SUMMARY:Montecchio vs Pian Di Scò
 DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
+ n programma alle 15:00\nDettagli e formazioni: https://www.tuttocampo.it/T
  oscana/TerzaCategoria/GironeAArezzo/Partita/6.4/montecchio-pian-di-sc
 LOCATION:Campo sportivo Montecchio
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
@@ -801,12 +817,12 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-terza-arezzo-6-Monterchiese-Monsigliolo@calciotoscana.local
-DTSTAMP:20261025T143000Z
-DTSTART;TZID=Europe/Rome:20261025T143000
-DTEND;TZID=Europe/Rome:20261025T161500
+DTSTAMP:20261025T150000Z
+DTSTART;TZID=Europe/Rome:20261025T150000
+DTEND;TZID=Europe/Rome:20261025T164500
 SUMMARY:Monterchiese vs Monsigliolo
 DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
+ n programma alle 15:00\nDettagli e formazioni: https://www.tuttocampo.it/T
  oscana/TerzaCategoria/GironeAArezzo/Partita/6.5/monterchiese-monsigliolo
 LOCATION:Campo sportivo Monterchiese
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
@@ -815,12 +831,12 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-terza-arezzo-6-Pietraia-Tregozzano@calciotoscana.local
-DTSTAMP:20261025T143000Z
-DTSTART;TZID=Europe/Rome:20261025T143000
-DTEND;TZID=Europe/Rome:20261025T161500
+DTSTAMP:20261025T150000Z
+DTSTART;TZID=Europe/Rome:20261025T150000
+DTEND;TZID=Europe/Rome:20261025T164500
 SUMMARY:Pietraia vs Tregozzano
 DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
+ n programma alle 15:00\nDettagli e formazioni: https://www.tuttocampo.it/T
  oscana/TerzaCategoria/GironeAArezzo/Partita/6.6/pietraia-tregozzano
 LOCATION:Campo sportivo Pietraia
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
@@ -828,28 +844,13 @@ URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
-UID:match-terza-arezzo-6-SanLeolino-ColonnaIndicatore@calciotoscana.local
-DTSTAMP:20261025T143000Z
-DTSTART;TZID=Europe/Rome:20261025T143000
-DTEND;TZID=Europe/Rome:20261025T161500
-SUMMARY:San Leolino vs Colonna Indicatore
-DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/6.7/san-leolino-colonna-indica
- tore
-LOCATION:Campo sportivo San Leolino
-URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
- 6.7/san-leolino-colonna-indicatore
-STATUS:CONFIRMED
-END:VEVENT
-BEGIN:VEVENT
 UID:match-terza-arezzo-6-Sangiustinese-VirtusArezzo@calciotoscana.local
-DTSTAMP:20261025T143000Z
-DTSTART;TZID=Europe/Rome:20261025T143000
-DTEND;TZID=Europe/Rome:20261025T161500
+DTSTAMP:20261025T150000Z
+DTSTART;TZID=Europe/Rome:20261025T150000
+DTEND;TZID=Europe/Rome:20261025T164500
 SUMMARY:Sangiustinese vs Virtus Arezzo
 DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
+ n programma alle 15:00\nDettagli e formazioni: https://www.tuttocampo.it/T
  oscana/TerzaCategoria/GironeAArezzo/Partita/6.8/sangiustinese-virtus-arezz
  o
 LOCATION:Campo sportivo Sangiustinese
@@ -859,12 +860,12 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-terza-arezzo-6-Terontola-BadiaAgnano@calciotoscana.local
-DTSTAMP:20261025T143000Z
-DTSTART;TZID=Europe/Rome:20261025T143000
-DTEND;TZID=Europe/Rome:20261025T161500
+DTSTAMP:20261025T150000Z
+DTSTART;TZID=Europe/Rome:20261025T150000
+DTEND;TZID=Europe/Rome:20261025T164500
 SUMMARY:Terontola vs Badia Agnano
 DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
+ n programma alle 15:00\nDettagli e formazioni: https://www.tuttocampo.it/T
  oscana/TerzaCategoria/GironeAArezzo/Partita/6.9/terontola-badia-agnano
 LOCATION:Campo sportivo Terontola
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
