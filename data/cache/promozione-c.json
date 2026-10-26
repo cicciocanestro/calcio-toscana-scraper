@@ -10,7 +10,7 @@
   "roundID": "TO.P.C",
   "currentMatchDay": 7,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-10-25T22:52:10.108Z",
+  "lastUpdated": "2026-10-26T14:39:49.095Z",
   "standings": [
     {
       "position": 1,
@@ -1247,10 +1247,12 @@
           "time": "14:30",
           "dateTime": "2026-10-25T14:30:00",
           "homeScorers": [
-            "E. Di Biasi",
-            "A. Antongiovanni"
+            "E. Di Biasi (13' pt)",
+            "A. Antongiovanni (41' st)"
           ],
-          "awayScorers": [],
+          "awayScorers": [
+            "T. Papini (Rig.) (47' st)"
+          ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/4010.png?v=1",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
           "matchLink": "https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/7.3/audace-galluzzo-affrico"
