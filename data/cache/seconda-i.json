@@ -10,7 +10,7 @@
   "roundID": "TO.2.I",
   "currentMatchDay": 7,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-11-01T23:59:59.737Z",
+  "lastUpdated": "2026-11-02T17:32:47.314Z",
   "standings": [
     {
       "position": 1,
@@ -1095,7 +1095,8 @@
           "time": "14:30",
           "dateTime": "2026-10-25T14:30:00",
           "homeScorers": [
-            "P. Valentini"
+            "P. Valentini",
+            "S. Hibraj"
           ],
           "awayScorers": [
             "P. Chiatti (Rig.)",
@@ -1339,7 +1340,7 @@
             "L. Sarracino (10' st)"
           ],
           "awayScorers": [
-            "F. Martini (22' pt)"
+            "F. Martini (22' st)"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/915808.png?v=1",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/934027.png?v=1",
@@ -1359,7 +1360,7 @@
           "awayScorers": [
             "D. Tata",
             "M. Fabbrini",
-            "Y. Leroy"
+            "Y. Souini"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1034700.png?v=11",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1165389.png?v=2",
