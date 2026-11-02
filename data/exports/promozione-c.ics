@@ -787,10 +787,11 @@ DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
 SUMMARY:AG Dicomano vs Cortona Camucia Calcio (4-2)
 DESCRIPTION:7° Giornata - Promozione Toscana - Girone C\nRisultato finale:
-  AG Dicomano 4 - 2 Cortona Camucia Calcio\nMarcatori AG Dicomano: C. March
- esini\, G. Minischetti\, C. Pecorai\nMarcatori Cortona Camucia Calcio: J. 
- Cacioppini\, N. Hamadou\nDettagli e formazioni: https://www.tuttocampo.it/
- Toscana/Promozione/GironeC/Partita/7.2/ag-dicomano-cortona-camucia-calcio
+  AG Dicomano 4 - 2 Cortona Camucia Calcio\nMarcatori AG Dicomano: M. Mati 
+ (37' pt)\, C. Marchesini (10' st)\, C. Pecorai (18' st)\, G. Minischetti (
+ 37' st)\nMarcatori Cortona Camucia Calcio: J. Cacioppini (11' pt)\, N. Ham
+ adou (30' st)\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/Pr
+ omozione/GironeC/Partita/7.2/ag-dicomano-cortona-camucia-calcio
 LOCATION:Campo sportivo AG Dicomano
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/7.2/ag-dic
  omano-cortona-camucia-calcio
@@ -850,8 +851,8 @@ DTEND;TZID=Europe/Rome:20261025T161500
 SUMMARY:Centro Storico Lebowski vs Resco Reggello (0-1)
 DESCRIPTION:7° Giornata - Promozione Toscana - Girone C\nRisultato finale:
   Centro Storico Lebowski 0 - 1 Resco Reggello\nMarcatori Resco Reggello: E
- . Focardi\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/Promoz
- ione/GironeC/Partita/7.5/centro-storico-lebowski-resco-reggello
+ . Focardi (34' st)\nDettagli e formazioni: https://www.tuttocampo.it/Tosca
+ na/Promozione/GironeC/Partita/7.5/centro-storico-lebowski-resco-reggello
 LOCATION:Campo sportivo Centro Storico Lebowski
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/7.5/centro
  -storico-lebowski-resco-reggello
@@ -864,9 +865,9 @@ DTSTART;TZID=Europe/Rome:20261025T143000
 DTEND;TZID=Europe/Rome:20261025T161500
 SUMMARY:Cubino vs Settignanese (1-0)
 DESCRIPTION:7° Giornata - Promozione Toscana - Girone C\nRisultato finale:
-  Cubino 1 - 0 Settignanese\nMarcatori Cubino: A. Marzoli\nDettagli e forma
- zioni: https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/7.6/cu
- bino-settignanese
+  Cubino 1 - 0 Settignanese\nMarcatori Cubino: A. Marzoli (14' st)\nDettagl
+ i e formazioni: https://www.tuttocampo.it/Toscana/Promozione/GironeC/Parti
+ ta/7.6/cubino-settignanese
 LOCATION:Campo sportivo Cubino
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/7.6/cubino
  -settignanese
@@ -880,7 +881,7 @@ DTEND;TZID=Europe/Rome:20261025T161500
 SUMMARY:Ideal Club Incisa vs Acquaviva (2-1)
 DESCRIPTION:7° Giornata - Promozione Toscana - Girone C\nRisultato finale:
   Ideal Club Incisa 2 - 1 Acquaviva\nMarcatori Ideal Club Incisa: C. Giusti
-  (36' pt)\, M. Merola Raimondo (26' st)\nMarcatori Acquaviva: C. Koffi (3'
+  (35' pt)\, M. Merola Raimondo (30' st)\nMarcatori Acquaviva: C. Koffi (4'
   pt)\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/Promozione/
  GironeC/Partita/7.7/ideal-club-incisa-acquaviva
 LOCATION:Campo sportivo Ideal Club Incisa
@@ -896,37 +897,25 @@ DTEND;TZID=Europe/Rome:20261025T161500
 SUMMARY:Nuova Foiano vs Pontassieve (4-2)
 DESCRIPTION:7° Giornata - Promozione Toscana - Girone C\nRisultato finale:
   Nuova Foiano 4 - 2 Pontassieve\nMarcatori Nuova Foiano: F. Lombardi (Rig.
- )\, I. Pratesi\, F. Lombardi\, G. Guerrini\nMarcatori Pontassieve: S. Del 
- Zotto\, A. Cragno\nDettagli e formazioni: https://www.tuttocampo.it/Toscan
- a/Promozione/GironeC/Partita/7.8/nuova-foiano-pontassieve
+ ) (5' pt)\, I. Pratesi (15' pt)\, F. Lombardi (30' pt)\, G. Guerrini (32' 
+ st)\nMarcatori Pontassieve: S. Del Zotto (24' pt)\, A. Cragno (40' pt)\nDe
+ ttagli e formazioni: https://www.tuttocampo.it/Toscana/Promozione/GironeC/
+ Partita/7.8/nuova-foiano-pontassieve
 LOCATION:Campo sportivo Nuova Foiano
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/7.8/nuova-
  foiano-pontassieve
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
-UID:match-promozione-c-8-Acquaviva-Cubino@calciotoscana.local
-DTSTAMP:20261101T143000Z
-DTSTART;TZID=Europe/Rome:20261101T143000
-DTEND;TZID=Europe/Rome:20261101T161500
-SUMMARY:Acquaviva vs Cubino
-DESCRIPTION:8° Giornata - Promozione Toscana - Girone C\nPartita in progra
- mma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/P
- romozione/GironeC/Partita/8.1/acquaviva-cubino
-LOCATION:Campo sportivo Acquaviva
-URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/8.1/acquav
- iva-cubino
-STATUS:CONFIRMED
-END:VEVENT
-BEGIN:VEVENT
 UID:match-promozione-c-8-Affrico-Pontassieve@calciotoscana.local
-DTSTAMP:20261101T143000Z
-DTSTART;TZID=Europe/Rome:20261101T143000
-DTEND;TZID=Europe/Rome:20261101T161500
-SUMMARY:Affrico vs Pontassieve
-DESCRIPTION:8° Giornata - Promozione Toscana - Girone C\nPartita in progra
- mma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/P
- romozione/GironeC/Partita/8.2/affrico-pontassieve
+DTSTAMP:20261031T143000Z
+DTSTART;TZID=Europe/Rome:20261031T143000
+DTEND;TZID=Europe/Rome:20261031T161500
+SUMMARY:Affrico vs Pontassieve (1-1)
+DESCRIPTION:8° Giornata - Promozione Toscana - Girone C\nRisultato finale:
+  Affrico 1 - 1 Pontassieve\nMarcatori Affrico: F. Tanini (13' pt)\nMarcato
+ ri Pontassieve: N. Patrignani (17' pt)\nDettagli e formazioni: https://www
+ .tuttocampo.it/Toscana/Promozione/GironeC/Partita/8.2/affrico-pontassieve
 LOCATION:Campo sportivo Affrico
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/8.2/affric
  o-pontassieve
@@ -934,16 +923,34 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-8-AGDicomano-Casentino@calciotoscana.local
-DTSTAMP:20261101T143000Z
-DTSTART;TZID=Europe/Rome:20261101T143000
-DTEND;TZID=Europe/Rome:20261101T161500
-SUMMARY:AG Dicomano vs Casentino
-DESCRIPTION:8° Giornata - Promozione Toscana - Girone C\nPartita in progra
- mma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/P
- romozione/GironeC/Partita/8.3/ag-dicomano-casentino
+DTSTAMP:20261031T143000Z
+DTSTART;TZID=Europe/Rome:20261031T143000
+DTEND;TZID=Europe/Rome:20261031T161500
+SUMMARY:AG Dicomano vs Casentino (3-1)
+DESCRIPTION:8° Giornata - Promozione Toscana - Girone C\nRisultato finale:
+  AG Dicomano 3 - 1 Casentino\nMarcatori AG Dicomano: M. Bachi (34' pt)\, M
+ . Bachi (Rig.) (27' st)\, M. Bachi (43' st)\nMarcatori Casentino: S. Palaz
+ zi (29' st)\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/Prom
+ ozione/GironeC/Partita/8.3/ag-dicomano-casentino
 LOCATION:Campo sportivo AG Dicomano
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/8.3/ag-dic
  omano-casentino
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:match-promozione-c-8-Acquaviva-Cubino@calciotoscana.local
+DTSTAMP:20261101T143000Z
+DTSTART;TZID=Europe/Rome:20261101T143000
+DTEND;TZID=Europe/Rome:20261101T161500
+SUMMARY:Acquaviva vs Cubino (3-1)
+DESCRIPTION:8° Giornata - Promozione Toscana - Girone C\nRisultato finale:
+  Acquaviva 3 - 1 Cubino\nMarcatori Acquaviva: L. Cacciamano (Rig.) (45' pt
+ )\, N. Rampelli (4' st)\, E. Ferretti (9' st)\nMarcatori Cubino: F. Chiesi
+  (25' st)\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/Promoz
+ ione/GironeC/Partita/8.1/acquaviva-cubino
+LOCATION:Campo sportivo Acquaviva
+URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/8.1/acquav
+ iva-cubino
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
@@ -952,11 +959,12 @@ UID:match-promozione-c-8-CortonaCamuciaCalcio-CentroStoricoLebowski@calciot
 DTSTAMP:20261101T143000Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
-SUMMARY:Cortona Camucia Calcio vs Centro Storico Lebowski
-DESCRIPTION:8° Giornata - Promozione Toscana - Girone C\nPartita in progra
- mma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/P
- romozione/GironeC/Partita/8.4/cortona-camucia-calcio-centro-storico-lebows
- ki
+SUMMARY:Cortona Camucia Calcio vs Centro Storico Lebowski (0-1)
+DESCRIPTION:8° Giornata - Promozione Toscana - Girone C\nRisultato finale:
+  Cortona Camucia Calcio 0 - 1 Centro Storico Lebowski\nMarcatori Centro St
+ orico Lebowski: G. Vangi\nDettagli e formazioni: https://www.tuttocampo.it
+ /Toscana/Promozione/GironeC/Partita/8.4/cortona-camucia-calcio-centro-stor
+ ico-lebowski
 LOCATION:Campo sportivo Cortona Camucia Calcio
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/8.4/corton
  a-camucia-calcio-centro-storico-lebowski
@@ -967,10 +975,12 @@ UID:match-promozione-c-8-Montagnano1966-AudaceGalluzzo@calciotoscana.local
 DTSTAMP:20261101T143000Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
-SUMMARY:Montagnano 1966 vs Audace Galluzzo
-DESCRIPTION:8° Giornata - Promozione Toscana - Girone C\nPartita in progra
- mma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/P
- romozione/GironeC/Partita/8.5/montagnano-1966-audace-galluzzo
+SUMMARY:Montagnano 1966 vs Audace Galluzzo (2-0)
+DESCRIPTION:8° Giornata - Promozione Toscana - Girone C\nRisultato finale:
+  Montagnano 1966 2 - 0 Audace Galluzzo\nMarcatori Montagnano 1966: D. Migl
+ iorini (30' pt)\, L. Sestini (46' st)\nDettagli e formazioni: https://www.
+ tuttocampo.it/Toscana/Promozione/GironeC/Partita/8.5/montagnano-1966-audac
+ e-galluzzo
 LOCATION:Campo sportivo Montagnano 1966
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/8.5/montag
  nano-1966-audace-galluzzo
@@ -981,10 +991,12 @@ UID:match-promozione-c-8-RescoReggello-NuovaFoiano@calciotoscana.local
 DTSTAMP:20261101T143000Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
-SUMMARY:Resco Reggello vs Nuova Foiano
-DESCRIPTION:8° Giornata - Promozione Toscana - Girone C\nPartita in progra
- mma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/P
- romozione/GironeC/Partita/8.6/resco-reggello-nuova-foiano
+SUMMARY:Resco Reggello vs Nuova Foiano (1-1)
+DESCRIPTION:8° Giornata - Promozione Toscana - Girone C\nRisultato finale:
+  Resco Reggello 1 - 1 Nuova Foiano\nMarcatori Resco Reggello: C. Marchi (1
+ 0' pt)\nMarcatori Nuova Foiano: F. Lombardi (30' st)\nDettagli e formazion
+ i: https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/8.6/resco-
+ reggello-nuova-foiano
 LOCATION:Campo sportivo Resco Reggello
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/8.6/resco-
  reggello-nuova-foiano
@@ -995,10 +1007,11 @@ UID:match-promozione-c-8-Settignanese-Alberoro1977@calciotoscana.local
 DTSTAMP:20261101T143000Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
-SUMMARY:Settignanese vs Alberoro 1977
-DESCRIPTION:8° Giornata - Promozione Toscana - Girone C\nPartita in progra
- mma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/P
- romozione/GironeC/Partita/8.7/settignanese-alberoro-1977
+SUMMARY:Settignanese vs Alberoro 1977 (1-0)
+DESCRIPTION:8° Giornata - Promozione Toscana - Girone C\nRisultato finale:
+  Settignanese 1 - 0 Alberoro 1977\nMarcatori Settignanese: D. Santucci (36
+ ' st)\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/Promozione
+ /GironeC/Partita/8.7/settignanese-alberoro-1977
 LOCATION:Campo sportivo Settignanese
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/8.7/settig
  nanese-alberoro-1977
@@ -1009,10 +1022,13 @@ UID:match-promozione-c-8-Sinalunghese-IdealClubIncisa@calciotoscana.local
 DTSTAMP:20261101T143000Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
-SUMMARY:Sinalunghese vs Ideal Club Incisa
-DESCRIPTION:8° Giornata - Promozione Toscana - Girone C\nPartita in progra
- mma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/P
- romozione/GironeC/Partita/8.8/sinalunghese-ideal-club-incisa
+SUMMARY:Sinalunghese vs Ideal Club Incisa (2-3)
+DESCRIPTION:8° Giornata - Promozione Toscana - Girone C\nRisultato finale:
+  Sinalunghese 2 - 3 Ideal Club Incisa\nMarcatori Sinalunghese: L. Mazza (2
+ 7' st)\, A. Parigi (42' st)\nMarcatori Ideal Club Incisa: G. Alfani (10' p
+ t)\, M. Merola Raimondo (25' pt)\, L. Masi (33' st)\nDettagli e formazioni
+ : https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/8.8/sinalun
+ ghese-ideal-club-incisa
 LOCATION:Campo sportivo Sinalunghese
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/8.8/sinalu
  nghese-ideal-club-incisa

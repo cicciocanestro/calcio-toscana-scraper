@@ -794,9 +794,9 @@ DTSTART;TZID=Europe/Rome:20261025T150000
 DTEND;TZID=Europe/Rome:20261025T164500
 SUMMARY:Faellese vs San Marco La Sella (1-0)
 DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
-  finale: Faellese 1 - 0 San Marco La Sella\nMarcatori Faellese: F. Focardi
- \nDettagli e formazioni: https://www.tuttocampo.it/Toscana/TerzaCategoria/
- GironeAArezzo/Partita/6.3/faellese-san-marco-la-sella
+  finale: Faellese 1 - 0 San Marco La Sella\nMarcatori Faellese: AUTOGOL\nD
+ ettagli e formazioni: https://www.tuttocampo.it/Toscana/TerzaCategoria/Gir
+ oneAArezzo/Partita/6.3/faellese-san-marco-la-sella
 LOCATION:Campo sportivo Faellese
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  6.3/faellese-san-marco-la-sella
@@ -825,9 +825,8 @@ DTEND;TZID=Europe/Rome:20261025T164500
 SUMMARY:Monterchiese vs Monsigliolo (2-0)
 DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
   finale: Monterchiese 2 - 0 Monsigliolo\nMarcatori Monterchiese: N. Terzi 
- (37' pt)\, N. Terzi (20' st)\nDettagli e formazioni: https://www.tuttocamp
- o.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/6.5/monterchiese-monsigl
- iolo
+ (37' pt)\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/TerzaCa
+ tegoria/GironeAArezzo/Partita/6.5/monterchiese-monsigliolo
 LOCATION:Campo sportivo Monterchiese
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  6.5/monterchiese-monsigliolo
@@ -884,13 +883,14 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-terza-arezzo-7-BadiaAgnano-SanLeolino@calciotoscana.local
-DTSTAMP:20261101T143000Z
-DTSTART;TZID=Europe/Rome:20261101T143000
-DTEND;TZID=Europe/Rome:20261101T161500
-SUMMARY:Badia Agnano vs San Leolino
-DESCRIPTION:7° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/7.1/badia-agnano-san-leolino
+DTSTAMP:20261031T143000Z
+DTSTART;TZID=Europe/Rome:20261031T143000
+DTEND;TZID=Europe/Rome:20261031T161500
+SUMMARY:Badia Agnano vs San Leolino (0-0)
+DESCRIPTION:7° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Badia Agnano 0 - 0 San Leolino\nDettagli e formazioni: https://ww
+ w.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/7.1/badia-agn
+ ano-san-leolino
 LOCATION:Campo sportivo Badia Agnano
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  7.1/badia-agnano-san-leolino
@@ -901,11 +901,12 @@ UID:match-terza-arezzo-7-ColonnaIndicatore-Faellese@calciotoscana.local
 DTSTAMP:20261101T143000Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
-SUMMARY:Colonna Indicatore vs Faellese
-DESCRIPTION:7° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/7.2/colonna-indicatore-faelles
- e
+SUMMARY:Colonna Indicatore vs Faellese (1-1)
+DESCRIPTION:7° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Colonna Indicatore 1 - 1 Faellese\nMarcatori Colonna Indicatore: 
+ S. Sobhy (Rig.)\nMarcatori Faellese: D. Caldini\nDettagli e formazioni: ht
+ tps://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/7.2/c
+ olonna-indicatore-faellese
 LOCATION:Campo sportivo Colonna Indicatore
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  7.2/colonna-indicatore-faellese
@@ -916,11 +917,12 @@ UID:match-terza-arezzo-7-LoreseCalcio-AtleticoValdambra@calciotoscana.local
 DTSTAMP:20261101T143000Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
-SUMMARY:Lorese Calcio vs Atletico Valdambra
-DESCRIPTION:7° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/7.3/lorese-calcio-atletico-val
- dambra
+SUMMARY:Lorese Calcio vs Atletico Valdambra (4-0)
+DESCRIPTION:7° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Lorese Calcio 4 - 0 Atletico Valdambra\nMarcatori Lorese Calcio: 
+ E. Fibbi\, P. Pepi\, F. Celindi\, E. Fibbi\nDettagli e formazioni: https:/
+ /www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/7.3/lorese
+ -calcio-atletico-valdambra
 LOCATION:Campo sportivo Lorese Calcio
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  7.3/lorese-calcio-atletico-valdambra
@@ -931,10 +933,12 @@ UID:match-terza-arezzo-7-Monsigliolo-Terontola@calciotoscana.local
 DTSTAMP:20261101T143000Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
-SUMMARY:Monsigliolo vs Terontola
-DESCRIPTION:7° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/7.4/monsigliolo-terontola
+SUMMARY:Monsigliolo vs Terontola (0-6)
+DESCRIPTION:7° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Monsigliolo 0 - 6 Terontola\nMarcatori Terontola: O. Ndiaye\, O. 
+ Ndiaye\, L. Del Sarto\, D. Colarusso\, O. Ndiaye (2' pt)\, L. Del Sarto (6
+ ' pt)\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/TerzaCateg
+ oria/GironeAArezzo/Partita/7.4/monsigliolo-terontola
 LOCATION:Campo sportivo Monsigliolo
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  7.4/monsigliolo-terontola
@@ -945,10 +949,11 @@ UID:match-terza-arezzo-7-PianDiSc-Monterchiese@calciotoscana.local
 DTSTAMP:20261101T143000Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
-SUMMARY:Pian Di Scò vs Monterchiese
-DESCRIPTION:7° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/7.5/pian-di-sc-monterchiese
+SUMMARY:Pian Di Scò vs Monterchiese (0-0)
+DESCRIPTION:7° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Pian Di Scò 0 - 0 Monterchiese\nDettagli e formazioni: https://w
+ ww.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/7.5/pian-di-
+ sc-monterchiese
 LOCATION:Campo sportivo Pian Di Scò
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  7.5/pian-di-sc-monterchiese
@@ -959,11 +964,11 @@ UID:match-terza-arezzo-7-SanMarcoLaSella-Pietraia@calciotoscana.local
 DTSTAMP:20261101T143000Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
-SUMMARY:San Marco La Sella vs Pietraia
-DESCRIPTION:7° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/7.6/san-marco-la-sella-pietrai
- a
+SUMMARY:San Marco La Sella vs Pietraia (0-0)
+DESCRIPTION:7° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: San Marco La Sella 0 - 0 Pietraia\nDettagli e formazioni: https:/
+ /www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/7.6/san-ma
+ rco-la-sella-pietraia
 LOCATION:Campo sportivo San Marco La Sella
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  7.6/san-marco-la-sella-pietraia
@@ -974,11 +979,13 @@ UID:match-terza-arezzo-7-Tregozzano-BadiaaRotiCalcio@calciotoscana.local
 DTSTAMP:20261101T143000Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
-SUMMARY:Tregozzano vs Badia a Roti Calcio
-DESCRIPTION:7° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/7.7/tregozzano-badia-a-roti-ca
- lcio
+SUMMARY:Tregozzano vs Badia a Roti Calcio (6-3)
+DESCRIPTION:7° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Tregozzano 6 - 3 Badia a Roti Calcio\nMarcatori Tregozzano: K. Ma
+ loku\, M. Castellani\, M. Castellani\, M. Virgillo\, M. Molinaro\nMarcator
+ i Badia a Roti Calcio: F. Mazzeschi\, A. Fejzaj\, M. Storri\nDettagli e fo
+ rmazioni: https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/P
+ artita/7.7/tregozzano-badia-a-roti-calcio
 LOCATION:Campo sportivo Tregozzano
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  7.7/tregozzano-badia-a-roti-calcio
@@ -989,10 +996,13 @@ UID:match-terza-arezzo-7-Tuscar-Sangiustinese@calciotoscana.local
 DTSTAMP:20261101T143000Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
-SUMMARY:Tuscar vs Sangiustinese
-DESCRIPTION:7° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/7.8/tuscar-sangiustinese
+SUMMARY:Tuscar vs Sangiustinese (1-4)
+DESCRIPTION:7° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Tuscar 1 - 4 Sangiustinese\nMarcatori Tuscar: F. Rossi (43' pt)\n
+ Marcatori Sangiustinese: M. Ezzarouali (4' pt)\, F. Mele (14' pt)\, R. Cas
+ tellucci (18' pt)\, R. Castellucci (38' st)\nDettagli e formazioni: https:
+ //www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/7.8/tusca
+ r-sangiustinese
 LOCATION:Campo sportivo Tuscar
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  7.8/tuscar-sangiustinese
@@ -1003,10 +1013,12 @@ UID:match-terza-arezzo-7-VirtusArezzo-Montecchio@calciotoscana.local
 DTSTAMP:20261101T143000Z
 DTSTART;TZID=Europe/Rome:20261101T143000
 DTEND;TZID=Europe/Rome:20261101T161500
-SUMMARY:Virtus Arezzo vs Montecchio
-DESCRIPTION:7° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/7.9/virtus-arezzo-montecchio
+SUMMARY:Virtus Arezzo vs Montecchio (1-3)
+DESCRIPTION:7° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Virtus Arezzo 1 - 3 Montecchio\nMarcatori Virtus Arezzo: D. Sesti
+ ni\nMarcatori Montecchio: C. Stirbei\, M. Salvietti\, D. Spinosa\nDettagli
+  e formazioni: https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAAre
+ zzo/Partita/7.9/virtus-arezzo-montecchio
 LOCATION:Campo sportivo Virtus Arezzo
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  7.9/virtus-arezzo-montecchio
