@@ -962,9 +962,9 @@ DTEND;TZID=Europe/Rome:20261101T161500
 SUMMARY:Cortona Camucia Calcio vs Centro Storico Lebowski (0-1)
 DESCRIPTION:8° Giornata - Promozione Toscana - Girone C\nRisultato finale:
   Cortona Camucia Calcio 0 - 1 Centro Storico Lebowski\nMarcatori Centro St
- orico Lebowski: G. Vangi\nDettagli e formazioni: https://www.tuttocampo.it
- /Toscana/Promozione/GironeC/Partita/8.4/cortona-camucia-calcio-centro-stor
- ico-lebowski
+ orico Lebowski: G. Vangi (21' st)\nDettagli e formazioni: https://www.tutt
+ ocampo.it/Toscana/Promozione/GironeC/Partita/8.4/cortona-camucia-calcio-ce
+ ntro-storico-lebowski
 LOCATION:Campo sportivo Cortona Camucia Calcio
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/8.4/corton
  a-camucia-calcio-centro-storico-lebowski
@@ -1036,13 +1036,14 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-9-Alberoro1977-RescoReggello@calciotoscana.local
-DTSTAMP:20261108T143000Z
-DTSTART;TZID=Europe/Rome:20261108T143000
-DTEND;TZID=Europe/Rome:20261108T161500
-SUMMARY:Alberoro 1977 vs Resco Reggello
-DESCRIPTION:9° Giornata - Promozione Toscana - Girone C\nPartita in progra
- mma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/P
- romozione/GironeC/Partita/9.1/alberoro-1977-resco-reggello
+DTSTAMP:20261107T143000Z
+DTSTART;TZID=Europe/Rome:20261107T143000
+DTEND;TZID=Europe/Rome:20261107T161500
+SUMMARY:Alberoro 1977 vs Resco Reggello (1-0)
+DESCRIPTION:9° Giornata - Promozione Toscana - Girone C\nRisultato finale:
+  Alberoro 1977 1 - 0 Resco Reggello\nMarcatori Alberoro 1977: E. Braccalen
+ ti (Rig.)\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/Promoz
+ ione/GironeC/Partita/9.1/alberoro-1977-resco-reggello
 LOCATION:Campo sportivo Alberoro 1977
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/9.1/albero
  ro-1977-resco-reggello
@@ -1053,10 +1054,13 @@ UID:match-promozione-c-9-AudaceGalluzzo-Settignanese@calciotoscana.local
 DTSTAMP:20261108T143000Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
-SUMMARY:Audace Galluzzo vs Settignanese
-DESCRIPTION:9° Giornata - Promozione Toscana - Girone C\nPartita in progra
- mma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/P
- romozione/GironeC/Partita/9.2/audace-galluzzo-settignanese
+SUMMARY:Audace Galluzzo vs Settignanese (1-4)
+DESCRIPTION:9° Giornata - Promozione Toscana - Girone C\nRisultato finale:
+  Audace Galluzzo 1 - 4 Settignanese\nMarcatori Audace Galluzzo: A. Rachidi
+  (Rig.) (32' st)\nMarcatori Settignanese: M. Mosti Falconi (25' pt)\, A. C
+ iancaleoni (Rig.) (43' pt)\, D. Santucci (20' st)\, A. Ciancaleoni (Rig.) 
+ (30' st)\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/Promozi
+ one/GironeC/Partita/9.2/audace-galluzzo-settignanese
 LOCATION:Campo sportivo Audace Galluzzo
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/9.2/audace
  -galluzzo-settignanese
@@ -1067,10 +1071,11 @@ UID:match-promozione-c-9-Casentino-Acquaviva@calciotoscana.local
 DTSTAMP:20261108T143000Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
-SUMMARY:Casentino vs Acquaviva
-DESCRIPTION:9° Giornata - Promozione Toscana - Girone C\nPartita in progra
- mma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/P
- romozione/GironeC/Partita/9.3/casentino-acquaviva
+SUMMARY:Casentino vs Acquaviva (1-1)
+DESCRIPTION:9° Giornata - Promozione Toscana - Girone C\nRisultato finale:
+  Casentino 1 - 1 Acquaviva\nMarcatori Casentino: S. Palazzi (9' pt)\nMarca
+ tori Acquaviva: E. Ferretti (12' st)\nDettagli e formazioni: https://www.t
+ uttocampo.it/Toscana/Promozione/GironeC/Partita/9.3/casentino-acquaviva
 LOCATION:Campo sportivo Casentino
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/9.3/casent
  ino-acquaviva
@@ -1082,10 +1087,11 @@ UID:match-promozione-c-9-CentroStoricoLebowski-Montagnano1966@calciotoscana
 DTSTAMP:20261108T143000Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
-SUMMARY:Centro Storico Lebowski vs Montagnano 1966
-DESCRIPTION:9° Giornata - Promozione Toscana - Girone C\nPartita in progra
- mma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/P
- romozione/GironeC/Partita/9.4/centro-storico-lebowski-montagnano-1966
+SUMMARY:Centro Storico Lebowski vs Montagnano 1966 (0-0)
+DESCRIPTION:9° Giornata - Promozione Toscana - Girone C\nRisultato finale:
+  Centro Storico Lebowski 0 - 0 Montagnano 1966\nDettagli e formazioni: htt
+ ps://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/9.4/centro-stori
+ co-lebowski-montagnano-1966
 LOCATION:Campo sportivo Centro Storico Lebowski
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/9.4/centro
  -storico-lebowski-montagnano-1966
@@ -1096,10 +1102,11 @@ UID:match-promozione-c-9-Cubino-CortonaCamuciaCalcio@calciotoscana.local
 DTSTAMP:20261108T143000Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
-SUMMARY:Cubino vs Cortona Camucia Calcio
-DESCRIPTION:9° Giornata - Promozione Toscana - Girone C\nPartita in progra
- mma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/P
- romozione/GironeC/Partita/9.5/cubino-cortona-camucia-calcio
+SUMMARY:Cubino vs Cortona Camucia Calcio (0-1)
+DESCRIPTION:9° Giornata - Promozione Toscana - Girone C\nRisultato finale:
+  Cubino 0 - 1 Cortona Camucia Calcio\nMarcatori Cortona Camucia Calcio: E.
+  Tammariello\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/Pro
+ mozione/GironeC/Partita/9.5/cubino-cortona-camucia-calcio
 LOCATION:Campo sportivo Cubino
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/9.5/cubino
  -cortona-camucia-calcio
@@ -1110,10 +1117,12 @@ UID:match-promozione-c-9-IdealClubIncisa-AGDicomano@calciotoscana.local
 DTSTAMP:20261108T143000Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
-SUMMARY:Ideal Club Incisa vs AG Dicomano
-DESCRIPTION:9° Giornata - Promozione Toscana - Girone C\nPartita in progra
- mma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/P
- romozione/GironeC/Partita/9.6/ideal-club-incisa-ag-dicomano
+SUMMARY:Ideal Club Incisa vs AG Dicomano (1-2)
+DESCRIPTION:9° Giornata - Promozione Toscana - Girone C\nRisultato finale:
+  Ideal Club Incisa 1 - 2 AG Dicomano\nMarcatori Ideal Club Incisa: M. Mero
+ la Raimondo\nMarcatori AG Dicomano: M. Mati\, S. Nardoni (20' pt)\nDettagl
+ i e formazioni: https://www.tuttocampo.it/Toscana/Promozione/GironeC/Parti
+ ta/9.6/ideal-club-incisa-ag-dicomano
 LOCATION:Campo sportivo Ideal Club Incisa
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/9.6/ideal-
  club-incisa-ag-dicomano
@@ -1124,10 +1133,11 @@ UID:match-promozione-c-9-NuovaFoiano-Affrico@calciotoscana.local
 DTSTAMP:20261108T143000Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
-SUMMARY:Nuova Foiano vs Affrico
-DESCRIPTION:9° Giornata - Promozione Toscana - Girone C\nPartita in progra
- mma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/P
- romozione/GironeC/Partita/9.7/nuova-foiano-affrico
+SUMMARY:Nuova Foiano vs Affrico (1-2)
+DESCRIPTION:9° Giornata - Promozione Toscana - Girone C\nRisultato finale:
+  Nuova Foiano 1 - 2 Affrico\nMarcatori Nuova Foiano: I. Pratesi\nMarcatori
+  Affrico: T. Papini\, V. Biba\nDettagli e formazioni: https://www.tuttocam
+ po.it/Toscana/Promozione/GironeC/Partita/9.7/nuova-foiano-affrico
 LOCATION:Campo sportivo Nuova Foiano
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/9.7/nuova-
  foiano-affrico
@@ -1138,10 +1148,12 @@ UID:match-promozione-c-9-Pontassieve-Sinalunghese@calciotoscana.local
 DTSTAMP:20261108T143000Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
-SUMMARY:Pontassieve vs Sinalunghese
-DESCRIPTION:9° Giornata - Promozione Toscana - Girone C\nPartita in progra
- mma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/P
- romozione/GironeC/Partita/9.8/pontassieve-sinalunghese
+SUMMARY:Pontassieve vs Sinalunghese (1-2)
+DESCRIPTION:9° Giornata - Promozione Toscana - Girone C\nRisultato finale:
+  Pontassieve 1 - 2 Sinalunghese\nMarcatori Pontassieve: M. Di Vico (8' pt)
+ \nMarcatori Sinalunghese: M. Nicoletti\, G. Bardelli (29' pt)\nDettagli e 
+ formazioni: https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/9
+ .8/pontassieve-sinalunghese
 LOCATION:Campo sportivo Pontassieve
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/9.8/pontas
  sieve-sinalunghese

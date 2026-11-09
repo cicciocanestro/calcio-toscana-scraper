@@ -729,17 +729,20 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-terza-arezzo-5-VirtusArezzo-Terontola@calciotoscana.local
-DTSTAMP:20261018T153000Z
-DTSTART;TZID=Europe/Rome:20261018T153000
-DTEND;TZID=Europe/Rome:20261018T171500
-SUMMARY:Virtus Arezzo vs Terontola
-DESCRIPTION:5° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 15:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/5.9/virtus-arezzo-terontola
+DTSTAMP:20261104T210000Z
+DTSTART;TZID=Europe/Rome:20261104T210000
+DTEND;TZID=Europe/Rome:20261104T224500
+SUMMARY:Virtus Arezzo vs Terontola (0-7)
+DESCRIPTION:5° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Virtus Arezzo 0 - 7 Terontola\nMarcatori Terontola: O. Ndiaye (24
+ ' pt)\, C. Santiccioli (32' pt)\, L. Fragai (41' pt)\, L. Mammoli (26' st)
+ \, F. Mantelli (Rig.) (31' st)\, F. Mantelli (35' st)\, S. Bambini (40' st
+ )\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/TerzaCategoria
+ /GironeAArezzo/Partita/5.9/virtus-arezzo-terontola
 LOCATION:Campo sportivo Virtus Arezzo
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  5.9/virtus-arezzo-terontola
-STATUS:TENTATIVE
+STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-terza-arezzo-6-SanLeolino-ColonnaIndicatore@calciotoscana.local
@@ -824,9 +827,9 @@ DTSTART;TZID=Europe/Rome:20261025T150000
 DTEND;TZID=Europe/Rome:20261025T164500
 SUMMARY:Monterchiese vs Monsigliolo (2-0)
 DESCRIPTION:6° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
-  finale: Monterchiese 2 - 0 Monsigliolo\nMarcatori Monterchiese: N. Terzi 
- (37' pt)\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/TerzaCa
- tegoria/GironeAArezzo/Partita/6.5/monterchiese-monsigliolo
+  finale: Monterchiese 2 - 0 Monsigliolo\nMarcatori Monterchiese: N. Terzi\
+ , N. Terzi (37' pt)\nDettagli e formazioni: https://www.tuttocampo.it/Tosc
+ ana/TerzaCategoria/GironeAArezzo/Partita/6.5/monterchiese-monsigliolo
 LOCATION:Campo sportivo Monterchiese
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  6.5/monterchiese-monsigliolo
@@ -1025,15 +1028,32 @@ URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
+UID:match-terza-arezzo-8-SanLeolino-Tregozzano@calciotoscana.local
+DTSTAMP:20261107T143000Z
+DTSTART;TZID=Europe/Rome:20261107T143000
+DTEND;TZID=Europe/Rome:20261107T161500
+SUMMARY:San Leolino vs Tregozzano (4-0)
+DESCRIPTION:8° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: San Leolino 4 - 0 Tregozzano\nMarcatori San Leolino: E. Malaj\, D
+ . Brogi\, D. Brogi\, P. Merli\nDettagli e formazioni: https://www.tuttocam
+ po.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/8.8/san-leolino-tregozz
+ ano
+LOCATION:Campo sportivo San Leolino
+URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
+ 8.8/san-leolino-tregozzano
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 UID:match-terza-arezzo-8-AtleticoValdambra-PianDiSc@calciotoscana.local
 DTSTAMP:20261108T143000Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
-SUMMARY:Atletico Valdambra vs Pian Di Scò
-DESCRIPTION:8° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/8.1/atletico-valdambra-pian-di
- -sc
+SUMMARY:Atletico Valdambra vs Pian Di Scò (2-2)
+DESCRIPTION:8° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Atletico Valdambra 2 - 2 Pian Di Scò\nMarcatori Atletico Valdamb
+ ra: G. Destro\, C. Staiano (Rig.)\nMarcatori Pian Di Scò: M. Giulio\, A. 
+ Marsili\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/TerzaCat
+ egoria/GironeAArezzo/Partita/8.1/atletico-valdambra-pian-di-sc
 LOCATION:Campo sportivo Atletico Valdambra
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  8.1/atletico-valdambra-pian-di-sc
@@ -1044,11 +1064,14 @@ UID:match-terza-arezzo-8-BadiaaRotiCalcio-VirtusArezzo@calciotoscana.local
 DTSTAMP:20261108T143000Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
-SUMMARY:Badia a Roti Calcio vs Virtus Arezzo
-DESCRIPTION:8° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/8.2/badia-a-roti-calcio-virtus
- -arezzo
+SUMMARY:Badia a Roti Calcio vs Virtus Arezzo (14-1)
+DESCRIPTION:8° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Badia a Roti Calcio 14 - 1 Virtus Arezzo\nMarcatori Badia a Roti 
+ Calcio: N. Mazzeschi\, F. Mazzeschi\, N. Mazzeschi\, K. Kreku\, K. Kreku\,
+  T. Teci\, G. Manalli\, F. Mazzeschi\, A. Fejzaj\, F. Mazzeschi\, L. Ruzzo
+ \, R. Rotesi\, M. Sacconi\, L. Innocenti\nMarcatori Virtus Arezzo: M. Milo
+ \nDettagli e formazioni: https://www.tuttocampo.it/Toscana/TerzaCategoria/
+ GironeAArezzo/Partita/8.2/badia-a-roti-calcio-virtus-arezzo
 LOCATION:Campo sportivo Badia a Roti Calcio
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  8.2/badia-a-roti-calcio-virtus-arezzo
@@ -1060,11 +1083,13 @@ UID:match-terza-arezzo-8-ColonnaIndicatore-SanMarcoLaSella@calciotoscana.lo
 DTSTAMP:20261108T143000Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
-SUMMARY:Colonna Indicatore vs San Marco La Sella
-DESCRIPTION:8° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/8.3/colonna-indicatore-san-mar
- co-la-sella
+SUMMARY:Colonna Indicatore vs San Marco La Sella (3-1)
+DESCRIPTION:8° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Colonna Indicatore 3 - 1 San Marco La Sella\nMarcatori Colonna In
+ dicatore: A. Crestini\, Kebede\, J. Acquisti\nMarcatori San Marco La Sella
+ : B. Tangara\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/Ter
+ zaCategoria/GironeAArezzo/Partita/8.3/colonna-indicatore-san-marco-la-sell
+ a
 LOCATION:Campo sportivo Colonna Indicatore
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  8.3/colonna-indicatore-san-marco-la-sella
@@ -1075,10 +1100,12 @@ UID:match-terza-arezzo-8-Faellese-LoreseCalcio@calciotoscana.local
 DTSTAMP:20261108T143000Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
-SUMMARY:Faellese vs Lorese Calcio
-DESCRIPTION:8° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/8.4/faellese-lorese-calcio
+SUMMARY:Faellese vs Lorese Calcio (2-2)
+DESCRIPTION:8° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Faellese 2 - 2 Lorese Calcio\nMarcatori Faellese: D. Caldini\, N.
+  Singh\nMarcatori Lorese Calcio: AUTOGOL\, P. Pepi\nDettagli e formazioni:
+  https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/8.
+ 4/faellese-lorese-calcio
 LOCATION:Campo sportivo Faellese
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  8.4/faellese-lorese-calcio
@@ -1089,10 +1116,11 @@ UID:match-terza-arezzo-8-Montecchio-Terontola@calciotoscana.local
 DTSTAMP:20261108T143000Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
-SUMMARY:Montecchio vs Terontola
-DESCRIPTION:8° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/8.5/montecchio-terontola
+SUMMARY:Montecchio vs Terontola (0-0)
+DESCRIPTION:8° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Montecchio 0 - 0 Terontola\nDettagli e formazioni: https://www.tu
+ ttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/8.5/montecchio-te
+ rontola
 LOCATION:Campo sportivo Montecchio
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  8.5/montecchio-terontola
@@ -1103,10 +1131,12 @@ UID:match-terza-arezzo-8-Monterchiese-BadiaAgnano@calciotoscana.local
 DTSTAMP:20261108T143000Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
-SUMMARY:Monterchiese vs Badia Agnano
-DESCRIPTION:8° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/8.6/monterchiese-badia-agnano
+SUMMARY:Monterchiese vs Badia Agnano (2-2)
+DESCRIPTION:8° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Monterchiese 2 - 2 Badia Agnano\nMarcatori Monterchiese: N. Terzi
+ \, B. Elwarraky (18' st)\nMarcatori Badia Agnano: F. Pistocchi\, L. Erpici
+ \nDettagli e formazioni: https://www.tuttocampo.it/Toscana/TerzaCategoria/
+ GironeAArezzo/Partita/8.6/monterchiese-badia-agnano
 LOCATION:Campo sportivo Monterchiese
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  8.6/monterchiese-badia-agnano
@@ -1117,27 +1147,14 @@ UID:match-terza-arezzo-8-Pietraia-Tuscar@calciotoscana.local
 DTSTAMP:20261108T143000Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
-SUMMARY:Pietraia vs Tuscar
-DESCRIPTION:8° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/8.7/pietraia-tuscar
+SUMMARY:Pietraia vs Tuscar (1-1)
+DESCRIPTION:8° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Pietraia 1 - 1 Tuscar\nMarcatori Pietraia: AUTOGOL (49' st)\nMarc
+ atori Tuscar: M. Paradiso (2' st)\nDettagli e formazioni: https://www.tutt
+ ocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/8.7/pietraia-tuscar
 LOCATION:Campo sportivo Pietraia
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  8.7/pietraia-tuscar
-STATUS:CONFIRMED
-END:VEVENT
-BEGIN:VEVENT
-UID:match-terza-arezzo-8-SanLeolino-Tregozzano@calciotoscana.local
-DTSTAMP:20261108T143000Z
-DTSTART;TZID=Europe/Rome:20261108T143000
-DTEND;TZID=Europe/Rome:20261108T161500
-SUMMARY:San Leolino vs Tregozzano
-DESCRIPTION:8° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/8.8/san-leolino-tregozzano
-LOCATION:Campo sportivo San Leolino
-URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
- 8.8/san-leolino-tregozzano
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
@@ -1145,10 +1162,12 @@ UID:match-terza-arezzo-8-Sangiustinese-Monsigliolo@calciotoscana.local
 DTSTAMP:20261108T143000Z
 DTSTART;TZID=Europe/Rome:20261108T143000
 DTEND;TZID=Europe/Rome:20261108T161500
-SUMMARY:Sangiustinese vs Monsigliolo
-DESCRIPTION:8° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/8.9/sangiustinese-monsigliolo
+SUMMARY:Sangiustinese vs Monsigliolo (4-1)
+DESCRIPTION:8° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Sangiustinese 4 - 1 Monsigliolo\nMarcatori Sangiustinese: M. Ezza
+ rouali\, N. Sensini\, N. Caroti\nMarcatori Monsigliolo: A. Amoruso\nDettag
+ li e formazioni: https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAA
+ rezzo/Partita/8.9/sangiustinese-monsigliolo
 LOCATION:Campo sportivo Sangiustinese
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  8.9/sangiustinese-monsigliolo
