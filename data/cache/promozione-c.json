@@ -10,7 +10,7 @@
   "roundID": "TO.P.C",
   "currentMatchDay": 9,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-11-09T00:12:15.021Z",
+  "lastUpdated": "2026-11-09T17:55:38.941Z",
   "standings": [
     {
       "position": 1,
@@ -1542,7 +1542,7 @@
           "time": "14:30",
           "dateTime": "2026-11-07T14:30:00",
           "homeScorers": [
-            "E. Braccalenti (Rig.)"
+            "E. Braccalenti (Rig.) (7' st)"
           ],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/935655.png?v=6",
@@ -1620,7 +1620,7 @@
           "dateTime": "2026-11-08T14:30:00",
           "homeScorers": [],
           "awayScorers": [
-            "E. Tammariello"
+            "E. Tammariello (32' st)"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1007106.png?v=1",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/57743.png?v=2",
@@ -1637,11 +1637,11 @@
           "time": "14:30",
           "dateTime": "2026-11-08T14:30:00",
           "homeScorers": [
-            "M. Merola Raimondo"
+            "M. Merola Raimondo (40' pt)"
           ],
           "awayScorers": [
-            "M. Mati",
-            "S. Nardoni (20' pt)"
+            "S. Nardoni (20' pt)",
+            "M. Mati (45' st)"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/22740.png?v=1",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1028179.png?v=1",
@@ -1658,11 +1658,11 @@
           "time": "14:30",
           "dateTime": "2026-11-08T14:30:00",
           "homeScorers": [
-            "I. Pratesi"
+            "I. Pratesi (47' st)"
           ],
           "awayScorers": [
-            "T. Papini",
-            "V. Biba"
+            "T. Papini (8' st)",
+            "V. Biba (37' st)"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/18630.png?v=1",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
@@ -1682,8 +1682,8 @@
             "M. Di Vico (8' pt)"
           ],
           "awayScorers": [
-            "M. Nicoletti",
-            "G. Bardelli (29' pt)"
+            "G. Bardelli (29' pt)",
+            "M. Nicoletti (11' st)"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/750657.png?v=2",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/49380.png?v=3",
