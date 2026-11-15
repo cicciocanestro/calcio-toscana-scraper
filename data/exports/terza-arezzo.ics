@@ -1086,10 +1086,10 @@ DTEND;TZID=Europe/Rome:20261108T161500
 SUMMARY:Colonna Indicatore vs San Marco La Sella (3-1)
 DESCRIPTION:8° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
   finale: Colonna Indicatore 3 - 1 San Marco La Sella\nMarcatori Colonna In
- dicatore: A. Crestini\, Kebede\, J. Acquisti\nMarcatori San Marco La Sella
- : B. Tangara\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/Ter
- zaCategoria/GironeAArezzo/Partita/8.3/colonna-indicatore-san-marco-la-sell
- a
+ dicatore: A. Crestini (8' pt)\, Kebede (23' st)\, J. Acquisti (31' st)\nMa
+ rcatori San Marco La Sella: B. Tangara\nDettagli e formazioni: https://www
+ .tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/8.3/colonna-in
+ dicatore-san-marco-la-sella
 LOCATION:Campo sportivo Colonna Indicatore
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  8.3/colonna-indicatore-san-marco-la-sella
@@ -1175,17 +1175,35 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-terza-arezzo-9-BadiaAgnano-ColonnaIndicatore@calciotoscana.local
-DTSTAMP:20261115T143000Z
-DTSTART;TZID=Europe/Rome:20261115T143000
-DTEND;TZID=Europe/Rome:20261115T161500
-SUMMARY:Badia Agnano vs Colonna Indicatore
-DESCRIPTION:9° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/9.1/badia-agnano-colonna-indic
- atore
+DTSTAMP:20261114T143000Z
+DTSTART;TZID=Europe/Rome:20261114T143000
+DTEND;TZID=Europe/Rome:20261114T161500
+SUMMARY:Badia Agnano vs Colonna Indicatore (1-3)
+DESCRIPTION:9° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Badia Agnano 1 - 3 Colonna Indicatore\nMarcatori Badia Agnano: A.
+  Hoxha\nMarcatori Colonna Indicatore: E. Scapecchi (30' pt)\, J. Acquisti 
+ (25' st)\, E. Scapecchi (Rig.) (49' st)\nDettagli e formazioni: https://ww
+ w.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/9.1/badia-agn
+ ano-colonna-indicatore
 LOCATION:Campo sportivo Badia Agnano
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  9.1/badia-agnano-colonna-indicatore
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:match-terza-arezzo-9-VirtusArezzo-AtleticoValdambra@calciotoscana.local
+DTSTAMP:20261114T143000Z
+DTSTART;TZID=Europe/Rome:20261114T143000
+DTEND;TZID=Europe/Rome:20261114T161500
+SUMMARY:Virtus Arezzo vs Atletico Valdambra (0-4)
+DESCRIPTION:9° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Virtus Arezzo 0 - 4 Atletico Valdambra\nMarcatori Atletico Valdam
+ bra: G. Destro\, C. Staiano\, C. Staiano\, M. Farinelli\nDettagli e formaz
+ ioni: https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Parti
+ ta/9.9/virtus-arezzo-atletico-valdambra
+LOCATION:Campo sportivo Virtus Arezzo
+URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
+ 9.9/virtus-arezzo-atletico-valdambra
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
@@ -1193,10 +1211,13 @@ UID:match-terza-arezzo-9-LoreseCalcio-Pietraia@calciotoscana.local
 DTSTAMP:20261115T143000Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
-SUMMARY:Lorese Calcio vs Pietraia
-DESCRIPTION:9° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/9.2/lorese-calcio-pietraia
+SUMMARY:Lorese Calcio vs Pietraia (4-4)
+DESCRIPTION:9° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Lorese Calcio 4 - 4 Pietraia\nMarcatori Lorese Calcio: Y. Mazroui
+ \, E. D Amico\, Y. Mazroui\, A. Iannicelli\nMarcatori Pietraia: G. Pici\, 
+ S. Pica\, S. Pica\, M. Opara\nDettagli e formazioni: https://www.tuttocamp
+ o.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/9.2/lorese-calcio-pietra
+ ia
 LOCATION:Campo sportivo Lorese Calcio
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  9.2/lorese-calcio-pietraia
@@ -1207,10 +1228,13 @@ UID:match-terza-arezzo-9-Monsigliolo-Montecchio@calciotoscana.local
 DTSTAMP:20261115T143000Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
-SUMMARY:Monsigliolo vs Montecchio
-DESCRIPTION:9° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/9.3/monsigliolo-montecchio
+SUMMARY:Monsigliolo vs Montecchio (2-4)
+DESCRIPTION:9° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Monsigliolo 2 - 4 Montecchio\nMarcatori Monsigliolo: L. Amato (12
+ ' st)\, A. Amoruso (34' st)\nMarcatori Montecchio: G. Bigozzi (12' pt)\, N
+ . Cuciniello (26' pt)\, C. Stirbei (21' st)\, R. Gjoci (41' st)\nDettagli 
+ e formazioni: https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArez
+ zo/Partita/9.3/monsigliolo-montecchio
 LOCATION:Campo sportivo Monsigliolo
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  9.3/monsigliolo-montecchio
@@ -1221,10 +1245,11 @@ UID:match-terza-arezzo-9-PianDiSc-Sangiustinese@calciotoscana.local
 DTSTAMP:20261115T143000Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
-SUMMARY:Pian Di Scò vs Sangiustinese
-DESCRIPTION:9° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/9.4/pian-di-sc-sangiustinese
+SUMMARY:Pian Di Scò vs Sangiustinese (1-0)
+DESCRIPTION:9° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Pian Di Scò 1 - 0 Sangiustinese\nMarcatori Pian Di Scò: A. Mars
+ ili\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/TerzaCategor
+ ia/GironeAArezzo/Partita/9.4/pian-di-sc-sangiustinese
 LOCATION:Campo sportivo Pian Di Scò
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  9.4/pian-di-sc-sangiustinese
@@ -1235,11 +1260,12 @@ UID:match-terza-arezzo-9-SanMarcoLaSella-SanLeolino@calciotoscana.local
 DTSTAMP:20261115T143000Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
-SUMMARY:San Marco La Sella vs San Leolino
-DESCRIPTION:9° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/9.5/san-marco-la-sella-san-leo
- lino
+SUMMARY:San Marco La Sella vs San Leolino (3-2)
+DESCRIPTION:9° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: San Marco La Sella 3 - 2 San Leolino\nMarcatori San Marco La Sell
+ a: M. Francini\, B. Tangara\, B. Tangara\nMarcatori San Leolino: E. Malaj\
+ , A. Galli\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/Terza
+ Categoria/GironeAArezzo/Partita/9.5/san-marco-la-sella-san-leolino
 LOCATION:Campo sportivo San Marco La Sella
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  9.5/san-marco-la-sella-san-leolino
@@ -1250,10 +1276,12 @@ UID:match-terza-arezzo-9-Terontola-Monterchiese@calciotoscana.local
 DTSTAMP:20261115T143000Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
-SUMMARY:Terontola vs Monterchiese
-DESCRIPTION:9° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/9.6/terontola-monterchiese
+SUMMARY:Terontola vs Monterchiese (2-0)
+DESCRIPTION:9° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Terontola 2 - 0 Monterchiese\nMarcatori Terontola: M. Laterza (8'
+  st)\, L. Del Sarto (17' st)\nDettagli e formazioni: https://www.tuttocamp
+ o.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/9.6/terontola-monterchie
+ se
 LOCATION:Campo sportivo Terontola
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  9.6/terontola-monterchiese
@@ -1264,10 +1292,12 @@ UID:match-terza-arezzo-9-Tregozzano-Faellese@calciotoscana.local
 DTSTAMP:20261115T143000Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
-SUMMARY:Tregozzano vs Faellese
-DESCRIPTION:9° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/9.7/tregozzano-faellese
+SUMMARY:Tregozzano vs Faellese (1-2)
+DESCRIPTION:9° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Tregozzano 1 - 2 Faellese\nMarcatori Tregozzano: K. Maloku\nMarca
+ tori Faellese: O. Caldini\, A. Selloumi\nDettagli e formazioni: https://ww
+ w.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/9.7/tregozzan
+ o-faellese
 LOCATION:Campo sportivo Tregozzano
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  9.7/tregozzano-faellese
@@ -1278,28 +1308,14 @@ UID:match-terza-arezzo-9-Tuscar-BadiaaRotiCalcio@calciotoscana.local
 DTSTAMP:20261115T143000Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
-SUMMARY:Tuscar vs Badia a Roti Calcio
-DESCRIPTION:9° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/9.8/tuscar-badia-a-roti-calcio
+SUMMARY:Tuscar vs Badia a Roti Calcio (0-0)
+DESCRIPTION:9° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
+  finale: Tuscar 0 - 0 Badia a Roti Calcio\nDettagli e formazioni: https://
+ www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/9.8/tuscar-
+ badia-a-roti-calcio
 LOCATION:Campo sportivo Tuscar
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  9.8/tuscar-badia-a-roti-calcio
-STATUS:CONFIRMED
-END:VEVENT
-BEGIN:VEVENT
-UID:match-terza-arezzo-9-VirtusArezzo-AtleticoValdambra@calciotoscana.local
-DTSTAMP:20261115T143000Z
-DTSTART;TZID=Europe/Rome:20261115T143000
-DTEND;TZID=Europe/Rome:20261115T161500
-SUMMARY:Virtus Arezzo vs Atletico Valdambra
-DESCRIPTION:9° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/TerzaCategoria/GironeAArezzo/Partita/9.9/virtus-arezzo-atletico-val
- dambra
-LOCATION:Campo sportivo Virtus Arezzo
-URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
- 9.9/virtus-arezzo-atletico-valdambra
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT

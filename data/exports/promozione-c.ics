@@ -567,7 +567,7 @@ DTSTART;TZID=Europe/Rome:20261011T153000
 DTEND;TZID=Europe/Rome:20261011T171500
 SUMMARY:Alberoro 1977 vs Nuova Foiano (2-2)
 DESCRIPTION:5° Giornata - Promozione Toscana - Girone C\nRisultato finale:
-  Alberoro 1977 2 - 2 Nuova Foiano\nMarcatori Alberoro 1977: A. Orlandini (
+  Alberoro 1977 2 - 2 Nuova Foiano\nMarcatori Alberoro 1977: M. Mattesini (
  30' st)\, E. Braccalenti (45' st)\nMarcatori Nuova Foiano: G. Guerrini (37
  ' pt)\, F. Borgogni (40' pt)\nDettagli e formazioni: https://www.tuttocamp
  o.it/Toscana/Promozione/GironeC/Partita/5.2/alberoro-1977-nuova-foiano
@@ -1161,14 +1161,31 @@ URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/9.8/pontas
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
+UID:match-promozione-c-10-Montagnano1966-NuovaFoiano@calciotoscana.local
+DTSTAMP:20261114T143000Z
+DTSTART;TZID=Europe/Rome:20261114T143000
+DTEND;TZID=Europe/Rome:20261114T161500
+SUMMARY:Montagnano 1966 vs Nuova Foiano (1-0)
+DESCRIPTION:10° Giornata - Promozione Toscana - Girone C\nRisultato finale
+ : Montagnano 1966 1 - 0 Nuova Foiano\nMarcatori Montagnano 1966: L. Sestin
+ i (2' st)\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/Promoz
+ ione/GironeC/Partita/10.6/montagnano-1966-nuova-foiano
+LOCATION:Campo sportivo Montagnano 1966
+URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/10.6/monta
+ gnano-1966-nuova-foiano
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 UID:match-promozione-c-10-Acquaviva-AudaceGalluzzo@calciotoscana.local
 DTSTAMP:20261115T143000Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
-SUMMARY:Acquaviva vs Audace Galluzzo
-DESCRIPTION:10° Giornata - Promozione Toscana - Girone C\nPartita in progr
- amma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/
- Promozione/GironeC/Partita/10.1/acquaviva-audace-galluzzo
+SUMMARY:Acquaviva vs Audace Galluzzo (1-1)
+DESCRIPTION:10° Giornata - Promozione Toscana - Girone C\nRisultato finale
+ : Acquaviva 1 - 1 Audace Galluzzo\nMarcatori Acquaviva: L. Cacciamano\nMar
+ catori Audace Galluzzo: A. Antongiovanni\nDettagli e formazioni: https://w
+ ww.tuttocampo.it/Toscana/Promozione/GironeC/Partita/10.1/acquaviva-audace-
+ galluzzo
 LOCATION:Campo sportivo Acquaviva
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/10.1/acqua
  viva-audace-galluzzo
@@ -1179,10 +1196,11 @@ UID:match-promozione-c-10-Affrico-IdealClubIncisa@calciotoscana.local
 DTSTAMP:20261115T143000Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
-SUMMARY:Affrico vs Ideal Club Incisa
-DESCRIPTION:10° Giornata - Promozione Toscana - Girone C\nPartita in progr
- amma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/
- Promozione/GironeC/Partita/10.2/affrico-ideal-club-incisa
+SUMMARY:Affrico vs Ideal Club Incisa (1-0)
+DESCRIPTION:10° Giornata - Promozione Toscana - Girone C\nRisultato finale
+ : Affrico 1 - 0 Ideal Club Incisa\nMarcatori Affrico: G. Fantechi\nDettagl
+ i e formazioni: https://www.tuttocampo.it/Toscana/Promozione/GironeC/Parti
+ ta/10.2/affrico-ideal-club-incisa
 LOCATION:Campo sportivo Affrico
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/10.2/affri
  co-ideal-club-incisa
@@ -1194,10 +1212,12 @@ UID:match-promozione-c-10-AGDicomano-CentroStoricoLebowski@calciotoscana.lo
 DTSTAMP:20261115T143000Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
-SUMMARY:AG Dicomano vs Centro Storico Lebowski
-DESCRIPTION:10° Giornata - Promozione Toscana - Girone C\nPartita in progr
- amma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/
- Promozione/GironeC/Partita/10.3/ag-dicomano-centro-storico-lebowski
+SUMMARY:AG Dicomano vs Centro Storico Lebowski (1-1)
+DESCRIPTION:10° Giornata - Promozione Toscana - Girone C\nRisultato finale
+ : AG Dicomano 1 - 1 Centro Storico Lebowski\nMarcatori AG Dicomano: M. Maz
+ zoni\nMarcatori Centro Storico Lebowski: G. Bonini (10' st)\nDettagli e fo
+ rmazioni: https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/10.
+ 3/ag-dicomano-centro-storico-lebowski
 LOCATION:Campo sportivo AG Dicomano
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/10.3/ag-di
  comano-centro-storico-lebowski
@@ -1208,10 +1228,11 @@ UID:match-promozione-c-10-Casentino-Cubino@calciotoscana.local
 DTSTAMP:20261115T143000Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
-SUMMARY:Casentino vs Cubino
-DESCRIPTION:10° Giornata - Promozione Toscana - Girone C\nPartita in progr
- amma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/
- Promozione/GironeC/Partita/10.4/casentino-cubino
+SUMMARY:Casentino vs Cubino (1-2)
+DESCRIPTION:10° Giornata - Promozione Toscana - Girone C\nRisultato finale
+ : Casentino 1 - 2 Cubino\nMarcatori Casentino: L. Pietrini\nMarcatori Cubi
+ no: I. Paggetti\, F. Schenone (20' st)\nDettagli e formazioni: https://www
+ .tuttocampo.it/Toscana/Promozione/GironeC/Partita/10.4/casentino-cubino
 LOCATION:Campo sportivo Casentino
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/10.4/casen
  tino-cubino
@@ -1223,27 +1244,15 @@ UID:match-promozione-c-10-CortonaCamuciaCalcio-Alberoro1977@calciotoscana.l
 DTSTAMP:20261115T143000Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
-SUMMARY:Cortona Camucia Calcio vs Alberoro 1977
-DESCRIPTION:10° Giornata - Promozione Toscana - Girone C\nPartita in progr
- amma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/
- Promozione/GironeC/Partita/10.5/cortona-camucia-calcio-alberoro-1977
+SUMMARY:Cortona Camucia Calcio vs Alberoro 1977 (3-0)
+DESCRIPTION:10° Giornata - Promozione Toscana - Girone C\nRisultato finale
+ : Cortona Camucia Calcio 3 - 0 Alberoro 1977\nMarcatori Cortona Camucia Ca
+ lcio: K. Nikolla\, D. Senghore\, Seck\nDettagli e formazioni: https://www.
+ tuttocampo.it/Toscana/Promozione/GironeC/Partita/10.5/cortona-camucia-calc
+ io-alberoro-1977
 LOCATION:Campo sportivo Cortona Camucia Calcio
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/10.5/corto
  na-camucia-calcio-alberoro-1977
-STATUS:CONFIRMED
-END:VEVENT
-BEGIN:VEVENT
-UID:match-promozione-c-10-Montagnano1966-NuovaFoiano@calciotoscana.local
-DTSTAMP:20261115T143000Z
-DTSTART;TZID=Europe/Rome:20261115T143000
-DTEND;TZID=Europe/Rome:20261115T161500
-SUMMARY:Montagnano 1966 vs Nuova Foiano
-DESCRIPTION:10° Giornata - Promozione Toscana - Girone C\nPartita in progr
- amma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/
- Promozione/GironeC/Partita/10.6/montagnano-1966-nuova-foiano
-LOCATION:Campo sportivo Montagnano 1966
-URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/10.6/monta
- gnano-1966-nuova-foiano
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
@@ -1251,10 +1260,12 @@ UID:match-promozione-c-10-RescoReggello-Sinalunghese@calciotoscana.local
 DTSTAMP:20261115T143000Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
-SUMMARY:Resco Reggello vs Sinalunghese
-DESCRIPTION:10° Giornata - Promozione Toscana - Girone C\nPartita in progr
- amma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/
- Promozione/GironeC/Partita/10.7/resco-reggello-sinalunghese
+SUMMARY:Resco Reggello vs Sinalunghese (1-1)
+DESCRIPTION:10° Giornata - Promozione Toscana - Girone C\nRisultato finale
+ : Resco Reggello 1 - 1 Sinalunghese\nMarcatori Resco Reggello: E. Gjata\nM
+ arcatori Sinalunghese: M. Sacco\nDettagli e formazioni: https://www.tuttoc
+ ampo.it/Toscana/Promozione/GironeC/Partita/10.7/resco-reggello-sinalunghes
+ e
 LOCATION:Campo sportivo Resco Reggello
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/10.7/resco
  -reggello-sinalunghese
@@ -1265,10 +1276,12 @@ UID:match-promozione-c-10-Settignanese-Pontassieve@calciotoscana.local
 DTSTAMP:20261115T143000Z
 DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
-SUMMARY:Settignanese vs Pontassieve
-DESCRIPTION:10° Giornata - Promozione Toscana - Girone C\nPartita in progr
- amma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/
- Promozione/GironeC/Partita/10.8/settignanese-pontassieve
+SUMMARY:Settignanese vs Pontassieve (1-2)
+DESCRIPTION:10° Giornata - Promozione Toscana - Girone C\nRisultato finale
+ : Settignanese 1 - 2 Pontassieve\nMarcatori Settignanese: M. Mosti Falconi
+  (6' pt)\nMarcatori Pontassieve: A. Cragno (19' st)\, A. Cragno (47' st)\n
+ Dettagli e formazioni: https://www.tuttocampo.it/Toscana/Promozione/Girone
+ C/Partita/10.8/settignanese-pontassieve
 LOCATION:Campo sportivo Settignanese
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/10.8/setti
  gnanese-pontassieve
