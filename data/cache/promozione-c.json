@@ -10,7 +10,7 @@
   "roundID": "TO.P.C",
   "currentMatchDay": 10,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-11-16T00:28:27.235Z",
+  "lastUpdated": "2026-11-16T17:38:28.465Z",
   "standings": [
     {
       "position": 1,
@@ -1725,10 +1725,10 @@
           "time": "14:30",
           "dateTime": "2026-11-15T14:30:00",
           "homeScorers": [
-            "L. Cacciamano"
+            "C. Koffi (26' st)"
           ],
           "awayScorers": [
-            "A. Antongiovanni"
+            "A. Antongiovanni (26' st)"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/1007117.png?v=2",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/4010.png?v=1",
@@ -1745,7 +1745,7 @@
           "time": "14:30",
           "dateTime": "2026-11-15T14:30:00",
           "homeScorers": [
-            "G. Fantechi"
+            "G. Fantechi (30' st)"
           ],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/740.png?v=12",
@@ -1763,7 +1763,7 @@
           "time": "14:30",
           "dateTime": "2026-11-15T14:30:00",
           "homeScorers": [
-            "M. Mazzoni"
+            "M. Mazzoni (14' pt)"
           ],
           "awayScorers": [
             "G. Bonini (10' st)"
@@ -1783,11 +1783,11 @@
           "time": "14:30",
           "dateTime": "2026-11-15T14:30:00",
           "homeScorers": [
-            "L. Pietrini"
+            "L. Pietrini (45' st)"
           ],
           "awayScorers": [
-            "I. Paggetti",
-            "F. Schenone (20' st)"
+            "F. Schenone (20' st)",
+            "I. Paggetti (26' st)"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/920660.png?v=1",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1007106.png?v=1",
@@ -1804,9 +1804,9 @@
           "time": "14:30",
           "dateTime": "2026-11-15T14:30:00",
           "homeScorers": [
-            "K. Nikolla",
-            "D. Senghore",
-            "Seck"
+            "K. Nikolla (19' pt)",
+            "D. Senghore (5' st)",
+            "Seck (30' st)"
           ],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/57743.png?v=2",
