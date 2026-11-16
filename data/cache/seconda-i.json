@@ -10,7 +10,7 @@
   "roundID": "TO.2.I",
   "currentMatchDay": 9,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-11-15T18:32:25.415Z",
+  "lastUpdated": "2026-11-16T00:29:21.048Z",
   "standings": [
     {
       "position": 1,
@@ -1561,8 +1561,8 @@
           "time": "14:30",
           "dateTime": "2026-11-15T14:30:00",
           "homeScorers": [
-            "Y. Gozzi",
-            "F. Torrisi"
+            "Y. Gozzi (Rig.) (35' st)",
+            "F. Torrisi (48' st)"
           ],
           "awayScorers": [
             "G. Tofi (8' pt)"
@@ -1627,12 +1627,12 @@
           "time": "14:30",
           "dateTime": "2026-11-15T14:30:00",
           "homeScorers": [
-            "F. Falsetti",
-            "J. Biondi",
-            "S. Lahrach"
+            "S. Lahrach (26' pt)",
+            "J. Biondi (45' pt)",
+            "F. Falsetti (25' st)"
           ],
           "awayScorers": [
-            "R. Bega"
+            "R. Bega (Rig.) (33' st)"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/917334.png?v=1",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/1058252.png?v=1",
