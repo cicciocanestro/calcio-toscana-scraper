@@ -1263,10 +1263,10 @@ DTSTART;TZID=Europe/Rome:20261115T143000
 DTEND;TZID=Europe/Rome:20261115T161500
 SUMMARY:Resco Reggello vs Sinalunghese (1-1)
 DESCRIPTION:10° Giornata - Promozione Toscana - Girone C\nRisultato finale
- : Resco Reggello 1 - 1 Sinalunghese\nMarcatori Resco Reggello: E. Gjata\nM
- arcatori Sinalunghese: M. Sacco\nDettagli e formazioni: https://www.tuttoc
- ampo.it/Toscana/Promozione/GironeC/Partita/10.7/resco-reggello-sinalunghes
- e
+ : Resco Reggello 1 - 1 Sinalunghese\nMarcatori Resco Reggello: E. Gjata (4
+ 6' st)\nMarcatori Sinalunghese: M. Sacco (45' st)\nDettagli e formazioni: 
+ https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/10.7/resco-re
+ ggello-sinalunghese
 LOCATION:Campo sportivo Resco Reggello
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/10.7/resco
  -reggello-sinalunghese
@@ -1290,13 +1290,15 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:match-promozione-c-11-Alberoro1977-Montagnano1966@calciotoscana.local
-DTSTAMP:20261122T143000Z
-DTSTART;TZID=Europe/Rome:20261122T143000
-DTEND;TZID=Europe/Rome:20261122T161500
-SUMMARY:Alberoro 1977 vs Montagnano 1966
-DESCRIPTION:11° Giornata - Promozione Toscana - Girone C\nPartita in progr
- amma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/
- Promozione/GironeC/Partita/11.1/alberoro-1977-montagnano-1966
+DTSTAMP:20261121T143000Z
+DTSTART;TZID=Europe/Rome:20261121T143000
+DTEND;TZID=Europe/Rome:20261121T161500
+SUMMARY:Alberoro 1977 vs Montagnano 1966 (1-1)
+DESCRIPTION:11° Giornata - Promozione Toscana - Girone C\nRisultato finale
+ : Alberoro 1977 1 - 1 Montagnano 1966\nMarcatori Alberoro 1977: K. Alomar 
+ (5' pt)\nMarcatori Montagnano 1966: B. Acosty (2' st)\nDettagli e formazio
+ ni: https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/11.1/albe
+ roro-1977-montagnano-1966
 LOCATION:Campo sportivo Alberoro 1977
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/11.1/alber
  oro-1977-montagnano-1966
@@ -1308,10 +1310,11 @@ UID:match-promozione-c-11-AudaceGalluzzo-CortonaCamuciaCalcio@calciotoscana
 DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
-SUMMARY:Audace Galluzzo vs Cortona Camucia Calcio
-DESCRIPTION:11° Giornata - Promozione Toscana - Girone C\nPartita in progr
- amma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/
- Promozione/GironeC/Partita/11.2/audace-galluzzo-cortona-camucia-calcio
+SUMMARY:Audace Galluzzo vs Cortona Camucia Calcio (1-1)
+DESCRIPTION:11° Giornata - Promozione Toscana - Girone C\nRisultato finale
+ : Audace Galluzzo 1 - 1 Cortona Camucia Calcio\nMarcatori Cortona Camucia 
+ Calcio: D. Senghore\nDettagli e formazioni: https://www.tuttocampo.it/Tosc
+ ana/Promozione/GironeC/Partita/11.2/audace-galluzzo-cortona-camucia-calcio
 LOCATION:Campo sportivo Audace Galluzzo
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/11.2/audac
  e-galluzzo-cortona-camucia-calcio
@@ -1323,10 +1326,13 @@ UID:match-promozione-c-11-CentroStoricoLebowski-Acquaviva@calciotoscana.loc
 DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
-SUMMARY:Centro Storico Lebowski vs Acquaviva
-DESCRIPTION:11° Giornata - Promozione Toscana - Girone C\nPartita in progr
- amma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/
- Promozione/GironeC/Partita/11.3/centro-storico-lebowski-acquaviva
+SUMMARY:Centro Storico Lebowski vs Acquaviva (2-5)
+DESCRIPTION:11° Giornata - Promozione Toscana - Girone C\nRisultato finale
+ : Centro Storico Lebowski 2 - 5 Acquaviva\nMarcatori Centro Storico Lebows
+ ki: M. Diaby (10' st)\, T. Ciabatti (35' st)\nMarcatori Acquaviva: E. Anto
+ lini\, L. Leonardi\, L. Cacciamano\, K. Voroneanu\, L. Contemori (3' pt)\n
+ Dettagli e formazioni: https://www.tuttocampo.it/Toscana/Promozione/Girone
+ C/Partita/11.3/centro-storico-lebowski-acquaviva
 LOCATION:Campo sportivo Centro Storico Lebowski
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/11.3/centr
  o-storico-lebowski-acquaviva
@@ -1337,10 +1343,12 @@ UID:match-promozione-c-11-Cubino-AGDicomano@calciotoscana.local
 DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
-SUMMARY:Cubino vs AG Dicomano
-DESCRIPTION:11° Giornata - Promozione Toscana - Girone C\nPartita in progr
- amma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/
- Promozione/GironeC/Partita/11.4/cubino-ag-dicomano
+SUMMARY:Cubino vs AG Dicomano (2-3)
+DESCRIPTION:11° Giornata - Promozione Toscana - Girone C\nRisultato finale
+ : Cubino 2 - 3 AG Dicomano\nMarcatori Cubino: S. Ulivi\, I. Paggetti\nMarc
+ atori AG Dicomano: M. Bachi\, M. Bachi (Rig.)\, M. Bachi\nDettagli e forma
+ zioni: https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/11.4/c
+ ubino-ag-dicomano
 LOCATION:Campo sportivo Cubino
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/11.4/cubin
  o-ag-dicomano
@@ -1351,10 +1359,11 @@ UID:match-promozione-c-11-IdealClubIncisa-Casentino@calciotoscana.local
 DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
-SUMMARY:Ideal Club Incisa vs Casentino
-DESCRIPTION:11° Giornata - Promozione Toscana - Girone C\nPartita in progr
- amma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/
- Promozione/GironeC/Partita/11.5/ideal-club-incisa-casentino
+SUMMARY:Ideal Club Incisa vs Casentino (1-0)
+DESCRIPTION:11° Giornata - Promozione Toscana - Girone C\nRisultato finale
+ : Ideal Club Incisa 1 - 0 Casentino\nMarcatori Ideal Club Incisa: D. Espin
+ osa\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/Promozione/G
+ ironeC/Partita/11.5/ideal-club-incisa-casentino
 LOCATION:Campo sportivo Ideal Club Incisa
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/11.5/ideal
  -club-incisa-casentino
@@ -1365,10 +1374,11 @@ UID:match-promozione-c-11-NuovaFoiano-Settignanese@calciotoscana.local
 DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
-SUMMARY:Nuova Foiano vs Settignanese
-DESCRIPTION:11° Giornata - Promozione Toscana - Girone C\nPartita in progr
- amma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/
- Promozione/GironeC/Partita/11.6/nuova-foiano-settignanese
+SUMMARY:Nuova Foiano vs Settignanese (1-0)
+DESCRIPTION:11° Giornata - Promozione Toscana - Girone C\nRisultato finale
+ : Nuova Foiano 1 - 0 Settignanese\nMarcatori Nuova Foiano: P. Orlandi\nDet
+ tagli e formazioni: https://www.tuttocampo.it/Toscana/Promozione/GironeC/P
+ artita/11.6/nuova-foiano-settignanese
 LOCATION:Campo sportivo Nuova Foiano
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/11.6/nuova
  -foiano-settignanese
@@ -1379,10 +1389,11 @@ UID:match-promozione-c-11-Pontassieve-RescoReggello@calciotoscana.local
 DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
-SUMMARY:Pontassieve vs Resco Reggello
-DESCRIPTION:11° Giornata - Promozione Toscana - Girone C\nPartita in progr
- amma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/
- Promozione/GironeC/Partita/11.7/pontassieve-resco-reggello
+SUMMARY:Pontassieve vs Resco Reggello (1-0)
+DESCRIPTION:11° Giornata - Promozione Toscana - Girone C\nRisultato finale
+ : Pontassieve 1 - 0 Resco Reggello\nMarcatori Pontassieve: A. Cragno\nDett
+ agli e formazioni: https://www.tuttocampo.it/Toscana/Promozione/GironeC/Pa
+ rtita/11.7/pontassieve-resco-reggello
 LOCATION:Campo sportivo Pontassieve
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/11.7/ponta
  ssieve-resco-reggello
@@ -1393,10 +1404,11 @@ UID:match-promozione-c-11-Sinalunghese-Affrico@calciotoscana.local
 DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
-SUMMARY:Sinalunghese vs Affrico
-DESCRIPTION:11° Giornata - Promozione Toscana - Girone C\nPartita in progr
- amma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/
- Promozione/GironeC/Partita/11.8/sinalunghese-affrico
+SUMMARY:Sinalunghese vs Affrico (1-0)
+DESCRIPTION:11° Giornata - Promozione Toscana - Girone C\nRisultato finale
+ : Sinalunghese 1 - 0 Affrico\nMarcatori Sinalunghese: D. Bucaletti (26' st
+ )\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/Promozione/Gir
+ oneC/Partita/11.8/sinalunghese-affrico
 LOCATION:Campo sportivo Sinalunghese
 URL:https://www.tuttocampo.it/Toscana/Promozione/GironeC/Partita/11.8/sinal
  unghese-affrico

@@ -318,9 +318,9 @@ DTEND;TZID=Europe/Rome:20261003T171500
 SUMMARY:Badia Agnano vs Pian Di Scò (2-2)
 DESCRIPTION:3° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultato
   finale: Badia Agnano 2 - 2 Pian Di Scò\nMarcatori Badia Agnano: F. Pisto
- cchi\, A. Hoxha\nMarcatori Pian Di Scò: L. Mori\, N. Miralli\nDettagli e 
- formazioni: https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo
- /Partita/3.1/badia-agnano-pian-di-sc
+ cchi\, A. Hoxha\nMarcatori Pian Di Scò: L. Mori\, C. Papi\nDettagli e for
+ mazioni: https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Pa
+ rtita/3.1/badia-agnano-pian-di-sc
 LOCATION:Campo sportivo Badia Agnano
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  3.1/badia-agnano-pian-di-sc
@@ -1319,15 +1319,32 @@ URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
+UID:match-terza-arezzo-10-SanLeolino-Tuscar@calciotoscana.local
+DTSTAMP:20261121T143000Z
+DTSTART;TZID=Europe/Rome:20261121T143000
+DTEND;TZID=Europe/Rome:20261121T161500
+SUMMARY:San Leolino vs Tuscar (3-1)
+DESCRIPTION:10° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultat
+ o finale: San Leolino 3 - 1 Tuscar\nMarcatori San Leolino: E. Malaj (Rig.)
+ \, S. Njai\, C. Schiavetti\nMarcatori Tuscar: M. Falah\nDettagli e formazi
+ oni: https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partit
+ a/10.8/san-leolino-tuscar
+LOCATION:Campo sportivo San Leolino
+URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
+ 10.8/san-leolino-tuscar
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 UID:match-terza-arezzo-10-AtleticoValdambra-Terontola@calciotoscana.local
 DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
-SUMMARY:Atletico Valdambra vs Terontola
-DESCRIPTION:10° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita 
- in programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/
- Toscana/TerzaCategoria/GironeAArezzo/Partita/10.1/atletico-valdambra-teron
- tola
+SUMMARY:Atletico Valdambra vs Terontola (3-1)
+DESCRIPTION:10° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultat
+ o finale: Atletico Valdambra 3 - 1 Terontola\nMarcatori Atletico Valdambra
+ : M. Giunti\, E. Testi\, F. Roghi\nMarcatori Terontola: AUTOGOL\nDettagli 
+ e formazioni: https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArez
+ zo/Partita/10.1/atletico-valdambra-terontola
 LOCATION:Campo sportivo Atletico Valdambra
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  10.1/atletico-valdambra-terontola
@@ -1338,11 +1355,12 @@ UID:match-terza-arezzo-10-BadiaaRotiCalcio-Monsigliolo@calciotoscana.local
 DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
-SUMMARY:Badia a Roti Calcio vs Monsigliolo
-DESCRIPTION:10° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita 
- in programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/
- Toscana/TerzaCategoria/GironeAArezzo/Partita/10.2/badia-a-roti-calcio-mons
- igliolo
+SUMMARY:Badia a Roti Calcio vs Monsigliolo (1-0)
+DESCRIPTION:10° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultat
+ o finale: Badia a Roti Calcio 1 - 0 Monsigliolo\nMarcatori Badia a Roti Ca
+ lcio: M. Garramone\nDettagli e formazioni: https://www.tuttocampo.it/Tosca
+ na/TerzaCategoria/GironeAArezzo/Partita/10.2/badia-a-roti-calcio-monsiglio
+ lo
 LOCATION:Campo sportivo Badia a Roti Calcio
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  10.2/badia-a-roti-calcio-monsigliolo
@@ -1354,11 +1372,11 @@ UID:match-terza-arezzo-10-ColonnaIndicatore-LoreseCalcio@calciotoscana.loca
 DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
-SUMMARY:Colonna Indicatore vs Lorese Calcio
-DESCRIPTION:10° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita 
- in programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/
- Toscana/TerzaCategoria/GironeAArezzo/Partita/10.3/colonna-indicatore-lores
- e-calcio
+SUMMARY:Colonna Indicatore vs Lorese Calcio (0-0)
+DESCRIPTION:10° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultat
+ o finale: Colonna Indicatore 0 - 0 Lorese Calcio\nDettagli e formazioni: h
+ ttps://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/10.3
+ /colonna-indicatore-lorese-calcio
 LOCATION:Campo sportivo Colonna Indicatore
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  10.3/colonna-indicatore-lorese-calcio
@@ -1369,10 +1387,12 @@ UID:match-terza-arezzo-10-Faellese-VirtusArezzo@calciotoscana.local
 DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
-SUMMARY:Faellese vs Virtus Arezzo
-DESCRIPTION:10° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita 
- in programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/
- Toscana/TerzaCategoria/GironeAArezzo/Partita/10.4/faellese-virtus-arezzo
+SUMMARY:Faellese vs Virtus Arezzo (4-0)
+DESCRIPTION:10° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultat
+ o finale: Faellese 4 - 0 Virtus Arezzo\nMarcatori Faellese: O. Caldini\, T
+ . Parigi\, A. Bartolini\, D. Toure (Rig.)\nDettagli e formazioni: https://
+ www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/10.4/faelle
+ se-virtus-arezzo
 LOCATION:Campo sportivo Faellese
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  10.4/faellese-virtus-arezzo
@@ -1383,10 +1403,12 @@ UID:match-terza-arezzo-10-Montecchio-BadiaAgnano@calciotoscana.local
 DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
-SUMMARY:Montecchio vs Badia Agnano
-DESCRIPTION:10° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita 
- in programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/
- Toscana/TerzaCategoria/GironeAArezzo/Partita/10.5/montecchio-badia-agnano
+SUMMARY:Montecchio vs Badia Agnano (4-1)
+DESCRIPTION:10° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultat
+ o finale: Montecchio 4 - 1 Badia Agnano\nMarcatori Montecchio: G. Bigozzi\
+ , M. Fabbroni\, E. Capaccioli\, D. Spinosa\nMarcatori Badia Agnano: L. Erp
+ ici\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/TerzaCategor
+ ia/GironeAArezzo/Partita/10.5/montecchio-badia-agnano
 LOCATION:Campo sportivo Montecchio
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  10.5/montecchio-badia-agnano
@@ -1397,27 +1419,14 @@ UID:match-terza-arezzo-10-Pietraia-PianDiSc@calciotoscana.local
 DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
-SUMMARY:Pietraia vs Pian Di Scò
-DESCRIPTION:10° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita 
- in programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/
- Toscana/TerzaCategoria/GironeAArezzo/Partita/10.6/pietraia-pian-di-sc
+SUMMARY:Pietraia vs Pian Di Scò (4-0)
+DESCRIPTION:10° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultat
+ o finale: Pietraia 4 - 0 Pian Di Scò\nMarcatori Pietraia: S. Pica\, L. Cr
+ iscuolo\, E. Ganje\, S. Pica\nDettagli e formazioni: https://www.tuttocamp
+ o.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/10.6/pietraia-pian-di-sc
 LOCATION:Campo sportivo Pietraia
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  10.6/pietraia-pian-di-sc
-STATUS:CONFIRMED
-END:VEVENT
-BEGIN:VEVENT
-UID:match-terza-arezzo-10-SanLeolino-Tuscar@calciotoscana.local
-DTSTAMP:20261122T143000Z
-DTSTART;TZID=Europe/Rome:20261122T143000
-DTEND;TZID=Europe/Rome:20261122T161500
-SUMMARY:San Leolino vs Tuscar
-DESCRIPTION:10° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita 
- in programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/
- Toscana/TerzaCategoria/GironeAArezzo/Partita/10.8/san-leolino-tuscar
-LOCATION:Campo sportivo San Leolino
-URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
- 10.8/san-leolino-tuscar
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
@@ -1425,11 +1434,12 @@ UID:match-terza-arezzo-10-SanMarcoLaSella-Tregozzano@calciotoscana.local
 DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
-SUMMARY:San Marco La Sella vs Tregozzano
-DESCRIPTION:10° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita 
- in programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/
- Toscana/TerzaCategoria/GironeAArezzo/Partita/10.7/san-marco-la-sella-trego
- zzano
+SUMMARY:San Marco La Sella vs Tregozzano (5-0)
+DESCRIPTION:10° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultat
+ o finale: San Marco La Sella 5 - 0 Tregozzano\nMarcatori San Marco La Sell
+ a: B. Tangara\, B. Tangara\, B. Tangara\, M. Francini\, R. Statti\nDettagl
+ i e formazioni: https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAAr
+ ezzo/Partita/10.7/san-marco-la-sella-tregozzano
 LOCATION:Campo sportivo San Marco La Sella
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  10.7/san-marco-la-sella-tregozzano
@@ -1440,11 +1450,12 @@ UID:match-terza-arezzo-10-Sangiustinese-Monterchiese@calciotoscana.local
 DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
-SUMMARY:Sangiustinese vs Monterchiese
-DESCRIPTION:10° Giornata - Terza Categoria Arezzo - Girone Unico\nPartita 
- in programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/
- Toscana/TerzaCategoria/GironeAArezzo/Partita/10.9/sangiustinese-monterchie
- se
+SUMMARY:Sangiustinese vs Monterchiese (2-1)
+DESCRIPTION:10° Giornata - Terza Categoria Arezzo - Girone Unico\nRisultat
+ o finale: Sangiustinese 2 - 1 Monterchiese\nMarcatori Sangiustinese: N. Se
+ nsini\, R. Castellucci (8' st)\nMarcatori Monterchiese: N. Terzi\nDettagli
+  e formazioni: https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAAre
+ zzo/Partita/10.9/sangiustinese-monterchiese
 LOCATION:Campo sportivo Sangiustinese
 URL:https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Partita/
  10.9/sangiustinese-monterchiese

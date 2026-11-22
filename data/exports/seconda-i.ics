@@ -704,10 +704,10 @@ DTEND;TZID=Europe/Rome:20261025T161500
 SUMMARY:Calcio Pestello vs Arno Castiglioni Laterina (2-3)
 DESCRIPTION:6° Giornata - Seconda Categoria Toscana - Girone I\nRisultato 
  finale: Calcio Pestello 2 - 3 Arno Castiglioni Laterina\nMarcatori Calcio 
- Pestello: P. Valentini\, S. Hibraj\nMarcatori Arno Castiglioni Laterina: P
- . Chiatti (Rig.)\, C. Pancioni\, P. Brogi\nDettagli e formazioni: https://
- www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/6.3/calcio-pest
- ello-arno-castiglioni-laterina
+ Pestello: M. Fabbrini\, S. Hibraj\nMarcatori Arno Castiglioni Laterina: P.
+  Chiatti (Rig.)\, C. Pancioni\, P. Brogi\nDettagli e formazioni: https://w
+ ww.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/6.3/calcio-peste
+ llo-arno-castiglioni-laterina
 LOCATION:Campo sportivo Calcio Pestello
 URL:https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/6.3/
  calcio-pestello-arno-castiglioni-laterina
@@ -1180,15 +1180,34 @@ URL:https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/9.5/
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
+UID:match-seconda-i-10-CalcioPestello-Fratticciola@calciotoscana.local
+DTSTAMP:20261121T143000Z
+DTSTART;TZID=Europe/Rome:20261121T143000
+DTEND;TZID=Europe/Rome:20261121T161500
+SUMMARY:Calcio Pestello vs Fratticciola (4-4)
+DESCRIPTION:10° Giornata - Seconda Categoria Toscana - Girone I\nRisultato
+  finale: Calcio Pestello 4 - 4 Fratticciola\nMarcatori Calcio Pestello: P.
+  Valentini\, M. Grazzini (Rig.)\, P. Valentini\, F. Artini\nMarcatori Frat
+ ticciola: F. Calzini\, F. Forciniti\, E. Sina\, F. Forciniti (Rig.)\nDetta
+ gli e formazioni: https://www.tuttocampo.it/Toscana/SecondaCategoria/Giron
+ eI/Partita/10.3/calcio-pestello-fratticciola
+LOCATION:Campo sportivo Calcio Pestello
+URL:https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/10.3
+ /calcio-pestello-fratticciola
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 UID:match-seconda-i-10-FrattaSantaCaterina-PievealToppo@calciotoscana.local
 DTSTAMP:20261121T143000Z
 DTSTART;TZID=Europe/Rome:20261121T143000
 DTEND;TZID=Europe/Rome:20261121T161500
-SUMMARY:Fratta Santa Caterina vs Pieve al Toppo
-DESCRIPTION:10° Giornata - Seconda Categoria Toscana - Girone I\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/SecondaCategoria/GironeI/Partita/10.4/fratta-santa-caterina-pieve-a
- l-toppo
+SUMMARY:Fratta Santa Caterina vs Pieve al Toppo (2-3)
+DESCRIPTION:10° Giornata - Seconda Categoria Toscana - Girone I\nRisultato
+  finale: Fratta Santa Caterina 2 - 3 Pieve al Toppo\nMarcatori Fratta Sant
+ a Caterina: P. Di Lullo (18' pt)\, N. Milighetti (22' pt)\nMarcatori Pieve
+  al Toppo: A. Nucci (Rig.) (13' pt)\, P. Menchetti (15' pt)\, P. Menchetti
+  (59' pt)\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/Second
+ aCategoria/GironeI/Partita/10.4/fratta-santa-caterina-pieve-al-toppo
 LOCATION:Campo sportivo Fratta Santa Caterina
 URL:https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/10.4
  /fratta-santa-caterina-pieve-al-toppo
@@ -1199,10 +1218,12 @@ UID:match-seconda-i-10-Pratovecchio-Rassina@calciotoscana.local
 DTSTAMP:20261121T143000Z
 DTSTART;TZID=Europe/Rome:20261121T143000
 DTEND;TZID=Europe/Rome:20261121T161500
-SUMMARY:Pratovecchio vs Rassina
-DESCRIPTION:10° Giornata - Seconda Categoria Toscana - Girone I\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/SecondaCategoria/GironeI/Partita/10.7/pratovecchio-rassina
+SUMMARY:Pratovecchio vs Rassina (5-0)
+DESCRIPTION:10° Giornata - Seconda Categoria Toscana - Girone I\nRisultato
+  finale: Pratovecchio 5 - 0 Rassina\nMarcatori Pratovecchio: D. Farini\, S
+ . Giannotti (Rig.)\, S. Giannotti\, S. Giannotti\, L. Cipriani\nDettagli e
+  formazioni: https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Pa
+ rtita/10.7/pratovecchio-rassina
 LOCATION:Campo sportivo Pratovecchio
 URL:https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/10.7
  /pratovecchio-rassina
@@ -1213,10 +1234,12 @@ UID:match-seconda-i-10-ArezzoFA-FulgorCastelfranco@calciotoscana.local
 DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
-SUMMARY:Arezzo FA vs Fulgor Castelfranco
-DESCRIPTION:10° Giornata - Seconda Categoria Toscana - Girone I\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/SecondaCategoria/GironeI/Partita/10.1/arezzo-fa-fulgor-castelfranco
+SUMMARY:Arezzo FA vs Fulgor Castelfranco (1-2)
+DESCRIPTION:10° Giornata - Seconda Categoria Toscana - Girone I\nRisultato
+  finale: Arezzo FA 1 - 2 Fulgor Castelfranco\nMarcatori Arezzo FA: J. Kras
+ niki\nMarcatori Fulgor Castelfranco: G. Caiello\, A. Natale (Rig.)\nDettag
+ li e formazioni: https://www.tuttocampo.it/Toscana/SecondaCategoria/Girone
+ I/Partita/10.1/arezzo-fa-fulgor-castelfranco
 LOCATION:Campo sportivo Arezzo FA
 URL:https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/10.1
  /arezzo-fa-fulgor-castelfranco
@@ -1227,28 +1250,14 @@ UID:match-seconda-i-10-Bucine-MarinoMercatoSubbiano@calciotoscana.local
 DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
-SUMMARY:Bucine vs Marino Mercato Subbiano
-DESCRIPTION:10° Giornata - Seconda Categoria Toscana - Girone I\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/SecondaCategoria/GironeI/Partita/10.2/bucine-marino-mercato-subbian
- o
+SUMMARY:Bucine vs Marino Mercato Subbiano (1-0)
+DESCRIPTION:10° Giornata - Seconda Categoria Toscana - Girone I\nRisultato
+  finale: Bucine 1 - 0 Marino Mercato Subbiano\nMarcatori Bucine: D. Tata (
+ 1' pt)\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/SecondaCa
+ tegoria/GironeI/Partita/10.2/bucine-marino-mercato-subbiano
 LOCATION:Campo sportivo Bucine
 URL:https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/10.2
  /bucine-marino-mercato-subbiano
-STATUS:CONFIRMED
-END:VEVENT
-BEGIN:VEVENT
-UID:match-seconda-i-10-CalcioPestello-Fratticciola@calciotoscana.local
-DTSTAMP:20261122T143000Z
-DTSTART;TZID=Europe/Rome:20261122T143000
-DTEND;TZID=Europe/Rome:20261122T161500
-SUMMARY:Calcio Pestello vs Fratticciola
-DESCRIPTION:10° Giornata - Seconda Categoria Toscana - Girone I\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/SecondaCategoria/GironeI/Partita/10.3/calcio-pestello-fratticciola
-LOCATION:Campo sportivo Calcio Pestello
-URL:https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/10.3
- /calcio-pestello-fratticciola
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
@@ -1256,11 +1265,11 @@ UID:match-seconda-i-10-Guazzino-ArnoCastiglioniLaterina@calciotoscana.local
 DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
-SUMMARY:Guazzino vs Arno Castiglioni Laterina
-DESCRIPTION:10° Giornata - Seconda Categoria Toscana - Girone I\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/SecondaCategoria/GironeI/Partita/10.5/guazzino-arno-castiglioni-lat
- erina
+SUMMARY:Guazzino vs Arno Castiglioni Laterina (1-0)
+DESCRIPTION:10° Giornata - Seconda Categoria Toscana - Girone I\nRisultato
+  finale: Guazzino 1 - 0 Arno Castiglioni Laterina\nMarcatori Guazzino: A. 
+ De Luca\nDettagli e formazioni: https://www.tuttocampo.it/Toscana/SecondaC
+ ategoria/GironeI/Partita/10.5/guazzino-arno-castiglioni-laterina
 LOCATION:Campo sportivo Guazzino
 URL:https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/10.5
  /guazzino-arno-castiglioni-laterina
@@ -1271,10 +1280,12 @@ UID:match-seconda-i-10-Poppi-ValdichianaCalcio@calciotoscana.local
 DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
-SUMMARY:Poppi vs Valdichiana Calcio
-DESCRIPTION:10° Giornata - Seconda Categoria Toscana - Girone I\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/SecondaCategoria/GironeI/Partita/10.6/poppi-valdichiana-calcio
+SUMMARY:Poppi vs Valdichiana Calcio (1-1)
+DESCRIPTION:10° Giornata - Seconda Categoria Toscana - Girone I\nRisultato
+  finale: Poppi 1 - 1 Valdichiana Calcio\nMarcatori Poppi: N. Corazzesi (Ri
+ g.)\nMarcatori Valdichiana Calcio: F. Agostini\nDettagli e formazioni: htt
+ ps://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/10.6/poppi
+ -valdichiana-calcio
 LOCATION:Campo sportivo Poppi
 URL:https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/10.6
  /poppi-valdichiana-calcio
@@ -1285,11 +1296,11 @@ UID:match-seconda-i-10-VaggioPiandisc1932-FortisArezzo@calciotoscana.local
 DTSTAMP:20261122T143000Z
 DTSTART;TZID=Europe/Rome:20261122T143000
 DTEND;TZID=Europe/Rome:20261122T161500
-SUMMARY:Vaggio Piandiscò 1932 vs Fortis Arezzo
-DESCRIPTION:10° Giornata - Seconda Categoria Toscana - Girone I\nPartita i
- n programma alle 14:30\nDettagli e formazioni: https://www.tuttocampo.it/T
- oscana/SecondaCategoria/GironeI/Partita/10.8/vaggio-piandisc-1932-fortis-a
- rezzo
+SUMMARY:Vaggio Piandiscò 1932 vs Fortis Arezzo (0-1)
+DESCRIPTION:10° Giornata - Seconda Categoria Toscana - Girone I\nRisultato
+  finale: Vaggio Piandiscò 1932 0 - 1 Fortis Arezzo\nMarcatori Fortis Arez
+ zo: M. Credendino\nDettagli e formazioni: https://www.tuttocampo.it/Toscan
+ a/SecondaCategoria/GironeI/Partita/10.8/vaggio-piandisc-1932-fortis-arezzo
 LOCATION:Campo sportivo Vaggio Piandiscò 1932
 URL:https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Partita/10.8
  /vaggio-piandisc-1932-fortis-arezzo
