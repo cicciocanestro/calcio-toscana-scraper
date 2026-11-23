@@ -1,4 +1,4 @@
-{"_type":"header","version":1,"exported_at":"2026-11-22T20:03:05.314Z","rows":2004,"checksum":"f6f14fc467567b515c3804bbb947eb5205053a02"}
+{"_type":"header","version":1,"exported_at":"2026-11-23T19:37:56.447Z","rows":2005,"checksum":"f8329300c69c660e8668b22252055f8714af5145"}
 {"table":"leagues","data":{"id":"promozione-c","name":"Promozione Toscana - Girone C","short_name":"Promozione C","category":"Promozione","girone":"Girone C","region":"Toscana","province":"","url":"https://www.tuttocampo.it/Toscana/Promozione/GironeC/Risultati","round_id":"TO.P.C","current_match_day":11,"total_match_days":30,"last_updated":"2026-11-22T20:02:07.324Z"}}
 {"table":"leagues","data":{"id":"seconda-i","name":"Seconda Categoria Toscana - Girone I","short_name":"Seconda Cat. I","category":"Seconda Categoria","girone":"Girone I","region":"Toscana","province":"","url":"https://www.tuttocampo.it/Toscana/SecondaCategoria/GironeI/Risultati","round_id":"TO.2.I","current_match_day":10,"total_match_days":30,"last_updated":"2026-11-22T20:02:53.548Z"}}
 {"table":"leagues","data":{"id":"terza-arezzo","name":"Terza Categoria Arezzo - Girone Unico","short_name":"Terza Cat. Arezzo","category":"Terza Categoria","girone":"Girone Unico","region":"Toscana","province":"Arezzo","url":"https://www.tuttocampo.it/Toscana/TerzaCategoria/GironeAArezzo/Risultati","round_id":"TO.3.A.AR","current_match_day":10,"total_match_days":34,"last_updated":"2026-11-22T20:02:59.660Z"}}
@@ -1555,7 +1555,6 @@
 {"table":"goals","data":{"id":741,"match_id":79,"team_id":3,"player_raw":"M. Sacco (45' st)","player_name":"M. Sacco","minute":"45","half":"st","is_penalty":0,"is_own_goal":0,"ordinal":2}}
 {"table":"goals","data":{"id":742,"match_id":81,"team_id":6,"player_raw":"K. Alomar (5' pt)","player_name":"K. Alomar","minute":"5","half":"pt","is_penalty":0,"is_own_goal":0,"ordinal":1}}
 {"table":"goals","data":{"id":743,"match_id":81,"team_id":4,"player_raw":"B. Acosty (2' st)","player_name":"B. Acosty","minute":"2","half":"st","is_penalty":0,"is_own_goal":0,"ordinal":2}}
-{"table":"goals","data":{"id":744,"match_id":82,"team_id":9,"player_raw":"D. Senghore","player_name":"D. Senghore","minute":null,"half":null,"is_penalty":0,"is_own_goal":0,"ordinal":1}}
 {"table":"goals","data":{"id":745,"match_id":83,"team_id":14,"player_raw":"M. Diaby (10' st)","player_name":"M. Diaby","minute":"10","half":"st","is_penalty":0,"is_own_goal":0,"ordinal":1}}
 {"table":"goals","data":{"id":746,"match_id":83,"team_id":14,"player_raw":"T. Ciabatti (35' st)","player_name":"T. Ciabatti","minute":"35","half":"st","is_penalty":0,"is_own_goal":0,"ordinal":2}}
 {"table":"goals","data":{"id":747,"match_id":83,"team_id":12,"player_raw":"E. Antolini","player_name":"E. Antolini","minute":null,"half":null,"is_penalty":0,"is_own_goal":0,"ordinal":3}}
@@ -1569,7 +1568,6 @@
 {"table":"goals","data":{"id":755,"match_id":84,"team_id":10,"player_raw":"M. Bachi (Rig.)","player_name":"M. Bachi","minute":null,"half":null,"is_penalty":1,"is_own_goal":0,"ordinal":4}}
 {"table":"goals","data":{"id":756,"match_id":84,"team_id":10,"player_raw":"M. Bachi","player_name":"M. Bachi","minute":null,"half":null,"is_penalty":0,"is_own_goal":0,"ordinal":5}}
 {"table":"goals","data":{"id":757,"match_id":85,"team_id":13,"player_raw":"D. Espinosa","player_name":"D. Espinosa","minute":null,"half":null,"is_penalty":0,"is_own_goal":0,"ordinal":1}}
-{"table":"goals","data":{"id":758,"match_id":86,"team_id":5,"player_raw":"P. Orlandi","player_name":"P. Orlandi","minute":null,"half":null,"is_penalty":0,"is_own_goal":0,"ordinal":1}}
 {"table":"goals","data":{"id":759,"match_id":87,"team_id":7,"player_raw":"A. Cragno","player_name":"A. Cragno","minute":null,"half":null,"is_penalty":0,"is_own_goal":0,"ordinal":1}}
 {"table":"goals","data":{"id":760,"match_id":88,"team_id":3,"player_raw":"D. Bucaletti (26' st)","player_name":"D. Bucaletti","minute":"26","half":"st","is_penalty":0,"is_own_goal":0,"ordinal":1}}
 {"table":"goals","data":{"id":761,"match_id":283,"team_id":32,"player_raw":"M. Fabbrini","player_name":"M. Fabbrini","minute":null,"half":null,"is_penalty":0,"is_own_goal":0,"ordinal":1}}
@@ -1637,6 +1635,9 @@
 {"table":"goals","data":{"id":823,"match_id":570,"team_id":42,"player_raw":"N. Sensini","player_name":"N. Sensini","minute":null,"half":null,"is_penalty":0,"is_own_goal":0,"ordinal":1}}
 {"table":"goals","data":{"id":824,"match_id":570,"team_id":42,"player_raw":"R. Castellucci (8' st)","player_name":"R. Castellucci","minute":"8","half":"st","is_penalty":0,"is_own_goal":0,"ordinal":2}}
 {"table":"goals","data":{"id":825,"match_id":570,"team_id":35,"player_raw":"N. Terzi","player_name":"N. Terzi","minute":null,"half":null,"is_penalty":0,"is_own_goal":0,"ordinal":3}}
+{"table":"goals","data":{"id":826,"match_id":82,"team_id":2,"player_raw":"A. Rachidi (33' pt)","player_name":"A. Rachidi","minute":"33","half":"pt","is_penalty":0,"is_own_goal":0,"ordinal":1}}
+{"table":"goals","data":{"id":827,"match_id":82,"team_id":9,"player_raw":"D. Senghore (1' st)","player_name":"D. Senghore","minute":"1","half":"st","is_penalty":0,"is_own_goal":0,"ordinal":2}}
+{"table":"goals","data":{"id":828,"match_id":86,"team_id":5,"player_raw":"P. Orlandi (45' st)","player_name":"P. Orlandi","minute":"45","half":"st","is_penalty":0,"is_own_goal":0,"ordinal":1}}
 {"table":"standings_snapshots","data":{"id":1,"season_id":1,"matchday_number":5,"team_id":1,"position":1,"points":12,"played":5,"won":4,"drawn":0,"lost":1,"goals_for":9,"goals_against":3,"goal_diff":6,"zone":"promotion","captured_at":"2026-10-12T20:23:25.447Z"}}
 {"table":"standings_snapshots","data":{"id":2,"season_id":1,"matchday_number":5,"team_id":2,"position":2,"points":12,"played":5,"won":4,"drawn":0,"lost":1,"goals_for":7,"goals_against":3,"goal_diff":4,"zone":"playoff","captured_at":"2026-10-12T20:23:25.447Z"}}
 {"table":"standings_snapshots","data":{"id":3,"season_id":1,"matchday_number":5,"team_id":3,"position":3,"points":12,"played":5,"won":4,"drawn":0,"lost":1,"goals_for":7,"goals_against":4,"goal_diff":3,"zone":"playoff","captured_at":"2026-10-12T20:23:25.447Z"}}

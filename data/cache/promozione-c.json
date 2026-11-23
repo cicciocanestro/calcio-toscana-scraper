@@ -10,7 +10,7 @@
   "roundID": "TO.P.C",
   "currentMatchDay": 11,
   "totalMatchDays": 30,
-  "lastUpdated": "2026-11-22T20:02:07.324Z",
+  "lastUpdated": "2026-11-23T19:36:53.596Z",
   "standings": [
     {
       "position": 1,
@@ -1891,9 +1891,11 @@
           "date": "2026-11-22",
           "time": "14:30",
           "dateTime": "2026-11-22T14:30:00",
-          "homeScorers": [],
+          "homeScorers": [
+            "A. Rachidi (33' pt)"
+          ],
           "awayScorers": [
-            "D. Senghore"
+            "D. Senghore (1' st)"
           ],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/4010.png?v=1",
           "awayLogo": "https://b2-content.tuttocampo.it/Teams/40/57743.png?v=2",
@@ -1976,7 +1978,7 @@
           "time": "14:30",
           "dateTime": "2026-11-22T14:30:00",
           "homeScorers": [
-            "P. Orlandi"
+            "P. Orlandi (45' st)"
           ],
           "awayScorers": [],
           "homeLogo": "https://b2-content.tuttocampo.it/Teams/40/18630.png?v=1",
